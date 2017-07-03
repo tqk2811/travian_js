@@ -31,8 +31,6 @@ function Change_sidebarBoxActiveVillage_Button_onclick(uri)
 {
     window.location = uri;
 }
-
-
 Change_sidebarBoxActiveVillage_Button(workshop_bt,workshop,0);
 Change_sidebarBoxActiveVillage_Button(stable_bt,stable,1);
 Change_sidebarBoxActiveVillage_Button(barracks_bt,barracks,2);
