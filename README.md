@@ -9,5 +9,6 @@ function AddScript(filename)
     s.setAttribute("src",host_script + filename);
     h.appendChild(s);
 }
-AddScript("Main.js");
+AddScript("sidebarBoxLinklist.js");		
+AddScript("sidebarBoxActiveVillage.js");
 ```
