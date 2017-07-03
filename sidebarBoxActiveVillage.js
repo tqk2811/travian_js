@@ -1,3 +1,8 @@
+var market = "/build.php?gid=17";
+var barracks = "/build.php?gid=19";
+var stable = "/build.php?gid=20";
+var workshop = "/build.php?gid=21";
+
 var sidebarBoxActiveVillage = document.getElementById("sidebarBoxActiveVillage");
 var innerBox_header_sidebarBoxActiveVillage = sidebarBoxActiveVillage.getElementsByClassName("innerBox header ")[0];
 var innerBox_header_sidebarBoxActiveVillage_script_arr = innerBox_header_sidebarBoxActiveVillage.getElementsByTagName("script");
