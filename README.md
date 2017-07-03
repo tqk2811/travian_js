@@ -3,10 +3,10 @@ Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfci
 ```
 var h = document.getElementsByTagName("head")[0];
 var host_script = "https://cdn.rawgit.com/tqk2811/travian_ajax/master/";
-function AddScript(url)
+function AddScript(filename)
 {
     var s = document.createElement('script');
-    s.setAttribute("src",host_script + url);
+    s.setAttribute("src",host_script + filename);
     h.appendChild(s);
 }
 AddScript("main.js");
