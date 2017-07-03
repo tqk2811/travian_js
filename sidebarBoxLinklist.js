@@ -21,13 +21,12 @@ function AddLinkerList(item,parent)
     li_.appendChild(aTag);
     parent.appendChild(li_);
 }
-
-//Linker list
 //[Name,url]
 var list = [
     ["FarmList","/build.php?tt=99&id=39"],
     ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
-    ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="]
+    ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="],
+    ["troopEscape","/build.php?tt=0&id=39"]
 ];
 
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
