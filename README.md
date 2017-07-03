@@ -9,5 +9,5 @@ function AddScript(filename)
     s.setAttribute("src",host_script + filename);
     h.appendChild(s);
 }
-AddScript("main.js");
+AddScript("Main.js");
 ```
