@@ -23,10 +23,13 @@ function AddLinkerList(name,uri,parent)
 }
 
 //Linker list
-var market = "/build.php?gid=17";
-var barracks = "/build.php?gid=19";
-var stable = "/build.php?gid=20";
-var workshop = "/build.php?gid=21";
+//[Name,url]
+var list = [
+    ["FarmList","/build.php?tt=99&id=39"],
+    ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
+    ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="]
+];
+
 var farmlist = "/build.php?tt=99&id=39";
 var incoming_attack = "/build.php?gid=16&tt=1&filter=1&subfilters=1";
 var safe_attack_report = "/berichte.php?t=1&opt=AAABAA==";
@@ -40,8 +43,11 @@ if( linklistNotice_!== null)
     linklistNotice_[0].remove();
     var ul_linkerlist = document.createElement("ul");
     innerBox_content.appendChild(ul_linkerlist);
-
-    AddLinkerList("Farm list",farmlist,ul_linkerlist);
-    AddLinkerList("Att đến làng",incoming_attack,ul_linkerlist);
-    AddLinkerList("Safe report",safe_attack_report,ul_linkerlist);
+    
+    var i,length;
+    length = list.length;
+    for(i = 0;i < length;i++)
+    {
+        AddLinkerList(list[i][0],list[i][1]);
+    }
 }
