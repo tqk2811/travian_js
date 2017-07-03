@@ -3,6 +3,7 @@ Install chrome extension: https://chrome.google.com/webstore/detail/poakhlngfcio
 add script below
 
 var h = document.getElementsByTagName("head")[0];
+
 var host_script = "https://cdn.rawgit.com/tqk2811/travian_ajax/master/";
 function AddScript(url)
 {
