@@ -12,12 +12,12 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove=function()
         }
     }
 }
-function AddLinkerList(name,uri,parent)
+function AddLinkerList(item,parent)
 {
     var li_ = document.createElement('li');
     var aTag = document.createElement('a');
-    aTag.setAttribute('href',uri);
-    aTag.innerHTML = name;
+    aTag.setAttribute('href',item[1]);
+    aTag.innerHTML = item[0];
     li_.appendChild(aTag);
     parent.appendChild(li_);
 }
@@ -40,10 +40,8 @@ if( linklistNotice_!== null)
     var ul_linkerlist = document.createElement("ul");
     innerBox_content.appendChild(ul_linkerlist);
     
-    var i,length;
-    length = list.length;
-    for(i = 0;i < length;i++)
+    for(var i = 0;i < list.length;i++)
     {
-        AddLinkerList(list[i][0],list[i][1],ul_linkerlist);
+        AddLinkerList(list[i],ul_linkerlist);
     }
 }
