@@ -1,4 +1,13 @@
 # travian_ajax
-$.getScript("https://cdn.rawgit.com/tqk2811/travian_ajax/master/main.js");
+Install chrome extension: https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija
+add script below
 
-Note: bug with other script when use jquery (not my script), i will try other method
+var h = document.getElementsByTagName("head")[0];
+var host_script = "https://cdn.rawgit.com/tqk2811/travian_ajax/master/";
+function AddScript(url)
+{
+    var s = document.createElement('script');
+    s.setAttribute("src",host_script + url);
+    h.appendChild(s);
+}
+AddScript("main.js");
