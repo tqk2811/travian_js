@@ -44,6 +44,6 @@ if( linklistNotice_!== null)
     length = list.length;
     for(i = 0;i < length;i++)
     {
-        AddLinkerList(list[i][0],list[i][1]);
+        AddLinkerList(list[i][0],list[i][1],ul_linkerlist);
     }
 }
