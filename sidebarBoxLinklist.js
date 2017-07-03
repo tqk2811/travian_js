@@ -30,10 +30,6 @@ var list = [
     ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="]
 ];
 
-var farmlist = "/build.php?tt=99&id=39";
-var incoming_attack = "/build.php?gid=16&tt=1&filter=1&subfilters=1";
-var safe_attack_report = "/berichte.php?t=1&opt=AAABAA==";
-
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
 var BoxLinklist_InnerBox = sidebarBoxLinklist_.getElementsByClassName("sidebarBoxInnerBox")[0];
 var innerBox_content = BoxLinklist_InnerBox.getElementsByClassName("innerBox content")[0];
