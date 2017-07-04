@@ -1,6 +1,5 @@
-//[Name,url]
 var ul_linkerlist;
-var list_sidebarBoxLinklist = [
+var list_sidebarBoxLinklist = [//[Name,url]
     ["FarmList","/build.php?tt=99&id=39"],
     ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
     ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="],
@@ -20,14 +19,10 @@ function AddLinkerList(item)
     li_.appendChild(aTag);
     ul_linkerlist.appendChild(li_);
 }
-
 if( linklistNotice_!== null)
 {
     linklistNotice_[0].remove();
     ul_linkerlist = document.createElement("ul");
     innerBox_content.appendChild(ul_linkerlist);
-    for(var i = 0;i < list.length;i++)
-    {
-        AddLinkerList(list_sidebarBoxLinklist[i]);
-    }
+    for(var i = 0;i < list.length;i++)AddLinkerList(list_sidebarBoxLinklist[i]);
 }
