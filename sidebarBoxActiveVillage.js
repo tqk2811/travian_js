@@ -7,7 +7,6 @@ var list_sidebarBoxActiveVillage = [
     [document.getElementsByClassName("layoutButton barracksBlack gold  ")[0],"/build.php?gid=19"],//barracks
     [document.getElementsByClassName("layoutButton marketBlack gold  ")[0],"/build.php?gid=17"]//market
 ]
-
 function Change_sidebarBoxActiveVillage_Button(index)
 {
     var item = list_sidebarBoxActiveVillage[index];
