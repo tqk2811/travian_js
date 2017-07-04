@@ -25,7 +25,4 @@ function Change_sidebarBoxActiveVillage_Button_onclick(uri)
 {
     window.location = uri;
 }
-for(var i = 0; i < list_sidebarBoxActiveVillage.length; i++)
-{
-    Change_sidebarBoxActiveVillage_Button(i);
-}
+for(var i = 0; i < list_sidebarBoxActiveVillage.length; i++) Change_sidebarBoxActiveVillage_Button(i);
