@@ -24,5 +24,5 @@ if( linklistNotice_!== null)
     linklistNotice_[0].remove();
     ul_linkerlist = document.createElement("ul");
     innerBox_content.appendChild(ul_linkerlist);
-    for(var i = 0;i < list.length;i++)AddLinkerList(list_sidebarBoxLinklist[i]);
+    for(var i = 0;i < list_sidebarBoxLinklist.length;i++)AddLinkerList(list_sidebarBoxLinklist[i]);
 }
