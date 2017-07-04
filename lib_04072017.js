@@ -12,5 +12,3 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove=function()
         }
     }
 }
-AddScript("sidebarBoxLinklist.js");		
-AddScript("sidebarBoxActiveVillage.js");
