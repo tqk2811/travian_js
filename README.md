@@ -9,12 +9,12 @@ var list_sidebarBoxLinklist = [ //[Name,url]
     ["troopEscape","/build.php?tt=0&id=39"]
 ];
 var h = document.getElementsByTagName("head")[0];
-var host_script = "https://rawgit.com/tqk2811/travian_js/master/";
+var host_script = "https://cdn.rawgit.com/tqk2811/travian_js/";
 function AddScript(filename)
 {
     var s = document.createElement('script');
     s.setAttribute("src",host_script + filename);
     h.appendChild(s);
 }
-AddScript("lib.js");
+AddScript("29373eb9/libs.js");
 ```
