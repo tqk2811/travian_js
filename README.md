@@ -1,4 +1,3 @@
-# travian_ajax
 Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija) and add script below
 ```
 // data for linker list (user can change it)
