@@ -9,6 +9,12 @@ var list_sidebarBoxLinklist = [ //[Name,url]
 ];
 var h = document.getElementsByTagName("head")[0];
 var host_script = "https://cdn.rawgit.com/tqk2811/travian_js/";
+function AddUrlScript(uri)
+{
+    var s = document.createElement('script');
+    s.setAttribute("src",uri);
+    h.appendChild(s);
+}
 function AddScript(filename)
 {
     var s = document.createElement('script');
