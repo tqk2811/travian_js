@@ -12,5 +12,5 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove=function()
         }
     }
 }
-AddGithubScript("tqk2811","travian_js","master","sidebarBoxActiveVillage.js");
-AddGithubScript("tqk2811","travian_js","master","sidebarBoxLinklist.js");
+AddGithubScript("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js");
+AddGithubScript("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js");
