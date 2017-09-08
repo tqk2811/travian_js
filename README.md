@@ -15,6 +15,6 @@ function AddUriScript(uri)
     h.appendChild(s);
 }
 AddUriScript("https://cdn.rawgit.com/tqk2811/travian_js/ee3a6cba/loadgithub.js");
-AddGithubScript("tqk2811","travian_js","master","libs.js");
+AddGithubScript("tqk2811","travian_js","master","travian_libs.js");
 ```
 
