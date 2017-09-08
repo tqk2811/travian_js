@@ -1,6 +1,7 @@
 Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija) and add script below
 ```
 // data for linker list (user can change it)
+var refresh_ = "a";
 var list_sidebarBoxLinklist = [ //[Name,url]
     ["FarmList","/build.php?tt=99&id=39"],
     ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
@@ -11,7 +12,7 @@ var h = document.getElementsByTagName("head")[0];
 function AddUriScript(uri)
 {
     var s = document.createElement('script');
-    s.setAttribute("src",uri);
+    s.setAttribute("src",uri + "?refresh_="+refresh_);
     h.appendChild(s);
 }
 function httpGetGithubCdnUri(user,project_name,branch,file_path)
