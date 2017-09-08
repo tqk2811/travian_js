@@ -1,9 +1,9 @@
-var ALAMI = function(){
-  return{
-    Draggable: function(){}
-  };
-}();
-function elementDraggable(e){ var e = e || window.event;
+var b = document.getElementById("center");
+var taskbox = document.createElement('div');
+
+var ALAMI = function(){return{Draggable: function(){}};}();
+function elementDraggable(e){ 
+  var e = e || window.event;
   var div = taskbox;//ALAMI.Draggable.elemen;
   ALAMI.Draggable.innerX = e.clientX + window.pageXOffset - div.offsetLeft;
   ALAMI.Draggable.innerY = e.clientY + window.pageYOffset - div.offsetTop;
@@ -20,8 +20,6 @@ function elementDraggable(e){ var e = e || window.event;
   }}
 
 var taskbox_travianjs_ = '<table width="100%" border="1"><tbody><tr><td>Village</td><td>Wood</td><td>clay</td><td>Iron</td><td>Crop</td><td>Build timeleft</td></tr></tbody></table>';
-var b = document.getElementById("center");
-var taskbox = document.createElement('div');
 taskbox.innerHTML = taskbox_travianjs_;
 taskbox.setAttribute("id","taskbox_travianjs");
 taskbox.setAttribute("style","position: absolute; opacity: 1; z-index: 6010; left: 243px; top: 161px; background-color:#ffffff; border-radius: 25px");
