@@ -1,6 +1,3 @@
-var b = document.getElementById("center");
-var taskbox = document.createElement('div');
-
 var ALAMI = function(){return{Draggable: function(){}};}();
 function elementDraggable(e){ 
   var e = e || window.event;
@@ -20,11 +17,25 @@ function elementDraggable(e){
     localStorage.setItem("taskbox_style",taskbox.getAttribute("style"));
   }}
 
-var taskbox_travianjs_ = '<table width="100%" border="1"><tbody><tr><td>Village</td><td>Wood</td><td>clay</td><td>Iron</td><td>Crop</td><td>Build timeleft</td></tr></tbody></table>';
-taskbox.innerHTML = taskbox_travianjs_;
-taskbox.setAttribute("id","taskbox_travianjs");
+var b = document.getElementById("center");
+
+var taskbox = document.createElement('div');
 var taskbox_style = localStorage.getItem("taskbox_style");
 if(taskbox_style !== null) taskbox.setAttribute("style",taskbox_style);
 else taskbox.setAttribute("style","position: absolute; opacity: 1; z-index: 6010; left: 243px; top: 161px; background-color:#ffffff; border-radius: 25px");
+
+var table_ = document.createElement('table');
+table_.style.width = '100%';
+table_.setAttribute('border', '1');
+var tr = document.createElement('tr');
+var head = ["Village","Wood","Clay","Iron","Crop","Build TimeLeft"];
+for(var i = 0; i < 6; i++)
+{
+  var td = document.createElement('td');
+  td.appendChild(document.createTextNode(head[i]));
+  tr.appendChild(td);
+}
+table_.appendChild(tr);
 b.appendChild(taskbox);
+
 taskbox.addEventListener('mousedown', function(e){ALAMI.Draggable.elemen = e.target || e.srcElement; elementDraggable(e);}, false);
