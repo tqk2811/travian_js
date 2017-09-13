@@ -1,3 +1,4 @@
+//create box and event
 var ALAMI = function(){return{Draggable: function(){}};}();
 function elementDraggable(e){ 
   var e = e || window.event;
@@ -38,5 +39,10 @@ for(var i = 0; i < 6; i++)
 table_.appendChild(tr);
 taskbox.appendChild(table_);
 b.appendChild(taskbox);
-
 taskbox.addEventListener('mousedown', function(e){ALAMI.Draggable.elemen = e.target || e.srcElement; elementDraggable(e);}, false);
+
+//read list village
+var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
+var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");
+
+//Travian.TimersAndCounters.initTimer(element_timer);
