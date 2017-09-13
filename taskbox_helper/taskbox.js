@@ -36,6 +36,7 @@ for(var i = 0; i < 6; i++)
   tr.appendChild(td);
 }
 table_.appendChild(tr);
+taskbox.appendChild(table_);
 b.appendChild(taskbox);
 
 taskbox.addEventListener('mousedown', function(e){ALAMI.Draggable.elemen = e.target || e.srcElement; elementDraggable(e);}, false);
