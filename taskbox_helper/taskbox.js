@@ -45,4 +45,4 @@ taskbox.addEventListener('mousedown', function(e){ALAMI.Draggable.elemen = e.tar
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");
 
-//Travian.TimersAndCounters.initTimer(element_timer);
+//Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
