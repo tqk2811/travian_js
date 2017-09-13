@@ -12,7 +12,7 @@ function AddLinkerList(item)
     li_.appendChild(aTag);
     ul_linkerlist.appendChild(li_);
 }
-if( linklistNotice_!== null)
+if( linklistNotice_!== null | linklistNotice_!== undefine)
 {
     linklistNotice_[0].remove();
     ul_linkerlist = document.createElement("ul");
