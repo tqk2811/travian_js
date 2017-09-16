@@ -54,7 +54,7 @@ var active_village = FindActiveVillage(listVillage);
 //var villages_data = localStorage.getItem("villages_data");//load from localStorage
 for(var i =0; i < listVillage.length; i++)
 {
-  var id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["newdid"];
+  var id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
   var village_object = null;
   console.log(id);
   if(listVillage[i] === active_village)
