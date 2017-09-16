@@ -30,9 +30,12 @@ function LoadLiResource(e,value,max)
 function LoadLiBuildTimer(e,time,current)
 {
     var t = document.createElement("span");
-    t.createAttribute("class").value = "timer";
-    t.createAttribute("counting").value = "down";
-    t.createAttribute("value").value = time-current;
+    var c = t.createAttribute("class")
+    c.value = "timer";
+    var count = t.createAttribute("counting")
+    count.value = "down";
+    var v = t.createAttribute("value")
+    v.value = time-current;
     e.appendChild(t);
     Travian.TimersAndCounters.initTimer(t);
 }
