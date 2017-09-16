@@ -22,7 +22,7 @@ function LoadLiResource(e,value,max,flag)
   if(flag)
   {
     var t2 = document.createElement("span");
-    t2.innerText = "  ー  ";
+    t2.innerText = " - ";
     e.appendChild(t2);
   }
   var res = document.createElement("span");
@@ -38,7 +38,7 @@ function LoadLiBuildTimer(e,time,current,flag)
   if(flag)
   {
     var t2 = document.createElement("span");
-    t2.innerText = " - ";
+    t2.innerText = "  ー  ";
     e.appendChild(t2);
   }
   var t = document.createElement("span");
