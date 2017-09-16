@@ -63,8 +63,11 @@ for(var i =0; i < listVillage.length; i++)
     var Clay = Number(document.getElementById("l2").innerText.replace(".","").replace(",",""));
     var Iron = Number(document.getElementById("l3").innerText.replace(".","").replace(",",""));
     var Crop = Number(document.getElementById("l4").innerText.replace(".","").replace(",",""));
-    var Storage_ = Number(document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","").replace("&#8237;","").replace("&#8236;",""));
-    var Granary_ = Number(document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","").replace("&#8237;","").replace("&#8236;",""));
+    var Storage__ = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","");    
+    var Granary__ = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","");
+    
+    var Storage_ = Number(Storage__.substring(1, Storage__.length -1));
+    var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
     var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
     if(build !== null & build !== undefined)
