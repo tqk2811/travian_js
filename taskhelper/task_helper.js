@@ -6,18 +6,16 @@ function FindActiveVillage(listVillages)
   for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class") === " active") return listVillages[i];
   return null; 
 }
-
-function getUrlVars(uri)
-{
-    var vars = [], hash;
-    var hashes = uri.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
+function getQueryVariable(q,variable) {
+    var query = q.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
     }
-    return vars;
+  return null;
 }
 function LoadLiResource(e,value,max)
 {
@@ -56,7 +54,7 @@ var json_village = null;
 var id = null
 for(var i =0; i < listVillage.length; i++)
 {
-  id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
+  id = getQueryVariable(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"),"newdid");
   if(id === null | id === undefined) continue;
   console.log(id);
   if(listVillage[i] === active_village)
