@@ -51,7 +51,8 @@ var active_village = function(){
 for(var i =0; i < listVillage.length; i++)
 {
   var id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["newdid"];
-  var village_object;
+  var village_object = null;
+  console.log(id);
   if(listVillage[i] === active_village)
   {
     //update data current village
