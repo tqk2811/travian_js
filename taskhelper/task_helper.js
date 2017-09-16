@@ -1,5 +1,5 @@
 var ListTimers = [];
-function TimerCountingDownNoReload()
+var TimerCountingDownNoReload = function()
 {
   console.log("TimerCountingDownNoReload");
   for(var i = 0; i < ListTimers.length; i ++)
@@ -18,8 +18,7 @@ function TimerCountingDownNoReload()
       ListTimers[i].innerText = text;
     }
   }
-}
-
+};
 function FindActiveVillage(listVillages)
 {
   for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class") === " active") return listVillages[i];
