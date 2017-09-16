@@ -59,12 +59,12 @@ for(var i =0; i < listVillage.length; i++)
   if(listVillage[i] === active_village)
   {
     //update data current village
-    var Wood = document.getElementById("l1").innerText.toFloat();
-    var Clay = document.getElementById("l2").innerText.toFloat();
-    var Iron = document.getElementById("l3").innerText.toFloat();
-    var Crop = document.getElementById("l4").innerText.toFloat();
-    var Storage_ = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","").toFloat();
-    var Granary_ = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","").toFloat();
+    var Wood = document.getElementById("l1").innerText;
+    var Clay = document.getElementById("l2").innerText;
+    var Iron = document.getElementById("l3").innerText;
+    var Crop = document.getElementById("l4").innerText;
+    var Storage_ = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","");
+    var Granary_ = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","");
     var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
     if(build !== null & build !== undefined)
