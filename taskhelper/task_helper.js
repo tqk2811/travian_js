@@ -1,7 +1,6 @@
 //var village_object = {Storage=80000,Granary=80000,ID="2143"
 //                        Resource=[27352,12321,24343,20654],//Wood,Clay,Iron,Crop
-//                        Production=[2800,2800,2800,3000],
-//  var Tasks_TimeEnd=[2365664,3335544,23353354]};
+//  var Builds=[2365664,3335544,23353354]};
 function getUrlVars(uri)
 {
     var vars = [], hash;
@@ -22,6 +21,13 @@ function LoadLiResource(e,value,max)
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
   e.appendChild(e);
 }
+function LoadLiBuildTimer(e,time,current)
+{
+    var t = document.createElement("span");
+    t.createAttribute("class","timer");
+    t.createAttribute("counting","down");
+    t.createAttribute("value",time-current);
+}
 function LoadVillageData(li_element,village_data)
 {
   var a = document.createElement("a");
@@ -30,9 +36,8 @@ function LoadVillageData(li_element,village_data)
   LoadLiResource(a,village_data.Resource[1],village_data.Storage);
   LoadLiResource(a,village_data.Resource[2],village_data.Storage);
   LoadLiResource(a,village_data.Resource[3],village_data.Granary);
-  
-  
-  
+  var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+  for(int i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(a,village_data.Builds[i],current_SecondFrom1970);
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
@@ -47,23 +52,26 @@ for(int i =0; i < listVillage.length; i++)
   if(listVillage[i] === active_village)
   {
     //update data current village
-    var Wood = document.getElementById("11").innerText;
-    var Clay = document.getElementById("12").innerText;
-    var Iron = document.getElementById("13").innerText;
-    var Crop = document.getElementById("14").innerText;
-    var Storage = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","");
-    var Granary = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","");
+    var Wood = document.getElementById("11").innerText.toFloat();
+    var Clay = document.getElementById("12").innerText.toFloat();
+    var Iron = document.getElementById("13").innerText.toFloat();
+    var Crop = document.getElementById("14").innerText.toFloat();
+    var Storage_ = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","").toFloat();
+    var Granary_ = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","").toFloat();
     var build = document.getElementsByClassName("buildDuration");
+    var Builds_ = [];
     if(build !== null & build !== undefined)
     {
-      var current_second1970 = Math.round(Date.now()/1000,0);
+      var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
       for(int k=0; k < build.length; k++)
       {
-        var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value");
-        
+        var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value").toFloat();
+        Builds_.push(current_SecondFrom1970 + timeleft);
       }
     }
-    villages_data[id] = {};
+    villages_data[id] = {Storage = Storage_, Granary = Granary_, ID = id,
+                        Resource = [Wood,Clay,Iron,Crop],
+                        Builds = Builds_};
     localStorage.setItem("villages_data",villages_data);
   }
   if(villages_data[id] !== null & villages_data[id] !== undefined) LoadVillageData(listVillage[i],villages_data[id]);    
