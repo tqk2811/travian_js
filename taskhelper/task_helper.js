@@ -44,9 +44,11 @@ function LoadLiBuildTimer(e,time,current,flag)
 }
 function LoadVillageData(li_element,village_data,uri_)
 {
-  var e = document.createElement("p1");
-  e.setAttribute("href",uri_);
-  li_element.appendChild(e);
+  var a = document.createElement("a");
+  a.setAttribute("href",uri_);
+  li_element.appendChild(a);
+  var e = document.createElement("p1");  
+  a.appendChild(e);
   LoadLiResource(e,village_data.Resource[0],village_data.Storage);
   LoadLiResource(e,village_data.Resource[1],village_data.Storage);
   LoadLiResource(e,village_data.Resource[2],village_data.Storage);
