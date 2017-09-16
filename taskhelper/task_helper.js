@@ -39,6 +39,7 @@ function LoadLiBuildTimer(e,time,current)
 function LoadVillageData(li_element,village_data)
 {
   var e = document.createElement("p");
+  e.setAttribute("style","margin 0px;");
   li_element.appendChild(e);
   LoadLiResource(e,village_data.Resource[0],village_data.Storage);
   LoadLiResource(e,village_data.Resource[1],village_data.Storage);
