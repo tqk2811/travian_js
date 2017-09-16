@@ -1,6 +1,24 @@
-//var village_object = {Storage=80000,Granary=80000
-//                        Resource=[27352,12321,24343,20654],//Wood,Clay,Iron,Crop
-//  var Builds=[2365664,3335544,23353354]};
+var ListTimers = [];
+function TimerCountingDownNoReload()
+{
+  for(int i = 0; i < ListTimers.length; i ++)
+  {
+    var num = ListTimers.getAttribute("value").toInt() - 1;
+    if(num < 0) continue;
+    else 
+    {
+      var sec_ =num % 60;
+      var temp_ = (num - sec_)/60;
+      var min_ = temp_ % 60;
+      var hour_ = (temp_ - min_)/60;
+      var text = (sec_.toString().length == 1) ? "0"+sec_.toString() : sec_.toString();
+      text = ((min_.toString().length == 1) ? "0"+min_.toString() : min_.toString()) + ":" + text;
+      text = ((hour_.toString().length == 1) ? "0"+hour_.toString() : hour_.toString()) + ":" + text;
+      ListTimers[i].innerText = text;
+    }
+  }
+}
+
 function FindActiveVillage(listVillages)
 {
   for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class") === " active") return listVillages[i];
@@ -47,7 +65,8 @@ function LoadLiBuildTimer(e,time,current,flag)
   t.setAttribute("style","color:blue");
   t.setAttribute("value",time-current);
   e.appendChild(t);  
-  Travian.TimersAndCounters.initTimer(t);
+  ListTimers.push(t);
+  //Travian.TimersAndCounters.initTimer(t);
 }
 function LoadVillageData(li_element,village_data,uri_)
 {
@@ -123,5 +142,5 @@ for(var i =0; i < listVillage.length; i++)
   }
   id = null;
 }
-
+window.setInterval(TimerCountingDownNoReload,1000);
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
