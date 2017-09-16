@@ -63,7 +63,7 @@ for(var i =0; i < listVillage.length; i++)
     if(build !== null & build !== undefined)
     {
       var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-      for(int k=0; k < build.length; k++)
+      for(var k=0; k < build.length; k++)
       {
         var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value").toFloat();
         Builds_.push(current_SecondFrom1970 + timeleft);
