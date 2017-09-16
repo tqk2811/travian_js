@@ -38,14 +38,14 @@ function LoadLiBuildTimer(e,time,current)
 }
 function LoadVillageData(li_element,village_data)
 {
-  var a = document.createElement("a");
-  li_element.appendChild(a);
-  LoadLiResource(a,village_data.Resource[0],village_data.Storage);
-  LoadLiResource(a,village_data.Resource[1],village_data.Storage);
-  LoadLiResource(a,village_data.Resource[2],village_data.Storage);
-  LoadLiResource(a,village_data.Resource[3],village_data.Granary);
+  var e = document.createElement("hr");
+  li_element.appendChild(e);
+  LoadLiResource(e,village_data.Resource[0],village_data.Storage);
+  LoadLiResource(e,village_data.Resource[1],village_data.Storage);
+  LoadLiResource(e,village_data.Resource[2],village_data.Storage);
+  LoadLiResource(e,village_data.Resource[3],village_data.Granary);
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(a,village_data.Builds[i],current_SecondFrom1970);
+  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970);
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
