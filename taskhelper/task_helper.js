@@ -73,7 +73,7 @@ for(var i =0; i < listVillage.length; i++)
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
     var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
-    if(build !== null & build !== undefined)
+    if(build !== null & build !== undefined & build.length !== 0)
     {
       var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
       for(var k=0; k < build.length; k++)
