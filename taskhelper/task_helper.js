@@ -1,7 +1,6 @@
 var ListTimers = [];
 var TimerCountingDownNoReload = function()
 {
-  console.log("TimerCountingDownNoReload," + ListTimers.length);
   for(var i = 0; i < ListTimers.length; i ++)
   {
     var num = ListTimers[i].getAttribute("value").toInt() - 1;
@@ -101,7 +100,6 @@ for(var i =0; i < listVillage.length; i++)
   var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
   id = getQueryVariable(uri_,"newdid");
   if(id === null | id === undefined) continue;
-  console.log(id);
   if(listVillage[i] === active_village)
   {
     //update data current village
