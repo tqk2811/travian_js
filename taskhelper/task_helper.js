@@ -45,10 +45,11 @@ var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elemen
 var active_village = function(){
   for(var i = 0; i < listVillage.length; i++) if(listVillage[i].getAttribute("class") === " active") return listVillage[i];
   return null; };
-var villages_data = localStorage.getItem("villages_data");//load from localStorage
+//var villages_data = localStorage.getItem("villages_data");//load from localStorage
 for(var i =0; i < listVillage.length; i++)
 {
   var id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["newdid"];
+  var village_object;
   if(listVillage[i] === active_village)
   {
     //update data current village
@@ -69,12 +70,12 @@ for(var i =0; i < listVillage.length; i++)
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
     }
-    villages_data[id] = {Storage : Storage_, Granary : Granary_, ID : id,
+    village_object = {Storage : Storage_, Granary : Granary_, ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
                         Builds : Builds_};
-    localStorage.setItem("villages_data",villages_data);
-  }
-  if(villages_data[id] !== null & villages_data[id] !== undefined) LoadVillageData(listVillage[i],villages_data[id]);    
+    localStorage.setItem("village_"+id,village_object);
+  }else village_object = localStorage.getItem("village_"+id);
+  if(village_object !== null & village_object !== undefined) LoadVillageData(listVillage[i],villages_data);    
 }
 
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
