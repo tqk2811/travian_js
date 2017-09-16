@@ -37,19 +37,16 @@ function LoadVillageData(li_element,village_data)
   LoadLiResource(a,village_data.Resource[2],village_data.Storage);
   LoadLiResource(a,village_data.Resource[3],village_data.Granary);
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-  for(int i = 0; i < village_data.Builds.length; i++) 
-  {
-      LoadLiBuildTimer(a,village_data.Builds[i],current_SecondFrom1970);
-  }
+  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(a,village_data.Builds[i],current_SecondFrom1970);
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
 var active_village = function(){
-  for(int i = 0; i < listVillage.length; i++) if(listVillage[i].getAttribute("class") === " active") return listVillage[i];
+  for(var i = 0; i < listVillage.length; i++) if(listVillage[i].getAttribute("class") === " active") return listVillage[i];
   return null; };
 var villages_data = localStorage.getItem("villages_data");//load from localStorage
-for(int i =0; i < listVillage.length; i++)
+for(var i =0; i < listVillage.length; i++)
 {
   var id = getUrlVars(listVillage[i].getAttribute("href"))[newdid];
   if(listVillage[i] === active_village)
