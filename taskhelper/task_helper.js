@@ -37,6 +37,7 @@ function LoadLiBuildTimer(e,time,current,i)
   var t = document.createElement("span");
   t.setAttribute("class","timer");
   t.setAttribute("counting","down");
+  t.setAttribute("style","color:blue");
   t.setAttribute("value",time-current);
   e.appendChild(t);  
   Travian.TimersAndCounters.initTimer(t);
