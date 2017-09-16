@@ -19,7 +19,7 @@ function LoadLiResource(e,value,max)
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "% ";
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
-  e.appendChild(e);
+  e.appendChild(res);
 }
 function LoadLiBuildTimer(e,time,current)
 {
@@ -27,6 +27,8 @@ function LoadLiBuildTimer(e,time,current)
     t.createAttribute("class","timer");
     t.createAttribute("counting","down");
     t.createAttribute("value",time-current);
+    e.appendChild(t);
+    Travian.TimersAndCounters.initTimer(t);
 }
 function LoadVillageData(li_element,village_data)
 {
