@@ -25,10 +25,10 @@ function LoadLiResource(e,value,max)
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
   e.appendChild(res);
 }
-function LoadLiBuildTimer(e,time,current,i)
+function LoadLiBuildTimer(e,time,current,flag)
 {
   if(time-current <= 0) return;
-  if(i > 0 )
+  if(flag)
   {
     var t2 = document.createElement("span");
     t2.innerText = "  ー  ";
@@ -42,19 +42,25 @@ function LoadLiBuildTimer(e,time,current,i)
   e.appendChild(t);  
   Travian.TimersAndCounters.initTimer(t);
 }
-function LoadVillageData(li_element,village_data)
+function LoadVillageData(li_element,village_data,uri_)
 {
   var e = document.createElement("p1");
+  e.setAttribute("href",uri_);
   li_element.appendChild(e);
   LoadLiResource(e,village_data.Resource[0],village_data.Storage);
   LoadLiResource(e,village_data.Resource[1],village_data.Storage);
   LoadLiResource(e,village_data.Resource[2],village_data.Storage);
   LoadLiResource(e,village_data.Resource[3],village_data.Granary);
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-  
+  var flag = false;
   var br = document.createElement("br");
   e.appendChild(br);
-  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,i);
+  for(var i = 0; i < village_data.Builds.length; i++) 
+  {
+    if(village_data.Builds[i] < current_SecondFrom1970) continue;
+    LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag);
+    flag = true;
+  }
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
@@ -64,7 +70,8 @@ var json_village = null;
 var id = null
 for(var i =0; i < listVillage.length; i++)
 {
-  id = getQueryVariable(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"),"newdid");
+  var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
+  id = getQueryVariable(uri_,"newdid");
   if(id === null | id === undefined) continue;
   console.log(id);
   if(listVillage[i] === active_village)
@@ -103,7 +110,7 @@ for(var i =0; i < listVillage.length; i++)
   json_village = localStorage.getItem("village_"+id);
   if(json_village !== null & json_village !== undefined) 
   {
-    LoadVillageData(listVillage[i],JSON.parse(json_village));
+    LoadVillageData(listVillage[i],JSON.parse(json_village),uri_);
     json_village = null;
   }
   id = null;
