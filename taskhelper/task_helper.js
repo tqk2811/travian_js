@@ -69,9 +69,9 @@ for(var i =0; i < listVillage.length; i++)
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
     }
-    villages_data[id] = {Storage = Storage_, Granary = Granary_, ID = id,
-                        Resource = [Wood,Clay,Iron,Crop],
-                        Builds = Builds_};
+    villages_data[id] = {Storage : Storage_, Granary : Granary_, ID : id,
+                        Resource : [Wood,Clay,Iron,Crop],
+                        Builds : Builds_};
     localStorage.setItem("villages_data",villages_data);
   }
   if(villages_data[id] !== null & villages_data[id] !== undefined) LoadVillageData(listVillage[i],villages_data[id]);    
