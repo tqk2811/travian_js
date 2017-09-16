@@ -1,7 +1,7 @@
 var ListTimers = [];
 function TimerCountingDownNoReload()
 {
-  for(int i = 0; i < ListTimers.length; i ++)
+  for(var i = 0; i < ListTimers.length; i ++)
   {
     var num = ListTimers.getAttribute("value").toInt() - 1;
     if(num < 0) continue;
