@@ -18,7 +18,7 @@ function AddUriScript(uri)
 function httpGetGithubCdnUri(user,project_name,branch,file_path)
 {    
     var sha_data = localStorage.getItem(user + "/" + project_name + "/" + branch+"/" + refresh_);//Check storage
-    if(sha_data == null)
+    if(sha_data === null)
     {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET","https://api.github.com/repos/" + user + "/" + project_name + "/commits/" + branch, false );
