@@ -76,7 +76,7 @@ for(var i =0; i < listVillage.length; i++)
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
     }
-    var = village_object = {Storage : Storage_, Granary : Granary_, ID : id,
+    var village_object = {Storage : Storage_, Granary : Granary_, ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
                         Builds : Builds_};
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
