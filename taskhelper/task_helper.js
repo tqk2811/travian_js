@@ -30,7 +30,7 @@ function LoadLiBuildTimer(e,time,current)
   if(time-current <= 0) return;
   var t = document.createElement("span");
   var t2 = document.createElement("span");
-  t2.innerText = "  ";
+  t2.innerText = "    ";
   t.setAttribute("class","timer");
   t.setAttribute("counting","down");
   t.setAttribute("value",time-current);
@@ -48,9 +48,9 @@ function LoadVillageData(li_element,village_data)
   LoadLiResource(e,village_data.Resource[3],village_data.Granary);
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   
-  var e1 = document.createElement("p1");
-  li_element.appendChild(e1);
-  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e1,village_data.Builds[i],current_SecondFrom1970);
+  var br = document.createElement("br");
+  li_element.appendChild(br);
+  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970);
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
