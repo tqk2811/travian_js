@@ -27,12 +27,13 @@ function LoadLiResource(e,value,max)
 }
 function LoadLiBuildTimer(e,time,current)
 {
-    var t = document.createElement("span");
-    t.setAttribute("class","timer");
-    t.setAttribute("counting","down");
-    t.setAttribute("value",time-current);
-    e.appendChild(t);
-    Travian.TimersAndCounters.initTimer(t);
+  if(time-current <= 0) return;
+  var t = document.createElement("span");
+  t.setAttribute("class","timer");
+  t.setAttribute("counting","down");
+  t.setAttribute("value",time-current);
+  e.appendChild(t);
+  Travian.TimersAndCounters.initTimer(t);
 }
 function LoadVillageData(li_element,village_data)
 {
