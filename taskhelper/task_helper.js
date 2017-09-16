@@ -23,6 +23,7 @@ function LoadLiResource(e,value,max)
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "% ";
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
+  res.setAttribute("style",style="color:green")
   e.appendChild(res);
 }
 function LoadLiBuildTimer(e,time,current,flag)
