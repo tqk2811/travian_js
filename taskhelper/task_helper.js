@@ -1,4 +1,4 @@
-//var village_object = {Storage=80000,Granary=80000,ID="2143"
+//var village_object = {Storage=80000,Granary=80000
 //                        Resource=[27352,12321,24343,20654],//Wood,Clay,Iron,Crop
 //  var Builds=[2365664,3335544,23353354]};
 function getUrlVars(uri)
@@ -74,7 +74,9 @@ for(var i =0; i < listVillage.length; i++)
                         Resource : [Wood,Clay,Iron,Crop],
                         Builds : Builds_};
     localStorage.setItem("village_"+id,village_object);
-  }else village_object = localStorage.getItem("village_"+id);
+    console.log("Save data village id:" + id);
+  } else village_object = localStorage.getItem("village_"+id);
+    
   if(village_object !== null & village_object !== undefined) LoadVillageData(listVillage[i],villages_data);    
 }
 
