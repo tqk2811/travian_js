@@ -21,7 +21,7 @@ function getUrlVars(uri)
 }
 function LoadLiResource(e,value,max)
 {
-  var res = document.createElement("div");
+  var res = document.createElement("span");
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "% ";
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
@@ -38,7 +38,7 @@ function LoadLiBuildTimer(e,time,current)
 }
 function LoadVillageData(li_element,village_data)
 {
-  var e = document.createElement("hr");
+  var e = document.createElement("p");
   li_element.appendChild(e);
   LoadLiResource(e,village_data.Resource[0],village_data.Storage);
   LoadLiResource(e,village_data.Resource[1],village_data.Storage);
