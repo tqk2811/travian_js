@@ -65,7 +65,7 @@ for(var i =0; i < listVillage.length; i++)
     var Crop = Number(document.getElementById("l4").innerText.replace(".","").replace(",",""));
     var Storage_ = Number(document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",",""));
     var Granary_ = Number(document.getElementById("stockBarGranary").innerText.replace(".","").replace(",",""));
-    var build = Number(document.getElementsByClassName("buildDuration");
+    var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
     if(build !== null & build !== undefined)
     {
