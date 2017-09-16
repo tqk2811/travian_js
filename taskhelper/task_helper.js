@@ -57,7 +57,7 @@ var id = null
 for(var i =0; i < listVillage.length; i++)
 {
   id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
-  if(id !== null & id !== undefined) continue;
+  if(id === null | id === undefined) continue;
   console.log(id);
   if(listVillage[i] === active_village)
   {
