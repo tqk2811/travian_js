@@ -90,8 +90,8 @@ for(var i =0; i < listVillage.length; i++)
       }
     }else 
     {
-      var b = JSON.parse(localStorage.getItem("village_"+id)).Builds;
-      if(b !== null & b !== undefined) Builds_ = b;
+      var b = localStorage.getItem("village_"+id);
+      if(b !== null & b !== undefined) Builds_ = JSON.parse(b).Builds;
     }
     var village_object = {Storage : Storage_, Granary : Granary_, ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
