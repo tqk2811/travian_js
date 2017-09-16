@@ -88,7 +88,11 @@ for(var i =0; i < listVillage.length; i++)
         var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value").toFloat();
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
-    }else Builds_ = JSON.parse(localStorage.getItem("village_"+id)).Builds;
+    }else 
+    {
+      var b = JSON.parse(localStorage.getItem("village_"+id)).Builds;
+      if(b !== null & b !== undefined) Builds_ = b;
+    }
     var village_object = {Storage : Storage_, Granary : Granary_, ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
                         Builds : Builds_};
