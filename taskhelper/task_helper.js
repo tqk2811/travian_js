@@ -1,6 +1,12 @@
 //var village_object = {Storage=80000,Granary=80000
 //                        Resource=[27352,12321,24343,20654],//Wood,Clay,Iron,Crop
 //  var Builds=[2365664,3335544,23353354]};
+function FindActiveVillage(listVillages)
+{
+  for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class") === " active") return listVillages[i];
+  return null; 
+}
+
 function getUrlVars(uri)
 {
     var vars = [], hash;
@@ -44,9 +50,7 @@ function LoadVillageData(li_element,village_data)
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
-var active_village = function(){
-  for(var i = 0; i < listVillage.length; i++) if(listVillage[i].getAttribute("class") === " active") return listVillage[i];
-  return null; };
+var active_village = FindActiveVillage(listVillage);
 //var villages_data = localStorage.getItem("villages_data");//load from localStorage
 for(var i =0; i < listVillage.length; i++)
 {
