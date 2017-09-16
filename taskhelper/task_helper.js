@@ -49,7 +49,7 @@ function LoadVillageData(li_element,village_data)
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   
   var br = document.createElement("br");
-  li_element.appendChild(br);
+  e.appendChild(br);
   for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970);
 }
 
