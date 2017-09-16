@@ -3,7 +3,7 @@ function TimerCountingDownNoReload()
 {
   for(var i = 0; i < ListTimers.length; i ++)
   {
-    var num = ListTimers.getAttribute("value").toInt() - 1;
+    var num = ListTimers[i].getAttribute("value").toInt() - 1;
     if(num < 0) continue;
     else 
     {
