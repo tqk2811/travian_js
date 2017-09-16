@@ -17,8 +17,14 @@ function getQueryVariable(q,variable) {
     }
   return null;
 }
-function LoadLiResource(e,value,max)
+function LoadLiResource(e,value,max,flag)
 {
+  if(flag)
+  {
+    var t2 = document.createElement("span");
+    t2.innerText = "  ー  ";
+    e.appendChild(t2);
+  }
   var res = document.createElement("span");
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "% ";
@@ -32,7 +38,7 @@ function LoadLiBuildTimer(e,time,current,flag)
   if(flag)
   {
     var t2 = document.createElement("span");
-    t2.innerText = "  ー  ";
+    t2.innerText = " - ";
     e.appendChild(t2);
   }
   var t = document.createElement("span");
@@ -47,10 +53,10 @@ function LoadVillageData(li_element,village_data,uri_)
 {
   var e = document.createElement("p1");  
   li_element.appendChild(e);
-  LoadLiResource(e,village_data.Resource[0],village_data.Storage);
-  LoadLiResource(e,village_data.Resource[1],village_data.Storage);
-  LoadLiResource(e,village_data.Resource[2],village_data.Storage);
-  LoadLiResource(e,village_data.Resource[3],village_data.Granary);
+  LoadLiResource(e,village_data.Resource[0],village_data.Storage,false);
+  LoadLiResource(e,village_data.Resource[1],village_data.Storage,true);
+  LoadLiResource(e,village_data.Resource[2],village_data.Storage,true);
+  LoadLiResource(e,village_data.Resource[3],village_data.Granary,true);
   
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   var flag = false;
