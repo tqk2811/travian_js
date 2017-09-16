@@ -1,7 +1,7 @@
 var ListTimers = [];
 var TimerCountingDownNoReload = function()
 {
-  console.log("TimerCountingDownNoReload");
+  console.log("TimerCountingDownNoReload," + ListTimers.length);
   for(var i = 0; i < ListTimers.length; i ++)
   {
     var num = ListTimers[i].getAttribute("value").toInt() - 1;
@@ -16,6 +16,7 @@ var TimerCountingDownNoReload = function()
       text = ((min_.toString().length == 1) ? "0"+min_.toString() : min_.toString()) + ":" + text;
       text = ((hour_.toString().length == 1) ? "0"+hour_.toString() : hour_.toString()) + ":" + text;
       ListTimers[i].innerText = text;
+      ListTimers[i].setAttribute("value",num);
     }
   }
 };
