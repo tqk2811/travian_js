@@ -55,12 +55,18 @@ function LoadVillageData(li_element,village_data,uri_)
   LoadLiResource(e,village_data.Resource[3],village_data.Granary);
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   var flag = false;
-  var br = document.createElement("br");
-  e.appendChild(br);
+  //var br = document.createElement("br");
+  //e.appendChild(br);
+  
+  var a1 = document.createElement("a");
+  a1.setAttribute("href",uri_);
+  li_element.appendChild(a1);
+  var e1 = document.createElement("p1");  
+  a1.appendChild(e1);
   for(var i = 0; i < village_data.Builds.length; i++) 
   {
     if(village_data.Builds[i] < current_SecondFrom1970) continue;
-    LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag);
+    LoadLiBuildTimer(e1,village_data.Builds[i],current_SecondFrom1970,flag);
     flag = true;
   }
 }
