@@ -52,10 +52,11 @@ function LoadVillageData(li_element,village_data)
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
 var active_village = FindActiveVillage(listVillage);
-//var villages_data = localStorage.getItem("villages_data");//load from localStorage
+var json_village = null;
+var id = null
 for(var i =0; i < listVillage.length; i++)
 {
-  var id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
+  id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
   console.log(id);
   if(listVillage[i] === active_village)
   {
@@ -86,8 +87,13 @@ for(var i =0; i < listVillage.length; i++)
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
   }
-  var json_village = localStorage.getItem("village_"+id);
-  if(json_village !== null & json_village !== undefined) LoadVillageData(listVillage[i],JSON.parse(json_village));    
+  json_village = localStorage.getItem("village_"+id);
+  if(json_village !== null & json_village !== undefined) 
+  {
+    LoadVillageData(listVillage[i],JSON.parse(json_village));
+    json_village = null;
+  }
+  id = null;
 }
 
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
