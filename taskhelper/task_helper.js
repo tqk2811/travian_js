@@ -55,7 +55,6 @@ var active_village = FindActiveVillage(listVillage);
 for(var i =0; i < listVillage.length; i++)
 {
   var id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
-  var village_object = null;
   console.log(id);
   if(listVillage[i] === active_village)
   {
@@ -77,14 +76,14 @@ for(var i =0; i < listVillage.length; i++)
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
     }
-    village_object = {Storage : Storage_, Granary : Granary_, ID : id,
+    var = village_object = {Storage : Storage_, Granary : Granary_, ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
                         Builds : Builds_};
-    localStorage.setItem("village_"+id,village_object);
+    localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
-  } else village_object = localStorage.getItem("village_"+id);
+  }
     
-  if(village_object !== null & village_object !== undefined) LoadVillageData(listVillage[i],village_object);    
+  if(village_object !== null & village_object !== undefined) LoadVillageData(listVillage[i],JSON.parse(localStorage.getItem("village_"+id)));    
 }
 
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
