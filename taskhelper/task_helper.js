@@ -25,17 +25,20 @@ function LoadLiResource(e,value,max)
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
   e.appendChild(res);
 }
-function LoadLiBuildTimer(e,time,current)
+function LoadLiBuildTimer(e,time,current,i)
 {
   if(time-current <= 0) return;
+  if(i > 0 )
+  {
+    var t2 = document.createElement("span");
+    t2.innerText = "  ー  ";
+    e.appendChild(t2);
+  }
   var t = document.createElement("span");
-  var t2 = document.createElement("span");
-  t2.innerText = "    ";
   t.setAttribute("class","timer");
   t.setAttribute("counting","down");
   t.setAttribute("value",time-current);
-  e.appendChild(t);
-  e.appendChild(t2);
+  e.appendChild(t);  
   Travian.TimersAndCounters.initTimer(t);
 }
 function LoadVillageData(li_element,village_data)
@@ -50,7 +53,7 @@ function LoadVillageData(li_element,village_data)
   
   var br = document.createElement("br");
   e.appendChild(br);
-  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970);
+  for(var i = 0; i < village_data.Builds.length; i++) LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,i);
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
