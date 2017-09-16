@@ -82,8 +82,8 @@ for(var i =0; i < listVillage.length; i++)
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
   }
-    
-  if(village_object !== null & village_object !== undefined) LoadVillageData(listVillage[i],JSON.parse(localStorage.getItem("village_"+id)));    
+  var json_village = localStorage.getItem("village_"+id);
+  if(json_village !== null & json_village !== undefined) LoadVillageData(listVillage[i],JSON.parse(json_village));    
 }
 
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
