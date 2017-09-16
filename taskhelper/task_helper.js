@@ -57,6 +57,7 @@ var id = null
 for(var i =0; i < listVillage.length; i++)
 {
   id = getUrlVars(listVillage[i].getElementsByTagName("a")[0].getAttribute("href"))["?newdid"];
+  if(id === null | id === undefined) continue;
   console.log(id);
   if(listVillage[i] === active_village)
   {
@@ -72,7 +73,7 @@ for(var i =0; i < listVillage.length; i++)
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
     var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
-    if(build !== null & build !== undefined)
+    if(build !== null | build !== undefined)
     {
       var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
       for(var k=0; k < build.length; k++)
@@ -88,7 +89,7 @@ for(var i =0; i < listVillage.length; i++)
     console.log("Save data village id:" + id);
   }
   json_village = localStorage.getItem("village_"+id);
-  if(json_village !== null & json_village !== undefined) 
+  if(json_village !== null | json_village !== undefined) 
   {
     LoadVillageData(listVillage[i],JSON.parse(json_village));
     json_village = null;
