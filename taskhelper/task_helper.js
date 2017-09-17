@@ -2,7 +2,7 @@ function CreateSoundElement(url_sound)
 {
     var v = document.createElement("video");    
     v.src = url_sound;
-    v.volume = 100;
+    v.volume = 1;
     v.hidden = true;
     v.loop = false;
     v.autoplay = false;
