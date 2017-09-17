@@ -24,9 +24,9 @@ var TimerCountingDownNoReload = function()
       var temp_ = (num - sec_)/60;
       var min_ = temp_ % 60;
       var hour_ = (temp_ - min_)/60;
-      var text = (sec_.toString().length == 1) ? "0"+sec_.toString() : sec_.toString();
-      text = ((min_.toString().length == 1) ? "0"+min_.toString() : min_.toString()) + ":" + text;
-      text = ((hour_.toString().length == 1) ? "0"+hour_.toString() : hour_.toString()) + ":" + text;
+      var text = (sec_ < 10) ? "0"+sec_.toString() : sec_.toString();
+      text = ((min_ < 10) ? "0"+min_.toString() : min_.toString()) + ":" + text;
+      text = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text;
       ListTimers[i].innerText = text;
       ListTimers[i].setAttribute("value",num);
     }
