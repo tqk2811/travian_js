@@ -2,13 +2,14 @@ function CreateSoundElement(url_sound)
 {
     var v = document.createElement("video");
     var s = document.createElement("source");
+    s.setAttribute("src",url_sound);
     v.appendChild(s);
     document.body.appendChild(v);
-    return s;
+    return v;
     
     //s.setAttribute("autoplay",false);
     //s.setAttribute("loop",false);
-    //s.setAttribute("src",url_sound);
+    //
     //s.setAttribute("volume",100);
     //s.setAttribute("hidden",true);
     //s.setAttribute("autostart",true);
