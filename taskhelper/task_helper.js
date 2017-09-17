@@ -1,3 +1,40 @@
+function Sound(source,volume,loop)
+{
+    this.source=source;
+    this.volume=volume;
+    this.loop=loop;
+    var son;
+    this.son=son;
+    this.finish=false;
+    this.stop=function()
+    {
+        document.body.removeChild(this.son);
+    }
+    this.start=function()
+    {
+        if(this.finish)return false;
+        this.son=document.createElement("embed");
+        this.son.setAttribute("src",this.source);
+        this.son.setAttribute("hidden","true");
+        this.son.setAttribute("volume",this.volume);
+        this.son.setAttribute("autostart","true");
+        this.son.setAttribute("loop",this.loop);
+        document.body.appendChild(this.son);
+    }
+    this.remove=function()
+    {
+        document.body.removeChild(this.son);
+        this.finish=true;
+    }
+    this.init=function(volume,loop)
+    {
+        this.finish=false;
+        this.volume=volume;
+        this.loop=loop;
+    }
+}
+
+var ding_sound = new Sound(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"),100,true);
 var ListTimers = [];
 var TimerCountingDownNoReload = function()
 {
@@ -7,6 +44,7 @@ var TimerCountingDownNoReload = function()
     if(num < 0) continue;
     else 
     {
+      if(num === 0) ding_sound.start();
       var sec_ =num % 60;
       var temp_ = (num - sec_)/60;
       var min_ = temp_ % 60;
