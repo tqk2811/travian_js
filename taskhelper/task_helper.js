@@ -5,6 +5,7 @@ function CreateSoundElement(url_sound)
     s.setAttribute("loop",false);
     s.setAttribute("src",url_sound);
     s.setAttribute("volume",100);
+    s.setAttribute("hidden",true);
     document.body.appendChild(s);
     return s;
 }
