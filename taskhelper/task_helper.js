@@ -1,40 +1,14 @@
-function Sound(source,volume,loop)
+function CreateSoundElement(url_sound)
 {
-    this.source=source;
-    this.volume=volume;
-    this.loop=loop;
-    var son;
-    this.son=son;
-    this.finish=false;
-    this.stop=function()
-    {
-        document.body.removeChild(this.son);
-    }
-    this.start=function()
-    {
-        if(this.finish)return false;
-        this.son=document.createElement("embed");
-        this.son.setAttribute("src",this.source);
-        this.son.setAttribute("hidden","true");
-        this.son.setAttribute("volume",this.volume);
-        this.son.setAttribute("autostart","true");
-        this.son.setAttribute("loop",this.loop);
-        document.body.appendChild(this.son);
-    }
-    this.remove=function()
-    {
-        document.body.removeChild(this.son);
-        this.finish=true;
-    }
-    this.init=function(volume,loop)
-    {
-        this.finish=false;
-        this.volume=volume;
-        this.loop=loop;
-    }
+    var s = document.createElement("sound");
+    s.setAttribute("autoplay",false);
+    s.setAttribute("loop",false);
+    s.setAttribute("src",url_sound);
+    s.setAttribute("volume",100);
+    document.body.appendChild(s);
+    return s;
 }
-
-var ding_sound = new Sound(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"),100,true);
+var ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
 var ListTimers = [];
 var TimerCountingDownNoReload = function()
 {
@@ -44,7 +18,7 @@ var TimerCountingDownNoReload = function()
     if(num < 0) continue;
     else 
     {
-      if(num === 0) ding_sound.start();
+      if(num === 0) ding_sound.play();
       var sec_ =num % 60;
       var temp_ = (num - sec_)/60;
       var min_ = temp_ % 60;
@@ -65,11 +39,10 @@ function FindActiveVillage(listVillages)
 function getQueryVariable(q,variable) {
     var query = q.substring(1);
     var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
+    for (var i = 0; i < vars.length; i++) 
+    {
         var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-        }
+        if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
     }
   return null;
 }
