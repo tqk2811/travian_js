@@ -1,11 +1,12 @@
 function CreateSoundElement(url_sound)
 {
-    var s = document.createElement("sound");
+    var s = document.createElement("embed");
     s.setAttribute("autoplay",false);
     s.setAttribute("loop",false);
     s.setAttribute("src",url_sound);
     s.setAttribute("volume",100);
     s.setAttribute("hidden",true);
+    s.setAttribute("autostart",true);
     document.body.appendChild(s);
     return s;
 }
