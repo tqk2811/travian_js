@@ -1,18 +1,13 @@
 function CreateSoundElement(url_sound)
 {
-    var v = document.createElement("video");
-    var s = document.createElement("source");
-    s.setAttribute("src",url_sound);
-    v.appendChild(s);
+    var v = document.createElement("video");    
+    v.src = url_sound;
+    v.volume = 100;
+    v.hidden = true;
+    v.loop = false;
+    v.autoplay = false;
     document.body.appendChild(v);
     return v;
-    
-    //s.setAttribute("autoplay",false);
-    //s.setAttribute("loop",false);
-    //
-    //s.setAttribute("volume",100);
-    //s.setAttribute("hidden",true);
-    //s.setAttribute("autostart",true);
 }
 var ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
 var ListTimers = [];
