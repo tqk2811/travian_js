@@ -1,7 +1,9 @@
 Travian version 4.4  
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/6ce6054d/Untitled.png)
 
-Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija) and add script below
+Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija) and add script below to extension in your travian and click Save.
+![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/6ce6054d/Untitled.png)
+
 ```
 // data for linker list (user can change it)
 var refresh_ = "a";//some string
