@@ -104,15 +104,15 @@ function LoadVillageData(li_element,village_data,uri_)
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
-var innerBoxContent_sidebarBoxVillagelist= sidebarBoxVillagelist.getElementsByTagName("innerBox content")[0];
-innerBoxContent_sidebarBoxVillagelist.setAttribute("style","padding:0");
+//var innerBoxContent_sidebarBoxVillagelist= sidebarBoxVillagelist.getElementsByTagName("innerBox content")[0];
+//innerBoxContent_sidebarBoxVillagelist.setAttribute("style","padding:0");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
 var active_village = FindActiveVillage(listVillage);
 var json_village = null;
 var id = null
 for(var i =0; i < listVillage.length; i++)
 {
-  listVillage[i].setAttribute("style","padding:0");
+  //listVillage[i].setAttribute("style","padding:0");
   var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
   id = getQueryVariable(uri_,"newdid");
   if(id === null | id === undefined) continue;
