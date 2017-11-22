@@ -22,7 +22,7 @@ function CCSStylesheetRuleStyle(stylesheet, selectorText, style, value){
       break;      
     }
   }
-  if(value == undefined)
+  if(value === undefined)
     return CCSstyle[style]
   else
     return CCSstyle[style] = value
