@@ -112,8 +112,6 @@ var json_village = null;
 var id = null
 for(var i =0; i < listVillage.length; i++)
 {
-  //listVillage[i].setAttribute("style","padding:0");
-  CCSStylesheetRuleStyle("default","#content","padding","5px");
   var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
   id = getQueryVariable(uri_,"newdid");
   if(id === null | id === undefined) continue;
