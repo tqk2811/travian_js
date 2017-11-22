@@ -18,8 +18,14 @@ function CCSStylesheetRuleStyle(stylesheet, selectorText, style, value){
     if(document.styleSheets[m].href === stylesheet)
     {
       rules = document.styleSheets[m][document.all ? 'rules' : 'cssRules'];
-      for(var n in rules){if(rules[n].selectorText == selectorText){CCSstyle = rules[n].style; break;}}
-      break;      
+      for(var n in rules)
+      {
+         if(rules[n].selectorText == selectorText)
+         {
+            CCSstyle = rules[n].style; 
+            break;
+         }
+      }      
     }
   }
   if(value === undefined)
