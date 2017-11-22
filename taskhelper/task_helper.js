@@ -158,6 +158,6 @@ for(var i =0; i < listVillage.length; i++)
   }
   id = null;
 }
-CCSStylesheetRuleStyle("default","#content","padding","5px");
+CCSStylesheetRuleStyle("compact1","#content","padding","5px");
 window.setInterval(TimerCountingDownNoReload,1000);
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
