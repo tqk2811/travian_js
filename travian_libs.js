@@ -26,7 +26,7 @@ function CCSStylesheetRuleStyle(stylesheet, selectorText, style, value){
   */
   var CCSstyle = undefined, rules;
   for(var m in document.styleSheets){
-    if(document.styleSheets[m] !== null || document.styleSheets[m] !== undefined)
+    if(document.styleSheets[m].href !== null || document.styleSheets[m].href !== undefined)
     {
       if(document.styleSheets[m].href.indexOf(stylesheet) != -1)
       {
