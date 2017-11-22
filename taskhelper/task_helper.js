@@ -113,6 +113,7 @@ var id = null
 for(var i =0; i < listVillage.length; i++)
 {
   //listVillage[i].setAttribute("style","padding:0");
+  CCSStylesheetRuleStyle("default","#content","padding","5px");
   var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
   id = getQueryVariable(uri_,"newdid");
   if(id === null | id === undefined) continue;
@@ -157,5 +158,6 @@ for(var i =0; i < listVillage.length; i++)
   }
   id = null;
 }
+CCSStylesheetRuleStyle("default","#content","padding","5px");
 window.setInterval(TimerCountingDownNoReload,1000);
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
