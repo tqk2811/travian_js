@@ -26,15 +26,14 @@ function CCSStylesheetRuleStyle(stylesheet, selectorText, style, value){
   */
   var CCSstyle = undefined, rules;
   for(var m in document.styleSheets){
-    if(document.styleSheets[m].href.indexOf(stylesheet) != -1){
-     rules = document.styleSheets[m][document.all ? 'rules' : 'cssRules'];
-     for(var n in rules){
-       if(rules[n].selectorText == selectorText){
-         CCSstyle = rules[n].style;
-         break;
-       }
-     }
-     break;
+    if(document.styleSheets[m] !== null || document.styleSheets[m] !== undefined)
+    {
+      if(document.styleSheets[m].href.indexOf(stylesheet) != -1)
+      {
+        rules = document.styleSheets[m][document.all ? 'rules' : 'cssRules'];
+        for(var n in rules){if(rules[n].selectorText == selectorText){CCSstyle = rules[n].style; break;}}
+        break;
+      }
     }
   }
   if(value == undefined)
