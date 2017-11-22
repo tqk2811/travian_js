@@ -159,5 +159,4 @@ for(var i =0; i < listVillage.length; i++)
   id = null;
 }
 window.setInterval(TimerCountingDownNoReload,1000);
-CCSStylesheetRuleStyle(null,".content","padding","5px");
 //Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
