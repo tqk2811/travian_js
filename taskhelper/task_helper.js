@@ -137,7 +137,7 @@ for(var i =0; i < listVillage.length; i++)
         var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value").toFloat();
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
-    }else if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf1.php") > 0)
+    }else if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf2.php") > 0)
 	{
 		
 	}
