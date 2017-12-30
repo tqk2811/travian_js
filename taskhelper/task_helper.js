@@ -137,7 +137,11 @@ for(var i =0; i < listVillage.length; i++)
         var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value").toFloat();
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
-    }else 
+    }else if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf1.php") > 0)
+	{
+		
+	}
+	else
     {
       var b = localStorage.getItem("village_"+id);
       if(b !== null & b !== undefined) Builds_ = JSON.parse(b).Builds;
