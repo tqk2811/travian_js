@@ -71,6 +71,7 @@ function LoadLiBuildTimer(e,time,current,flag)
     var t2 = document.createElement("span");
     t2.innerText = "  ー  ";
     e.appendChild(t2);
+	e.setAttribute("style","font-size:"+font_size);
   }
   var t = document.createElement("span");
   t.setAttribute("style","color:blue;font-size:"+font_size);
