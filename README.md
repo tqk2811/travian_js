@@ -7,7 +7,7 @@ Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfci
 ```
 // data for linker list (user can change it)
 var refresh_ = "a";//some string for refresh
-var font_size = "8px";
+var font_size = "10px";
 var list_sidebarBoxLinklist = [ //[Name,url]
     ["FarmList","/build.php?tt=99&id=39"],
     ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
