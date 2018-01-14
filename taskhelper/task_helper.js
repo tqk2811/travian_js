@@ -53,14 +53,14 @@ function LoadLiResource(e,value,max,flag)
   if(flag)
   {
     var t2 = document.createElement("span");
-    t2.innerText = " - ";
+    t2.innerText = "-";
     e.appendChild(t2);
   }
   var res = document.createElement("span");
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "% ";
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
-  res.setAttribute("style",style="color:green;font-size:" + font_size);
+  res.setAttribute("style",style="color:green");
   e.appendChild(res);
 }
 function LoadLiBuildTimer(e,time,current,flag)
@@ -69,19 +69,20 @@ function LoadLiBuildTimer(e,time,current,flag)
   if(flag)
   {
     var t2 = document.createElement("span");
-    t2.innerText = "  ー  ";
+    t2.innerText = "-";//ー
     e.appendChild(t2);
-	e.setAttribute("style","font-size:"+font_size);
+	//t2.setAttribute("style","font-size:"+font_size);
   }
   var t = document.createElement("span");
-  t.setAttribute("style","color:blue;font-size:"+font_size);
+  t.setAttribute("style","color:blue");
   t.setAttribute("value",time-current);
   e.appendChild(t);  
   ListTimers.push(t);
 }
 function LoadVillageData(li_element,village_data,uri_)
 {
-  var e = document.createElement("p1");  
+  var e = document.createElement("p1");
+  e.setAttribute("style","font-size:"+font_size);
   li_element.appendChild(e);
   LoadLiResource(e,village_data.Resource[0],village_data.Storage,false);
   LoadLiResource(e,village_data.Resource[1],village_data.Storage,true);
