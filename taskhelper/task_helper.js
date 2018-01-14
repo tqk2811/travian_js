@@ -60,7 +60,7 @@ function LoadLiResource(e,value,max,flag)
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "% ";
   else res.innerText = Math.round((value * 100)/max,0) + "% ";
-  res.setAttribute("style",style="color:green")
+  res.setAttribute("style",style="color:green;font-size:" + font_size);
   e.appendChild(res);
 }
 function LoadLiBuildTimer(e,time,current,flag)
@@ -73,13 +73,10 @@ function LoadLiBuildTimer(e,time,current,flag)
     e.appendChild(t2);
   }
   var t = document.createElement("span");
-  //t.setAttribute("class","timer");
-  //t.setAttribute("counting","down");
-  t.setAttribute("style","color:blue");
+  t.setAttribute("style","color:blue;font-size:"+font_size);
   t.setAttribute("value",time-current);
   e.appendChild(t);  
   ListTimers.push(t);
-  //Travian.TimersAndCounters.initTimer(t);
 }
 function LoadVillageData(li_element,village_data,uri_)
 {
