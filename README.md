@@ -1,7 +1,7 @@
 Travian version 4.4  
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/04b53666/demo.png)
 
-Install [chrome extension](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija) and add script below to extension in your travian and click Save.
+Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigjmcpcpkmhogomapikjbjdk) ([old version](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija)) and add script below to extension in your travian and click Save.
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
 ```
