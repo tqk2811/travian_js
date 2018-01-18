@@ -92,7 +92,7 @@ function LoadVillageData(li_element,village_data,uri_)
   
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   var flag = false;
-  int j = 0;
+  var j = 0;
   for(var i = 0; i < village_data.Builds.length; i++) 
   {
     if(village_data.Builds[i] < current_SecondFrom1970) continue;
