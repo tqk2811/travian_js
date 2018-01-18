@@ -63,22 +63,23 @@ function LoadLiResource(e,value,max,flag)
   res.setAttribute("style",style="color:green");
   e.appendChild(res);
 }
-function LoadLiBuildTimer(e,time,current,flag)
+function LoadLiBuildTimer(e,time,current,flag,color_)
 {
   if(time-current <= 0) return;
+  var t = document.createElement("span");
   if(flag)
   {
     var t2 = document.createElement("span");
     t2.innerText = "-";//ー
     e.appendChild(t2);
-	//t2.setAttribute("style","font-size:"+font_size);
   }
-  var t = document.createElement("span");
-  t.setAttribute("style","color:blue");
-  t.setAttribute("value",time-current);
+  t.setAttribute("style","color:" + color_);
+  t.setAttribute("value",time - current);
   e.appendChild(t);  
   ListTimers.push(t);
 }
+
+var color_list = ["Blue","BlueGray","Gray"];
 function LoadVillageData(li_element,village_data,uri_)
 {
   var e = document.createElement("p1");
@@ -96,7 +97,7 @@ function LoadVillageData(li_element,village_data,uri_)
   for(var i = 0; i < village_data.Builds.length; i++) 
   {
     if(village_data.Builds[i] < current_SecondFrom1970) continue;
-    LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag);
+    LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag,color_list[i]);
     flag = true;
   }
 }
