@@ -12,8 +12,17 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove=function()
         }
     }
 }
+function AddUriCss(uri)
+{
+    var s = document.createElement('link');
+    s.setAttribute("href",uri + "?refresh_="+refresh_);
+	s.setAttribute("rel","stylesheet");
+	s.setAttribute("type","text/css");
+    h.appendChild(s);
+}
+
 
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));
+AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));
