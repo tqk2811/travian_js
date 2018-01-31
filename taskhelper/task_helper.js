@@ -133,7 +133,7 @@ for(var i =0; i < listVillage.length; i++)
       var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
       for(var k=0; k < build.length; k++)
       {
-        var timeleft = build[k].getElementsByTagName("span")[0].getAttribute("value").toFloat();
+        var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
         Builds_.push(current_SecondFrom1970 + timeleft);
       }
     }else if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf2.php") > 0)
