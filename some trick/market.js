@@ -1,11 +1,13 @@
 //clear all trade route
 var trading_routes = document.getElementById("trading_routes");
 var sels = trading_routes.getElementsByClassName("sel");
-for(var i = 0; i< sels.length; i++)
+if(sels.length >0)
 {
 	var a = sels[i].getElementsByTagName("a")[0];
 	a.click();
 }
+
+
 
 //add new trade route
 //localStorage.setItem("trade_route_hour",0);
@@ -16,7 +18,7 @@ var r3 = 5000;
 var r4 = 6000;
 var repeat = 3;
 var hr = parseInt(localStorage.getItem("trade_route_hour"));
-if(hr === null || hr === undefined || hr !== -1)
+if(hr !== -1)
 {	
 	var userHour = hr + 2;
 	if(userHour > 23) { localStorage.setItem("trade_route_hour",-1);}
