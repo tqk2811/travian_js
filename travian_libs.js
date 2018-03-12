@@ -26,3 +26,4 @@ AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/s
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));
 AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));
+AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","other/market.js"));
