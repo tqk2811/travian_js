@@ -5,14 +5,13 @@ Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigj
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
 ```
-// data for linker list (user can change it)
 //DeleteAllTradingRoutes() //use in market 
 //localStorage.setItem("trade_route_hour",1);//use in console
 var trade_routes = [""// Village ID
 ,5000,5000,5000,6000,3]//res
-var refresh_ = "a";//some string for refresh
+var refresh_ = "00000001";//some string for refresh
 var font_size = "10px";
-var list_sidebarBoxLinklist = [ //[Name,url]
+var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [Name,url]
     ["FarmList","/build.php?tt=99&id=39"],
     ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
     ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="],
