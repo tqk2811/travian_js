@@ -3,7 +3,7 @@ if(contract_ !== null | contract_ !== undefined)
 {	
 	var ress = contract_.getElementsByTagName("span");
 	var total_ = 0;
-	for(var i =0; i < ress.length; i++)
+	for(var i =0; i < ress.length - 1; i++)
 	{
 		total_ += Number.parseInt(ress[i].innerText);
 	}
