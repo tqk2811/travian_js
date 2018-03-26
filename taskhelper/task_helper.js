@@ -35,7 +35,7 @@ var TimerCountingDownNoReload = function()
 };
 function FindActiveVillage(listVillages)
 {
-  for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class") === " active") return listVillages[i];
+  for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
   return null; 
 }
 function getQueryVariable(q,variable) {
