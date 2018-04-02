@@ -24,7 +24,7 @@ if(Flag_deleteAll_Trading_routes)
 		if(sels !== null && sels !==undefined && sels.length >0)
 		{
 			var a_tr = sels[0].getElementsByTagName("a");
-			if(a_tr !== null && a_tr !== undefined && a_tr.length >0 )a_tr.click();
+			if(a_tr !== null && a_tr !== undefined && a_tr.length >0 )a_tr[0].click();
 		}
 	}
 }
