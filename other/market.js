@@ -1,16 +1,4 @@
-if(Flag_deleteAll_Trading_routes)
-{
-	var trading_routes = document.getElementById("trading_routes");
-	if(trading_routes !== null |trading_routes !== undefined)
-	{
-		var sels = trading_routes.getElementsByClassName("sel");
-		if(sels.length >0)
-		{
-			var a = sels[i].getElementsByTagName("a")[0];
-			a.click();
-		}
-	}
-}
+
 function CreateTradeRoutes()
 {
 	var hr = parseInt(localStorage.getItem("trade_route_hour"));
@@ -26,3 +14,17 @@ function CreateTradeRoutes()
 var hr_temp = localStorage.getItem("trade_route_hour");
 if(hr_temp === undefined || hr_temp === null) localStorage.setItem("trade_route_hour",-1);
 CreateTradeRoutes();
+
+if(Flag_deleteAll_Trading_routes)
+{
+	var trading_routes = document.getElementById("trading_routes");
+	if(trading_routes !== null |trading_routes !== undefined)
+	{
+		var sels = trading_routes.getElementsByClassName("sel");
+		if(sels !== null && sels !==undefined && sels.length >0)
+		{
+			var a = sels[i].getElementsByTagName("a")[0];
+			a.click();
+		}
+	}
+}
