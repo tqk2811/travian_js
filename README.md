@@ -5,10 +5,10 @@ Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigj
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
 ```
-//DeleteAllTradingRoutes() //use in market 
 //localStorage.setItem("trade_route_hour",1);//use in console
 var trade_routes = [""// Village ID
 ,5000,5000,5000,6000,3,2]//res
+var Flag_deleteAll_Trading_routes = false; //use in market 
 var refresh_ = "00000001";//some string for refresh
 var font_size = "10px";
 var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [Name,url]

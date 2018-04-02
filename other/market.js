@@ -1,11 +1,14 @@
-function DeleteAllTradingRoutes()
+if(Flag_deleteAll_Trading_routes)
 {
 	var trading_routes = document.getElementById("trading_routes");
-	var sels = trading_routes.getElementsByClassName("sel");
-	if(sels.length >0)
+	if(trading_routes !== null |trading_routes !== undefined)
 	{
-		var a = sels[i].getElementsByTagName("a")[0];
-		a.click();
+		var sels = trading_routes.getElementsByClassName("sel");
+		if(sels.length >0)
+		{
+			var a = sels[i].getElementsByTagName("a")[0];
+			a.click();
+		}
 	}
 }
 function CreateTradeRoutes()
