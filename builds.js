@@ -10,7 +10,7 @@ function Get_gid()
 	}
 }
 
-#region gid19
+
 function gid19()
 {
 	var descriptionAndInfo = e_build.getElementById("descriptionAndInfo");
@@ -44,7 +44,6 @@ function gid19_clear()
 		}
 	}
 }
-#endregion
 
 
 gid19_clear();
