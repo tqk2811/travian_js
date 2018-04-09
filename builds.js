@@ -11,6 +11,7 @@ function Get_gid()
 			if(tabItem[i].getAttribute("class").indexOf("favorActive") >= 0) 
 			{
 				tabActive = i;
+				console.log("tabActive:" + i);
 				break;
 			}
 		}
