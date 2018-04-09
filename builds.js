@@ -27,6 +27,17 @@ function gid17()
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
+				
+				//for(var i=0; i < 4; i++)
+				//{
+					//var input_tr = document.createElement("input");
+					//input_tr.setAttribute("type","number");
+					//input_tr.setAttribute("size","4");
+					//Input_traderoutes.push(input_tr);
+				//}
+				
+				
+				
 			}
 		}
 	}
@@ -63,7 +74,7 @@ function gid17_clear()
 
 
 gid17_clear();
-
+var Input_traderoutes = [];
 var tabActive = document.getElementsByClassName("container active");
 var e_build = document.getElementById("build");
 if(e_build !== null && e_build !== undefined) Get_gid();
