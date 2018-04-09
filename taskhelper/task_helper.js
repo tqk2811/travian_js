@@ -48,7 +48,7 @@ function getQueryVariable(q,variable) {
     }
   return null;
 }
-function LoadLiResource(e,value,max,flag)
+function LoadLiResource(e,value,max,flag,arlet)
 {
   if(flag)
   {
@@ -60,7 +60,7 @@ function LoadLiResource(e,value,max,flag)
   var percent = Math.round((value * 100)/max,0);
   if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "%";
   else res.innerText = Math.round((value * 100)/max,0) + "%";
-  res.setAttribute("style",style="color:green");
+  res.setAttribute("style", style= arlet ? "color:red":"color:green");
   e.appendChild(res);
 }
 function LoadLiBuildTimer(e,time,current,flag,color_)
@@ -85,10 +85,10 @@ function LoadVillageData(li_element,village_data,uri_)
   var e = document.createElement("p1");
   e.setAttribute("style","font-size:"+font_size);
   li_element.appendChild(e);
-  LoadLiResource(e,village_data.Resource[0],village_data.Storage,false);
-  LoadLiResource(e,village_data.Resource[1],village_data.Storage,true);
-  LoadLiResource(e,village_data.Resource[2],village_data.Storage,true);
-  LoadLiResource(e,village_data.Resource[3],village_data.Granary,true);
+  LoadLiResource(e,village_data.Resource[0],village_data.Storage,false,false);
+  LoadLiResource(e,village_data.Resource[1],village_data.Storage,true,false);
+  LoadLiResource(e,village_data.Resource[2],village_data.Storage,true,false);
+  LoadLiResource(e,village_data.Resource[3],village_data.Granary,true,village_data.CropArlet_);
   
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   var flag = false;
@@ -121,6 +121,7 @@ for(var i =0; i < listVillage.length; i++)
     var Clay = Number(document.getElementById("l2").innerText.replace(".","").replace(",",""));
     var Iron = Number(document.getElementById("l3").innerText.replace(".","").replace(",",""));
     var Crop = Number(document.getElementById("l4").innerText.replace(".","").replace(",",""));
+	var CropArlet_ = document.getElementById("l4").getAttribute("class").indexOf("alert") >=0 ? true : false;
     var Storage__ = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","");    
     var Granary__ = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","");
     
@@ -145,9 +146,12 @@ for(var i =0; i < listVillage.length; i++)
       var b = localStorage.getItem("village_"+id);
       if(b !== null & b !== undefined) Builds_ = JSON.parse(b).Builds;
     }
-    var village_object = {Storage : Storage_, Granary : Granary_, ID : id,
+    var village_object = {Storage : Storage_, 
+						Granary : Granary_, 
+						ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
-                        Builds : Builds_};
+                        Builds : Builds_,
+						CropArlet: CropArlet_};
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
   }
