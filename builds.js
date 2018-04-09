@@ -3,6 +3,18 @@ function Get_gid()
 	var gid_str = e_build.getAttribute("class").split(" ")[0];
 	var gid = Number(gid_str.substring(3,gid_str.length));
 	console.log("gid:" + gid);
+	var tabItem = document.getElementsByClassName("tabItem");
+	if(tabItem !== null && tabItem !== undefined && tabItem > 0)
+	{
+		for(var i =0; i < tabItem.length; i++)
+		{
+			if(tabItem[i].getAttribute("class").indexOf("favorActive") >= 0) 
+			{
+				tabActive = i;
+				break;
+			}
+		}
+	}
 	switch(gid)
 	{
 		case 19: gid19(); return;
@@ -14,7 +26,7 @@ function Get_gid()
 
 function gid19()
 {
-	var descriptionAndInfo = e_build.getElementById("descriptionAndInfo");
+	var descriptionAndInfo = document.getElementById("descriptionAndInfo");
 	if(descriptionAndInfo !== null && descriptionAndInfo !== undefined)
 	{
 		var button_clear = document.createElement("button");
@@ -49,5 +61,6 @@ function gid19_clear()
 
 gid19_clear();
 
+var tabActive = -1;
 var e_build = document.getElementById("build");
 if(e_build !== null && e_build !== undefined) Get_gid();
