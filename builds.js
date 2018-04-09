@@ -24,8 +24,8 @@ function gid17()
 			{
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Route";
-				button_clear.SetAttribute("style","background-color:red;border:none;");
-				button_clear.SetAttribute("onclick","gid17_clear_onclick()");
+				button_clear.setAttribute("style","background-color:red;border:none;");
+				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
 			}
 		}
