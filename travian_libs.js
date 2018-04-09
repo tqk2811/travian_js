@@ -25,6 +25,7 @@ function AddUriCss(uri)
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));
 AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/market.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/cost.js"));

@@ -14,17 +14,3 @@ function CreateTradeRoutes()
 var hr_temp = localStorage.getItem("trade_route_hour");
 if(hr_temp === undefined || hr_temp === null) localStorage.setItem("trade_route_hour",-1);
 CreateTradeRoutes();
-
-if(Flag_deleteAll_Trading_routes)
-{
-	var trading_routes = document.getElementById("trading_routes");
-	if(trading_routes !== null |trading_routes !== undefined)
-	{
-		var sels = trading_routes.getElementsByClassName("sel");
-		if(sels !== null && sels !==undefined && sels.length >0)
-		{
-			var a_tr = sels[0].getElementsByTagName("a");
-			if(a_tr !== null && a_tr !== undefined && a_tr.length >0 )a_tr[0].click();
-		}
-	}
-}
