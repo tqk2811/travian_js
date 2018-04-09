@@ -23,8 +23,8 @@ function gid17()
 			if(descriptionAndInfo !== null && descriptionAndInfo !== undefined)
 			{
 				var button_clear = document.createElement("button");
-				button_clear.innerText = "Clear All Trade Route";
-				button_clear.setAttribute("style","background-color:red;border:none;");
+				button_clear.innerText = "Clear All Trade Routes";
+				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
 			}
