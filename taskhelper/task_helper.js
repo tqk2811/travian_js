@@ -88,7 +88,7 @@ function LoadVillageData(li_element,village_data,uri_)
   LoadLiResource(e,village_data.Resource[0],village_data.Storage,false,false);
   LoadLiResource(e,village_data.Resource[1],village_data.Storage,true,false);
   LoadLiResource(e,village_data.Resource[2],village_data.Storage,true,false);
-  LoadLiResource(e,village_data.Resource[3],village_data.Granary,true,village_data.CropArlet_);
+  LoadLiResource(e,village_data.Resource[3],village_data.Granary,true,village_data.CropArlet);
   
   var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
   var flag = false;
