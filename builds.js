@@ -14,17 +14,25 @@ function Get_gid()
 
 function gid19()
 {
-	var descriptionAndInfo = document.getElementById("descriptionAndInfo");
-	if(descriptionAndInfo !== null && descriptionAndInfo !== undefined)
+	if(tabActive !== null && tabActive !== undefined)
 	{
-		var button_clear = document.createElement("button");
-		button_clear.SetAttribute("Text","Clear All Trade Route");
-		button_clear.SetAttribute("onclick","gid19_clear_onclick()");
-		descriptionAndInfo.appendChild(button_clear);
+		var tabItem = tabActive[0].getElementsByClassName("tabItem")[0];
+		if(tabItem.getAttribute("href").indexOf("t=0")>=0)
+		{
+			var descriptionAndInfo = document.getElementById("descriptionAndInfo");
+			if(descriptionAndInfo !== null && descriptionAndInfo !== undefined)
+			{
+				var button_clear = document.createElement("button");
+				button_clear.innerText = "Clear All Trade Route";
+				button_clear.SetAttribute("style","background-color:red;border:none;");
+				button_clear.SetAttribute("onclick","gid19_clear_onclick()");
+				descriptionAndInfo.appendChild(button_clear);
+			}
+		}
 	}
 	
 }
-function gid19_clear_onclick(){	localStorage.setItem("Flag_deleteAll_Trading_routes",1);}
+function gid19_clear_onclick(){	localStorage.setItem("Flag_deleteAll_Trading_routes",1); window.location.href = window.location.href;}
 function gid19_clear()
 {
 	var flag = localStorage.getItem("Flag_deleteAll_Trading_routes");
