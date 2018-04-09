@@ -32,7 +32,14 @@ function gid17()
 	}
 	
 }
-function gid17_clear_onclick(){	localStorage.setItem("Flag_deleteAll_Trading_routes",1); window.location.href = window.location.href;}
+function gid17_clear_onclick()
+{	
+	if(window.confirm("Are you sure to clear all trade routes?"))
+	{
+		localStorage.setItem("Flag_deleteAll_Trading_routes",1); 
+		window.location.href = window.location.href;
+	}
+}
 function gid17_clear()
 {
 	var flag = localStorage.getItem("Flag_deleteAll_Trading_routes");
