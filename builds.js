@@ -5,14 +5,14 @@ function Get_gid()
 	console.log("gid:" + gid);
 	switch(gid)
 	{
-		case 19: gid19(); return;
+		case 17: gid17(); return;
 		
 		default: return;
 	}
 }
 
 
-function gid19()
+function gid17()
 {
 	if(tabActive !== null && tabActive !== undefined)
 	{
@@ -25,15 +25,15 @@ function gid19()
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Route";
 				button_clear.SetAttribute("style","background-color:red;border:none;");
-				button_clear.SetAttribute("onclick","gid19_clear_onclick()");
+				button_clear.SetAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
 			}
 		}
 	}
 	
 }
-function gid19_clear_onclick(){	localStorage.setItem("Flag_deleteAll_Trading_routes",1); window.location.href = window.location.href;}
-function gid19_clear()
+function gid17_clear_onclick(){	localStorage.setItem("Flag_deleteAll_Trading_routes",1); window.location.href = window.location.href;}
+function gid17_clear()
 {
 	var flag = localStorage.getItem("Flag_deleteAll_Trading_routes");
 	if(flag !== null && flag !== undefined && flag + 0 != 0)	
@@ -55,7 +55,7 @@ function gid19_clear()
 }
 
 
-gid19_clear();
+gid17_clear();
 
 var tabActive = document.getElementsByClassName("container active");
 var e_build = document.getElementById("build");
