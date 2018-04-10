@@ -49,22 +49,22 @@ function gid17()
 				
 				var button_Smallcelebration = document.createElement("button");
 				button_Smallcelebration.innerText = "Small celebration";
-				button_Smallcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margins:3px;");
+				button_Smallcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Smallcelebration.setAttribute("onclick","gid17_celebration_click([6400,6650,5940,1340],1)");
 				
 				var button_Bigcelebration = document.createElement("button");
 				button_Bigcelebration.innerText = "Big celebration";
-				button_Bigcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margins:3px;");
+				button_Bigcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration.setAttribute("onclick","gid17_celebration_click([29700,33250,32000,6700],1)");
 				
 				var button_Bigcelebration2 = document.createElement("button");
 				button_Bigcelebration2.innerText = "Big celebration/2";
-				button_Bigcelebration2.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margins:3px;");
+				button_Bigcelebration2.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration2.setAttribute("onclick","gid17_celebration_click([14850,16625,16000,3350],2)");
 				
 				var button_Bigcelebration3 = document.createElement("button");
 				button_Bigcelebration3.innerText = "Big celebration/3";
-				button_Bigcelebration3.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margins:3px;");
+				button_Bigcelebration3.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration3.setAttribute("onclick","gid17_celebration_click([9900,11084,10667,2234],3)");
 				
 				p_button.appendChild(button_Smallcelebration);
