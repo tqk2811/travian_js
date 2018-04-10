@@ -28,30 +28,14 @@ function gid17()
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
 				
-				var p_traderoutes_res = document.createElement("p");
-				descriptionAndInfo.appendChild(p_traderoutes_res);
-				for(var i=0; i < 4; i++)
+				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
+				if(e_tradeRouteEdit !== null && e_tradeRouteEdit !== undefined)
 				{
-					var input_tr = document.createElement("input");
-					input_tr.setAttribute("type","number");
-					input_tr.setAttribute("size","4");
-					input_tr.setAttribute("style","margin:3px;");
-					p_traderoutes_res.appendChild(input_tr);
-					Input_traderoutes.push(input_tr);
+					var e_trading_edit = document.getElementById("trading_edit");
+					var e_p_custom = document.createElement("p");
+					e_trading_edit.insertAdjacentElement("afterend",e_p_custom);
+					
 				}
-				
-				var p_traderoutes_main = document.createElement("p"); 
-				descriptionAndInfo.appendChild(p_traderoutes_main);
-				var textbox_times = document.createElement("select");
-				for(var i = 0; i < 3; i++)
-				{
-					var option_times = document.createElement("option");
-					option_times.innerText=i+1;
-				}
-				p_traderoutes_main.text= " times";
-				
-				
-				
 			}
 		}else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
 		{
@@ -95,7 +79,7 @@ function gid17_clear_onclick()
 	if(window.confirm("Are you sure to clear all trade routes?"))
 	{
 		localStorage.setItem("Flag_deleteAll_Trading_routes",1); 
-		window.location.href = window.location.href;
+		window.location.href = "/build.php?t=0&gid=17";
 	}
 }
 function gid17_clear()
