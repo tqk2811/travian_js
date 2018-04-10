@@ -48,7 +48,7 @@ function gid17()
 					var option_times = document.createElement("option");
 					option_times.innerText=i+1;
 				}
-				p_traderoutes_main.appendChild(" times");
+				p_traderoutes_main.text= " times";
 				
 				
 				
