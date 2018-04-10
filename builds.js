@@ -28,13 +28,27 @@ function gid17()
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
 				
-				//for(var i=0; i < 4; i++)
-				//{
-					//var input_tr = document.createElement("input");
-					//input_tr.setAttribute("type","number");
-					//input_tr.setAttribute("size","4");
-					//Input_traderoutes.push(input_tr);
-				//}
+				var p_traderoutes_res = document.createElement("p");
+				descriptionAndInfo.appendChild(p_traderoutes_res);
+				for(var i=0; i < 4; i++)
+				{
+					var input_tr = document.createElement("input");
+					input_tr.setAttribute("type","number");
+					input_tr.setAttribute("size","4");
+					input_tr.setAttribute("style","margin:3px;");
+					p_traderoutes_res.appendChild(input_tr);
+					Input_traderoutes.push(input_tr);
+				}
+				
+				var p_traderoutes_main = document.createElement("p"); 
+				descriptionAndInfo.appendChild(p_traderoutes_main);
+				var textbox_times = document.createElement("select");
+				for(var i = 0; i < 3; i++)
+				{
+					var option_times = document.createElement("option");
+					option_times.innerText=i+1;
+				}
+				p_traderoutes_main.appendChild(" times");
 				
 				
 				
@@ -104,7 +118,6 @@ function gid17_clear()
 		}
 	}
 }
-
 function gid17_celebration_click(r,run_twice)
 {
 	for(var i=0;i<4;i++)
