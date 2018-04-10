@@ -34,7 +34,7 @@ function gid17()
 					var e_trading_edit = document.getElementById("trading_edit");
 					var e_p_custom = document.createElement("p");
 					e_trading_edit.insertAdjacentElement("afterend",e_p_custom);
-					e_trading_edit.innerText = "Time spacing:";
+					e_p_custom.innerText = "Time spacing:";
 					
 					var spacing = document.createElement("input");
 					spacing.setAttribute("min",1);
@@ -42,6 +42,7 @@ function gid17()
 					spacing.setAttribute("type","number");
 					spacing.setAttribute("value",2);
 					spacing.setAttribute("maxlength",2);
+					e_p_custom.appendChild(spacing);
 				}
 			}
 		}else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
