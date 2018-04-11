@@ -20,7 +20,9 @@ function AddUriCss(uri)
 	s.setAttribute("type","text/css");
     h.appendChild(s);
 }
-
+String.prototype.format = function() {
+  return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
+};
 
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));

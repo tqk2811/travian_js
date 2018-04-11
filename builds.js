@@ -165,7 +165,7 @@ function gid17_CreateTradeRoutes_load()
 	}
 }
 
-var base_uri_traderoute = "/build.php?did_dest={0}&r1={1}&r2={2}&r3={3}&r4={4}&userHour={5}&repeat={6}&a=1&t=0&trid=0&option=256&gid=17";
+var base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
 var Input_traderoutes = [];
