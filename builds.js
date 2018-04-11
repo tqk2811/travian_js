@@ -41,8 +41,16 @@ function gid17()
 					spacing.setAttribute("max",12);
 					spacing.setAttribute("type","number");
 					spacing.setAttribute("value",2);
+					spacing.setAttribute("id","Timespacing");
 					spacing.setAttribute("maxlength",2);
+					spacing.setAttribute("style","padding:3px;margin:3px;");
 					e_p_custom.appendChild(spacing);
+					
+					var button_traderoute = document.createElement("button");
+					button_traderoute.innerText = "Create TradeRoutes";
+					button_traderoute.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
+					button_traderoute.setAttribute("onclick","gid17_CreateTradeRoutes_click()");
+					e_p_custom.appendChild(button_traderoute);
 				}
 			}
 		}else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
@@ -127,13 +135,38 @@ function gid17_celebration_click(r,run_twice)
 			{
 				case 2:e_run_twice.checked = true; break;
 				default: e_run_twice.checked = false; break;
-			}			
+			}
+		}
+	}
+}
+function gid17_CreateTradeRoutes_click()
+{
+	var arr = [];
+	var arr_ = ["did_dest","r1","r2","r3","r4","userHour","repeat","Timespacing"]
+	for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
+	localStorage.setItem("trade_route",JSON.stringify(arr));
+}
+function gid17_CreateTradeRoutes_load()
+{
+	var trade_route_str = localStorage.getItem("trade_route");
+	if(trade_route_str !== null && trade_route_str !== undefined)
+	{
+		tr = JSON.parse(trade_route_str);
+		if(tr[5] !== -1)
+		{
+			var current_userHour = tr[5];
+			var userHour = tr[5] + tr[7];
+			if(userHour > 23) tr[5] = -1;
+			else tr[5] = userHour;	
+			localStorage.setItem("trade_route",JSON.stringify(tr));
+			window.location.href=base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[6],tr[7]);
 		}
 	}
 }
 
-
+var base_uri_traderoute = "/build.php?did_dest={0}&r1={1}&r2={2}&r3={3}&r4={4}&userHour={5}&repeat={6}&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
+gid17_CreateTradeRoutes_load();
 var Input_traderoutes = [];
 var tabActive = document.getElementsByClassName("container active");
 var e_build = document.getElementById("build");
