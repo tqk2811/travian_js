@@ -145,6 +145,7 @@ function gid17_CreateTradeRoutes_click()
 	var arr_ = ["did_dest","r1","r2","r3","r4","userHour","repeat","Timespacing"]
 	for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
 	localStorage.setItem("trade_route",JSON.stringify(arr));
+	gid17_CreateTradeRoutes_load();
 }
 function gid17_CreateTradeRoutes_load()
 {
