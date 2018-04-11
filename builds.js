@@ -141,11 +141,14 @@ function gid17_celebration_click(r,run_twice)
 }
 function gid17_CreateTradeRoutes_click()
 {
-	var arr = [];
-	var arr_ = ["did_dest","r1","r2","r3","r4","userHour","repeat","Timespacing"]
-	for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
-	localStorage.setItem("trade_route",JSON.stringify(arr));
-	gid17_CreateTradeRoutes_load();
+	if(window.confirm("Confirm Create TradeRoutes?"))
+	{
+		var arr = [];
+		var arr_ = ["did_dest","r1","r2","r3","r4","userHour","repeat","Timespacing"]
+		for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
+		localStorage.setItem("trade_route",JSON.stringify(arr));
+		gid17_CreateTradeRoutes_load();
+	}
 }
 function gid17_CreateTradeRoutes_load()
 {
