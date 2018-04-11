@@ -121,7 +121,14 @@ function gid17_celebration_click(r,run_twice)
 	if(e_run_twice !== null && e_run_twice !== undefined)
 	{
 		if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
-		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox" && run_twice == 2) e_run_twice.checked = true;
+		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox") 
+		{
+			switch(run_twice)
+			{
+				case 2:e_run_twice.checked = true; break;
+				default: e_run_twice.checked = false; break;
+			}			
+		}
 	}
 }
 
