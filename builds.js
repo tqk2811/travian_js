@@ -118,7 +118,11 @@ function gid17_celebration_click(r,run_twice)
 		e_r.value = r[i];
 	}
 	var e_run_twice = document.getElementById("x2");
-	e_run_twice.selectedIndex = run_twice-1;
+	if(e_run_twice !== null && e_run_twice !== undefined)
+	{
+		if(e_run_twice.tagName == "select") e_run_twice.selectedIndex = run_twice-1;
+		else if(e_run_twice.tagName == "input" && e_run_twice.getAttribute("type").indexOf("checkbox") >= 0 && run_twice == 2) e_run_twice.checked = true;
+	}
 }
 
 
