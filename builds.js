@@ -154,9 +154,9 @@ function gid17_CreateTradeRoutes_load()
 	{
 		tr = JSON.parse(trade_route_str);
 		if(tr[5] !== -1)
-		{
+		{	
 			var current_userHour = tr[5];
-			var userHour = tr[5] + tr[7];
+			var userHour = Number(tr[5]) + Number(tr[7]);
 			if(userHour > 23) tr[5] = -1;
 			else tr[5] = userHour;	
 			localStorage.setItem("trade_route",JSON.stringify(tr));
