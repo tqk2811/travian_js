@@ -14,13 +14,13 @@ function Get_gid()
 
 function gid17()
 {
-	if(tabActive !== null && tabActive !== undefined)
+	if(tabActive !== null)
 	{
 		var tabItem = tabActive[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0)
 		{
 			var descriptionAndInfo = document.getElementById("descriptionAndInfo");
-			if(descriptionAndInfo !== null && descriptionAndInfo !== undefined)
+			if(descriptionAndInfo !== null)
 			{
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Routes";
@@ -29,7 +29,7 @@ function gid17()
 				descriptionAndInfo.appendChild(button_clear);
 				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
-				if(e_tradeRouteEdit !== null && e_tradeRouteEdit !== undefined)
+				if(e_tradeRouteEdit !== null)
 				{
 					var e_trading_edit = document.getElementById("trading_edit");
 					var e_p_custom = document.createElement("p");
@@ -56,7 +56,7 @@ function gid17()
 		}else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
 		{
 			var marketSend_ = document.getElementById("marketSend");
-			if(marketSend_ !== null && marketSend_ !== undefined)
+			if(marketSend_ !== null)
 			{
 				var p_button = document.createElement("p1");
 				marketSend_.insertAdjacentElement("beforebegin",p_button);
@@ -104,15 +104,15 @@ function gid17_clear()
 	if(flag !== null && flag !== undefined && flag + 0 != 0)	
 	{
 		var trading_routes = document.getElementById("trading_routes");
-		if(trading_routes !== null |trading_routes !== undefined)
+		if(trading_routes !== null)
 		{
 			var sels = trading_routes.getElementsByClassName("sel");
-			if(sels !== null && sels !==undefined )
+			if(sels !== null)
 			{
 				if(sels.length >0)
 				{
 					var a_tr = sels[0].getElementsByTagName("a");
-					if(a_tr !== null && a_tr !== undefined && a_tr.length >0 )a_tr[0].click();
+					if(a_tr !== null && a_tr.length >0 )a_tr[0].click();
 				}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
 			}
 		}
@@ -126,7 +126,7 @@ function gid17_celebration_click(r,run_twice)
 		e_r.value = r[i];
 	}
 	var e_run_twice = document.getElementById("x2");
-	if(e_run_twice !== null && e_run_twice !== undefined)
+	if(e_run_twice !== null)
 	{
 		if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
 		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox") 
@@ -174,4 +174,4 @@ gid17_CreateTradeRoutes_load();
 var Input_traderoutes = [];
 var tabActive = document.getElementsByClassName("container active");
 var e_build = document.getElementById("build");
-if(e_build !== null && e_build !== undefined) Get_gid();
+if(e_build !== null) Get_gid();
