@@ -23,7 +23,7 @@ function AddUriCss(uri)
 String.prototype.format = function() {
   return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
 };
-if(debug !== undefined && debug) window.onerror = function(message, source, lineno, colno, error) 
+if(typeof debug != "undefined" && debug) window.onerror = function(message, source, lineno, colno, error) 
 { 
 	alert("Error\nMessage:" + message + "\nSource:" + source + "\nAt Line " + lineno + " and Column " + colno); 
 };
