@@ -23,7 +23,10 @@ function AddUriCss(uri)
 String.prototype.format = function() {
   return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
 };
-
+if(debug !== undefined && debug) window.onerror = function(message, source, lineno, colno, error) 
+{ 
+	alert("Error\nMessage:" + message + "\nSource:" + source + "\nAt Line " + lineno + " and Column " + colno); 
+};
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));
