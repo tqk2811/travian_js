@@ -1,8 +1,8 @@
 var contract_ = document.getElementById("contract");
-if(contract_ !== null && contract_ !== undefined)
+if(contract_ !== null)
 {	
 	var ress = contract_.getElementsByTagName("span");
-	if(ress !== null && ress !== undefined)
+	if(ress !== null)
 	{
 		var total_ = 0;
 		for(var i =0; i < 4; i++)

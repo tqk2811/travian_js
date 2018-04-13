@@ -113,7 +113,7 @@ for(var i =0; i < listVillage.length; i++)
 {
   var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
   id = getQueryVariable(uri_,"newdid");
-  if(id === null | id === undefined) continue;
+  if(id === null) continue;
   if(listVillage[i] === active_village)
   {
     //update data current village
@@ -129,7 +129,7 @@ for(var i =0; i < listVillage.length; i++)
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
     var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
-    if(build !== null & build !== undefined & build.length !== 0)
+    if(build !== null & build.length !== 0)
     {
       var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
       for(var k=0; k < build.length; k++)
@@ -144,7 +144,7 @@ for(var i =0; i < listVillage.length; i++)
 	else
     {
       var b = localStorage.getItem("village_"+id);
-      if(b !== null & b !== undefined) Builds_ = JSON.parse(b).Builds;
+      if(b !== null && b !== undefined) Builds_ = JSON.parse(b).Builds;
     }
     var village_object = {Storage : Storage_, 
 						Granary : Granary_, 
@@ -156,7 +156,7 @@ for(var i =0; i < listVillage.length; i++)
     console.log("Save data village id:" + id);
   }
   json_village = localStorage.getItem("village_"+id);
-  if(json_village !== null & json_village !== undefined) 
+  if(json_village !== null && json_village !== undefined) 
   {
     LoadVillageData(listVillage[i],JSON.parse(json_village),uri_);
     json_village = null;
