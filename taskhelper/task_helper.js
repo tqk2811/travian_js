@@ -108,7 +108,7 @@ var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
 var active_village = FindActiveVillage(listVillage);
 var json_village = null;
-var id = null
+var id = null;
 for(var i =0; i < listVillage.length; i++)
 {
   var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
@@ -127,30 +127,45 @@ for(var i =0; i < listVillage.length; i++)
     
     var Storage_ = Number(Storage__.substring(1, Storage__.length -1));
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
-    var build = document.getElementsByClassName("buildDuration");
     var Builds_ = [];
-    if(build !== null & build.length !== 0)
-    {
-      var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-      for(var k=0; k < build.length; k++)
-      {
-        var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
-        Builds_.push(current_SecondFrom1970 + timeleft);
-      }
-    }else if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf2.php") > 0)
+    if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf2.php") > 0)
 	{
+		var build = document.getElementsByClassName("buildDuration");
+		if(build !== null & build.length !== 0)//read in dorf
+		{
+			var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+			for(var k=0; k < build.length; k++)
+			{
+				var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
+				Builds_.push(current_SecondFrom1970 + timeleft);
+			}
+		}
 		
+		var e_answersButton = document.getElementById("answersButton");
+		if(e_answersButton !== null)
+		{
+			var e_contentTitle = e_answersButton.parentElement;
+			
+			var a_e_contentTitle = document.createElement("a1");
+			a_e_contentTitle.innerText = "Show";
+			var input_e_contentTitle = document.createElement("input");
+			input_e_contentTitle.type = "checkbox";
+			input_e_contentTitle.checked = true;
+			a_e_contentTitle.appendChild(input_e_contentTitle);
+			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
+		}
 	}
 	else
     {
       var b = localStorage.getItem("village_"+id);
-      if(b !== null && b !== undefined) Builds_ = JSON.parse(b).Builds;
+      if(b !== null) Builds_ = JSON.parse(b).Builds;
     }
     var village_object = {Storage : Storage_, 
 						Granary : Granary_, 
 						ID : id,
                         Resource : [Wood,Clay,Iron,Crop],
                         Builds : Builds_,
+						Show : true,
 						CropArlet: CropArlet_};
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
@@ -164,4 +179,3 @@ for(var i =0; i < listVillage.length; i++)
   id = null;
 }
 window.setInterval(TimerCountingDownNoReload,1000);
-//Travian.TimersAndCounters.initTimer(element_timer);// <span class="timer" couting="down" value=222></span>
