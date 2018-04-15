@@ -145,7 +145,15 @@ for(var i =0; i < listVillage.length; i++)
 	var b = localStorage.getItem("village_"+id);
 	var b_json = null;
 	if(b!==null) b_json = JSON.parse(b);
-    if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf2.php") > 0)
+	var village_object = {Storage : Storage_, 
+						Granary : Granary_, 
+						ID : id,
+                        Resource : [Wood,Clay,Iron,Crop],
+                        //Builds : Builds_,
+						//Show : ,
+						CropArlet: CropArlet_};
+	
+    if (window.location.pathname.indexOf("dorf1.php") > 0 || window.location.pathname.indexOf("dorf2.php") > 0)
 	{
 		var build = document.getElementsByClassName("buildDuration");
 		if(build !== null & build.length !== 0)//read in dorf
@@ -169,6 +177,7 @@ for(var i =0; i < listVillage.length; i++)
 			input_e_contentTitle.type = "checkbox";
 			if(b_json !== null && b_json.Show !== undefined) input_e_contentTitle.checked = b_json.Show;
 			else input_e_contentTitle.checked = true;
+			village_object.Show = input_e_contentTitle.checked;
 			input_e_contentTitle.setAttribute("id","input_e_contentTitle");
 			input_e_contentTitle.setAttribute("onchange","input_e_contentTitle_change()");
 			a_e_contentTitle.appendChild(input_e_contentTitle);
@@ -177,13 +186,8 @@ for(var i =0; i < listVillage.length; i++)
 	}
 	else if(b_json !== null) Builds_ = b_json.Builds;
 	
-    var village_object = {Storage : Storage_, 
-						Granary : Granary_, 
-						ID : id,
-                        Resource : [Wood,Clay,Iron,Crop],
-                        Builds : Builds_,
-						Show : true,
-						CropArlet: CropArlet_};
+    village_object.Builds = Builds_;
+	
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
   }
