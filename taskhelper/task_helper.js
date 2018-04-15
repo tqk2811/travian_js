@@ -153,7 +153,7 @@ for(var i =0; i < listVillage.length; i++)
 			a_e_contentTitle.innerText = "Show";
 			var input_e_contentTitle = document.createElement("input");
 			input_e_contentTitle.type = "checkbox";
-			if(b_json !== null) input_e_contentTitle.checked = b_json.Show;
+			if(b_json !== null && b_json.Show !== undefined) input_e_contentTitle.checked = b_json.Show;
 			else input_e_contentTitle.checked = true;
 			a_e_contentTitle.appendChild(input_e_contentTitle);
 			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
