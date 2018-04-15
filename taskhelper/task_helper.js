@@ -82,7 +82,6 @@ function LoadLiBuildTimer(e,time,current,flag,color_)
 var color_list = ["Blue","BlueGray","Gray"];
 function LoadVillageData(li_element,village_data,uri_)
 {
-	console.log("village_data.Show:" + village_data.Show);
 	if(!village_data.Show) return;	
 	var e = document.createElement("p1");
 	e.setAttribute("style","font-size:"+font_size);
@@ -112,6 +111,7 @@ function input_e_contentTitle_change()
 		var id_currentVillage = getQueryVariable(active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid");
 		var data = JSON.parse(localStorage.getItem("village_"+id_currentVillage));
 		data.Show = e.checked;
+		console.log("input_e_contentTitle.checked:" + e.checked);
 		localStorage.setItem("village_"+id_currentVillage,JSON.stringify(data));
 	}
 }
