@@ -105,6 +105,7 @@ function LoadVillageData(li_element,village_data,uri_)
 
 function input_e_contentTitle_change(e)
 {
+	if(e === null || e === undefined) return;
 	var id_currentVillage = getQueryVariable(active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid");
 	var data = JSON.parse(localStorage.getItem("village_"+id_currentVillage));
 	data.Show = e.checked;
