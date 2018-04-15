@@ -165,7 +165,7 @@ for(var i =0; i < listVillage.length; i++)
 			input_e_contentTitle.type = "checkbox";
 			if(b_json !== null && b_json.Show !== undefined) input_e_contentTitle.checked = b_json.Show;
 			else input_e_contentTitle.checked = true;
-			input_e_contentTitle.setAttribute("onchange",input_e_contentTitle_change(this.value));
+			input_e_contentTitle.setAttribute("onchange",input_e_contentTitle_change(input_e_contentTitle));
 			a_e_contentTitle.appendChild(input_e_contentTitle);
 			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
 		}
