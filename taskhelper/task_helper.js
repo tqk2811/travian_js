@@ -128,6 +128,9 @@ for(var i =0; i < listVillage.length; i++)
     var Storage_ = Number(Storage__.substring(1, Storage__.length -1));
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
     var Builds_ = [];
+	var b = localStorage.getItem("village_"+id);
+	var b_json = null;
+	if(b!==null) b_json = JSON.parse(b);
     if (window.location.pathname.indexOf("dorf1.php") > 0 | window.location.pathname.indexOf("dorf2.php") > 0)
 	{
 		var build = document.getElementsByClassName("buildDuration");
@@ -150,16 +153,14 @@ for(var i =0; i < listVillage.length; i++)
 			a_e_contentTitle.innerText = "Show";
 			var input_e_contentTitle = document.createElement("input");
 			input_e_contentTitle.type = "checkbox";
-			input_e_contentTitle.checked = true;
+			if(b_json !== null) input_e_contentTitle.checked = b_json.Show;
+			else input_e_contentTitle.checked = true;
 			a_e_contentTitle.appendChild(input_e_contentTitle);
 			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
 		}
 	}
-	else
-    {
-      var b = localStorage.getItem("village_"+id);
-      if(b !== null) Builds_ = JSON.parse(b).Builds;
-    }
+	else if(b_json !== null) Builds_ = b_json.Builds;
+	
     var village_object = {Storage : Storage_, 
 						Granary : Granary_, 
 						ID : id,
