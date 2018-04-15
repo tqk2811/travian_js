@@ -82,24 +82,33 @@ function LoadLiBuildTimer(e,time,current,flag,color_)
 var color_list = ["Blue","BlueGray","Gray"];
 function LoadVillageData(li_element,village_data,uri_)
 {
-  var e = document.createElement("p1");
-  e.setAttribute("style","font-size:"+font_size);
-  li_element.appendChild(e);
-  LoadLiResource(e,village_data.Resource[0],village_data.Storage,false,false);
-  LoadLiResource(e,village_data.Resource[1],village_data.Storage,true,false);
-  LoadLiResource(e,village_data.Resource[2],village_data.Storage,true,false);
-  LoadLiResource(e,village_data.Resource[3],village_data.Granary,true,village_data.CropArlet);
+	if(!village_data.Show) return;
+	var e = document.createElement("p1");
+	e.setAttribute("style","font-size:"+font_size);
+	li_element.appendChild(e);
+	LoadLiResource(e,village_data.Resource[0],village_data.Storage,false,false);
+	LoadLiResource(e,village_data.Resource[1],village_data.Storage,true,false);
+	LoadLiResource(e,village_data.Resource[2],village_data.Storage,true,false);
+	LoadLiResource(e,village_data.Resource[3],village_data.Granary,true,village_data.CropArlet);
   
-  var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-  var flag = false;
-  var j = 0;
-  for(var i = 0; i < village_data.Builds.length; i++) 
-  {
-    if(village_data.Builds[i] < current_SecondFrom1970) continue;
-    LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag,color_list[j]);
-    flag = true;
-	j++;
-  }
+	var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+	var flag = false;
+	var j = 0;
+	for(var i = 0; i < village_data.Builds.length; i++) 
+	{
+		if(village_data.Builds[i] < current_SecondFrom1970) continue;
+		LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag,color_list[j]);
+		flag = true;
+		j++;
+	}
+}
+
+function input_e_contentTitle_change(e)
+{
+	var id_currentVillage = getQueryVariable(active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid");
+	var data = JSON.parse(localStorage.getItem("village_"+id_currentVillage));
+	data.Show = e.checked;
+	localStorage.setItem("village_"+id_currentVillage,JSON.stringify(data));
 }
 
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
@@ -155,6 +164,7 @@ for(var i =0; i < listVillage.length; i++)
 			input_e_contentTitle.type = "checkbox";
 			if(b_json !== null && b_json.Show !== undefined) input_e_contentTitle.checked = b_json.Show;
 			else input_e_contentTitle.checked = true;
+			input_e_contentTitle.setAttribute("onchange",input_e_contentTitle_change(this.value));
 			a_e_contentTitle.appendChild(input_e_contentTitle);
 			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
 		}
