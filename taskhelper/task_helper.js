@@ -186,7 +186,11 @@ for(var i =0; i < listVillage.length; i++)
 			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
 		}
 	}
-	else if(b_json !== null) {village_object.Builds = b_json.Builds; village_object.Show = b_json.Show;}
+	else if(b_json !== null) 
+	{
+		village_object.Builds = b_json.Builds ?? b_json.Builds : [] ; 
+		village_object.Show = b_json.Show ?? b_json.Show : true;
+	}
 		
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
