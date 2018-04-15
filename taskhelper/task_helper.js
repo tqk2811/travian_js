@@ -155,18 +155,18 @@ for(var i =0; i < listVillage.length; i++)
 	
     if (window.location.pathname.indexOf("dorf1.php") > 0 || window.location.pathname.indexOf("dorf2.php") > 0)
 	{
+		var Builds_ = [];
 		var build = document.getElementsByClassName("buildDuration");
 		if(build !== null && build.length !== 0)//read in dorf
-		{
-			var Builds_ = [];
+		{			
 			var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
 			for(var k=0; k < build.length; k++)
 			{
 				var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
 				Builds_.push(current_SecondFrom1970 + timeleft);
-			}
-			village_object.Builds = Builds_;
+			}			
 		}
+		village_object.Builds = Builds_;
 		
 		var e_answersButton = document.getElementById("answersButton");
 		if(e_answersButton !== null)
