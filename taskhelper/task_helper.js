@@ -141,7 +141,7 @@ for(var i =0; i < listVillage.length; i++)
     
     var Storage_ = Number(Storage__.substring(1, Storage__.length -1));
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
-    var Builds_ = [];
+    
 	var b = localStorage.getItem("village_"+id);
 	var b_json = null;
 	if(b!==null) b_json = JSON.parse(b);
@@ -158,12 +158,14 @@ for(var i =0; i < listVillage.length; i++)
 		var build = document.getElementsByClassName("buildDuration");
 		if(build !== null & build.length !== 0)//read in dorf
 		{
+			var Builds_ = [];
 			var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
 			for(var k=0; k < build.length; k++)
 			{
 				var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
 				Builds_.push(current_SecondFrom1970 + timeleft);
 			}
+			village_object.Builds = Builds_;
 		}
 		
 		var e_answersButton = document.getElementById("answersButton");
@@ -184,10 +186,8 @@ for(var i =0; i < listVillage.length; i++)
 			e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
 		}
 	}
-	else if(b_json !== null) Builds_ = b_json.Builds;
-	
-    village_object.Builds = Builds_;
-	
+	else if(b_json !== null) {village_object.Builds = b_json.Builds; village_object.Show = b_json.Show;}
+		
     localStorage.setItem("village_"+id,JSON.stringify(village_object));
     console.log("Save data village id:" + id);
   }
