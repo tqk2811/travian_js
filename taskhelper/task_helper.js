@@ -82,7 +82,8 @@ function LoadLiBuildTimer(e,time,current,flag,color_)
 var color_list = ["Blue","BlueGray","Gray"];
 function LoadVillageData(li_element,village_data,uri_)
 {
-	if(!village_data.Show) return;
+	console.log("village_data.Show:" + village_data.Show);
+	if(!village_data.Show) return;	
 	var e = document.createElement("p1");
 	e.setAttribute("style","font-size:"+font_size);
 	li_element.appendChild(e);
@@ -187,7 +188,7 @@ for(var i =0; i < listVillage.length; i++)
     console.log("Save data village id:" + id);
   }
   json_village = localStorage.getItem("village_"+id);
-  if(json_village !== null && json_village !== undefined) 
+  if(json_village !== null) 
   {
     LoadVillageData(listVillage[i],JSON.parse(json_village),uri_);
     json_village = null;
