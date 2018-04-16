@@ -3,7 +3,7 @@ function Get_gid()
 	var gid_str = e_build.getAttribute("class").split(" ")[0];
 	var gid = Number(gid_str.substring(3,gid_str.length));
 	console.log("gid:" + gid);
-	
+	build_gid();
 	switch(gid)
 	{
 		case 17: gid17(); return;
