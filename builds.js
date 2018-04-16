@@ -46,7 +46,7 @@ function gid17()
 					spacing.setAttribute("style","padding:3px;margin:3px;");
 					e_p_custom.appendChild(spacing);
 					
-					var button_traderoute = document.createElement("button");
+					var button_traderoute = document.createElement("a");
 					button_traderoute.innerText = "Create TradeRoutes";
 					button_traderoute.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 					button_traderoute.setAttribute("onclick","gid17_CreateTradeRoutes_click()");
