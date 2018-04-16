@@ -3,11 +3,32 @@ function Get_gid()
 	var gid_str = e_build.getAttribute("class").split(" ")[0];
 	var gid = Number(gid_str.substring(3,gid_str.length));
 	console.log("gid:" + gid);
+	
 	switch(gid)
 	{
 		case 17: gid17(); return;
 		
 		default: return;
+	}
+}
+function build_gid()
+{
+	var contract_ = document.getElementById("contract");
+	if(contract_ !== null) build_gid_TotalRes(contract_);
+	var e_showCosts = document.getElementsByClassName("showCosts");
+	if(e_showCosts !== null)for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i].getElementsByTagName("span"));
+}
+function build_gid_TotalRes(e)
+{
+	var ress = e.getElementsByTagName("span");
+	if(ress !== null)
+	{
+		var total_ = 0;
+		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
+		var parent_ress = ress[0].parentNode;
+		var total_element = document.createElement("span");
+		total_element.innerText = "Total: " + total_;
+		parent_ress.appendChild(total_element);
 	}
 }
 
@@ -163,15 +184,14 @@ function gid17_CreateTradeRoutes_load()
 			if(userHour > 23) tr[5] = -1;
 			else tr[5] = userHour;	
 			localStorage.setItem("trade_route",JSON.stringify(tr));
-			window.location.href=base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[6],tr[7]);
+			window.location.href=gid17_base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[6],tr[7]);
 		}
 	}
 }
 
-var base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
+var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
-var Input_traderoutes = [];
 var tabActive = document.getElementsByClassName("container active");
 var e_build = document.getElementById("build");
 if(e_build !== null) Get_gid();

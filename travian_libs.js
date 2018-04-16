@@ -32,5 +32,4 @@ AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/s
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));
 AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/cost.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));
