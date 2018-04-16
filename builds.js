@@ -16,7 +16,7 @@ function build_gid()
 	var contract_ = document.getElementById("contract");
 	if(contract_ !== null) build_gid_TotalRes(contract_);
 	var e_showCosts = document.getElementsByClassName("showCosts");
-	if(e_showCosts !== null)for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i].getElementsByTagName("span"));
+	if(e_showCosts !== null)for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i]);
 }
 function build_gid_TotalRes(e)
 {
