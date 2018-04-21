@@ -10,14 +10,12 @@ var list_sidebarBoxActiveVillage = [
 function Change_sidebarBoxActiveVillage_Button(index)
 {
     var item = list_sidebarBoxActiveVillage[index];
-    if (item[0] !== null && item[0] !== undefined)
+    if (item.length > 0)
     {
         var attibute_class = item[0].getAttribute("class");
         if(attibute_class.search("disable") > 0) { return;}
         item[0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
         item[0].setAttribute("onclick","Change_sidebarBoxActiveVillage_Button_onclick(\""+item[1]+"\")");
-        //console.log(innerBox_header_sidebarBoxActiveVillage_script_arr[index].innerHTML);
-        //innerBox_header_sidebarBoxActiveVillage_script_arr[index].remove();
     }
 }
 function Change_sidebarBoxActiveVillage_Button_onclick(uri){window.location = uri;}

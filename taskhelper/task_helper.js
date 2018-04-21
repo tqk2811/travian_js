@@ -157,7 +157,7 @@ for(var i =0; i < listVillage.length; i++)
 	{
 		var Builds_ = [];
 		var build = document.getElementsByClassName("buildDuration");
-		if(build !== null && build.length !== 0)//read in dorf
+		if(build.length !== 0)//read in dorf
 		{			
 			var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
 			for(var k=0; k < build.length; k++)

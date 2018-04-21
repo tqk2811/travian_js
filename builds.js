@@ -14,7 +14,7 @@ function Get_gid()
 function build_gid()
 {
 	var e_showCosts = document.getElementsByClassName("showCosts");
-	if(e_showCosts !== null)for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i]);
+	for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i]);
 }
 function build_gid_TotalRes(e)
 {
@@ -49,22 +49,20 @@ function gid16()
 function gid16_bt_CheckNonAttacking_onclick()
 {
 	var e_listContents = document.getElementsByClassName("listContent");
-	if(e_listContents !== null)
-		for(var i =0; i < e_listContents.length; i++)
-			if(e_listContents[i].getAttribute("class").indexOf("hide") == -1)
+	for(var i =0; i < e_listContents.length; i++)
+		if(e_listContents[i].getAttribute("class").indexOf("hide") == -1)
+		{
+			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");			
+			for(var j = 0; j< e_slotRows.length; j++)
 			{
-				var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
-				if(e_slotRows !== null)
-					for(var j = 0; j< e_slotRows.length; j++)
-					{
-						var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
-						if(e_img_attack !== null && e_img_attack.length == 0)
-						{
-							var e_input = e_slotRows[j].getElementsByTagName("input");
-							if(e_input !== null) e_input[0].checked = true;
-						}
-					}
-			}		
+				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
+				if(e_img_attack.length == 0)
+				{
+					var e_input = e_slotRows[j].getElementsByTagName("input");
+					if(e_input !== null) e_input[0].checked = true;
+				}
+			}
+		}		
 }
 
 
@@ -163,14 +161,11 @@ function gid17_clear()
 		if(trading_routes !== null)
 		{
 			var sels = trading_routes.getElementsByClassName("sel");
-			if(sels !== null)
+			if(sels.length >0)
 			{
-				if(sels.length >0)
-				{
-					var a_tr = sels[0].getElementsByTagName("a");
-					if(a_tr !== null && a_tr.length >0 )a_tr[0].click();
-				}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
-			}
+				var a_tr = sels[0].getElementsByTagName("a");
+				if(a_tr !== null && a_tr.length >0 )a_tr[0].click();
+			}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
 		}
 	}
 }

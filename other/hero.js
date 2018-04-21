@@ -1,7 +1,7 @@
 function bid()
 {
 	var e_submitBids = document.getElementsByClassName("submitBid");
-	if(e_submitBids !== null && e_submitBids.length >0)
+	if(e_submitBids.length >0)
 	{
 		var e_pr = e_submitBids[0].parentNode;
 		var e_spans = e_pr.getElementsByTagName("span");
