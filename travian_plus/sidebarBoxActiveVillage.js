@@ -10,7 +10,7 @@ var list_sidebarBoxActiveVillage = [
 function Change_sidebarBoxActiveVillage_Button(index)
 {
     var item = list_sidebarBoxActiveVillage[index];
-    if (item.length > 0)
+    if (item.length > 0 && item[0] !== undefined)
     {
         var attibute_class = item[0].getAttribute("class");
         if(attibute_class.search("disable") > 0) { return;}
