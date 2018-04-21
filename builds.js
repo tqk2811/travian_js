@@ -7,7 +7,7 @@ function Get_gid()
 	switch(gid)
 	{
 		case 17: gid17(); return;
-		
+		case 16: gid16(); return;
 		default: return;
 	}
 }
@@ -28,6 +28,42 @@ function build_gid_TotalRes(e)
 		total_element.innerText = "Total: " + total_;
 		parent_ress.appendChild(total_element);
 	}
+}
+
+function gid16()
+{
+	if(tabActive !== null)
+	{
+		var tabItem == tabActive[0].getElementsByClassName("tabItem")[0];
+		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
+		{
+			var e_bt_CheckNonAttacking = document.createElement("button");
+			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px;");
+			e_bt_CheckNonAttacking.innerText = "Check non attacking";
+			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick()");
+			
+			e_build.insertAdjacentElement("afterbegin",e_bt_CheckNonAttacking);
+		}
+	}
+}
+function gid16_bt_CheckNonAttacking_onclick()
+{
+	var e_listContents = document.getElementsByClassName("listContent");
+	if(e_listContents !== null)
+		for(var i =0; i < e_listContents.length; i++)
+			if(e_listContents[i].getAttribute("class").indexOf("hide") == -1)
+			{
+				var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
+				if(e_slotRows !== null)
+					for(var j = 0; j< e_slotRows.length; j++)
+					{
+						if(e_slotRows[j].getElementsByClassName("attack") !== null)
+						{
+							var e_input = e_slotRows[j].getElementsByTagName("input");
+							if(e_input !== null) e_input[0].checked = true;
+						}
+					}
+			}		
 }
 
 
