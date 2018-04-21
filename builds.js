@@ -57,7 +57,8 @@ function gid16_bt_CheckNonAttacking_onclick()
 				if(e_slotRows !== null)
 					for(var j = 0; j< e_slotRows.length; j++)
 					{
-						if(e_slotRows[j].getElementsByClassName("attack") !== null)
+						var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
+						if(e_img_attack !== null && e_img_attack.length == 0)
 						{
 							var e_input = e_slotRows[j].getElementsByTagName("input");
 							if(e_input !== null) e_input[0].checked = true;
