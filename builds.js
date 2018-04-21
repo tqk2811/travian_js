@@ -34,7 +34,7 @@ function gid16()
 {
 	if(tabActive !== null)
 	{
-		var tabItem == tabActive[0].getElementsByClassName("tabItem")[0];
+		var tabItem = tabActive[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
 		{
 			var e_bt_CheckNonAttacking = document.createElement("button");
