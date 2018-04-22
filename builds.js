@@ -78,7 +78,7 @@ function gid16_bt_CheckNonAttacking_onclick(flag)
 	if(flag && count == 1 && e_temp !== null)
 	{
 		var e_bt = e_temp.getElementsByTagName("button");
-		if(e_bt.length >0) e_bt[0].click();
+		if(e_bt.length >1) e_bt[1].click();
 	}
 }
 
