@@ -38,12 +38,12 @@ function gid16()
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
 		{
 			var e_bt_CheckNonAttacking = document.createElement("button");
-			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px;");
+			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
 			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(false)");
 			
 			var e_bt_CheckNonAttacking_raid = document.createElement("button");
-			e_bt_CheckNonAttacking_raid.setAttribute("style","background-color:green;border:none;color:white;padding: 3px;");
+			e_bt_CheckNonAttacking_raid.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 			e_bt_CheckNonAttacking_raid.innerText = "Check non attacking and raid";
 			e_bt_CheckNonAttacking_raid.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(true)");
 			
