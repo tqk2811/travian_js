@@ -40,18 +40,30 @@ function gid16()
 			var e_bt_CheckNonAttacking = document.createElement("button");
 			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px;");
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
-			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick()");
+			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(false)");
 			
-			e_build.insertAdjacentElement("afterbegin",e_bt_CheckNonAttacking);
+			var e_bt_CheckNonAttacking_raid = document.createElement("button");
+			e_bt_CheckNonAttacking_raid.setAttribute("style","background-color:green;border:none;color:white;padding: 3px;");
+			e_bt_CheckNonAttacking_raid.innerText = "Check non attacking and raid";
+			e_bt_CheckNonAttacking_raid.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(true)");
+			
+			var e_div = document.createElement("div");
+			e_div.appendChild(e_bt_CheckNonAttacking);
+			e_div.appendChild(e_bt_CheckNonAttacking_raid);
+			e_build.insertAdjacentElement("afterbegin",e_div);
 		}
 	}
 }
-function gid16_bt_CheckNonAttacking_onclick()
+function gid16_bt_CheckNonAttacking_onclick(flag)
 {
 	var e_listContents = document.getElementsByClassName("listContent");
+	var count = 0;
+	var e_temp = null;
 	for(var i =0; i < e_listContents.length; i++)
 		if(e_listContents[i].getAttribute("class").indexOf("hide") == -1)
 		{
+			e_temp = e_listContents[i];
+			count++;
 			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");			
 			for(var j = 0; j< e_slotRows.length; j++)
 			{
@@ -62,7 +74,12 @@ function gid16_bt_CheckNonAttacking_onclick()
 					if(e_input !== null) e_input[0].checked = true;
 				}
 			}
-		}		
+		}
+	if(flag && count == 1 && e_temp !== null)
+	{
+		var e_bt = e_temp.getElementsByTagName("button");
+		if(e_bt.length >0) e_bt[0].click();
+	}
 }
 
 
