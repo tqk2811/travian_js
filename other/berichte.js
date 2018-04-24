@@ -15,9 +15,9 @@ function clear_report_onclick()
 {
 	if(window.confirm("Are you sure to clear reports?"))
 	{
-		berichte_input_sellect_all_1.click();
-		var e_del = document.getElementById("del");
-		if(e_del !== null) e_del.click();
+		//berichte_input_sellect_all_1.click();
+		//var e_del = document.getElementById("del");
+		//if(e_del !== null) e_del.click();
 	}
 }
 
