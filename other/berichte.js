@@ -23,6 +23,7 @@ function berichte_main()
 	if(window.location.href.indexOf("berichte.php")>=0)
 	{
 		berichte_input_sellect_all_1 = document.getElementById("sAll1");
+		clear_report();
 	}
 }
 
