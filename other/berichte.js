@@ -3,7 +3,7 @@ function clear_report()
 	var e_div = berichte_input_sellect_all_1.parentElement;
 	if(e_div !== null)
 	{
-		var e_div_clear = document.createElement("div");
+		var e_div_clear = document.createElement("button");
 		e_div_clear.innerText = "check all and delete";
 		e_div_clear.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px");
 		e_div_clear.setAttribute("onclick","clear_report_onclick()");
