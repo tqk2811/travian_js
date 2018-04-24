@@ -9,8 +9,6 @@ function CreateSoundElement(url_sound)
     document.body.appendChild(v);
     return v;
 }
-var ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
-var ListTimers = [];
 var TimerCountingDownNoReload = function()
 {
   for(var i = 0; i < ListTimers.length; i ++)
@@ -38,7 +36,8 @@ function FindActiveVillage(listVillages)
   for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
   return null; 
 }
-function getQueryVariable(q,variable) {
+function getQueryVariable(q,variable) 
+{
     var query = q.substring(1);
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) 
@@ -78,8 +77,6 @@ function LoadLiBuildTimer(e,time,current,flag,color_)
   e.appendChild(t);  
   ListTimers.push(t);
 }
-
-var color_list = ["Blue","BlueGray","Gray"];
 function LoadVillageData(li_element,village_data,uri_)
 {
 	if(!village_data.Show) return;	
@@ -102,7 +99,6 @@ function LoadVillageData(li_element,village_data,uri_)
 		j++;
 	}
 }
-
 function input_e_contentTitle_change()
 {
 	var e = document.getElementById("input_e_contentTitle");
@@ -116,9 +112,10 @@ function input_e_contentTitle_change()
 	}
 }
 
+var ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
+var ListTimers = [];
+var color_list = ["Blue","BlueGray","Gray"];
 var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
-//var innerBoxContent_sidebarBoxVillagelist= sidebarBoxVillagelist.getElementsByTagName("innerBox content")[0];
-//innerBoxContent_sidebarBoxVillagelist.setAttribute("style","padding:0");
 var listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
 var active_village = FindActiveVillage(listVillage);
 var json_village = null;
