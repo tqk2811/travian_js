@@ -29,11 +29,8 @@ function httpGetGithubCdnUri(user,project_name,branch,file_path)
         xmlHttp.open( "GET","https://api.github.com/repos/" + user + "/" + project_name + "/commits/" + branch, false );
         xmlHttp.send();		
         var json_data = JSON.parse(xmlHttp.responseText);		
-		if(json_data.sha !== null && json_data.sha !== undefined)
-		{
-			sha_data = json_data.sha.substring(0,9);
-			localStorage.setItem(user + "/" + project_name + "/" + branch+"/"+refresh_,sha_data);
-		} else return null;
+		sha_data = json_data.sha.substring(0,9);
+		localStorage.setItem(user + "/" + project_name + "/" + branch+"/"+refresh_,sha_data);
     }
     return "https://cdn.rawgit.com/"+user+"/"+project_name+"/"+sha_data+"/"+file_path;
 }
