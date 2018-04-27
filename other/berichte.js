@@ -32,7 +32,7 @@ function berichte_count_res()
 		var e_total  = document.createElement("span");
 		e_total.innerText = "(Total:" + count + ")";
 		var e_parent_rArea = rAreas[0].parentElement;
-		e_parent_rArea.appendChild(e_total);
+		e_parent_rArea.insertAdjacentElement("afterend",e_total);
 	}
 }
 
