@@ -23,6 +23,7 @@ function berichte_clear_report_onclick()
 
 function berichte_count_res()
 {
+	if(document.getElementsByClassName("carry").length >0) return;
 	var rAreas = document.getElementsByClassName("rArea");
 	if(rAreas.length >= 4)
 	{
