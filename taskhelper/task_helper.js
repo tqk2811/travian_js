@@ -133,8 +133,8 @@ for(var i =0; i < listVillage.length; i++)
     var Iron = Number(document.getElementById("l3").innerText.replace(".","").replace(",",""));
     var Crop = Number(document.getElementById("l4").innerText.replace(".","").replace(",",""));
 	var CropArlet_ = document.getElementById("l4").getAttribute("class").indexOf("alert") >=0 ? true : false;
-    var Storage__ = document.getElementById("stockBarWarehouse").innerText.replace(".","").replace(",","");    
-    var Granary__ = document.getElementById("stockBarGranary").innerText.replace(".","").replace(",","");
+    var Storage__ = document.getElementById("stockBarWarehouse").innerText.replace(/\./g,"").replace(/,/g,"");    
+    var Granary__ = document.getElementById("stockBarGranary").innerText.replace(/\./g,"").replace(/,/g,"");
     
     var Storage_ = Number(Storage__.substring(1, Storage__.length -1));
     var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
