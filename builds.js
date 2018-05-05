@@ -111,7 +111,7 @@ function gid16_cata_multiwave()
 
 	var label_checkbox_detected = document.createElement("label");
 	label_checkbox_detected.setAttribute("for","checkbox_detected");
-	label_checkbox_detected.innerText = "Trigger";
+	label_checkbox_detected.innerText = "Trigger (other waves)";
 	e_main.appendChild(label_checkbox_detected);
 	
 	var e_p2 = document.createElement("p");
