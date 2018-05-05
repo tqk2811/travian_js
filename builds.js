@@ -120,6 +120,7 @@ function gid16_cata_multiwave()
 	var delay_AfterFirstWave = document.createElement("input");
 	delay_AfterFirstWave.id = "delay_AfterFirstWave";
 	delay_AfterFirstWave.value = "100";
+	delay_AfterFirstWave.setAttribute = ("type","number");
 	delay_AfterFirstWave.setAttribute("size","2");
 	e_main.appendChild(delay_AfterFirstWave);
 	
@@ -132,8 +133,8 @@ function gid16_cata_multiwave_start()
 {
 	if(window.confirm("Start?"))
 	{
-		var delay_AfterFirstWave = document.getElementById("delay_AfterFirstWave");
-		localStorage.setItem("delay_AfterFirstWave",delay_AfterFirstWave.value);
+		//var delay_AfterFirstWave = document.getElementById("delay_AfterFirstWave");
+		//localStorage.setItem("delay_AfterFirstWave",delay_AfterFirstWave.value);
 		var bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
 		localStorage.setItem("cata_multiwave","1");
@@ -153,7 +154,8 @@ function gid16_cata_multiwave_trigger_Interval()
 	{		
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		sleep(Number(localStorage.getItem("delay_AfterFirstWave")));
+		var delay_AfterFirstWave = document.getElementById("delay_AfterFirstWave");
+		sleep(Number(delay_AfterFirstWave.value));
 		bt_ok.click();
 	}
 }
