@@ -96,7 +96,7 @@ function gid16_cata_multiwave()
 
 	var start_cata = document.createElement("button");
 	start_cata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
-	start_cata.innerText = "Start multi-wave";
+	start_cata.innerText = "Start multi-wave (first wave)";
 	start_cata.setAttribute("onclick","gid16_cata_multiwave_start()");
 	e_main.appendChild(start_cata);
 
@@ -113,30 +113,46 @@ function gid16_cata_multiwave()
 	label_checkbox_detected.setAttribute("for","checkbox_detected");
 	label_checkbox_detected.innerText = "Trigger";
 	e_main.appendChild(label_checkbox_detected);
+	
+	var e_p2 = document.createElement("p");
+	e_main.appendChild(e_p2);
+	
+	var delay_AfterFirstWave = document.createElement("input");
+	delay_AfterFirstWave.id = "delay_AfterFirstWave";
+	delay_AfterFirstWave.value = "100";
+	e_main.appendChild(delay_AfterFirstWave);
+	
+	var label_delay = document.createElement("input");
+	label_delay.setAttribute("for","delay_AfterFirstWave");
+	label_delay.innerText = "Delay After First Wave (ms)";
+	e_main.appendChild(label_delay);
 }
 function gid16_cata_multiwave_start()
 {
 	if(window.confirm("Start?"))
 	{
+		var delay_AfterFirstWave = document.getElementById("delay_AfterFirstWave");
+		localStorage.setItem("delay_AfterFirstWave",delay_AfterFirstWave.value);
 		var bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
 		localStorage.setItem("cata_multiwave","1");
+		
 	}
 }
 function gid16_cata_multiwave_trigger()
 {
 	var cb = document.getElementById("checkbox_detected");
-	if(cb.checked) gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,50);
+	if(cb.checked) gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,10);
 	else if(gid16_Interval_id !== null) window.clearInterval(gid16_Interval_id);
 }
 function gid16_cata_multiwave_trigger_Interval()
 {
 	var cata_multiwave_flag = localStorage.getItem("cata_multiwave");
 	if(cata_multiwave_flag !== null && cata_multiwave_flag == "1")
-	{
+	{		
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		sleep(100);
+		sleep(Number(localStorage.getItem("delay_AfterFirstWave")));
 		bt_ok.click();
 	}
 }
