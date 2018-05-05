@@ -52,6 +52,11 @@ function gid16()
 			e_div.appendChild(e_bt_CheckNonAttacking_raid);
 			e_build.insertAdjacentElement("afterbegin",e_div);
 		}
+		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
+		{
+			var e_class_catas = document.getElementsByClassName("cata");
+			if(e_class_catas.length == 1) gid16_cata_multiwave();
+		}
 	}
 }
 function gid16_bt_CheckNonAttacking_onclick(flag)
@@ -79,6 +84,63 @@ function gid16_bt_CheckNonAttacking_onclick(flag)
 	{
 		var e_bt = e_temp.getElementsByTagName("button");
 		if(e_bt.length >1) e_bt[1].click();
+	}
+}
+
+function gid16_cata_multiwave()
+{
+	localStorage.setItem("cata_multiwave","0");
+	var e_main = document.createElement("div");
+	e_main.setAttribute("style","display: inline-block;");
+	e_build.insertAdjacentElement("beforeend",e_main);
+	
+	
+	var start_cata = document.createElement("button");
+	start_cata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
+	start_cata.innerText = "Start multi-wave";
+	start_cata.setAttribute("onclick","gid16_cata_multiwave_start()");	
+	e_main.appendChild(start_cata);
+	
+	var e_p = document.createElement("p");
+	e_main.appendChild(e_p);
+	
+	var checkbox_detected = document.createElement("input");
+	checkbox_detected.id = "checkbox_detected";
+	checkbox_detected.type = "checkbox";
+	checkbox_detected.setAttribute("onclick","gid16_cata_multiwave_trigger()");
+	e_main.appendChild(checkbox_detected);
+	
+	var label_checkbox_detected = document.createElement("label");
+	label_checkbox_detected.setAttribute("for","checkbox_detected");
+	label_checkbox_detected.innerText = "Trigger";
+	e_main.appendChild(label_checkbox_detected);
+	
+	
+}
+function gid16_cata_multiwave_start()
+{
+	if(window.confirm("Start?")) 
+	{
+		var bt_ok = document.getElementById("btn_ok");
+		bt_ok.click();
+		localStorage.setItem("cata_multiwave","1");
+	}
+}
+function gid16_cata_multiwave_trigger()
+{
+	var cb = document.getElementById("checkbox_detected");
+	if(cb.checked) gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,50);
+	else if(gid16_Interval_id !== null) window.clearInterval(gid16_Interval_id);
+}
+
+function gid16_cata_multiwave_trigger_Interval()
+{
+	var cata_multiwave_flag = localStorage.getItem("cata_multiwave");
+	if(cata_multiwave_flag !== null && cata_multiwave_flag == "1")
+	{
+		var bt_ok = document.getElementById("btn_ok");
+		window.clearInterval(gid16_Interval_id);
+		bt_ok.click();
 	}
 }
 
@@ -236,6 +298,7 @@ function gid17_CreateTradeRoutes_load()
 	}
 }
 
+var gid16_Interval_id = null;
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
