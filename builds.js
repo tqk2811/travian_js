@@ -118,10 +118,13 @@ function gid16_cata_multiwave()
 	e_main.appendChild(e_p2);
 	
 	var delay_AfterFirstWave = document.createElement("input");
-	delay_AfterFirstWave.id = "delay_AfterFirstWave";
-	delay_AfterFirstWave.value = "100";
+	delay_AfterFirstWave.setAttribute("id","delay_AfterFirstWave")
+	delay_AfterFirstWave.setAttribute("min",0);
+	delay_AfterFirstWave.setAttribute("max",1000);
 	delay_AfterFirstWave.setAttribute("type","number");
-	delay_AfterFirstWave.setAttribute("size","2");
+	delay_AfterFirstWave.setAttribute("value",100);
+	delay_AfterFirstWave.setAttribute("maxlength",4);
+	delay_AfterFirstWave.setAttribute("style","padding:3px;margin:3px;");
 	e_main.appendChild(delay_AfterFirstWave);
 	
 	var label_delay = document.createElement("label");
