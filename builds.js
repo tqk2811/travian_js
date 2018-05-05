@@ -120,6 +120,7 @@ function gid16_cata_multiwave()
 	var delay_AfterFirstWave = document.createElement("input");
 	delay_AfterFirstWave.id = "delay_AfterFirstWave";
 	delay_AfterFirstWave.value = "100";
+	delay_AfterFirstWave.setAttribute("size","2");
 	e_main.appendChild(delay_AfterFirstWave);
 	
 	var label_delay = document.createElement("label");
