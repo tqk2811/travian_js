@@ -14,6 +14,9 @@ function AddUriCss(uri)
 String.prototype.format = function() {
   return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
 };
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));

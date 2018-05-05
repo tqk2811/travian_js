@@ -41,12 +41,12 @@ function gid16()
 			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
 			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(false)");
-			
+
 			var e_bt_CheckNonAttacking_raid = document.createElement("button");
 			e_bt_CheckNonAttacking_raid.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 			e_bt_CheckNonAttacking_raid.innerText = "Check non attacking and raid";
 			e_bt_CheckNonAttacking_raid.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(true)");
-			
+
 			var e_div = document.createElement("div");
 			e_div.appendChild(e_bt_CheckNonAttacking);
 			e_div.appendChild(e_bt_CheckNonAttacking_raid);
@@ -69,7 +69,7 @@ function gid16_bt_CheckNonAttacking_onclick(flag)
 		{
 			e_temp = e_listContents[i];
 			count++;
-			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");			
+			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
 			for(var j = 0; j< e_slotRows.length; j++)
 			{
 				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
@@ -93,33 +93,30 @@ function gid16_cata_multiwave()
 	var e_main = document.createElement("div");
 	e_main.setAttribute("style","display: inline-block;");
 	e_build.insertAdjacentElement("beforeend",e_main);
-	
-	
+
 	var start_cata = document.createElement("button");
 	start_cata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 	start_cata.innerText = "Start multi-wave";
-	start_cata.setAttribute("onclick","gid16_cata_multiwave_start()");	
+	start_cata.setAttribute("onclick","gid16_cata_multiwave_start()");
 	e_main.appendChild(start_cata);
-	
+
 	var e_p = document.createElement("p");
 	e_main.appendChild(e_p);
-	
+
 	var checkbox_detected = document.createElement("input");
 	checkbox_detected.id = "checkbox_detected";
 	checkbox_detected.type = "checkbox";
 	checkbox_detected.setAttribute("onclick","gid16_cata_multiwave_trigger()");
 	e_main.appendChild(checkbox_detected);
-	
+
 	var label_checkbox_detected = document.createElement("label");
 	label_checkbox_detected.setAttribute("for","checkbox_detected");
 	label_checkbox_detected.innerText = "Trigger";
 	e_main.appendChild(label_checkbox_detected);
-	
-	
 }
 function gid16_cata_multiwave_start()
 {
-	if(window.confirm("Start?")) 
+	if(window.confirm("Start?"))
 	{
 		var bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
@@ -132,7 +129,6 @@ function gid16_cata_multiwave_trigger()
 	if(cb.checked) gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,50);
 	else if(gid16_Interval_id !== null) window.clearInterval(gid16_Interval_id);
 }
-
 function gid16_cata_multiwave_trigger_Interval()
 {
 	var cata_multiwave_flag = localStorage.getItem("cata_multiwave");
@@ -140,6 +136,7 @@ function gid16_cata_multiwave_trigger_Interval()
 	{
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
+		sleep(100);
 		bt_ok.click();
 	}
 }
@@ -160,7 +157,7 @@ function gid17()
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
-				
+
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 				if(e_tradeRouteEdit !== null)
 				{
@@ -168,7 +165,7 @@ function gid17()
 					var e_p_custom = document.createElement("p");
 					e_trading_edit.insertAdjacentElement("afterend",e_p_custom);
 					e_p_custom.innerText = "Time spacing:";
-					
+
 					var spacing = document.createElement("input");
 					spacing.setAttribute("min",1);
 					spacing.setAttribute("max",12);
@@ -178,7 +175,7 @@ function gid17()
 					spacing.setAttribute("maxlength",2);
 					spacing.setAttribute("style","padding:3px;margin:3px;");
 					e_p_custom.appendChild(spacing);
-					
+
 					var button_traderoute = document.createElement("a");
 					button_traderoute.innerText = "Create TradeRoutes";
 					button_traderoute.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
@@ -193,27 +190,27 @@ function gid17()
 			{
 				var p_button = document.createElement("p1");
 				marketSend_.insertAdjacentElement("beforebegin",p_button);
-				
+
 				var button_Smallcelebration = document.createElement("button");
 				button_Smallcelebration.innerText = "Small celebration";
 				button_Smallcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Smallcelebration.setAttribute("onclick","gid17_celebration_click([6400,6650,5940,1340],1)");
-				
+
 				var button_Bigcelebration = document.createElement("button");
 				button_Bigcelebration.innerText = "Big celebration";
 				button_Bigcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration.setAttribute("onclick","gid17_celebration_click([29700,33250,32000,6700],1)");
-				
+
 				var button_Bigcelebration2 = document.createElement("button");
 				button_Bigcelebration2.innerText = "Big celebration/2";
 				button_Bigcelebration2.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration2.setAttribute("onclick","gid17_celebration_click([14850,16625,16000,3350],2)");
-				
+
 				var button_Bigcelebration3 = document.createElement("button");
 				button_Bigcelebration3.innerText = "Big celebration/3";
 				button_Bigcelebration3.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration3.setAttribute("onclick","gid17_celebration_click([9900,11084,10667,2234],3)");
-				
+
 				p_button.appendChild(button_Smallcelebration);
 				p_button.appendChild(button_Bigcelebration);
 				p_button.appendChild(button_Bigcelebration2);
@@ -221,20 +218,20 @@ function gid17()
 			}
 		}
 	}
-	
+
 }
 function gid17_clear_onclick()
-{	
+{
 	if(window.confirm("Are you sure to clear all trade routes?"))
 	{
-		localStorage.setItem("Flag_deleteAll_Trading_routes",1); 
+		localStorage.setItem("Flag_deleteAll_Trading_routes",1);
 		window.location.href = "/build.php?t=0&gid=17";
 	}
 }
 function gid17_clear()
 {
 	var flag = localStorage.getItem("Flag_deleteAll_Trading_routes");
-	if(flag !== null && flag !== undefined && flag + 0 != 0)	
+	if(flag !== null && flag !== undefined && flag + 0 != 0)
 	{
 		var trading_routes = document.getElementById("trading_routes");
 		if(trading_routes !== null)
@@ -259,7 +256,7 @@ function gid17_celebration_click(r,run_twice)
 	if(e_run_twice !== null)
 	{
 		if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
-		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox") 
+		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox")
 		{
 			switch(run_twice)
 			{
@@ -287,11 +284,11 @@ function gid17_CreateTradeRoutes_load()
 	{
 		tr = JSON.parse(trade_route_str);
 		if(tr[5] !== -1)
-		{	
+		{
 			var current_userHour = tr[5];
 			var userHour = Number(tr[5]) + Number(tr[7]);
 			if(userHour > 23) tr[5] = -1;
-			else tr[5] = userHour;	
+			else tr[5] = userHour;
 			localStorage.setItem("trade_route",JSON.stringify(tr));
 			window.location.href=gid17_base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[6],tr[7]);
 		}
