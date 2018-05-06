@@ -94,61 +94,70 @@ function gid16_cata_multiwave()
 	e_main.setAttribute("style","display: inline-block;");
 	e_build.insertAdjacentElement("beforeend",e_main);
 
-	var start_cata = document.createElement("button");
-	start_cata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
-	start_cata.innerText = "Start multi-wave (first wave)";
-	start_cata.setAttribute("onclick","gid16_cata_multiwave_start()");
-	e_main.appendChild(start_cata);
+	window.gid16_BT_StartCata = document.createElement("button");
+	gid16_BT_StartCata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
+	gid16_BT_StartCata.innerText = "Start multi-wave (first wave)";
+	gid16_BT_StartCata.setAttribute("onclick","gid16_cata_multiwave_start()");
+	e_main.appendChild(gid16_BT_StartCata);
 
 	var e_p = document.createElement("p");
 	e_main.appendChild(e_p);
 
-	var checkbox_detected = document.createElement("input");
-	checkbox_detected.id = "checkbox_detected";
-	checkbox_detected.type = "checkbox";
-	checkbox_detected.setAttribute("onclick","gid16_cata_multiwave_trigger()");
-	e_main.appendChild(checkbox_detected);
+	window.gid16_Input_CataTrigger = document.createElement("input");
+	gid16_Input_CataTrigger.id = "gid16_Input_CataTrigger";
+	gid16_Input_CataTrigger.type = "checkbox";
+	gid16_Input_CataTrigger.setAttribute("onclick","gid16_cata_multiwave_trigger()");
+	e_main.appendChild(gid16_Input_CataTrigger);
 
-	var label_checkbox_detected = document.createElement("label");
-	label_checkbox_detected.setAttribute("for","checkbox_detected");
-	label_checkbox_detected.innerText = "Trigger (other waves)";
-	e_main.appendChild(label_checkbox_detected);
+	var label_gid16_Input_CataTrigger = document.createElement("label");
+	label_gid16_Input_CataTrigger.setAttribute("for","gid16_Input_CataTrigger");
+	label_gid16_Input_CataTrigger.innerText = "Wait first wave";
+	e_main.appendChild(label_gid16_Input_CataTrigger);
 	
 	var e_p2 = document.createElement("p");
 	e_main.appendChild(e_p2);
 	
-	var delay_AfterFirstWave = document.createElement("input");
-	delay_AfterFirstWave.setAttribute("id","delay_AfterFirstWave")
-	delay_AfterFirstWave.setAttribute("min",0);
-	delay_AfterFirstWave.setAttribute("max",1000);
-	delay_AfterFirstWave.setAttribute("type","number");
-	delay_AfterFirstWave.setAttribute("value",100);
-	delay_AfterFirstWave.setAttribute("maxlength",4);
-	delay_AfterFirstWave.setAttribute("style","padding:3px;margin:3px;");
-	e_main.appendChild(delay_AfterFirstWave);
+	window.gid16_Input_delay = document.createElement("input");
+	gid16_Input_delay.setAttribute("id","gid16_Input_delay")
+	gid16_Input_delay.setAttribute("min",0);
+	gid16_Input_delay.setAttribute("max",1000);
+	gid16_Input_delay.setAttribute("type","number");
+	gid16_Input_delay.setAttribute("value",100);
+	gid16_Input_delay.setAttribute("maxlength",4);
+	gid16_Input_delay.setAttribute("style","padding:3px;margin:3px;");
+	e_main.appendChild(gid16_Input_delay);
 	
-	var label_delay = document.createElement("label");
-	label_delay.setAttribute("for","delay_AfterFirstWave");
-	label_delay.innerText = "Delay After First Wave (ms)";
-	e_main.appendChild(label_delay);
+	window.gid16_Label_Delay = document.createElement("label");
+	gid16_Label_Delay.setAttribute("id","label_gid16_Input_delay");
+	gid16_Label_Delay.setAttribute("for","gid16_Input_delay");
+	gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
+	e_main.appendChild(gid16_Label_Delay);
 }
 function gid16_cata_multiwave_start()
 {
 	if(window.confirm("Start?"))
 	{
-		//var delay_AfterFirstWave = document.getElementById("delay_AfterFirstWave");
-		//localStorage.setItem("delay_AfterFirstWave",delay_AfterFirstWave.value);
 		var bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
-		localStorage.setItem("cata_multiwave","1");
-		
+		localStorage.setItem("cata_multiwave","1");		
 	}
 }
 function gid16_cata_multiwave_trigger()
 {
-	var cb = document.getElementById("checkbox_detected");
-	if(cb.checked) gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,10);
-	else if(gid16_Interval_id !== null) window.clearInterval(gid16_Interval_id);
+	if(gid16_Input_CataTrigger.checked) 
+	{
+		window.gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,10);
+		gid16_BT_StartCata.hidden = true;
+		gid16_Label_Delay.hidden = false;
+		gid16_Input_delay.hidden = false;		
+	}
+	else 
+	{
+		if(gid16_Interval_id !== undefined) window.clearInterval(gid16_Interval_id);
+		gid16_BT_StartCata.hidden = false;
+		gid16_Label_Delay.hidden = true;
+		gid16_Input_delay.hidden = true;
+	}
 }
 function gid16_cata_multiwave_trigger_Interval()
 {
@@ -157,8 +166,8 @@ function gid16_cata_multiwave_trigger_Interval()
 	{		
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		var delay_AfterFirstWave = document.getElementById("delay_AfterFirstWave");
-		sleep(Number(delay_AfterFirstWave.value));
+		var gid16_Input_delay = document.getElementById("gid16_Input_delay");
+		sleep(Number(gid16_Input_delay.value));
 		bt_ok.click();
 	}
 }
@@ -316,8 +325,6 @@ function gid17_CreateTradeRoutes_load()
 		}
 	}
 }
-
-var gid16_Interval_id = null;
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
