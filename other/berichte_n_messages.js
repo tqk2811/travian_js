@@ -23,7 +23,7 @@ function berichte_clear_report_onclick()
 	{
 		berichte_input_sellect_all_1.click();
 		var e_del = document.getElementById("del");
-		if(e_del !== null) e_del = document.getElementById("delmsg");
+		if(e_del == null) e_del = document.getElementById("delmsg");
 		
 		if(e_del !== null) e_del.click();
 	}
