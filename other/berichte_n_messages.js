@@ -23,6 +23,8 @@ function berichte_clear_report_onclick()
 	{
 		berichte_input_sellect_all_1.click();
 		var e_del = document.getElementById("del");
+		if(e_del !== null) e_del = document.getElementById("delmsg");
+		
 		if(e_del !== null) e_del.click();
 	}
 }
@@ -31,6 +33,8 @@ function berichte_read_report_onclick()
 {
 	berichte_input_sellect_all_1.click();
 	var e_read = document.getElementById("mark_as_read");
+	if(e_read == null) e_read = document.getElementById("bulkread");
+	
 	if(e_read !== null) e_read.click();
 }
 
