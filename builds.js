@@ -125,12 +125,14 @@ function gid16_cata_multiwave()
 	gid16_Input_delay.setAttribute("value",100);
 	gid16_Input_delay.setAttribute("maxlength",4);
 	gid16_Input_delay.setAttribute("style","padding:3px;margin:3px;");
+	gid16_Input_delay.hidden = true;
 	e_main.appendChild(gid16_Input_delay);
 	
 	window.gid16_Label_Delay = document.createElement("label");
 	gid16_Label_Delay.setAttribute("id","label_gid16_Input_delay");
 	gid16_Label_Delay.setAttribute("for","gid16_Input_delay");
 	gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
+	gid16_Label_Delay.hidden = true;
 	e_main.appendChild(gid16_Label_Delay);
 }
 function gid16_cata_multiwave_start()
