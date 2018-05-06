@@ -168,7 +168,6 @@ function gid16_cata_multiwave_trigger_Interval()
 	{		
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		var gid16_Input_delay = document.getElementById("gid16_Input_delay");
 		sleep(Number(gid16_Input_delay.value));
 		bt_ok.click();
 	}
