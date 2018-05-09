@@ -134,6 +134,9 @@ function gid16_cata_multiwave()
 	gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
 	gid16_Label_Delay.hidden = true;
 	e_main.appendChild(gid16_Label_Delay);
+	
+	var sellect_kata2s = document.getElementsByName("kata2");
+	if(sellect_kata2s.length == 1) sellect_kata2s[0].value = 99;
 }
 function gid16_cata_multiwave_start()
 {
