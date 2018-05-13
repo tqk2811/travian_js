@@ -10,7 +10,8 @@ function ally_roa_attackcount()
 			if(counts.length >= 1)
 			{
 				var e_numattack = document.createElement("a1");
-				e_numattack.innerText = "(" + counts[0] + ")";
+				e_numattack.setAttribute("style","color:red;");
+				e_numattack.innerText = "( " + counts[0] + " ) ";
 				attacks[i].insertAdjacentElement("beforebegin",e_numattack);
 			}
 		}
