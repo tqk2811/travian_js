@@ -32,9 +32,9 @@ function build_gid_TotalRes(e)
 
 function gid16()
 {
-	if(tabActive !== null)
+	if(tabActives !== null)
 	{
-		var tabItem = tabActive[0].getElementsByClassName("tabItem")[0];
+		var tabItem = tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
 		{
 			var e_bt_CheckNonAttacking = document.createElement("button");
@@ -179,9 +179,9 @@ function gid16_cata_multiwave_trigger_Interval()
 
 function gid17()
 {
-	if(tabActive !== null)
+	if(tabActives !== null)
 	{
-		var tabItem = tabActive[0].getElementsByClassName("tabItem")[0];
+		var tabItem = tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0)
 		{
 			var descriptionAndInfo = document.getElementById("descriptionAndInfo");
@@ -332,6 +332,4 @@ function gid17_CreateTradeRoutes_load()
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
-var tabActive = document.getElementsByClassName("container active");
-var e_build = document.getElementById("build");
 if(e_build !== null) Get_gid();
