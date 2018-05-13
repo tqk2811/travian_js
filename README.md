@@ -5,6 +5,7 @@ Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigj
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
 Note: For update code, please clear cache your browser or change value of "refresh_" to other string 
+
 (example: refresh_ = "update_01")
 
 ```
