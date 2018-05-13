@@ -130,10 +130,10 @@ if(sidebarBoxVillagelist !== null)
 	if(listVillage[i] === active_village)
 	{
 		//update data current village
-		var Wood = Number(document.getElementById("l1").innerText.replace(".","").replace(",",""));
-		var Clay = Number(document.getElementById("l2").innerText.replace(".","").replace(",",""));
-		var Iron = Number(document.getElementById("l3").innerText.replace(".","").replace(",",""));
-		var Crop = Number(document.getElementById("l4").innerText.replace(".","").replace(",",""));
+		var Wood = Number(document.getElementById("l1").innerText.replace(/\./g,"").replace(/,/g,""));
+		var Clay = Number(document.getElementById("l2").innerText.replace(/\./g,"").replace(/,/g,""));
+		var Iron = Number(document.getElementById("l3").innerText.replace(/\./g,"").replace(/,/g,""));
+		var Crop = Number(document.getElementById("l4").innerText.replace(/\./g,"").replace(/,/g,""));
 		var CropArlet_ = document.getElementById("l4").getAttribute("class").indexOf("alert") >=0 ? true : false;
 		var Storage__ = document.getElementById("stockBarWarehouse").innerText.replace(/\./g,"").replace(/,/g,"");    
 		var Granary__ = document.getElementById("stockBarGranary").innerText.replace(/\./g,"").replace(/,/g,"");
