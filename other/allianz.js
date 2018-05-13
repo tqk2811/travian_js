@@ -1,6 +1,7 @@
 function ally_roa_attackcount()
 {
 	var allianceMembers = document.getElementsByClassName("allianceMembers");
+	console.log("debug allianceMembers");
 	if(allianceMembers.length == 1)
 	{
 		var attacks = allianceMembers[0].getElementsByClassName("attack");
