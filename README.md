@@ -4,6 +4,8 @@ Travian version 4.4
 Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigjmcpcpkmhogomapikjbjdk) (or [old version](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija)) and add script below to extension in your travian and click Save.
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
+Note: For update code, please clear cache your browser or change value of refresh_ to other string (example: refresh_ = "update_01")
+
 ```
 var refresh_ = "00000001";//some string for refresh
 var font_size = "10px";
