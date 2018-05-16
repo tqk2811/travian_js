@@ -21,7 +21,7 @@ if(sidebarBoxActiveVillage !== null)
 		[document.getElementsByClassName("layoutButton marketBlack gold  ")[0],"/build.php?gid=17"]//market
 	]
 	var innerBox_header_sidebarBoxActiveVillage = sidebarBoxActiveVillage.getElementsByClassName("innerBox header ")[0];
-	var scripts_remove = sidebarBoxActiveVillage.getElementsByTagName("script");
-	for(var i = 0; i < scripts_remove.length; ) scripts_remove[0].remove();
+	//var scripts_remove = sidebarBoxActiveVillage.getElementsByTagName("script");
+	//for(var i = 0; i < scripts_remove.length; ) scripts_remove[0].remove();
 	for(var i = 0; i < list_sidebarBoxActiveVillage.length; i++) Change_sidebarBoxActiveVillage_Button(i);
 }
