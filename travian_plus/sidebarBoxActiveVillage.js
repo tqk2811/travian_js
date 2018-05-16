@@ -1,3 +1,16 @@
+function Change_sidebarBoxActiveVillage_Button(index)
+{
+	var item = list_sidebarBoxActiveVillage[index];
+	if (item.length > 0 && item[0] !== undefined)
+	{
+		var attibute_class = item[0].getAttribute("class");
+		if(attibute_class.search("disable") > 0) { return;}
+		item[0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
+		item[0].setAttribute("onclick","Change_sidebarBoxActiveVillage_Button_onclick(\""+item[1]+"\")");
+	}
+}
+function Change_sidebarBoxActiveVillage_Button_onclick(uri){window.location = uri;}
+
 var sidebarBoxActiveVillage = document.getElementById("sidebarBoxActiveVillage");
 if(sidebarBoxActiveVillage !== null)
 {
@@ -8,17 +21,7 @@ if(sidebarBoxActiveVillage !== null)
 		[document.getElementsByClassName("layoutButton marketBlack gold  ")[0],"/build.php?gid=17"]//market
 	]
 	var innerBox_header_sidebarBoxActiveVillage = sidebarBoxActiveVillage.getElementsByClassName("innerBox header ")[0];
-	function Change_sidebarBoxActiveVillage_Button(index)
-	{
-		var item = list_sidebarBoxActiveVillage[index];
-		if (item.length > 0 && item[0] !== undefined)
-		{
-			var attibute_class = item[0].getAttribute("class");
-			if(attibute_class.search("disable") > 0) { return;}
-			item[0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
-			item[0].setAttribute("onclick","Change_sidebarBoxActiveVillage_Button_onclick(\""+item[1]+"\")");
-		}
-	}
-	function Change_sidebarBoxActiveVillage_Button_onclick(uri){window.location = uri;}
+	var scripts_remove = sidebarBoxActiveVillage.getElementsByTagName("script");
+	for(var i = 0; i < scripts_remove.length; ) scripts_remove[0].remove();
 	for(var i = 0; i < list_sidebarBoxActiveVillage.length; i++) Change_sidebarBoxActiveVillage_Button(i);
 }
