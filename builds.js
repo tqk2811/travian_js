@@ -2,7 +2,6 @@ function Get_gid()
 {
 	var gid_str = e_build.getAttribute("class").split(" ")[0];
 	window.gid = Number(gid_str.substring(3,gid_str.length));
-	console.log("gid:" + gid);
 	build_gid();
 	switch(gid)
 	{
@@ -151,6 +150,7 @@ function gid16_cata_multiwave_trigger()
 {
 	if(gid16_Input_CataTrigger.checked) 
 	{
+		localStorage.setItem("cata_multiwave","0");
 		window.gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,10);
 		gid16_BT_StartCata.hidden = true;
 		gid16_Label_Delay.hidden = false;
