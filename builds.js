@@ -1,9 +1,7 @@
 function Get_gid()
 {
-	var gid_str = e_build.getAttribute("class").split(" ")[0];
-	window.gid = Number(gid_str.substring(3,gid_str.length));
 	build_gid();
-	switch(gid)
+	switch(window.gid)
 	{
 		case 17: gid17(); return;
 		case 16: gid16(); return;
@@ -119,7 +117,7 @@ function gid16_cata_multiwave()
 	window.gid16_Input_delay = document.createElement("input");
 	gid16_Input_delay.setAttribute("id","gid16_Input_delay")
 	gid16_Input_delay.setAttribute("min",0);
-	gid16_Input_delay.setAttribute("max",1000);
+	gid16_Input_delay.setAttribute("max",5000);
 	gid16_Input_delay.setAttribute("type","number");
 	gid16_Input_delay.setAttribute("value",100);
 	gid16_Input_delay.setAttribute("maxlength",4);
@@ -218,7 +216,8 @@ function gid17()
 					e_p_custom.appendChild(button_traderoute);
 				}
 			}
-		}else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
+		}
+		else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
 		{
 			var marketSend_ = document.getElementById("marketSend");
 			if(marketSend_ !== null)
@@ -277,7 +276,7 @@ function gid17_clear()
 				var a_tr = sels[0].getElementsByTagName("a");
 				if(a_tr !== null && a_tr.length >0 )a_tr[0].click();
 			}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
-		}
+		}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
 	}
 }
 function gid17_celebration_click(r,run_twice)
