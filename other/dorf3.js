@@ -1,6 +1,6 @@
 function dorf3_count_att1()
 {
-	var dorf3overview = document.getElementsById("overview");
+	var dorf3overview = document.getElementById("overview");
 	if(dorf3overview !== null)
 	{
 		var att1s = dorf3overview.getElementsByClassName("att1");
