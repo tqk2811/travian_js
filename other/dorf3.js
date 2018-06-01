@@ -12,7 +12,7 @@ function dorf3_count_att1()
 				var e_numattack = document.createElement("a1");
 				e_numattack.setAttribute("style","color:red;");
 				e_numattack.innerText = "( " + counts[0] + " ) ";
-				attacks[i].insertAdjacentElement("beforebegin",e_numattack);
+				att1s[i].insertAdjacentElement("beforebegin",e_numattack);
 			}
 		}
 	}
