@@ -39,23 +39,31 @@ function gid16()
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
 			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(false)");
 
-			window.gid16_cb_yellow = document.createElement("input");
+			window.gid16_cb_raid = document.createElement("input");//
+			gid16_cb_raid.setAttribute("type","checkbox");
+			var e_LB_raid = document.createElement("label");
+			e_LB_raid.innerText = "Start raids";
+			e_LB_raid.setAttribute("style","border:none;color:black;padding: 3px;");
+			e_LB_raid.appendChild(window.gid16_cb_raid);
+			
+			window.gid16_cb_yellow = document.createElement("input");//
 			gid16_cb_yellow.setAttribute("type","checkbox");
 			var e_LB_yellow = document.createElement("label");
 			e_LB_yellow.innerText = "Yellow";
-			e_LB_yellow.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");
+			e_LB_yellow.setAttribute("style","border:none;color:black;padding: 3px;");
+			e_LB_yellow.appendChild(window.gid16_cb_yellow);
 			
-			window.gid16_cb_red = document.createElement("input");
+			window.gid16_cb_red = document.createElement("input");//
 			gid16_cb_red.setAttribute("type","checkbox");
 			var e_LB_red = document.createElement("label");
 			e_LB_red.innerText = "Red";
-			e_LB_red.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");			
-			
+			e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
+			e_LB_red.appendChild(window.gid16_cb_red);
+						
 			var e_div = document.createElement("div");
 			e_div.appendChild(e_bt_CheckNonAttacking);
-			e_div.appendChild(window.gid16_cb_yellow);
+			e_div.appendChild(e_LB_raid);
 			e_div.appendChild(e_LB_yellow);
-			e_div.appendChild(window.gid16_cb_red);
 			e_div.appendChild(e_LB_red);
 			e_build.insertAdjacentElement("afterbegin",e_div);
 		}
@@ -80,14 +88,18 @@ function gid16_bt_CheckNonAttacking_onclick(flag)
 			for(var j = 0; j< e_slotRows.length; j++)
 			{
 				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
+				
+				var 
 				if(e_img_attack.length == 0)
 				{
+					if ( !window.gid16_cb_yellow.checked || e_slotRows[j].getElementsByClassName("iReport2").length == 0) continue;
+					if ( !window.gid16_cb_red.checked    || e_slotRows[j].getElementsByClassName("iReport3").length == 0) continue;
 					var e_input = e_slotRows[j].getElementsByTagName("input");
 					if(e_input !== null) e_input[0].checked = true;
 				}
 			}
 		}
-	if(flag && count == 1 && e_temp !== null)
+	if(window.gid16_cb_raid.checked && count == 1 && e_temp !== null)
 	{
 		var e_bt = e_temp.getElementsByTagName("button");
 		if(e_bt.length >1) e_bt[1].click();
