@@ -39,12 +39,12 @@ function gid16()
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
 			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(false)");
 
-			var e_cb_check_yellow = document.createElement("input");
+			window.e_cb_check_yellow = document.createElement("input");
 			e_cb_check_yellow.setAttribute("type","checkbox");
-			e_cb_check_yellow.setAttribute("id","e_cb_check_yellow");			
-			var e_cb_check_red = document.createElement("input");
+			e_cb_check_yellow.setAttribute("id","e_cb_check_yellow");	
+			window.e_cb_check_red = document.createElement("input");
 			e_cb_check_red.setAttribute("type","checkbox");
-			e_cb_check_red.setAttribute("id","e_cb_check_red");			
+			e_cb_check_red.setAttribute("id","e_cb_check_red");
 			
 						
 			var e_div = document.createElement("div");
