@@ -87,9 +87,7 @@ function gid16_bt_CheckNonAttacking_onclick(flag)
 			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
 			for(var j = 0; j< e_slotRows.length; j++)
 			{
-				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
-				
-				var 
+				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");				
 				if(e_img_attack.length == 0)
 				{
 					if ( !window.gid16_cb_yellow.checked || e_slotRows[j].getElementsByClassName("iReport2").length == 0) continue;
