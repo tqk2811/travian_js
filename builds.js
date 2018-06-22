@@ -39,14 +39,26 @@ function gid16()
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
 			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(false)");
 
-			var e_bt_CheckNonAttacking_raid = document.createElement("button");
-			e_bt_CheckNonAttacking_raid.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
-			e_bt_CheckNonAttacking_raid.innerText = "Check non attacking and raid";
-			e_bt_CheckNonAttacking_raid.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick(true)");
-
+			var e_cb_check_yellow = document.createElement("input");
+			e_cb_check_yellow.setAttribute("type","checkbox");
+			e_cb_check_yellow.setAttribute("id","e_cb_check_yellow");			
+			var e_LB_yellow = document.createElement("label");
+			e_LB_yellow.setAttribute("for","e_cb_check_yellow");
+			e_LB_yellow.innerText = "Yellow";
+			e_LB_yellow.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");
+			
+			var e_cb_check_red = document.createElement("input");
+			e_cb_check_red.setAttribute("type","checkbox");
+			e_cb_check_red.setAttribute("id","e_cb_check_red");			
+			var e_LB_red = document.createElement("label");
+			e_LB_red.setAttribute("for","e_cb_check_red");
+			e_LB_red.innerText = "Red";
+			e_LB_red.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");
+						
 			var e_div = document.createElement("div");
 			e_div.appendChild(e_bt_CheckNonAttacking);
-			e_div.appendChild(e_bt_CheckNonAttacking_raid);
+			e_div.appendChild(e_cb_check_yellow);
+			e_div.appendChild(e_cb_check_red);
 			e_build.insertAdjacentElement("afterbegin",e_div);
 		}
 		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
