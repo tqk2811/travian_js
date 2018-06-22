@@ -42,24 +42,25 @@ function gid16()
 			var e_cb_check_yellow = document.createElement("input");
 			e_cb_check_yellow.setAttribute("type","checkbox");
 			e_cb_check_yellow.setAttribute("id","e_cb_check_yellow");			
-			var e_LB_yellow = document.createElement("label");
-			e_LB_yellow.setAttribute("for","e_cb_check_yellow");
-			e_LB_yellow.innerText = "Yellow";
-			e_LB_yellow.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");
-			
 			var e_cb_check_red = document.createElement("input");
 			e_cb_check_red.setAttribute("type","checkbox");
 			e_cb_check_red.setAttribute("id","e_cb_check_red");			
-			var e_LB_red = document.createElement("label");
-			e_LB_red.setAttribute("for","e_cb_check_red");
-			e_LB_red.innerText = "Red";
-			e_LB_red.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");
+			
 						
 			var e_div = document.createElement("div");
 			e_div.appendChild(e_bt_CheckNonAttacking);
 			e_div.appendChild(e_cb_check_yellow);
 			e_div.appendChild(e_cb_check_red);
 			e_build.insertAdjacentElement("afterbegin",e_div);
+			
+			var e_LB_yellow = document.createElement("label");
+			e_LB_yellow.setAttribute("for","e_cb_check_yellow");
+			e_LB_yellow.innerText = "Yellow";
+			e_LB_yellow.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");			
+			var e_LB_red = document.createElement("label");
+			e_LB_red.setAttribute("for","e_cb_check_red");
+			e_LB_red.innerText = "Red";
+			e_LB_red.setAttribute("style","border:none;color:white;padding: 3px; margin: 3px;");
 		}
 		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
 		{
