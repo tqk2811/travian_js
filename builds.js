@@ -41,24 +41,26 @@ function gid16()
 
 			window.gid16_cb_raid = document.createElement("input");//
 			gid16_cb_raid.setAttribute("type","checkbox");
-			var e_LB_raid = document.createElement("label");			
+			var e_LB_raid = document.createElement("label");
+			e_LB_raid.innerText = "Start raids";			
 			e_LB_raid.setAttribute("style","border:none;color:black;padding: 3px;");
 			e_LB_raid.appendChild(window.gid16_cb_raid);
-			e_LB_raid.innerText = "Start raids";
-			
+						
 			window.gid16_cb_yellow = document.createElement("input");//
 			gid16_cb_yellow.setAttribute("type","checkbox");
 			var e_LB_yellow = document.createElement("label");			
+			e_LB_yellow.innerText = "Yellow";
 			e_LB_yellow.setAttribute("style","border:none;color:black;padding: 3px;");
 			e_LB_yellow.appendChild(window.gid16_cb_yellow);
-			e_LB_yellow.innerText = "Yellow";
+			
 			
 			window.gid16_cb_red = document.createElement("input");//
 			gid16_cb_red.setAttribute("type","checkbox");
 			var e_LB_red = document.createElement("label");			
+			e_LB_red.innerText = "Red";			
 			e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
 			e_LB_red.appendChild(window.gid16_cb_red);
-			e_LB_red.innerText = "Red";			
+			
 			
 			var e_div = document.createElement("div");
 			e_div.appendChild(e_bt_CheckNonAttacking);
