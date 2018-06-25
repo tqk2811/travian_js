@@ -34,6 +34,11 @@ function gid16()
 		var tabItem = tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
 		{
+			var list_raidlist = [];
+			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
+			for(var i = 0; i < listEntrys.length; i++) list_raidlist.push(Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)))
+			localStorage.setItem(uid + "_list_raidlist",JSON.stringify(list_raidlist));
+			
 			var e_bt_CheckNonAttacking = document.createElement("button");
 			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 			e_bt_CheckNonAttacking.innerText = "Check non attacking";
