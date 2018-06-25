@@ -7,8 +7,8 @@ function spieler_addraidlist()
 	for(var i = 0; i< list_raidlist.length; i++)
 	{
 		var e_option = document.createElement("option");
-		e_option.setAttribute("value",list_raidlist[i]);
-		e_option.innerText = list_raidlist[i];
+		e_option.setAttribute("value",list_raidlist[i][0]);
+		e_option.innerText = list_raidlist[i][1];
 		e_sellect.appendChild(e_option);
 	}
 	var villages = document.getElementById("villages");

@@ -36,8 +36,12 @@ function gid16()
 		{
 			var list_raidlist = [];
 			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
-			for(var i = 0; i < listEntrys.length; i++) list_raidlist.push(Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)))
-			localStorage.setItem(uid + "_list_raidlist",JSON.stringify(list_raidlist));
+			for(var i = 0; i < listEntrys.length; i++) 
+				list_raidlist.push([
+									Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
+									listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
+									])
+			localStorage.setItem(uid + "_list_raidlist",JSON.stringify(list_raidlist));//
 			
 			var e_bt_CheckNonAttacking = document.createElement("button");
 			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
