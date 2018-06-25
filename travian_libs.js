@@ -43,9 +43,10 @@ var gid = null;
 if(e_build !== null) {
 	var gid_str = e_build.getAttribute("class").split(" ")[0];
 	window.gid = Number(gid_str.substring(3,gid_str.length));
-	console.log("gid:" + gid);
 }
 var uid = getuid();
+
+console.log("uid:" + uid + "  ; gid:" + gid +"  ;")
 
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
@@ -57,3 +58,4 @@ AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf3.js"));
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));
