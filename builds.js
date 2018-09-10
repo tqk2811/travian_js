@@ -128,8 +128,8 @@ function gid16_bt_CheckAllGreenAttack_onclick()
 				var e_input = e_slotRows[j].getElementsByTagName("input");
 				if(e_input !== null && 
 						!(gid16_cb_attacking.checked && isAttacking ) &&
-						!(!isHistoryYellow && gid16_cb_yellow.checked) &&
-						!(!isHistoryRed && gid16_cb_red.checked)) e_input[0].checked = true;
+						!(isHistoryYellow && !gid16_cb_yellow.checked) &&
+						!(isHistoryRed && !gid16_cb_red.checked)) e_input[0].checked = true;
 			}
 		}
 	if(window.gid16_cb_raid.checked && count == 1 && e_temp !== null)
