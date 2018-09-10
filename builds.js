@@ -389,10 +389,7 @@ function gid19()
 	
 }
 
-function TroopResource_create(unit,name,res[])
-{
-	
-}
+//function TroopResource_create(unit,name,res[])
 
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
