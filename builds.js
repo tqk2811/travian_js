@@ -123,7 +123,7 @@ function gid16_bt_CheckAllGreenAttack_onclick()
 				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
 				var isAttacking = e_img_attack.length > 0;
 				var isHistoryYellow = e_slotRows[j].getElementsByClassName("iReport2").length > 0;
-				var isHistoryRed = _slotRows[j].getElementsByClassName("iReport3").length > 0;
+				var isHistoryRed = e_slotRows[j].getElementsByClassName("iReport3").length > 0;
 				
 				var e_input = e_slotRows[j].getElementsByTagName("input");
 				if(e_input !== null && 
