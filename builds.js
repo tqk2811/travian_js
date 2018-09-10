@@ -12,15 +12,15 @@ function Get_gid()
 function build_gid()
 {
 	var e_showCosts = document.getElementsByClassName("showCosts");
-	if(e_showCosts.parentElement.className == "details")
-	{
-		var tits = e_showCosts.parentElement.getElementsByClassName("tit");
-		if(tits.length == 1)
-		{
-			tits[0].getElementsByClassName
+	//if(e_showCosts.parentElement.className == "details")
+	//{
+		//var tits = e_showCosts.parentElement.getElementsByClassName("tit");
+		//if(tits.length == 1)
+		//{
+			//tits[0].getElementsByClassName
 			///
-		}
-	}
+		//}
+	//}
 	for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i]);
 }
 function build_gid_TotalRes(e)
