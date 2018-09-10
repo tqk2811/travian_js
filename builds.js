@@ -95,7 +95,7 @@ function gid16()
 			var e_div = document.createElement("div");
 			e_div.appendChild(e_bt_CheckAllGreenAttack);
 			e_div.appendChild(e_LB_raid);
-			e_div.appendChild(gid16_cb_attacking);			
+			e_div.appendChild(e_LB_attacking);			
 			e_div.appendChild(e_LB_yellow);
 			e_div.appendChild(e_LB_red);
 			e_build.insertAdjacentElement("afterbegin",e_div);
