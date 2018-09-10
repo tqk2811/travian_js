@@ -394,5 +394,5 @@ function gid19()
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
-TroopsResource_load();
+//TroopsResource_load();
 if(e_build !== null) Get_gid();
