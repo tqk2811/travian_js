@@ -5,12 +5,22 @@ function Get_gid()
 	{
 		case 17: gid17(); return;
 		case 16: gid16(); return;
+		case 19: gid19(); return;
 		default: return;
 	}
 }
 function build_gid()
 {
 	var e_showCosts = document.getElementsByClassName("showCosts");
+	if(e_showCosts.parentElement.className == "details")
+	{
+		var tits = e_showCosts.parentElement.getElementsByClassName("tit");
+		if(tits.length == 1)
+		{
+			tits[0].getElementsByClassName
+			///
+		}
+	}
 	for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i]);
 }
 function build_gid_TotalRes(e)
@@ -26,6 +36,10 @@ function build_gid_TotalRes(e)
 		parent_ress.appendChild(total_element);
 	}
 }
+
+///function TroopsResource_load(){var window.TroopsResource = [{unit =  },{},]}
+
+
 
 function gid16()
 {
@@ -43,25 +57,32 @@ function gid16()
 									])
 			localStorage.setItem(uid + "_list_raidlist",JSON.stringify(list_raidlist));//
 			
-			var e_bt_CheckNonAttacking = document.createElement("button");
-			e_bt_CheckNonAttacking.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
-			e_bt_CheckNonAttacking.innerText = "Check non attacking";
-			e_bt_CheckNonAttacking.setAttribute("onclick","gid16_bt_CheckNonAttacking_onclick()");
-
+			var e_bt_CheckAllGreenAttack = document.createElement("button");
+			e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
+			e_bt_CheckAllGreenAttack.innerText = "Check All Green Attacks";
+			e_bt_CheckAllGreenAttack.setAttribute("onclick","gid16_bt_CheckAllGreenAttack_onclick()");
+			
+			
 			window.gid16_cb_raid = document.createElement("input");//
 			gid16_cb_raid.setAttribute("type","checkbox");
 			var e_LB_raid = document.createElement("label");
 			e_LB_raid.innerText = "Start raids";			
 			e_LB_raid.setAttribute("style","border:none;color:black;padding: 3px;");
 			e_LB_raid.appendChild(window.gid16_cb_raid);
-						
+			
+			window.gid16_cb_attacking = document.createElement("input");
+			gid16_cb_attacking.setAttribute("type","checkbox");
+			var e_LB_attacking = document.createElement("label");			
+			e_LB_attacking.innerText = "Don't raid attacking";
+			e_LB_attacking.setAttribute("style","border:none;color:black;padding: 3px;");
+			e_LB_attacking.appendChild(window.gid16_cb_attacking);
+			
 			window.gid16_cb_yellow = document.createElement("input");//
 			gid16_cb_yellow.setAttribute("type","checkbox");
 			var e_LB_yellow = document.createElement("label");			
 			e_LB_yellow.innerText = "Yellow";
 			e_LB_yellow.setAttribute("style","border:none;color:black;padding: 3px;");
-			e_LB_yellow.appendChild(window.gid16_cb_yellow);
-			
+			e_LB_yellow.appendChild(window.gid16_cb_yellow);			
 			
 			window.gid16_cb_red = document.createElement("input");//
 			gid16_cb_red.setAttribute("type","checkbox");
@@ -72,8 +93,9 @@ function gid16()
 			
 			
 			var e_div = document.createElement("div");
-			e_div.appendChild(e_bt_CheckNonAttacking);
+			e_div.appendChild(e_bt_CheckAllGreenAttack);
 			e_div.appendChild(e_LB_raid);
+			e_div.appendChild(gid16_cb_attacking);			
 			e_div.appendChild(e_LB_yellow);
 			e_div.appendChild(e_LB_red);
 			e_build.insertAdjacentElement("afterbegin",e_div);
@@ -85,7 +107,7 @@ function gid16()
 		}
 	}
 }
-function gid16_bt_CheckNonAttacking_onclick()
+function gid16_bt_CheckAllGreenAttack_onclick()
 {
 	var e_listContents = document.getElementsByClassName("listContent");
 	var count = 0;
@@ -97,15 +119,17 @@ function gid16_bt_CheckNonAttacking_onclick()
 			count++;
 			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
 			for(var j = 0; j< e_slotRows.length; j++)
-			{
-				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");				
-				if(e_img_attack.length == 0)
-				{					
-					if ( !window.gid16_cb_yellow.checked && e_slotRows[j].getElementsByClassName("iReport2").length > 0) continue;
-					if ( !window.gid16_cb_red.checked    && e_slotRows[j].getElementsByClassName("iReport3").length > 0) continue;
-					var e_input = e_slotRows[j].getElementsByTagName("input");
-					if(e_input !== null) e_input[0].checked = true;
-				}
+			{				
+				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
+				var isAttacking = e_img_attack.length > 0;
+				var isHistoryYellow = e_slotRows[j].getElementsByClassName("iReport2").length > 0;
+				var isHistoryRed = _slotRows[j].getElementsByClassName("iReport3").length > 0;
+				
+				var e_input = e_slotRows[j].getElementsByTagName("input");
+				if(e_input !== null && 
+						!(gid16_cb_attacking.checked && isAttacking ) &&
+						!(!isHistoryYellow && gid16_cb_yellow.checked) &&
+						!(!isHistoryRed && gid16_cb_red.checked)) e_input[0].checked = true;
 			}
 		}
 	if(window.gid16_cb_raid.checked && count == 1 && e_temp !== null)
@@ -359,7 +383,19 @@ function gid17_CreateTradeRoutes_load()
 		}
 	}
 }
+
+function gid19()
+{
+	
+}
+
+function TroopResource_create(unit,name,res[])
+{
+	
+}
+
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
+TroopsResource_load();
 if(e_build !== null) Get_gid();
