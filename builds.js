@@ -250,21 +250,21 @@ function gid17()
 				var trading_routes = document.getElementById("trading_routes");
 				if(trading_routes !== null)
 				{
-					var trs = trading_routes.getElementsByTagName("tr");
-					if(trs.length >0)
+					var desc = trading_routes.getElementsByClassName("desc");
+					for( var i = 0; i < desc.length; i++)
 					{
-						var desc = trs[0].getElementsByClassName("desc");
-						if(desc > 0)
+						var a_desc = desc[i].getElementsByTagName("a");				
+						if(a_desc > 0)
 						{
-							var a_desc = desc[0].getElementsByTagName("a");							
-							if(a_desc > 0)
-							{
-								var newdid = Number(getParameterByName("newdid",a_desc[0].getAttribute("href")));
-								var flag_newdid = true;
-								for(var i = 0; i< arr_traderoute_desc.length; i++)if(arr_traderoute_desc[i][0] === newdid) { flag_newdid = false; break; }
-								if(flag_newdid) arr_traderoute_desc.push([newdid,a_desc[0].innerText]);								
-							}
-						}						
+							var href_a_desc = a_desc[0].getAttribute("href");
+							var newdid = getParameterByName("newdid",href_a_desc);
+							var target;
+							if(newdid == null)target = getParameterByName("x",href_a_desc) + "|" + getParameterByName("y",href_a_desc);
+							else target = newdid;
+							var flag_add = true;
+							for(var j = 0; j< arr_traderoute_desc.length; j++)if(arr_traderoute_desc[j][0] === target) { flag_add = false; break; }
+							if(flag_add) arr_traderoute_desc.push([target,a_desc[0].innerText]);								
+						}
 					}
 				}
 				
