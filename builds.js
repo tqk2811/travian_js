@@ -245,7 +245,33 @@ function gid17()
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
-
+				
+				window.arr_traderoute_desc = [];			
+				var trading_routes = document.getElementById("trading_routes");
+				if(trading_routes !== null)
+				{
+					var trs = trading_routes.getElementsByTagName("tr");
+					if(trs.length >0)
+					{
+						var desc = trs[0].getElementsByClassName("desc");
+						if(desc > 0)
+						{
+							var a_desc = desc[0].getElementsByTagName("a");							
+							if(a_desc > 0)
+							{
+								var newdid = Number(getParameterByName("newdid",a_desc[0].getAttribute("href")));
+								var flag_newdid = true;
+								for(var i = 0; i< arr_traderoute_desc.length; i++)if(arr_traderoute_desc[i][0] === newdid) { flag_newdid = false; break; }
+								if(flag_newdid) arr_traderoute_desc.push([newdid,a_desc[0].innerText]);								
+							}
+						}						
+					}
+				}
+				
+				var sellect_clear = document.createElement("sellect");
+				sellect_clear.add(gid17_clear_sellect("All",-1));
+				arr_traderoute_desc.forEach(function(child){ sellect_clear.add(gid17_clear_sellect(child[0],child[1])); });
+				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 				if(e_tradeRouteEdit !== null)
 				{
@@ -309,6 +335,14 @@ function gid17()
 	}
 
 }
+function gid17_clear_sellect(name, did)
+{
+	var e_option = document.createElement("option");
+	e_option.text = name + " (" + did + ")";
+	e_option.value = did;
+	return e_option;
+}
+
 function gid17_clear_onclick()
 {
 	if(window.confirm("Are you sure to clear all trade routes?"))
