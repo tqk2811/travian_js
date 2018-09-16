@@ -254,7 +254,7 @@ function gid17()
 					for( var i = 0; i < desc.length; i++)
 					{
 						var a_desc = desc[i].getElementsByTagName("a");				
-						if(a_desc > 0)
+						if(a_desc.length > 0)
 						{
 							var href_a_desc = a_desc[0].getAttribute("href");
 							var newdid = getParameterByName("newdid",href_a_desc);
