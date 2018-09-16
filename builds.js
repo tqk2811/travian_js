@@ -271,6 +271,8 @@ function gid17()
 				var select_clear = document.createElement("select");
 				select_clear.add(gid17_clear_select("All",-1));
 				arr_traderoute_desc.forEach(function(child){ select_clear.add(gid17_clear_select(child[0],child[1])); });
+				descriptionAndInfo.appendChild(select_clear);
+				
 				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 				if(e_tradeRouteEdit !== null)
