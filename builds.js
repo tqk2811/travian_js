@@ -246,7 +246,7 @@ function gid17()
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				descriptionAndInfo.appendChild(button_clear);
 				
-				window.arr_traderoute_desc = [];			
+				var arr_traderoute_desc = [];			
 				var trading_routes = document.getElementById("trading_routes");
 				if(trading_routes !== null)
 				{
@@ -257,18 +257,14 @@ function gid17()
 						if(a_desc.length > 0)
 						{
 							var href_a_desc = a_desc[0].getAttribute("href");
-							var newdid = getParameterByName("newdid",href_a_desc);
-							var target;
-							if(newdid == null)target = getParameterByName("x",href_a_desc) + "|" + getParameterByName("y",href_a_desc);
-							else target = newdid;
 							var flag_add = true;
-							for(var j = 0; j< arr_traderoute_desc.length; j++)if(arr_traderoute_desc[j][0] === target) { flag_add = false; break; }
-							if(flag_add) arr_traderoute_desc.push([target,a_desc[0].innerText]);								
+							for(var j = 0; j< arr_traderoute_desc.length; j++)if(arr_traderoute_desc[j][1] === href_a_desc) { flag_add = false; break; }
+							if(flag_add) arr_traderoute_desc.push([a_desc[0].innerText,href_a_desc]);						
 						}
 					}
 				}
 				
-				var select_clear = document.createElement("select");
+				window.gid17_select_clear = document.createElement("select");
 				select_clear.add(gid17_clear_select("All",-1));
 				arr_traderoute_desc.forEach(function(child){ select_clear.add(gid17_clear_select(child[0],child[1])); });
 				descriptionAndInfo.appendChild(select_clear);
@@ -347,27 +343,39 @@ function gid17_clear_select(name, did)
 
 function gid17_clear_onclick()
 {
-	if(window.confirm("Are you sure to clear all trade routes?"))
+	if(window.confirm("Are you sure to clear trade routes?"))
 	{
 		localStorage.setItem("Flag_deleteAll_Trading_routes",1);
+		localStorage.setItem("gid17_des_clear",window.gid17_select_clear.value);
 		window.location.href = "/build.php?t=0&gid=17";
 	}
 }
 function gid17_clear()
 {
 	var flag = localStorage.getItem("Flag_deleteAll_Trading_routes");
+	var gid17_des_clear = localStorage.getItem("gid17_des_clear");
 	if(flag !== null && flag !== undefined && flag + 0 != 0)
 	{
 		var trading_routes = document.getElementById("trading_routes");
 		if(trading_routes !== null)
 		{
-			var sels = trading_routes.getElementsByClassName("sel");
-			if(sels.length >0)
+			var trs = trading_routes.getElementsByTagName("tr");
+			for(var i = 0; i< trs.length; i++)
 			{
-				var a_tr = sels[0].getElementsByTagName("a");
-				if(a_tr !== null && a_tr.length >0 )a_tr[0].click();
-			}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
-		}else localStorage.setItem("Flag_deleteAll_Trading_routes",0);
+				var sel_trs = trs[i].getElementsByClassName("sel");				
+				if(gid17_des_clear == "-1") 
+				{
+					sel_trs[0].getElementsByTagName("a")[0].click();
+					return;
+				}
+				else if(trs[i].getElementsByClassName("desc")[0].getElementsByTagName("a")[0].getAttribute("href") == gid17_des_clear) 
+				{
+					sel_trs[0].getElementsByTagName("a")[0].click();
+					return;
+				}
+			}			
+		}
+		localStorage.setItem("Flag_deleteAll_Trading_routes",0);
 	}
 }
 function gid17_celebration_click(r,run_twice)
