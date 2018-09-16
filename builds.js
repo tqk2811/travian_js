@@ -265,9 +265,9 @@ function gid17()
 				}
 				
 				window.gid17_select_clear = document.createElement("select");
-				select_clear.add(gid17_clear_select("All",-1));
-				arr_traderoute_desc.forEach(function(child){ select_clear.add(gid17_clear_select(child[0],child[1])); });
-				descriptionAndInfo.appendChild(select_clear);
+				gid17_select_clear.add(gid17_clear_select("All","-1"));
+				arr_traderoute_desc.forEach(function(child){ gid17_select_clear.add(gid17_clear_select(child[0],child[1])); });
+				descriptionAndInfo.appendChild(gid17_select_clear);
 				
 				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
