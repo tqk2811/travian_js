@@ -360,7 +360,7 @@ function gid17_clear()
 		if(trading_routes !== null)
 		{
 			var trs = trading_routes.getElementsByTagName("tr");
-			for(var i = 0; i< trs.length; i++)
+			for(var i = 1; i< trs.length; i++)
 			{
 				var sel_trs = trs[i].getElementsByClassName("sel");				
 				if(gid17_des_clear == "-1") 
