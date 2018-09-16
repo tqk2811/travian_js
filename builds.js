@@ -187,8 +187,8 @@ function gid16_cata_multiwave()
 	gid16_Label_Delay.hidden = true;
 	e_main.appendChild(gid16_Label_Delay);
 	
-	var sellect_kata2s = document.getElementsByName("kata2");
-	if(sellect_kata2s.length == 1) sellect_kata2s[0].value = 99;
+	var select_kata2s = document.getElementsByName("kata2");
+	if(select_kata2s.length == 1) select_kata2s[0].value = 99;
 }
 function gid16_cata_multiwave_start()
 {
@@ -268,9 +268,9 @@ function gid17()
 					}
 				}
 				
-				var sellect_clear = document.createElement("sellect");
-				sellect_clear.add(gid17_clear_sellect("All",-1));
-				arr_traderoute_desc.forEach(function(child){ sellect_clear.add(gid17_clear_sellect(child[0],child[1])); });
+				var select_clear = document.createElement("select");
+				select_clear.add(gid17_clear_select("All",-1));
+				arr_traderoute_desc.forEach(function(child){ select_clear.add(gid17_clear_select(child[0],child[1])); });
 				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 				if(e_tradeRouteEdit !== null)
@@ -335,7 +335,7 @@ function gid17()
 	}
 
 }
-function gid17_clear_sellect(name, did)
+function gid17_clear_select(name, did)
 {
 	var e_option = document.createElement("option");
 	e_option.text = name + " (" + did + ")";
