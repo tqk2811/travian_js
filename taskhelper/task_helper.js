@@ -177,7 +177,7 @@ if(sidebarBoxVillagelist !== null)
 				var input_e_contentTitle = document.createElement("input");
 				input_e_contentTitle.type = "checkbox";
 				if(b_json !== null && b_json.Show !== undefined) input_e_contentTitle.checked = b_json.Show;
-				else input_e_contentTitle.checked = true;
+				else input_e_contentTitle.checked = false;
 				village_object.Show = input_e_contentTitle.checked;
 				input_e_contentTitle.setAttribute("id","input_e_contentTitle");
 				input_e_contentTitle.setAttribute("onchange","input_e_contentTitle_change()");
@@ -188,7 +188,7 @@ if(sidebarBoxVillagelist !== null)
 		else if(b_json !== null) 
 		{
 			village_object.Builds = b_json.Builds !== undefined ? b_json.Builds : [] ; 
-			village_object.Show = b_json.Show !== undefined ? b_json.Show : true;
+			village_object.Show = b_json.Show !== undefined ? b_json.Show : false;
 		}
 		
 		localStorage.setItem("village_"+id,JSON.stringify(village_object));
