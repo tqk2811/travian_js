@@ -37,6 +37,23 @@ String.prototype.format = function() {
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+function FindActiveVillage(listVillages)
+{
+  for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
+  return null; 
+}
+function getQueryVariable(q,variable) 
+{
+    var query = q.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) 
+    {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
+    }
+  return null;
+}
+
 var tabActives = document.getElementsByClassName("container active");
 var e_build = document.getElementById("build");
 var gid = null;
@@ -45,6 +62,8 @@ if(e_build !== null) {
 	window.gid = Number(gid_str.substring(3,gid_str.length));
 }
 var uid = getuid();
+
+
 var village_id = -1;
 var listVillage = null;
 var active_village = null;
@@ -56,7 +75,7 @@ if(sidebarBoxVillagelist !== null)
 	village_id = Number(getParameterByName("newdid",active_village.getElementsByTagName("a")[0].getAttribute("href")));
 }
 
-console.log("uid:" + uid + "  ; gid:" + gid +"  ;")
+console.log("uid:" + uid + "  ; gid:" + gid +"  ; village_id:" + village_id);
 
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));

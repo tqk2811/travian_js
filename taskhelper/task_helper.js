@@ -31,22 +31,7 @@ var TimerCountingDownNoReload = function()
     }
   }
 };
-function FindActiveVillage(listVillages)
-{
-  for(var i = 0; i < listVillages.length; i++) if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
-  return null; 
-}
-function getQueryVariable(q,variable) 
-{
-    var query = q.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) 
-    {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
-    }
-  return null;
-}
+
 function LoadLiResource(e,value,max,flag,arlet)
 {
   if(flag)
