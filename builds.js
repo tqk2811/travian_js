@@ -362,7 +362,8 @@ function gid17_clear()
 			var trs = trading_routes.getElementsByTagName("tr");
 			for(var i = 1; i< trs.length; i++)
 			{
-				var sel_trs = trs[i].getElementsByClassName("sel");				
+				var sel_trs = trs[i].getElementsByClassName("sel");
+				if(sel_trs.length == 0) continue;
 				if(gid17_des_clear == "-1") 
 				{
 					sel_trs[0].getElementsByTagName("a")[0].click();
@@ -373,7 +374,7 @@ function gid17_clear()
 					sel_trs[0].getElementsByTagName("a")[0].click();
 					return;
 				}
-			}			
+			}
 		}
 		localStorage.setItem("Flag_deleteAll_Trading_routes",0);
 	}
