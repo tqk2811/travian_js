@@ -45,6 +45,16 @@ if(e_build !== null) {
 	window.gid = Number(gid_str.substring(3,gid_str.length));
 }
 var uid = getuid();
+var village_id = -1;
+var listVillage = null;
+var active_village = null;
+var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
+if(sidebarBoxVillagelist !== null)
+{
+	listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
+	active_village = FindActiveVillage(listVillage);
+	village_id = Number(getParameterByName("newdid",active_village.getElementsByTagName("a")[0].getAttribute("href")));
+}
 
 console.log("uid:" + uid + "  ; gid:" + gid +"  ;")
 
