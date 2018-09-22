@@ -352,7 +352,7 @@ function gid17()
 					var that = $(this), newaction;
 					$.ajax(
 					{
-						success :gid17_enterVillageName_add_datalist();
+						success :gid17_enterVillageName_add_datalist()
 					}
 				}
 			}
