@@ -75,7 +75,7 @@ if(sidebarBoxVillagelist !== null)
 	village_id = Number(getParameterByName("newdid",active_village.getElementsByTagName("a")[0].getAttribute("href")));
 }
 
-console.log("uid:" + uid + "  ; gid:" + gid +"  ; village_id:" + village_id);
+console.log("uid:" + uid + "; gid:" + gid +"; village_id:" + village_id);
 
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));

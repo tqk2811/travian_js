@@ -328,6 +328,26 @@ function gid17()
 				p_button.appendChild(button_Bigcelebration);
 				p_button.appendChild(button_Bigcelebration2);
 				p_button.appendChild(button_Bigcelebration3);
+				
+				if(active_village !== null)
+				{
+					var enterVillageName = document.getElementById("enterVillageName");
+					enterVillageName.setAttribute("list","village_list");
+					enterVillageName.insertAdjacentElement("afterend",datalist_villagename);
+					var datalist_villagename = document.createElement("datalist");
+					datalist_villagename.setAttribute("id","village_list");
+					for(var i = 0;i < listVillage.length;i++)
+					{
+						if(listVillage[i] == active_village) continue;
+						var name_ = listVillage[i].getElementsByClassName("name");
+						if(name_.length > 0)
+						{
+							var option_datalist = document.createElement("option");
+							option_datalist.value = name_[0].innerText;
+							datalist_villagename.appendChild(option_datalist);
+						}
+					}
+				}
 			}
 		}
 	}
