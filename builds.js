@@ -331,11 +331,9 @@ function gid17()
 				
 				if(active_village !== null)
 				{
-					var enterVillageName = document.getElementById("enterVillageName");
-					enterVillageName.setAttribute("list","village_list");
 					var datalist_villagename = document.createElement("datalist");
 					datalist_villagename.setAttribute("id","village_list");					
-					enterVillageName.insertAdjacentElement("afterend",datalist_villagename);
+					marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 					for(var i = 0;i < listVillage.length;i++)
 					{
 						if(listVillage[i] == active_village) continue;
@@ -347,12 +345,19 @@ function gid17()
 							datalist_villagename.appendChild(option_datalist);
 						}
 					}
+					gid17_enterVillageName_add_datalist();
 				}
+				marketSend_.onsubmit = gid17_enterVillageName_add_datalist();
 			}
 		}
 	}
-
 }
+function gid17_enterVillageName_add_datalist()
+{
+	var enterVillageName = document.getElementById("enterVillageName");
+	enterVillageName.setAttribute("list","village_list");
+}
+
 function gid17_clear_select(name, did)
 {
 	var e_option = document.createElement("option");
