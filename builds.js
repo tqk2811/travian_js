@@ -333,9 +333,9 @@ function gid17()
 				{
 					var enterVillageName = document.getElementById("enterVillageName");
 					enterVillageName.setAttribute("list","village_list");
-					enterVillageName.insertAdjacentElement("afterend",datalist_villagename);
 					var datalist_villagename = document.createElement("datalist");
-					datalist_villagename.setAttribute("id","village_list");
+					datalist_villagename.setAttribute("id","village_list");					
+					enterVillageName.insertAdjacentElement("afterend",datalist_villagename);
 					for(var i = 0;i < listVillage.length;i++)
 					{
 						if(listVillage[i] == active_village) continue;
