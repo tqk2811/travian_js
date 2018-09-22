@@ -353,8 +353,8 @@ function gid17()
 					$.ajax(
 					{
 						success :gid17_enterVillageName_add_datalist()
-					}
-				}
+					})
+				})
 			}
 		}
 	}
