@@ -347,7 +347,14 @@ function gid17()
 					}
 					gid17_enterVillageName_add_datalist();
 				}
-				marketSend_.onsubmit = gid17_enterVillageName_add_datalist();
+				$('#serialize').submit(function (event)
+				{
+					var that = $(this), newaction;
+					$.ajax(
+					{
+						success :gid17_enterVillageName_add_datalist();
+					}
+				}
 			}
 		}
 	}
