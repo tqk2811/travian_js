@@ -55,7 +55,7 @@ function troop_train_show()
 	main_div.appendChild(div_stable);
 	main_div.appendChild(div_workshop);
 	stockBar.insertAdjacentElement("beforeend",main_div);
-	//window.setInterval(troop_train_timer_tick,1000);
+	window.setInterval(troop_train_timer_tick,1000);
 }
 function troop_train_add_child(e,name,target_gid)
 {
@@ -65,7 +65,7 @@ function troop_train_add_child(e,name,target_gid)
 	label_.setAttribute("style","float: left; width:40%;");
 	
 	var span_ = document.createElement("span");
-	span_.value = Number(localStorage.getItem("troop_train_" + village_id + "_" + target_gid));
+	span_.setAttribute("value",Number(localStorage.getItem("troop_train_" + village_id + "_" + target_gid)));
 	span_.setAttribute("style","float: left; width:60%;");
 	
 	div_.appendChild(label_);
