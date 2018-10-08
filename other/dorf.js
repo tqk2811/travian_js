@@ -69,7 +69,7 @@ function troop_train_add_child(e,name,target_gid)
 	span_time.setAttribute("value",Number(localStorage.getItem("troop_train_" + village_id + "_" + target_gid)) - Math.round(Date.now()/1000,0));
 	span_time.setAttribute("style","float: left; width:60%;");
 	
-	div_.appendChild(label_);
+	div_.appendChild(e_a);
 	div_.appendChild(span_time);
 	troop_train_timer.push(span_time);
 	e.appendChild(div_);
