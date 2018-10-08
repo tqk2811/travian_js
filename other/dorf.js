@@ -54,7 +54,7 @@ function troop_train_show()
 	main_div.appendChild(div_barack);
 	main_div.appendChild(div_stable);
 	main_div.appendChild(div_workshop);
-	stockBar.insertAdjacentElement("afterend",main_div);
+	stockBar.insertAdjacentElement("beforeend",main_div);
 	window.setInterval(troop_train_timer_tick,1000);
 }
 
