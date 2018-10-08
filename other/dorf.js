@@ -25,7 +25,7 @@ function troop_train_show()
 {
 	var stockBar = document.getElementById("stockBar");
 	var main_div = document.createElement("div");
-	main_div.setAttribute("style","height:100%; width:100%; overflow: hidden;");
+	main_div.setAttribute("style","height:100%; width:100%; overflow: hidden; margin-top:8px;");
 	
 	var div_barack = document.createElement("div");// gid 19,29
 	div_barack.setAttribute("style",troop_train_child_div_style);
