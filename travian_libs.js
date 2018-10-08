@@ -86,5 +86,5 @@ AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf3.js"));
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));
