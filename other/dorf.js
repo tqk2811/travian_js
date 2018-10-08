@@ -60,17 +60,18 @@ function troop_train_show()
 function troop_train_add_child(e,name,target_gid)
 {
 	var div_ = document.createElement("div");
-	var label_ = document.createElement("label");
-	label_.innerText = name + ":";
-	label_.setAttribute("style","float: left; width:40%;");
+	var e_a = document.createElement("a");
+	e_a.setAttribute("href","/build.php?gid=" + target_gid);
+	e_a.innerText = name + ":";
+	e_a.setAttribute("style","float: left; width:40%;");
 	
-	var span_ = document.createElement("span");
-	span_.setAttribute("value",Number(localStorage.getItem("troop_train_" + village_id + "_" + target_gid)) - Math.round(Date.now()/1000,0));
-	span_.setAttribute("style","float: left; width:60%;");
+	var span_time = document.createElement("span");
+	span_time.setAttribute("value",Number(localStorage.getItem("troop_train_" + village_id + "_" + target_gid)) - Math.round(Date.now()/1000,0));
+	span_time.setAttribute("style","float: left; width:60%;");
 	
 	div_.appendChild(label_);
-	div_.appendChild(span_);
-	troop_train_timer.push(span_);
+	div_.appendChild(span_time);
+	troop_train_timer.push(span_time);
 	e.appendChild(div_);
 }
 function troop_train_timer_tick()
