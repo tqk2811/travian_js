@@ -55,9 +55,8 @@ function troop_train_show()
 	main_div.appendChild(div_stable);
 	main_div.appendChild(div_workshop);
 	stockBar.insertAdjacentElement("beforeend",main_div);
-	window.setInterval(troop_train_timer_tick,1000);
+	//window.setInterval(troop_train_timer_tick,1000);
 }
-
 function troop_train_add_child(e,name,target_gid)
 {
 	var div_ = document.createElement("div");
@@ -82,7 +81,6 @@ function troop_train_timer_tick()
 		if(num < 0) continue;
 		else 
 		{
-			if(num === 0) ding_sound.play();
 			var sec_ =num % 60;
 			var temp_ = (num - sec_)/60;
 			var min_ = temp_ % 60;
