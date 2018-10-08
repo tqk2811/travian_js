@@ -463,6 +463,8 @@ function troop_train()//gid 19 20 29 30 21
 	var under_progress = document.getElementsByClassName("under_progress");	
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
+	var ischeck = Number(localStorage.getItem("troop_train_checkbox_" + village_id + "_" + gid)) == 0 ? false: true;
+	window.troop_train_checkbox.checked = ischeck;
 	window.troop_train_checkbox.onchange = function()
 							{localStorage.setItem("troop_train_checkbox_" + village_id + "_" + gid,window.troop_train_checkbox.checked ? 1:0);}
 	var e_checkbox_lb = document.createElement("label");
@@ -476,7 +478,7 @@ function troop_train()//gid 19 20 29 30 21
 	{
 		var durs = under_progress[0].getElementsByClassName("dur");		
 		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
-		var value_time = e_time.value;
+		var value_time = Number(e_time.getAttribute("value"));
 		if(village_id !== -1) localStorage.setItem("troop_train_" + village_id + "_" + gid,Math.round(Date.now()/1000,0) + value_time);
 	}
 }

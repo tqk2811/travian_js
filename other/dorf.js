@@ -62,7 +62,7 @@ function troop_train_add_child(e,name,target_gid)
 {
 	var div_ = document.createElement("div");
 	var label_ = document.createElement("label");
-	label_.text = name + ":";
+	label_.innerText = name + ":";
 	label_.setAttribute("style","float: left; width:40%;");
 	
 	var span_ = document.createElement("span");
