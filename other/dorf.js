@@ -80,7 +80,11 @@ function troop_train_timer_tick()
 	for(var i = 0; i < troop_train_timer.length; i++)
 	{
 		var num = parseInt(troop_train_timer[i].getAttribute("value")) - 1;
-		if(num < 0) continue;
+		if(num < 0) 
+		{
+			troop_train_timer[i].innerText = "0";
+			continue;
+		}
 		else 
 		{
 			var sec_ =num % 60;
