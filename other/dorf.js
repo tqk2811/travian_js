@@ -33,7 +33,7 @@ function troop_train_show()
 	if(barack_19 !== null && Number(barack_19) == 1) troop_train_add_child(div_barack,"Barack",19);
 	
 	var barack_29 = localStorage.getItem("troop_train_checkbox_" + village_id + "_29");	
-	if(barack_29 !== null && Number(barack_29) == 1) troop_train_add_child(div_barack,"BBarack",29);
+	if(barack_29 !== null && Number(barack_29) == 1) troop_train_add_child(div_barack,"GBarack",29);
 	
 	
 	var div_stable = document.createElement("div");// gid 20,30
@@ -42,7 +42,7 @@ function troop_train_show()
 	if(stable_20 !== null && Number(stable_20) == 1) troop_train_add_child(div_stable,"Stable",20);
 	
 	var stable_30 = localStorage.getItem("troop_train_checkbox_" + village_id + "_30");	
-	if(stable_30 !== null && Number(stable_30) == 1) troop_train_add_child(div_stable,"BStable",30);
+	if(stable_30 !== null && Number(stable_30) == 1) troop_train_add_child(div_stable,"GStable",30);
 	
 	
 	var div_workshop = document.createElement("div");// gid 21
