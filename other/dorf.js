@@ -30,10 +30,10 @@ function troop_train_show()
 	var div_barack = document.createElement("div");// gid 19,29
 	div_barack.setAttribute("style",troop_train_child_div_style);
 	var barack_19 = localStorage.getItem("troop_train_checkbox_" + village_id + "_19");
-	if(barack_19 !== null && Number(barack_19) == 1) troop_train_add_child(div_barack,"Barack",19);
+	if(barack_19 !== null && Number(barack_19) == 1) troop_train_add_child(div_barack,"Barrack",19);
 	
 	var barack_29 = localStorage.getItem("troop_train_checkbox_" + village_id + "_29");	
-	if(barack_29 !== null && Number(barack_29) == 1) troop_train_add_child(div_barack,"GBarack",29);
+	if(barack_29 !== null && Number(barack_29) == 1) troop_train_add_child(div_barack,"GBarrack",29);
 	
 	
 	var div_stable = document.createElement("div");// gid 20,30
