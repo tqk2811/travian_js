@@ -17,16 +17,8 @@ var TimerCountingDownNoReload = function()
     if(num < 0) continue;
     else 
     {
-      if(num === 0) ding_sound.play();
-      var sec_ =num % 60;
-      var temp_ = (num - sec_)/60;
-      var min_ = temp_ % 60;
-      var hour_ = (temp_ - min_)/60;
-      var text_ = (sec_ < 10) ? "0"+sec_.toString() : sec_.toString();
-      text_ = ((min_ < 10) ? "0"+min_.toString() : min_.toString()) + ":" + text_;
-      if(hour_ > 0)text_ = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text_;
-      
-      ListTimers[i].innerText = text_;
+      if(num === 0) ding_sound.play();      
+      ListTimers[i].innerText = GetTimeTextFromSecondLeft(num);
       ListTimers[i].setAttribute("value",num);
     }
   }

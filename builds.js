@@ -5,11 +5,11 @@ function Get_gid()
 	{
 		case 17: gid17(); return;//market
 		case 16: gid16(); return;
-		case 19: //barack
+		case 19: //barrack
 		case 20: //stable
 		case 21: //workshop
-		case 29: //big barack
-		case 30: troop_train(); return; //big stable
+		case 29: //great barrack
+		case 30: troop_train(); return; //great stable
 		default: return;
 	}
 }

@@ -87,15 +87,7 @@ function troop_train_timer_tick()
 		}
 		else 
 		{
-			var sec_ =num % 60;
-			var temp_ = (num - sec_)/60;
-			var min_ = temp_ % 60;
-			var hour_ = (temp_ - min_)/60;
-			var text_ = (sec_ < 10) ? "0"+sec_.toString() : sec_.toString();
-			text_ = ((min_ < 10) ? "0"+min_.toString() : min_.toString()) + ":" + text_;
-			if(hour_ > 0)text_ = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text_;
-      
-			troop_train_timer[i].innerText = text_;
+			troop_train_timer[i].innerText = GetTimeTextFromSecondLeft(num);
 			troop_train_timer[i].setAttribute("value",num);
 		}
 	}
