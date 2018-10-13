@@ -45,7 +45,7 @@ function spieler_main()
 {
 	if(window.location.href.indexOf("spieler.php")>=0)
 	{
-		var get_list_raidlist = localStorage.getItem(window.uid + "_list_raidlist");
+		var get_list_raidlist = localStorage.getItem(window.Current.Uid + "_list_raidlist");
 		if(get_list_raidlist !== null) list_raidlist = JSON.parse(get_list_raidlist);
 		if(list_raidlist.length > 0) spieler_addraidlist();
 	}
