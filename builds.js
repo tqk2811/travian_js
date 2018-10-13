@@ -370,7 +370,7 @@ function gid17_clear_onclick()
 {
 	if(window.confirm("Are you sure to clear trade routes?"))
 	{
-		localStorage.setItem("Flag_deleteAll_Trading_routes",village_id);
+		localStorage.setItem("Flag_deleteAll_Trading_routes",window.Current.VillageId);
 		localStorage.setItem("gid17_des_clear",window.gid17_select_clear.value);
 		window.location.href = "/build.php?t=0&gid=17";
 	}
@@ -379,7 +379,7 @@ function gid17_clear()
 {
 	var id = localStorage.getItem("Flag_deleteAll_Trading_routes");
 	var gid17_des_clear = localStorage.getItem("gid17_des_clear");
-	if(id !== null && Number(id) != -1 && Number(id) == village_id)
+	if(id !== null && Number(id) != -1 && Number(id) == window.Current.VillageId)
 	{
 		var trading_routes = document.getElementById("trading_routes");
 		if(trading_routes !== null)

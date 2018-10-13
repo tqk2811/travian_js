@@ -22,9 +22,9 @@ function ally_main()
 {
 	if(window.location.href.indexOf("allianz.php")>=0)
 	{
-		if (tabActives.length == 2 && 
-			tabActives[0].getElementsByTagName("a")[0].getAttribute("href").indexOf("s=1") >= 0 &&
-			tabActives[1].getElementsByTagName("a")[0].getAttribute("href").indexOf("action=members") >= 0
+		if (window.Current.tabActives.length == 2 && 
+			window.Current.tabActives[0].getElementsByTagName("a")[0].getAttribute("href").indexOf("s=1") >= 0 &&
+			window.Current.tabActives[1].getElementsByTagName("a")[0].getAttribute("href").indexOf("action=members") >= 0
 			)
 		{
 			ally_roa_attackcount();
