@@ -26,10 +26,10 @@ function ShowVillageData(li_element)
 	li_element.appendChild(e_p1);
 	var flag = false;
 	var j = 0;
-	for(var i = 0; i < village_data.Builds.length; i++) 
+	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
-		if(village_data.Builds[i] < current_SecondFrom1970) continue;
-		LoadLiBuildTimer(e_p1,village_data.Builds[i],flag,task_helper_color_list[j]);
+		if(village_object.Builds[i] < current_SecondFrom1970) continue;
+		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j]);
 		flag = true;
 		j++;
 	}
