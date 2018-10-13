@@ -59,7 +59,7 @@ function gid16()
 									Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
 									listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
 									])
-			localStorage.setItem(uid + "_list_raidlist",JSON.stringify(list_raidlist));//
+			localStorage.setItem(window.Current.Uid + "_list_raidlist",JSON.stringify(list_raidlist));//
 			
 			var e_bt_CheckAllGreenAttack = document.createElement("button");
 			e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
