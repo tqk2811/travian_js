@@ -20,7 +20,7 @@ function ShowVillageData(li_element)
 	var a_element_href = a_element.getAttribute("href");
 	var id_li_element = getQueryVariable(a_element_href,"newdid");	
 	var village_object = GetVillageObject(id_li_element);
-		
+	if(village_object.Builds === undefined) return;
 	var e_p1 = document.createElement("p1");
 	e_p1.setAttribute("style","font-size:"+font_size);
 	li_element.appendChild(e_p1);
