@@ -65,7 +65,7 @@ function troop_train_add_child(e,name,target_gid)
 	e_a.setAttribute("style","float: left; width:40%;color:black;");
 	
 	var span_time = document.createElement("span");
-	span_time.setAttribute("value",Number(localStorage.getItem("troop_train_" + village_id + "_" + target_gid)) - Math.round(Date.now()/1000,0));
+	span_time.setAttribute("value",Number(localStorage.getItem("troop_train_" + window.Current.VillageId + "_" + target_gid)) - Math.round(Date.now()/1000,0));
 	span_time.setAttribute("style","float: left; width:60%;");
 	
 	div_.appendChild(e_a);
@@ -75,7 +75,7 @@ function troop_train_add_child(e,name,target_gid)
 }
 function ReadDataBuilding()
 {
-	var village_object = GetVillageObject(village_id);
+	var village_object = GetVillageObject(window.Current.VillageId);
 	var Builds_ = [];
 	var build = document.getElementsByClassName("buildDuration");
 	if(build.length !== 0)//read in dorf
@@ -88,7 +88,7 @@ function ReadDataBuilding()
 		}			
 	}
 	village_object.Builds = Builds_;
-	SaveVillageObject(village_id,village_object);
+	SaveVillageObject(window.Current.VillageId,village_object);
 }
 
 function dorf_main()

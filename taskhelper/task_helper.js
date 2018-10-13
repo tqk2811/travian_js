@@ -28,7 +28,7 @@ function ShowVillageData(li_element)
 	var j = 0;
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
-		if(village_object.Builds[i] < current_SecondFrom1970) continue;
+		if(village_object.Builds[i] < window.Current.current_SecondFrom1970) continue;
 		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j]);
 		flag = true;
 		j++;
