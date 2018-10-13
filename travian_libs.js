@@ -9,7 +9,7 @@ function AddUriCss(uri)
     s.setAttribute("href",uri + "?refresh_="+refresh_);
 	s.setAttribute("rel","stylesheet");
 	s.setAttribute("type","text/css");
-    h.appendChild(s);
+    document.head.appendChild(s);
 }
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
