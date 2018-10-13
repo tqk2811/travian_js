@@ -36,4 +36,4 @@ function ShowVillageData(li_element)
 }
 
 var task_helper_color_list = ["Blue","BlueGray","Gray"];
-if(active_village !== null) for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+if(window.Current.active_village !== null) for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
