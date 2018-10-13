@@ -89,7 +89,7 @@ function GetVillageObject(id)
 {
 	var json_text = localStorage.getItem("village_"+id);
 	var village_object = {};
-	if(b !== null) village_object = JSON.parse(json_text);
+	if(json_text !== null) village_object = JSON.parse(json_text);
 	return village_object;
 }
 function SaveVillageObject(id,village_object)
