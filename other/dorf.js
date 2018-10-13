@@ -55,8 +55,6 @@ function troop_train_show()
 	main_div.appendChild(div_stable);
 	main_div.appendChild(div_workshop);
 	stockBar.insertAdjacentElement("beforeend",main_div);
-	troop_train_timer_tick();
-	window.setInterval(troop_train_timer_tick,1000);
 }
 function troop_train_add_child(e,name,target_gid)
 {
@@ -72,34 +70,33 @@ function troop_train_add_child(e,name,target_gid)
 	
 	div_.appendChild(e_a);
 	div_.appendChild(span_time);
-	troop_train_timer.push(span_time);
+	window.Current.Timers.push(span_time);
 	e.appendChild(div_);
 }
-function troop_train_timer_tick()
+function ReadDataBuilding()
 {
-	for(var i = 0; i < troop_train_timer.length; i++)
-	{
-		var num = parseInt(troop_train_timer[i].getAttribute("value")) - 1;
-		if(num < 0) 
+	var village_object = GetVillageObject(village_id);
+	var Builds_ = [];
+	var build = document.getElementsByClassName("buildDuration");
+	if(build.length !== 0)//read in dorf
+	{			
+		var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+		for(var k=0; k < build.length; k++)
 		{
-			troop_train_timer[i].innerText = "0";
-			continue;
-		}
-		else 
-		{
-			troop_train_timer[i].innerText = GetTimeTextFromSecondLeft(num);
-			troop_train_timer[i].setAttribute("value",num);
-		}
+			var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
+			Builds_.push(current_SecondFrom1970 + timeleft);
+		}			
 	}
+	village_object.Builds = Builds_;
+	SaveVillageObject(village_id,village_object);
 }
-
-
 
 function dorf_main()
 {
 	if(window.location.href.indexOf("dorf1.php")>=0 || window.location.href.indexOf("dorf2.php")>=0)
 	{
 		troop_train_show();
+		ReadDataBuilding();
 	}else if(window.location.href.indexOf("dorf3.php")>=0)
 	{
 		dorf3_count_att1();

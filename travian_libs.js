@@ -64,39 +64,89 @@ function GetTimeTextFromSecondLeft(num)
 	if(hour_ > 0)text_ = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text_;
 	return text_;
 }
-
-
-var tabActives = document.getElementsByClassName("container active");
-var e_build = document.getElementById("build");
-var gid = null;
-if(e_build !== null) {
-	var gid_str = e_build.getAttribute("class").split(" ")[0];
-	window.gid = Number(gid_str.substring(3,gid_str.length));
-}
-var uid = getuid();
-
-
-var village_id = -1;
-var listVillage = null;
-var active_village = null;
-var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
-if(sidebarBoxVillagelist !== null)
+function CreateSoundElement(url_sound)
 {
-	listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
-	active_village = FindActiveVillage(listVillage);
-	village_id = Number(getParameterByName("newdid",active_village.getElementsByTagName("a")[0].getAttribute("href")));
+    var v = document.createElement("video");    
+    v.src = url_sound;
+    v.volume = 1;
+    v.hidden = true;
+    v.loop = false;
+    v.autoplay = false;
+    document.body.appendChild(v);
+    return v;
 }
+function FindCurrentVillageID()
+{
+	var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
+	if(sidebarBoxVillagelist !== null)
+	{
+		window.Current.listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
+		window.Current.active_village = FindActiveVillage(window.Current.listVillage);
+		window.Current.VillageId = Number(getParameterByName("newdid",window.Current.active_village.getElementsByTagName("a")[0].getAttribute("href")));
+	}
+}
+function GetVillageObject(id)
+{
+	var json_text = localStorage.getItem("village_"+id);
+	var village_object = {};
+	if(b !== null) village_object = JSON.parse(json_text);
+	return village_object;
+}
+function SaveVillageObject(id,village_object)
+{
+	localStorage.setItem("village_"+id,JSON.stringify(village_object));
+}
+function TimerCountingDownNoReload()
+{
+  for(var i = 0; i < window.Current.Timers.length; i ++)
+  {
+    var num = parseInt(window.Current.Timers[i].getAttribute("value")) - 1;
+	var sound = window.Current.Timers[i].getAttribute("sound");
+    if(num < 0) 
+	{
+		if(sound !== null) continue;
+		else window.Current.Timers[i].innerText = "0";
+	}
+    else 
+    {
+      if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
+      window.Current.Timers[i].innerText = GetTimeTextFromSecondLeft(num);
+      window.Current.Timers[i].setAttribute("value",num);
+    }
+  }
+};
 
-console.log("uid:" + uid + "; gid:" + gid +"; village_id:" + village_id);
 
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));
-   AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));
+window.Current = {};
+window.Current.Uid = -1;
+window.Current.VillageId = -1;
+window.Current.Gid = -1;
+window.Current.tabActives = document.getElementsByClassName("container active");
+window.Current.e_build = document.getElementById("build");
+window.Current.listVillage = null;
+window.Current.active_village = null;
+window.Current.current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+window.Current.Timers = [];
+window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
 
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));
+if(window.Current.e_build !== null) {
+	var gid_str = window.Current.e_build.getAttribute("class").split(" ")[0];
+	window.Current.Gid = Number(gid_str.substring(3,gid_str.length));
+}
+window.Current.Uid = getuid();
+FindCurrentVillageID();
+window.setInterval(TimerCountingDownNoReload,1000);
+console.log("uid:" + window.Current.Uid + "; gid:" + window.Current.Gid +"; village_id:" + window.Current.VillageId);
+
+
+
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));//rank 4 read data -> task_helper
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));//rank 5
+   AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));//rank 5

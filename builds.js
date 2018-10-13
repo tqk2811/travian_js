@@ -1,15 +1,15 @@
 function Get_gid()
 {
 	build_gid();
-	switch(window.gid)
+	switch(window.Current.Gid)
 	{
 		case 17: gid17(); return;//market
 		case 16: gid16(); return;
 		case 19: //barrack
 		case 20: //stable
 		case 21: //workshop
-		case 29: //great barrack
-		case 30: troop_train(); return; //great stable
+		case 29: //big barrack
+		case 30: troop_train(); return; //big stable
 		default: return;
 	}
 }
@@ -47,9 +47,9 @@ function build_gid_TotalRes(e)
 
 function gid16()
 {
-	if(tabActives !== null)
+	if(window.Current.tabActives !== null)
 	{
-		var tabItem = tabActives[0].getElementsByClassName("tabItem")[0];
+		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
 		{
 			var list_raidlist = [];
@@ -102,7 +102,7 @@ function gid16()
 			e_div.appendChild(e_LB_attacking);			
 			e_div.appendChild(e_LB_yellow);
 			e_div.appendChild(e_LB_red);
-			e_build.insertAdjacentElement("afterbegin",e_div);
+			window.Current.e_build.insertAdjacentElement("afterbegin",e_div);
 		}
 		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
 		{
@@ -148,7 +148,7 @@ function gid16_cata_multiwave()
 	localStorage.setItem("cata_multiwave","0");
 	var e_main = document.createElement("div");
 	e_main.setAttribute("style","display: inline-block;");
-	e_build.insertAdjacentElement("beforeend",e_main);
+	window.Current.e_build.insertAdjacentElement("beforeend",e_main);
 
 	window.gid16_BT_StartCata = document.createElement("button");
 	gid16_BT_StartCata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
@@ -236,9 +236,9 @@ function gid16_cata_multiwave_trigger_Interval()
 
 function gid17()
 {
-	if(tabActives !== null)
+	if(window.Current.tabActives !== null)
 	{
-		var tabItem = tabActives[0].getElementsByClassName("tabItem")[0];
+		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0)
 		{
 			var descriptionAndInfo = document.getElementById("descriptionAndInfo");
@@ -333,15 +333,15 @@ function gid17()
 				p_button.appendChild(button_Bigcelebration2);
 				p_button.appendChild(button_Bigcelebration3);
 				
-				if(active_village !== null)
+				if(window.Current.active_village !== null)
 				{
 					var datalist_villagename = document.createElement("datalist");
 					datalist_villagename.setAttribute("id","village_list");					
 					marketSend_.insertAdjacentElement("afterend",datalist_villagename);
-					for(var i = 0;i < listVillage.length;i++)
+					for(var i = 0;i < window.Current.listVillage.length;i++)
 					{
-						if(listVillage[i] == active_village) continue;
-						var name_ = listVillage[i].getElementsByClassName("name");
+						if(window.Current.listVillage[i] == window.Current.active_village) continue;
+						var name_ = window.Current.listVillage[i].getElementsByClassName("name");
 						if(name_.length > 0)
 						{
 							var option_datalist = document.createElement("option");
@@ -349,17 +349,13 @@ function gid17()
 							datalist_villagename.appendChild(option_datalist);
 						}
 					}
-					gid17_enterVillageName_add_datalist();
+					var enterVillageName = document.getElementById("enterVillageName");
+					enterVillageName.setAttribute("list","village_list");
 				}
 				// after form submit
 			}
 		}
 	}
-}
-function gid17_enterVillageName_add_datalist()
-{
-	var enterVillageName = document.getElementById("enterVillageName");
-	enterVillageName.setAttribute("list","village_list");
 }
 
 function gid17_clear_select(name, did)
@@ -490,4 +486,4 @@ var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&
 gid17_clear();
 gid17_CreateTradeRoutes_load();
 //TroopsResource_load();
-if(e_build !== null) Get_gid();
+if(window.Current.e_build !== null) Get_gid();

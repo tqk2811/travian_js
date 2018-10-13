@@ -18,9 +18,6 @@ function ally_roa_attackcount()
 	}
 }
 
-
-
-
 function ally_main()
 {
 	if(window.location.href.indexOf("allianz.php")>=0)

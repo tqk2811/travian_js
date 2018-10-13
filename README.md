@@ -17,12 +17,11 @@ var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [Na
     ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="],
     ["troopEscape","/build.php?tt=0&id=39"]
 ];
-var h = document.getElementsByTagName("head")[0];
 function AddUriScript(uri)
 {
     var s = document.createElement('script');
     s.setAttribute("src",uri + "?refresh_="+refresh_);
-    h.appendChild(s);
+    document.head.appendChild(s);
 }
 function httpGetGithubCdnUri(user,project_name,branch,file_path)
 {    

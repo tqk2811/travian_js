@@ -1,47 +1,6 @@
-function CreateSoundElement(url_sound)
+function LoadLiBuildTimer(e,time,flag,color_)
 {
-    var v = document.createElement("video");    
-    v.src = url_sound;
-    v.volume = 1;
-    v.hidden = true;
-    v.loop = false;
-    v.autoplay = false;
-    document.body.appendChild(v);
-    return v;
-}
-var TimerCountingDownNoReload = function()
-{
-  for(var i = 0; i < ListTimers.length; i ++)
-  {
-    var num = parseInt(ListTimers[i].getAttribute("value")) - 1;
-    if(num < 0) continue;
-    else 
-    {
-      if(num === 0) ding_sound.play();      
-      ListTimers[i].innerText = GetTimeTextFromSecondLeft(num);
-      ListTimers[i].setAttribute("value",num);
-    }
-  }
-};
-
-function LoadLiResource(e,value,max,flag,arlet)
-{
-  if(flag)
-  {
-    var t2 = document.createElement("span");
-    t2.innerText = "-";
-    e.appendChild(t2);
-  }
-  var res = document.createElement("span");
-  var percent = Math.round((value * 100)/max,0);
-  if(percent <10) res.innerText = "0"+Math.round((value * 100)/max,0) + "%";
-  else res.innerText = Math.round((value * 100)/max,0) + "%";
-  res.setAttribute("style", style= arlet ? "color:red":"color:green");
-  e.appendChild(res);
-}
-function LoadLiBuildTimer(e,time,current,flag,color_)
-{
-  if(time-current <= 0) return;
+  if(time-window.Current.current_SecondFrom1970 <= 0) return;
   var t = document.createElement("span");
   if(flag)
   {
@@ -50,131 +9,31 @@ function LoadLiBuildTimer(e,time,current,flag,color_)
     e.appendChild(t2);
   }
   t.setAttribute("style","color:" + color_);
-  t.setAttribute("value",time - current);
+  t.setAttribute("sound",true);
+  t.setAttribute("value",time - window.Current.current_SecondFrom1970);
   e.appendChild(t);  
-  ListTimers.push(t);
+  window.Current.Timers.push(t);
 }
-function LoadVillageData(li_element,village_data,uri_)
+function ShowVillageData(li_element)
 {
-	if(!village_data.Show) return;	
-	var e = document.createElement("p1");
-	e.setAttribute("style","font-size:"+font_size);
-	li_element.appendChild(e);
-	LoadLiResource(e,village_data.Resource[0],village_data.Storage,false,false);
-	LoadLiResource(e,village_data.Resource[1],village_data.Storage,true,false);
-	LoadLiResource(e,village_data.Resource[2],village_data.Storage,true,false);
-	LoadLiResource(e,village_data.Resource[3],village_data.Granary,true,village_data.CropArlet);
-  
-	var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+	var a_element = li_element.getElementsByTagName("a")[0];
+	var a_element_href = a_element.getAttribute("href");
+	var id_li_element = getQueryVariable(a_element_href,"newdid");	
+	var village_object = GetVillageObject(id_li_element);
+		
+	var e_p1 = document.createElement("p1");
+	e_p1.setAttribute("style","font-size:"+font_size);
+	li_element.appendChild(e_p1);
 	var flag = false;
 	var j = 0;
 	for(var i = 0; i < village_data.Builds.length; i++) 
 	{
 		if(village_data.Builds[i] < current_SecondFrom1970) continue;
-		LoadLiBuildTimer(e,village_data.Builds[i],current_SecondFrom1970,flag,color_list[j]);
+		LoadLiBuildTimer(e_p1,village_data.Builds[i],flag,task_helper_color_list[j]);
 		flag = true;
 		j++;
 	}
 }
-function input_e_contentTitle_change()
-{
-	var e = document.getElementById("input_e_contentTitle");
-	if(e !== null)
-	{
-		var id_currentVillage = getQueryVariable(active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid");
-		var data = JSON.parse(localStorage.getItem("village_"+id_currentVillage));
-		data.Show = e.checked;
-		console.log("input_e_contentTitle.checked:" + e.checked);
-		localStorage.setItem("village_"+id_currentVillage,JSON.stringify(data));
-	}
-}
 
-var ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
-var ListTimers = [];
-var color_list = ["Blue","BlueGray","Gray"];
-if(active_village !== null)
-{
-	var json_village = null;
-	var id = null;
-	for(var i =0; i < listVillage.length; i++)
-	{
-		var uri_ = listVillage[i].getElementsByTagName("a")[0].getAttribute("href");
-		id = getQueryVariable(uri_,"newdid");
-		if(id === null) continue;
-		if(listVillage[i] === active_village)
-		{
-			//update data current village
-			var Wood = Number(document.getElementById("l1").innerText.replace(/\./g,"").replace(/,/g,""));
-			var Clay = Number(document.getElementById("l2").innerText.replace(/\./g,"").replace(/,/g,""));
-			var Iron = Number(document.getElementById("l3").innerText.replace(/\./g,"").replace(/,/g,""));
-			var Crop = Number(document.getElementById("l4").innerText.replace(/\./g,"").replace(/,/g,""));
-			var CropArlet_ = document.getElementById("l4").getAttribute("class").indexOf("alert") >=0 ? true : false;
-			var Storage__ = document.getElementById("stockBarWarehouse").innerText.replace(/\./g,"").replace(/,/g,"");    
-			var Granary__ = document.getElementById("stockBarGranary").innerText.replace(/\./g,"").replace(/,/g,"");
-    
-			var Storage_ = Number(Storage__.substring(1, Storage__.length -1));
-			var Granary_ = Number(Granary__.substring(1, Granary__.length -1));
-    
-			var b = localStorage.getItem("village_"+id);
-			var b_json = null;
-			if(b!==null) b_json = JSON.parse(b);
-			var village_object = {Storage : Storage_, 
-							Granary : Granary_, 
-							ID : id,
-							Resource : [Wood,Clay,Iron,Crop],
-							//Builds : Builds_,
-							//Show : ,
-							CropArlet: CropArlet_};
-	
-			if (window.location.pathname.indexOf("dorf1.php") > 0 || window.location.pathname.indexOf("dorf2.php") > 0)
-			{
-				var Builds_ = [];
-				var build = document.getElementsByClassName("buildDuration");
-				if(build.length !== 0)//read in dorf
-				{			
-					var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-					for(var k=0; k < build.length; k++)
-					{
-						var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
-						Builds_.push(current_SecondFrom1970 + timeleft);
-					}			
-				}
-				village_object.Builds = Builds_;
-		
-				var e_answersButton = document.getElementById("answersButton");
-				if(e_answersButton !== null)
-				{
-					var e_contentTitle = e_answersButton.parentElement;
-			
-					var a_e_contentTitle = document.createElement("a1");
-					a_e_contentTitle.innerText = "Show";
-					var input_e_contentTitle = document.createElement("input");
-					input_e_contentTitle.type = "checkbox";
-					if(b_json !== null && b_json.Show !== undefined) input_e_contentTitle.checked = b_json.Show;
-					else input_e_contentTitle.checked = false;
-					village_object.Show = input_e_contentTitle.checked;
-					input_e_contentTitle.setAttribute("id","input_e_contentTitle");
-					input_e_contentTitle.setAttribute("onchange","input_e_contentTitle_change()");
-					a_e_contentTitle.appendChild(input_e_contentTitle);
-					e_contentTitle.insertAdjacentElement("afterbegin",a_e_contentTitle);
-				}
-			}
-			else if(b_json !== null) 
-			{
-				village_object.Builds = b_json.Builds !== undefined ? b_json.Builds : [] ; 
-				village_object.Show = b_json.Show !== undefined ? b_json.Show : false;
-			}
-		
-			localStorage.setItem("village_"+id,JSON.stringify(village_object));
-			console.log("Save data village id:" + id);
-		}
-		json_village = localStorage.getItem("village_"+id);
-		if(json_village !== null) 
-		{
-			LoadVillageData(listVillage[i],JSON.parse(json_village),uri_);
-			json_village = null;
-		}
-		id = null;
-	}
-	window.setInterval(TimerCountingDownNoReload,1000);
-}
+var task_helper_color_list = ["Blue","BlueGray","Gray"];
+if(active_village !== null) for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
