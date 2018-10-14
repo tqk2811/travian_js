@@ -11,6 +11,7 @@ function LoadLiBuildTimer(e,time,flag,color_)
   t.setAttribute("style","color:" + color_);
   t.setAttribute("sound",true);
   t.setAttribute("value",time - window.Current.current_SecondFrom1970);
+  t.innerText = "Loading"
   e.appendChild(t);  
   window.Current.Timers.push(t);
 }
