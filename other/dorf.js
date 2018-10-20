@@ -1,4 +1,4 @@
-function dorf3_count_att1()
+function dorf3_icon_count()
 {
 	var dorf3overview = document.getElementById("overview");
 	if(dorf3overview !== null)
@@ -15,6 +15,19 @@ function dorf3_count_att1()
 				att1s[i].insertAdjacentElement("beforebegin",e_numattack);
 			}
 		}
+		
+		var units = dorf3overview.getElementsByClassName("unit");
+		for(var i = 0; i < units.length; i++)
+		{
+			var counts= units[i].getAttribute("alt").split(" ");
+			if(counts.length >= 1)
+			{
+				var e_numattack = document.createElement("a1");
+				//e_numattack.setAttribute("style","color:red;");
+				e_numattack.innerText = "( " + counts[0] + " ) ";
+				units[i].insertAdjacentElement("beforebegin",e_numattack);
+			}
+		}		
 	}
 }
 
@@ -99,7 +112,7 @@ function dorf_main()
 		ReadDataBuilding();
 	}else if(window.location.href.indexOf("dorf3.php")>=0)
 	{
-		dorf3_count_att1();
+		dorf3_icon_count();
 	}
 }
 
