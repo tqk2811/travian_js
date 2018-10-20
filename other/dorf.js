@@ -24,7 +24,7 @@ function dorf3_icon_count()
 			{
 				var e_numattack = document.createElement("a1");
 				//e_numattack.setAttribute("style","color:red;");
-				e_numattack.innerText = "( " + counts[0] + " ) ";
+				e_numattack.innerText = counts[0];
 				units[i].insertAdjacentElement("beforebegin",e_numattack);
 			}
 		}		
