@@ -37,7 +37,7 @@ function spieler_addraidlist()
 function hero_code()
 {
 	var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
-	var hero_code = getParameterByName("src",hero_img_e.getAttribute("src"));
+	var hero_code = getParameterByName("code",hero_img_e.getAttribute("src"));
 	var e_label = document.createElement("label");
 	e_label.setAttribute("style","float:right");
 	e_label.innerText = "Current hero code: " + hero_code;
