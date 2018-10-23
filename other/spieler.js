@@ -11,17 +11,15 @@ function spieler_addraidlist()
 		e_option.innerText = list_raidlist[i][1];
 		e_sellect.appendChild(e_option);
 	}
-	var villages = document.getElementById("villages");
-	if(villages !== null) 
+	if(spieler_villages !== null) 
 	{
-		villages.insertAdjacentElement("beforebegin",e_sellect);
-		
+		spieler_villages.insertAdjacentElement("beforebegin",e_sellect);		
 		var e_th = document.createElement("th");
 		e_th.width = "20px";
 		e_th.innerText = "Add FarmList";
-		villages.getElementsByTagName("thead")[0].getElementsByTagName("tr")[0].insertAdjacentElement("beforeend",e_th);
+		spieler_villages.getElementsByTagName("thead")[0].getElementsByTagName("tr")[0].insertAdjacentElement("beforeend",e_th);
 		
-		var e_coords = villages.getElementsByClassName("coords");
+		var e_coords = spieler_villages.getElementsByClassName("coords");
 		for(var i =0; i < e_coords.length; i++)
 		{
 			var uri_ = e_coords[i].getElementsByTagName("a")[0].href;
@@ -39,15 +37,30 @@ function spieler_addraidlist()
 		}
 	}
 }
-
+function hero_code()
+{
+	if(spieler_content !== null)
+	{		
+		var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
+		var hero_code = getParameterByName("src",hero_img_e.getAttribute("src"));
+		var e_label = document.createElement("label");//<label style="float:right">Current hero code: sadasdsd32132sadas1das31</label>
+		e_label.setAttribute("style","float:right");
+		e_label.innerText = "Current hero code: " + hero_code;
+		if(spieler_details !== null) spieler_details.insertAdjacentElement("afterend",e_label)
+	}
+}
 
 function spieler_main()
 {
 	if(window.location.href.indexOf("spieler.php")>=0)
 	{
+		window.spieler_villages = document.getElementById("villages");
+		window.spieler_content = document.getElementById("content");
+		window.spieler_details = document.getElementById("details");
 		var get_list_raidlist = localStorage.getItem(window.Current.Uid + "_list_raidlist");
 		if(get_list_raidlist !== null) list_raidlist = JSON.parse(get_list_raidlist);
-		if(list_raidlist.length > 0) spieler_addraidlist();
+		if(list_raidlist.length > 0) spieler_addraidlist();		
+		
 	}
 }
 spieler_main();
