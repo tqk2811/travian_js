@@ -275,7 +275,7 @@ function gid17()
 				
 				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
-				if(e_tradeRouteEdit !== null)
+				if(e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1 )
 				{
 					var e_trading_edit = document.getElementById("trading_edit");
 					var e_p_custom = document.createElement("p");
