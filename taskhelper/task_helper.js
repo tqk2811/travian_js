@@ -1,4 +1,4 @@
-function LoadLiBuildTimer(e,time,flag,color_)
+function LoadLiBuildTimer(e,time,flag,color_,sound)
 {
   if(time-window.Current.current_SecondFrom1970 <= 0) return;
   var t = document.createElement("span");
@@ -9,7 +9,7 @@ function LoadLiBuildTimer(e,time,flag,color_)
     e.appendChild(t2);
   }
   t.setAttribute("style","color:" + color_);
-  t.setAttribute("sound",true);
+  t.setAttribute("sound",sound);
   t.setAttribute("value",time - window.Current.current_SecondFrom1970);
   t.innerText = "Loading"
   e.appendChild(t);  
@@ -43,7 +43,7 @@ function Show_Build(village_object,e_p1)
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
 		if(village_object.Builds[i] < window.Current.current_SecondFrom1970) continue;
-		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j]);
+		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j],true);
 		flag = true;
 		j++;
 	}
@@ -54,9 +54,9 @@ function Show_TroopTrain(village_object,e_p1)
 }
 function Show_Celebration(village_object,e_p1)
 {
-	if(	window.Current.village_object["celebration_24"] == undefined && 
-		window.Current.village_object["celebration_24"] < window.Current.current_SecondFrom1970) return;
-	LoadLiBuildTimer(e_p1,window.Current.village_object["celebration_24"] ,false,task_helper_color_list[0]);
+	if(	village_object["celebration_24"] == undefined && 
+		village_object["celebration_24"] < window.Current.current_SecondFrom1970) return;
+	LoadLiBuildTimer(e_p1,village_object["celebration_24"] ,false,task_helper_color_list[0],false);
 }
 
 
