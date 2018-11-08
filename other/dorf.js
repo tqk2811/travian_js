@@ -89,7 +89,6 @@ function troop_train_add_child(e,name,target_gid)
 }
 function ReadDataBuilding()
 {
-	var village_object = GetVillageObject(window.Current.VillageId);
 	var Builds_ = [];
 	var build = document.getElementsByClassName("buildDuration");
 	if(build.length !== 0)//read in dorf
@@ -101,8 +100,8 @@ function ReadDataBuilding()
 			Builds_.push(current_SecondFrom1970 + timeleft);
 		}			
 	}
-	village_object.Builds = Builds_;
-	SaveVillageObject(window.Current.VillageId,village_object);
+	window.Current.village_object.Builds = Builds_;
+	SaveCurrentVillage();
 }
 
 function dorf_main()
