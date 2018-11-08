@@ -497,6 +497,8 @@ function troop_train()//gid 19 20 29 30 21
 		{
 			var unit = actions[i].getElementsByClassName("unit")[0];
 			var img_ = document.createElement("img");
+			img_.setAttribute("src","img/x.gif");
+			img_.setAttribute("style","margin:3px");
 			img_.setAttribute("class",unit.getAttribute("class"));
 			div_fastclick.appendChild(img_);
 		}
