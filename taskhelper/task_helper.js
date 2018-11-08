@@ -43,7 +43,7 @@ if(sidebarBoxVillagelist != null)
 {
 	var task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("style","margin-right: 255px;");
-	sidebarBoxVillagelist.insertAdjacentElement("",task_helper_select);
+	sidebarBoxVillagelist.insertAdjacentElement("beforebegin",task_helper_select);
 	for(var i = 0; i < task_helper_select_list.length; i++)
 	{
 		var option_ = document.createElement("option");
