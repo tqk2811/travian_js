@@ -54,5 +54,4 @@ if(sidebarBoxVillagelist != null)
 }
 
 if(window.Current.active_village !== null) 
-	window.Current.listVillage.forEach(function(village_e){ShowVillageData(village_e);})
-	//for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
