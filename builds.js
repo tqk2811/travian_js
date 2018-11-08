@@ -500,7 +500,7 @@ function troop_train()//gid 19 20 29 30 21
 			img_.setAttribute("src","img/x.gif");
 			img_.setAttribute("style","margin-left:10px;margin-right:10px");
 			img_.setAttribute("class",unit.getAttribute("class"));
-			img_.onclick = fastclick_train_onclick(i);
+			img_.setAttribute("onclick","fastclick_train_onclick(" + i + ")");
 			div_fastclick.appendChild(img_);
 		}
 	}	
@@ -508,7 +508,7 @@ function troop_train()//gid 19 20 29 30 21
 
 function fastclick_train_onclick(i)
 {
-	var e_a = traintroop_actions[i].getElementsByTagName("a");
+	var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
 	e_a[e_a.length-1].click();
 	document.getElementById("s1").click();
 }
