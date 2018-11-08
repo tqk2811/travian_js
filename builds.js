@@ -486,6 +486,8 @@ function troop_train()//gid 19 20 29 30 21
 	{
 		var p = document.createElement("p");
 		var div_fastclick = document.createElement("div");
+		descriptionAndInfo.appendChild(div_fastclick);
+		
 		var label_fastclick = document.createElement("label");
 		label_fastclick.innerText = "Fast click (train all):";
 		div_fastclick.appendChild(label_fastclick);
