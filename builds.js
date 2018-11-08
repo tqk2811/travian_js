@@ -508,6 +508,7 @@ function troop_train()//gid 19 20 29 30 21
 
 function fastclick_train_onclick(i)
 {
+	if(!confirm("Confirm train?")) return;
 	var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
 	e_a[e_a.length-1].click();
 	document.getElementById("s1").click();
