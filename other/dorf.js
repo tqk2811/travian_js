@@ -42,26 +42,26 @@ function troop_train_show()
 	
 	var div_barack = document.createElement("div");// gid 19,29
 	div_barack.setAttribute("style",troop_train_child_div_style);
-	var barack_19 = localStorage.getItem("troop_train_checkbox_" + window.Current.VillageId + "_19");
-	if(barack_19 !== null && Number(barack_19) == 1) troop_train_add_child(div_barack,"Barrack",19);
 	
-	var barack_29 = localStorage.getItem("troop_train_checkbox_" + window.Current.VillageId + "_29");	
-	if(barack_29 !== null && Number(barack_29) == 1) troop_train_add_child(div_barack,"GBarrack",29);
+	var barack_19 = window.Current.village_object["troop_train_checkbox_19"];
+	if(barack_19 !== undefined && barack_19) troop_train_add_child(div_barack,"Barrack",19);
+	
+	var barack_29 = window.Current.village_object["troop_train_checkbox_29"];
+	if(barack_29 !== undefined && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
 	
 	var div_stable = document.createElement("div");// gid 20,30
 	div_stable.setAttribute("style",troop_train_child_div_style);
-	var stable_20 = localStorage.getItem("troop_train_checkbox_" + window.Current.VillageId + "_20");
-	if(stable_20 !== null && Number(stable_20) == 1) troop_train_add_child(div_stable,"Stable",20);
+	var stable_20 = window.Current.village_object["troop_train_checkbox_20"];
+	if(stable_20 !== undefined && stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
-	var stable_30 = localStorage.getItem("troop_train_checkbox_" + window.Current.VillageId + "_30");	
-	if(stable_30 !== null && Number(stable_30) == 1) troop_train_add_child(div_stable,"GStable",30);
-	
+	var stable_30 = window.Current.village_object["troop_train_checkbox_30"];	
+	if(stable_30 !== undefined && stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 	var div_workshop = document.createElement("div");// gid 21
 	div_workshop.setAttribute("style",troop_train_child_div_style);
-	var workshop = localStorage.getItem("troop_train_checkbox_" + window.Current.VillageId + "_21");
-	if(workshop !== null && Number(workshop) == 1) troop_train_add_child(div_workshop,"Workshop",21);
+	var workshop = window.Current.village_object["troop_train_checkbox_21"];
+	if(workshop !== undefined && workshop) troop_train_add_child(div_workshop,"Workshop",21);
 	
 	
 	main_div.appendChild(div_barack);

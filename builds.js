@@ -460,13 +460,12 @@ function troop_train()//gid 19 20 29 30 21
 	var descriptionAndInfo = document.getElementById("descriptionAndInfo");
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
-	var ischeck = Number(localStorage.getItem("troop_train_checkbox_" + window.Current.VillageId + "_" + window.Current.Gid)) == 0 ? false: true;
-	window.troop_train_checkbox.checked = ischeck;
+	window.troop_train_checkbox.checked = window.Current.village_object["troop_train_checkbox_" + window.Current.Gid];
 	window.troop_train_checkbox.onchange = function()
-		{localStorage.setItem(	"troop_train_checkbox_" + window.Current.VillageId + "_" + window.Current.Gid,
-								window.troop_train_checkbox.checked ? 1:0);}
+		{	window.Current.village_object["troop_train_checkbox_" + window.Current.Gid] = window.troop_train_checkbox.checked;
+			SaveCurrentVillage();	}
 	var e_checkbox_lb = document.createElement("label");
-	e_checkbox_lb.innerText = "Show Time Training";			
+	e_checkbox_lb.innerText = "Show Time Training";
 	e_checkbox_lb.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_checkbox_lb.appendChild(window.troop_train_checkbox);
 	descriptionAndInfo.insertAdjacentElement("beforeend",e_checkbox_lb);
