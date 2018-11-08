@@ -479,6 +479,26 @@ function troop_train()//gid 19 20 29 30 21
 		if(window.Current.VillageId !== -1) 
 			localStorage.setItem("troop_train_" + window.Current.VillageId + "_" + window.Current.Gid,Math.round(Date.now()/1000,0) + value_time);
 	}
+	
+	//fast click train
+	var trainUnits = document.getElementsByClassName("trainUnits");
+	if(trainUnits.length >0)
+	{
+		var p = document.createElement("p");
+		var div_fastclick = document.createElement("div");
+		var label_fastclick = document.createElement("label");
+		label_fastclick.innerText = "Fast click (train all):";
+		div_fastclick.appendChild(label_fastclick);
+		
+		var actions = trainUnits[0].getElementsByClassName("action");
+		for(var i = 0; i< actions.length; i++)
+		{
+			var unit = actions[i].getElementsByClassName("unit")[0];
+			var img_ = document.createElement("img");
+			img_.setAttribute("class",unit.getAttribute("class"));
+			div_fastclick.appendChild(img_);
+		}
+	}	
 }
 
 

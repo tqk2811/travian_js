@@ -16,6 +16,7 @@ function MoveElementUp(e,times = 1)
 	while(times >0) 
 	{
 		if(e.previousElementSibling) e.parentNode.insertBefore(e, e.previousElementSibling);
+		else break;
 		times--;
 	}
 }
@@ -24,6 +25,7 @@ function MoveElementDown(e,times = 1)
 	while(times >0) 
 	{
 		if(e.nextElementSibling) e.parentNode.insertBefore(e.nextElementSibling, e);
+		else break;
 		times--;
 	}
 }
