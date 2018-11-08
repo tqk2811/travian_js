@@ -36,8 +36,8 @@ function checkbox_linkerlisttop_change()
 
 function sidebarBeforeContent_swap(flag)
 {
-	if(flag) MoveElementUp(sidebarBoxLinklist_,2);//move to top
-	else MoveElementDown(sidebarBoxLinklist_,2);// back to bot
+	if(flag) MoveElementUp(sidebarBoxLinklist_,5);//move to top
+	else MoveElementDown(sidebarBoxLinklist_,5);// back to bot
 }
 
 function AddLinkerList(item)
