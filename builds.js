@@ -10,6 +10,7 @@ function Get_gid()
 		case 21: //workshop
 		case 29: //big barrack
 		case 30: troop_train(); return; //big stable
+		case 24: return;//Town Hall
 		default: return;
 	}
 }
@@ -505,13 +506,22 @@ function troop_train()//gid 19 20 29 30 21
 		}
 	}	
 }
-
 function fastclick_train_onclick(i)
 {
 	if(!confirm("Confirm train?")) return;
 	var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
 	e_a[e_a.length-1].click();
 	document.getElementById("s1").click();
+}
+
+function gid24()
+{
+	
+}
+
+function read_gid_under_progress()
+{
+	
 }
 
 //function TroopResource_create(unit,name,res[])

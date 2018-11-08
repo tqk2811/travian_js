@@ -95,7 +95,7 @@ function CreateSoundElement(url_sound)
 }
 function FindCurrentVillageID()
 {
-	var sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
+	window.sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 	if(sidebarBoxVillagelist !== null)
 	{
 		window.Current.listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
