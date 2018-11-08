@@ -37,4 +37,22 @@ function ShowVillageData(li_element)
 }
 
 var task_helper_color_list = ["Blue","BlueGray","Gray"];
-if(window.Current.active_village !== null) for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+var task_helper_select_list= ["Builds","Troops","Celebration"];
+
+if(sidebarBoxVillagelist != null)
+{
+	var task_helper_select = document.createElement("select");
+	task_helper_select.setAttribute("style","margin-right: 255px;");
+	sidebarBoxVillagelist.insertAdjacentElement("",task_helper_select);
+	for(var i = 0; i < task_helper_select_list.length; i++)
+	{
+		var option_ = document.createElement("option");
+		option_.value = i;
+		option_.innerText = task_helper_select_list[i];
+		task_helper_select.appendChild(option_);
+	}
+}
+
+if(window.Current.active_village !== null) 
+	window.Current.listVillage.forEach(function(village_e){ShowVillageData(village_e);})
+	//for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
