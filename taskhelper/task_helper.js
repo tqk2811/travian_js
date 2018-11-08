@@ -78,7 +78,7 @@ var task_helper_arr = [];
 if(sidebarBoxVillagelist != null)
 {
 	window.task_helper_select = document.createElement("select");
-	task_helper_select.setAttribute("style","margin-right: 200px;");
+	task_helper_select.setAttribute("style","margin-right: 40px;");
 	task_helper_select.onchange = task_helper_select_onchange;
 	sidebarBoxVillagelist.insertAdjacentElement("beforebegin",task_helper_select);
 	
