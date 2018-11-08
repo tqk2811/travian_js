@@ -1,9 +1,4 @@
-var storage_linkerlisttop = localStorage.getItem("linkerlisttop");
-if(storage_linkerlisttop == null)
-{
-	localStorage.setItem("linkerlisttop",false);
-	storage_linkerlisttop = false;
-}
+var storage_linkerlisttop = localStorage.getItem("linkerlisttop") == "true";
 
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
 if(sidebarBoxLinklist_ !== null)
