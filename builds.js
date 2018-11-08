@@ -520,9 +520,9 @@ function read_time_gid_under_progress(name)
 		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
 		var value_time = Number(e_time.getAttribute("value"));
 		
-		window.Current.village_object[name + "_" + window.Current.Gid] = Math.round(Date.now()/1000,0) + value_time;
-		SaveCurrentVillage();
-	}
+		window.Current.village_object[name + "_" + window.Current.Gid] = Math.round(Date.now()/1000,0) + value_time;		
+	}else window.Current.village_object[name + "_" + window.Current.Gid] = 0;
+	SaveCurrentVillage();
 }
 
 //function TroopResource_create(unit,name,res[])
