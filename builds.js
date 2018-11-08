@@ -492,19 +492,26 @@ function troop_train()//gid 19 20 29 30 21
 		label_fastclick.innerText = "Fast click (train all):";
 		div_fastclick.appendChild(label_fastclick);
 		
-		var actions = trainUnits[0].getElementsByClassName("action");
-		for(var i = 0; i< actions.length; i++)
+		window.traintroop_actions = trainUnits[0].getElementsByClassName("action");
+		for(var i = 0; i< traintroop_actions.length; i++)
 		{
-			var unit = actions[i].getElementsByClassName("unit")[0];
+			var unit = traintroop_actions[i].getElementsByClassName("unit")[0];
 			var img_ = document.createElement("img");
 			img_.setAttribute("src","img/x.gif");
-			img_.setAttribute("style","margin:3px");
+			img_.setAttribute("style","margin-left:10px;margin-right:10px");
 			img_.setAttribute("class",unit.getAttribute("class"));
+			img_.onclick = fastclick_train_onclick(i);
 			div_fastclick.appendChild(img_);
 		}
 	}	
 }
 
+function fastclick_train_onclick(i)
+{
+	var e_a = traintroop_actions[i].getElementsByTagName("a");
+	e_a[e_a.length-1].click();
+	document.getElementById("s1").click();
+}
 
 //function TroopResource_create(unit,name,res[])
 
