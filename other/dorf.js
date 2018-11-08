@@ -78,7 +78,8 @@ function troop_train_add_child(e,name,target_gid)
 	e_a.setAttribute("style","float: left; width:40%;color:black;");
 	
 	var span_time = document.createElement("span");
-	span_time.setAttribute("value",Number(localStorage.getItem("troop_train_" + window.Current.VillageId + "_" + target_gid)) - Math.round(Date.now()/1000,0));
+	
+	span_time.setAttribute("value",window.Current.village_object["troop_train_"+target_gid] - Math.round(Date.now()/1000,0));
 	span_time.setAttribute("style","float: left; width:60%;");
 	span_time.innerText = "...";
 	div_.appendChild(e_a);

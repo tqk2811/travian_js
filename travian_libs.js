@@ -110,10 +110,8 @@ function GetVillageObject(id)
 	if(json_text !== null) village_object = JSON.parse(json_text);
 	return village_object;
 }
-function SaveVillageObject(id,village_object)
-{
-	localStorage.setItem("village_"+id,JSON.stringify(village_object));
-}
+function SaveVillageObject(id,village_object){	localStorage.setItem("village_"+id,JSON.stringify(village_object)); 		}
+function SaveCurrentVillage(){ 					SaveVillageObject(window.Current.VillageId,window.Current.village_object);	}
 function TimerCountingDownNoReload()
 {
   for(var i = 0; i < window.Current.Timers.length; i ++)
@@ -154,6 +152,8 @@ if(window.Current.e_build !== null) {
 window.Current.Uid = getuid();
 FindCurrentVillageID();
 window.setInterval(TimerCountingDownNoReload,1000);
+window.Current.village_object = GetVillageObject(window.Current.VillageId);
+
 console.log("uid:" + window.Current.Uid + "; gid:" + window.Current.Gid +"; village_id:" + window.Current.VillageId);
 
 

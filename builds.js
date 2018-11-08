@@ -8,9 +8,9 @@ function Get_gid()
 		case 19: //barrack
 		case 20: //stable
 		case 21: //workshop
-		case 29: //big barrack
-		case 30: troop_train(); return; //big stable
-		case 24: return;//Town Hall
+		case 29: //g barrack
+		case 30: troop_train(); return; //g stable
+		case 24: gid24(); return;//Town Hall
 		default: return;
 	}
 }
@@ -471,15 +471,7 @@ function troop_train()//gid 19 20 29 30 21
 	e_checkbox_lb.appendChild(window.troop_train_checkbox);
 	descriptionAndInfo.insertAdjacentElement("beforeend",e_checkbox_lb);
 	
-	var under_progress = document.getElementsByClassName("under_progress");	
-	if(under_progress.length == 1)
-	{
-		var durs = under_progress[0].getElementsByClassName("dur");		
-		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
-		var value_time = Number(e_time.getAttribute("value"));
-		if(window.Current.VillageId !== -1) 
-			localStorage.setItem("troop_train_" + window.Current.VillageId + "_" + window.Current.Gid,Math.round(Date.now()/1000,0) + value_time);
-	}
+	read_time_gid_under_progress("troop_train");
 	
 	//fast click train
 	var trainUnits = document.getElementsByClassName("trainUnits");
@@ -516,12 +508,21 @@ function fastclick_train_onclick(i)
 
 function gid24()
 {
-	
+	read_time_gid_under_progress("celebration");
 }
 
-function read_gid_under_progress()
+function read_time_gid_under_progress(name)
 {
-	
+	var under_progress = document.getElementsByClassName("under_progress");	
+	if(under_progress.length == 1)
+	{
+		var durs = under_progress[0].getElementsByClassName("dur");		
+		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
+		var value_time = Number(e_time.getAttribute("value"));
+		
+		window.Current.village_object[name + "_" + window.Current.Gid] = value_time;
+		SaveCurrentVillage();
+	}
 }
 
 //function TroopResource_create(unit,name,res[])
