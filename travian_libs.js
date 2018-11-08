@@ -11,6 +11,22 @@ function AddUriCss(uri)
 	s.setAttribute("type","text/css");
     document.head.appendChild(s);
 }
+function MoveElementUp(e,times = 1)
+{
+	while(times >0) 
+	{
+		if(e.previousElementSibling) e.parentNode.insertBefore(e, e.previousElementSibling);
+		times--;
+	}
+}
+function MoveElementDown(e,times = 1)
+{
+	while(times >0) 
+	{
+		if(e.nextElementSibling) e.parentNode.insertBefore(e.nextElementSibling, e);
+		times--;
+	}
+}
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
