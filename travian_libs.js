@@ -115,22 +115,22 @@ function SaveCurrentVillage(){ 					SaveVillageObject(window.Current.VillageId,w
 function TimerCountingDownNoReload()
 {
 	var ListTimer = document.getElementsByClassName("travian_js_timer");
-  for(var i = 0; i < ListTimer.length; i ++)
-  {
-    var num = parseInt(ListTimer[i].getAttribute("value")) - 1;
-	var sound = ListTimer[i].getAttribute("sound");
-    if(num < 0) 
+	for(var i = 0; i < ListTimer.length; i ++)
 	{
-		if(sound !== null) continue;
-		else ListTimer[i].innerText = "0";
+		var num = parseInt(ListTimer[i].getAttribute("value")) - 1;
+		var sound = ListTimer[i].getAttribute("sound");
+		if(num < 0) 
+		{
+			if(sound !== null) continue;
+			else ListTimer[i].innerText = "0";
+		}
+		else 
+		{
+		if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
+		ListTimer[i].innerText = GetTimeTextFromSecondLeft(num);
+		ListTimer[i].setAttribute("value",num);
+		}
 	}
-    else 
-    {
-      if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
-      ListTimer[i].innerText = GetTimeTextFromSecondLeft(num);
-      ListTimer[i].setAttribute("value",num);
-    }
-  }
 };
 
 
