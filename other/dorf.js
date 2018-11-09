@@ -81,10 +81,10 @@ function troop_train_add_child(e,name,target_gid)
 	
 	span_time.setAttribute("value",window.Current.village_object["troop_train_"+target_gid] - Math.round(Date.now()/1000,0));
 	span_time.setAttribute("style","float: left; width:60%;");
+	span_time.setAttribute("class","travian_js_timer");
 	span_time.innerText = "...";
 	div_.appendChild(e_a);
 	div_.appendChild(span_time);
-	window.Current.Timers.push(span_time);
 	e.appendChild(div_);
 }
 function ReadDataBuilding()

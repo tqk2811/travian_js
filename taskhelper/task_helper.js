@@ -10,10 +10,10 @@ function LoadLiBuildTimer(e,time,flag,color_,sound)
   }
   t.setAttribute("style","color:" + color_);
   t.setAttribute("sound",sound);
+  t.setAttribute("class","travian_js_timer");
   t.setAttribute("value",time - window.Current.current_SecondFrom1970);
   t.innerText = "Loading"
-  e.appendChild(t);  
-  window.Current.Timers.push(t);
+  e.appendChild(t);
 }
 function ShowVillageData(li_element)
 {

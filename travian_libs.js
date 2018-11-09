@@ -114,20 +114,21 @@ function SaveVillageObject(id,village_object){	localStorage.setItem("village_"+i
 function SaveCurrentVillage(){ 					SaveVillageObject(window.Current.VillageId,window.Current.village_object);	}
 function TimerCountingDownNoReload()
 {
-  for(var i = 0; i < window.Current.Timers.length; i ++)
+	var ListTimer = document.getElementsByClassName("travian_js_timer");
+  for(var i = 0; i < ListTimer.length; i ++)
   {
-    var num = parseInt(window.Current.Timers[i].getAttribute("value")) - 1;
-	var sound = window.Current.Timers[i].getAttribute("sound");
+    var num = parseInt(ListTimer[i].getAttribute("value")) - 1;
+	var sound = ListTimer[i].getAttribute("sound");
     if(num < 0) 
 	{
 		if(sound !== null) continue;
-		else window.Current.Timers[i].innerText = "0";
+		else ListTimer[i].innerText = "0";
 	}
     else 
     {
       if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
-      window.Current.Timers[i].innerText = GetTimeTextFromSecondLeft(num);
-      window.Current.Timers[i].setAttribute("value",num);
+      ListTimer[i].innerText = GetTimeTextFromSecondLeft(num);
+      ListTimer[i].setAttribute("value",num);
     }
   }
 };
@@ -142,7 +143,6 @@ window.Current.e_build = document.getElementById("build");
 window.Current.listVillage = null;
 window.Current.active_village = null;
 window.Current.current_SecondFrom1970 = Math.round(Date.now()/1000,0);
-window.Current.Timers = [];
 window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
 
 if(window.Current.e_build !== null) {
