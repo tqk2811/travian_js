@@ -153,15 +153,13 @@ window.Current.village_object = GetVillageObject(window.Current.VillageId);
 
 console.log("uid:" + window.Current.Uid + "; gid:" + window.Current.Gid +"; village_id:" + window.Current.VillageId);
 
-
-
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));//rank 4 read data -> task_helper
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));//rank 5
-   AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));//rank 5
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));//rank 5
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));//read data -> task_helper
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));//read data -> task_helper
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));//
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));//
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));//
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));//
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));//
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));//
+AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));//
+   AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));//
