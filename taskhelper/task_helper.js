@@ -83,7 +83,7 @@ function task_helper_select_onchange()
 	localStorage.setItem("default_task_helper_select",window.task_helper_select.value);
 	default_task_helper_select = Number(window.task_helper_select.value);
 	var listp1 = document.getElementsByClassName("task_helper_p1");
-	for(var i =0; i < listp1.length; i++) listp1[i].remove();
+	for(var i =0; i < listp1.length; i++) listp1[0].remove();
 	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
 }
 
