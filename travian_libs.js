@@ -95,10 +95,10 @@ function CreateSoundElement(url_sound)
 }
 function FindCurrentVillageID()
 {
-	window.sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
-	if(sidebarBoxVillagelist !== null)
+	window.Current.sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
+	if(window.Current.sidebarBoxVillagelist !== null)
 	{
-		window.Current.listVillage = sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
+		window.Current.listVillage = window.Current.sidebarBoxVillagelist.getElementsByTagName("li");//list elements village
 		window.Current.active_village = FindActiveVillage(window.Current.listVillage);
 		window.Current.VillageId = Number(getParameterByName("newdid",window.Current.active_village.getElementsByTagName("a")[0].getAttribute("href")));
 	}
@@ -119,20 +119,21 @@ function TimerCountingDownNoReload()
 	{
 		var num = parseInt(ListTimer[i].getAttribute("value")) - 1;
 		var sound = ListTimer[i].getAttribute("sound");
+		var adv_text = ListTimer[i].getAttribute("adv_text");
+		if(adv_text == null) adv_text = "";
 		if(num < 0) 
 		{
 			if(sound !== null) continue;
-			else ListTimer[i].innerText = "0";
+			else ListTimer[i].innerText = adv_text + "0";
 		}
 		else 
 		{
-		if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
-		ListTimer[i].innerText = GetTimeTextFromSecondLeft(num);
-		ListTimer[i].setAttribute("value",num);
+			if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
+			ListTimer[i].innerText = adv_text + GetTimeTextFromSecondLeft(num);
+			ListTimer[i].setAttribute("value",num);
 		}
 	}
-};
-
+}
 
 window.Current = {};
 window.Current.Uid = -1;
@@ -142,7 +143,6 @@ window.Current.tabActives = document.getElementsByClassName("container active");
 window.Current.e_build = document.getElementById("build");
 window.Current.listVillage = null;
 window.Current.active_village = null;
-window.Current.current_SecondFrom1970 = Math.round(Date.now()/1000,0);
 window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
 
 if(window.Current.e_build !== null) {

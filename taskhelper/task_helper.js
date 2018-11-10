@@ -1,6 +1,6 @@
-function LoadLiBuildTimer(e,time,flag,color_,sound)
+function LoadLiBuildTimer(e,time,flag,color_,sound = false,adv_text = null)
 {
-  if(time-window.Current.current_SecondFrom1970 <= 0) return;
+  if(time-Math.round(Date.now()/1000,0) <= 0) return;
   var t = document.createElement("span");
   if(flag)
   {
@@ -10,8 +10,9 @@ function LoadLiBuildTimer(e,time,flag,color_,sound)
   }
   t.setAttribute("style","color:" + color_);
   t.setAttribute("sound",sound);
+  if(adv_text !== null) t.setAttribute("adv_text",adv_text);
   t.setAttribute("class","travian_js_timer");
-  t.setAttribute("value",time - window.Current.current_SecondFrom1970);
+  t.setAttribute("value",time - Math.round(Date.now()/1000,0));
   t.innerText = "Loading"
   e.appendChild(t);
 }
@@ -24,14 +25,17 @@ function ShowVillageData(li_element)
 	
 	var e_p1 = document.createElement("p1");
 	e_p1.setAttribute("style","font-size:"+font_size);
-	task_helper_arr.push(e_p1);
+	e_p1.setAttribute("class","task_helper_p1")
 	li_element.appendChild(e_p1);
 	
 	switch(default_task_helper_select)
 	{
-		case 0: Show_Build(village_object,e_p1); return;
-		case 1: Show_TroopTrain(village_object,e_p1); return;
-		case 2: Show_Celebration(village_object,e_p1); return;
+		case 0: var listp1 = document.getElementsByClassName("task_helper_p1");
+				for(var i =0; i < listp1.length; i++) listp1[i].remove();
+				return;
+		case 1: Show_Build(village_object,e_p1); return;
+		case 2: Show_TroopTrain(village_object,e_p1); return;
+		case 3: Show_Celebration(village_object,e_p1); return;
 		default: return;
 	}
 }
@@ -42,21 +46,37 @@ function Show_Build(village_object,e_p1)
 	var j = 0;
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
-		if(village_object.Builds[i] < window.Current.current_SecondFrom1970) continue;
-		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j],true);
+		if(village_object.Builds[i] < Math.round(Date.now()/1000,0)) continue;
+		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j],true,null);
 		flag = true;
 		j++;
 	}
 }
+
+Show_TroopTrain_arr = [[19,29,20,30,21],["Blue","BlueGray","Blue","BlueGray","Blue"],["b","B","s","S","w"]];
 function Show_TroopTrain(village_object,e_p1)
 {
-	
+	var flag = false;
+	for(var i = 0; i < Show_TroopTrain_arr[0].length; i ++)
+	{
+		var isshow = village_object["troop_train_checkbox_"+Show_TroopTrain_arr[0][i]];
+		if(isshow !== undefined && isshow) 
+		{
+			LoadLiBuildTimer(	e_p1,
+								window.Current.village_object["troop_train_"+Show_TroopTrain_arr[0][i]],
+								flag,
+								Show_TroopTrain_arr[1][i],
+								false,
+								Show_TroopTrain_arr[2][i]);
+			flag =true;
+		}
+	}	
 }
 function Show_Celebration(village_object,e_p1)
 {
 	if(	village_object["celebration_24"] == undefined || 
-		village_object["celebration_24"] < window.Current.current_SecondFrom1970) return;
-	LoadLiBuildTimer(e_p1,village_object["celebration_24"] ,false,task_helper_color_list[0],false);
+		village_object["celebration_24"] < Math.round(Date.now()/1000,0)) return;
+	LoadLiBuildTimer(e_p1,village_object["celebration_24"] ,false,task_helper_color_list[0],false,null);
 }
 
 
@@ -64,23 +84,22 @@ function task_helper_select_onchange()
 {
 	localStorage.setItem("default_task_helper_select",window.task_helper_select.value);
 	default_task_helper_select = Number(window.task_helper_select.value);
-	task_helper_arr.forEach(function(c){ c.remove();})
-	task_helper_arr =[];
+	var listp1 = document.getElementsByClassName("task_helper_p1");
+	for(var i =0; i < listp1.length; i++) listp1[i].remove();
 	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
 }
 
 
 
 var task_helper_color_list = ["Blue","BlueGray","Gray"];
-var task_helper_select_list= ["Builds","Troops","Celebration"];
-var task_helper_arr = [];
+var task_helper_select_list= ["Off","Builds","Troops","Celebration"];
 
-if(sidebarBoxVillagelist != null)
+if(window.Current.sidebarBoxVillagelist != null)
 {
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("style","margin-right: 40px;");
 	task_helper_select.onchange = task_helper_select_onchange;
-	sidebarBoxVillagelist.insertAdjacentElement("beforebegin",task_helper_select);
+	window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",task_helper_select);
 	
 	window.default_task_helper_select = localStorage.getItem("default_task_helper_select");
 	if (default_task_helper_select == null) default_task_helper_select = 0;
