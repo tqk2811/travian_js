@@ -117,15 +117,11 @@ function TimerCountingDownNoReload()
 	var ListTimer = document.getElementsByClassName("travian_js_timer");
 	for(var i = 0; i < ListTimer.length; i ++)
 	{
-		var num = parseInt(ListTimer[i].getAttribute("value")) - 1;
+		var num = parseFloat(ListTimer[i].getAttribute("value")) - 1;
 		var sound = ListTimer[i].getAttribute("sound");
 		var adv_text = ListTimer[i].getAttribute("adv_text");
 		if(adv_text == null) adv_text = "";
-		if(num < 0) 
-		{
-			if(sound !== null) continue;
-			else ListTimer[i].innerText = adv_text + "0";
-		}
+		if(num < 0) ListTimer[i].innerText = adv_text + "0";
 		else 
 		{
 			if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
