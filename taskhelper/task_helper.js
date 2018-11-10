@@ -63,7 +63,7 @@ function Show_TroopTrain(village_object,e_p1)
 		if(isshow !== undefined && isshow) 
 		{
 			LoadLiBuildTimer(	e_p1,
-								window.Current.village_object["troop_train_"+Show_TroopTrain_arr[0][i]],
+								village_object["troop_train_"+Show_TroopTrain_arr[0][i]],
 								flag,
 								Show_TroopTrain_arr[1][i],
 								false,
