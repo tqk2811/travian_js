@@ -53,6 +53,29 @@ function berichte_count_res()
 		e_parent_rArea.insertAdjacentElement("afterend",e_total);
 	}
 }
+function init_key_event()
+{
+	$(document).keypress(function(e)
+	{
+		if (e.ctrlKey ? 1 : 0 || e.altKey ? 1 : 0) return;// if alt or ctrl key press -> return
+		if(e.which==26 ? 0 : 1) return;//checkWebkitandIE
+		
+		var nextkey_press = e.which == "n".charCodeAt(0) || e.which=="N".charCodeAt(0);
+		var backkey_press = e.which == "b".charCodeAt(0) || e.which=="B".charCodeAt(0);
+						
+		if (nextkey_press) 
+		{
+			var next_e = document.getElementsByClassName("next");
+			if(next_e.length > 0) next_e[0].click();
+		}
+		else if(backkey_press)
+		{
+			var back_e = document.getElementsByClassName("back");
+			if(back_e.length > 0) back_e[0].click();
+		}
+	});
+}
+
 
 function berichte_main()
 {
@@ -60,7 +83,11 @@ function berichte_main()
 	{
 		berichte_input_sellect_all_1 = document.getElementById("sAll1");
 		if(berichte_input_sellect_all_1 !== null) berichte_clear_report();
-		if(window.location.href.indexOf("id=") >=0) berichte_count_res();
+		if(window.location.href.indexOf("id=") >=0) 
+		{
+			berichte_count_res();
+			init_key_event();
+		}
 	}
 }
 
