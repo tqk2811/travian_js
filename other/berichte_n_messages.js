@@ -58,8 +58,7 @@ function init_key_event()
 	$(document).keypress(function(e)
 	{
 		if (e.ctrlKey ? 1 : 0 || e.altKey ? 1 : 0) return;// if alt or ctrl key press -> return
-		if(e.which==26 ? 0 : 1) return;//checkWebkitandIE
-		
+		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE		
 		var nextkey_press = e.which == "n".charCodeAt(0) || e.which=="N".charCodeAt(0);
 		var backkey_press = e.which == "b".charCodeAt(0) || e.which=="B".charCodeAt(0);
 						
