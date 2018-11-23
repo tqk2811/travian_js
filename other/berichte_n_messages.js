@@ -53,7 +53,7 @@ function berichte_count_res()
 			if(canraid_c > 0) canraid += canraid_c;
 		}		
 		var e_total  = document.createElement("span");
-		e_total.innerText = "(Can Raid/Total: " + canraid + "/"  + total + ")";
+		e_total.innerText = "  (Can Raid/Total: " + canraid + "/"  + total + ")";
 		var e_parent_rArea = rAreas[0].parentElement;
 		e_parent_rArea.insertAdjacentElement("afterend",e_total);
 	}
