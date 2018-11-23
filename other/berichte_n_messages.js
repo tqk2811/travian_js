@@ -41,11 +41,11 @@ function berichte_read_report_onclick()
 function berichte_count_res()
 {
 	var rAreas = document.getElementsByClassName("rArea");
-	if(rAreas.length == 5)
+	if(rAreas.length >= 4)//4 hero adventures, 5 cranny
 	{
 		var total = 0;
 		var canraid = 0;
-		var cranny = Number.parseInt(rAreas[4].innerText);		
+		var cranny = rAreas.length == 5 ? Number.parseInt(rAreas[4].innerText) : 0;
 		for(var i =0; i <4; i++) 
 		{
 			total += Number.parseInt(rAreas[i].innerText);
@@ -53,7 +53,8 @@ function berichte_count_res()
 			if(canraid_c > 0) canraid += canraid_c;
 		}		
 		var e_total  = document.createElement("span");
-		e_total.innerText = "(Can Raid/Total: " + canraid + "/"  + total + ")";
+		if(rAreas.length == 5) e_total.innerText = "(Can Raid/Total: " + canraid + "/"  + total + ")";
+		else e_total.innerText = "(Total: " + total + ")";		
 		e_total.setAttribute("style","margin-left: 10px");
 		var e_parent_rArea = rAreas[0].parentElement;
 		e_parent_rArea.insertAdjacentElement("afterend",e_total);
