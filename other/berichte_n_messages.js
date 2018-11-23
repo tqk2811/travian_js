@@ -44,11 +44,18 @@ function berichte_count_res()
 	var rAreas = document.getElementsByClassName("rArea");
 	if(rAreas.length >= 4)
 	{
-		var count = 0;
-		for(var i =0; i <4; i++) count += Number.parseInt(rAreas[i].innerText);
-		
+		var total = 0;
+		var canraid = 0;
+		var cranny = 0;
+		if(rAreas.length == 5) cranny = Number.parseInt(rAreas[5].innerText);		
+		for(var i =0; i <4; i++) 
+		{
+			total += Number.parseInt(rAreas[i].innerText);
+			var canraid_c = Number.parseInt(rAreas[i].innerText) - cranny;
+			if(canraid_c > 0) canraid += canraid_c;
+		}		
 		var e_total  = document.createElement("span");
-		e_total.innerText = "(Total:" + count + ")";
+		e_total.innerText = "(Can Raid/Total: " + canraid + "/"  + total + ")";
 		var e_parent_rArea = rAreas[0].parentElement;
 		e_parent_rArea.insertAdjacentElement("afterend",e_total);
 	}
