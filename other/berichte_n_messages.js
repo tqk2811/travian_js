@@ -40,14 +40,12 @@ function berichte_read_report_onclick()
 
 function berichte_count_res()
 {
-	if(document.getElementsByClassName("carry").length >0) return;
 	var rAreas = document.getElementsByClassName("rArea");
-	if(rAreas.length >= 4)
+	if(rAreas.length == 5)
 	{
 		var total = 0;
 		var canraid = 0;
-		var cranny = 0;
-		if(rAreas.length == 5) cranny = Number.parseInt(rAreas[5].innerText);		
+		var cranny = Number.parseInt(rAreas[5].innerText);		
 		for(var i =0; i <4; i++) 
 		{
 			total += Number.parseInt(rAreas[i].innerText);
