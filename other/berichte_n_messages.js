@@ -45,7 +45,7 @@ function berichte_count_res()
 	{
 		var total = 0;
 		var canraid = 0;
-		var cranny = Number.parseInt(rAreas[5].innerText);		
+		var cranny = Number.parseInt(rAreas[4].innerText);		
 		for(var i =0; i <4; i++) 
 		{
 			total += Number.parseInt(rAreas[i].innerText);
