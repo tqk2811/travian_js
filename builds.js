@@ -26,7 +26,7 @@ function build_gid_TotalRes(e)
 	{
 		var total_ = 0;
 		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
-		var parent_ress = ress[0].parentNode;
+		var parent_ress = ress[0].parentNode.parentNode;
 		var total_element = document.createElement("span");
 		total_element.innerText = "Total: " + total_;
 		parent_ress.appendChild(total_element);
