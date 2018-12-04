@@ -122,8 +122,7 @@ function TimerCountingDownNoReload()
 		var adv_text = ListTimer[i].getAttribute("adv_text");
 		if(adv_text == null) adv_text = "";
 		else adv_text += ":";
-		if(num < 0) ListTimer[i].innerText = adv_text + "0";
-		else 
+		if(num >= 0)//if(num == 0) ListTimer[i].innerText = adv_text + "00:00";
 		{
 			if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
 			ListTimer[i].innerText = adv_text + GetTimeTextFromSecondLeft(num);
