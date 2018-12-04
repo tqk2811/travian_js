@@ -120,6 +120,7 @@ function TimerCountingDownNoReload()
 		var num = parseFloat(ListTimer[i].getAttribute("value")) - 1;
 		var sound = ListTimer[i].getAttribute("sound");
 		var adv_text = ListTimer[i].getAttribute("adv_text");
+		var loader = ListTimer[i].getAttribute("loader");
 		if(adv_text == null) adv_text = "";
 		else adv_text += ":";
 		if(num >= 0)//if(num == 0) ListTimer[i].innerText = adv_text + "00:00";
@@ -127,6 +128,11 @@ function TimerCountingDownNoReload()
 			if(num == 1 && sound !== null) window.Current.ding_sound.play(); 
 			ListTimer[i].innerText = adv_text + GetTimeTextFromSecondLeft(num);
 			ListTimer[i].setAttribute("value",num);
+			if(loader == null) ListTimer[i].setAttribute("loader",true);
+		}else if(loader == null)
+		{
+			ListTimer[i].innerText = adv_text + "00:00";
+			ListTimer[i].setAttribute("loader",true);
 		}
 	}
 }
