@@ -50,7 +50,7 @@ function Show_Build(village_object,e_p1)
 	}
 }
 
-Show_TroopTrain_arr = [[19,29,20,30,21],["#033EF6","#90A8F2","#90A8F2","#E471A4","#FF0070"],["b","B","s","S","w"]];
+Show_TroopTrain_arr = [[19,29,20,30,21],["#0069FF","#78A5D3","#7700F6","#C574F3","#C84545"],["b","B","s","S","w"]];
 function Show_TroopTrain(village_object,e_p1)
 {
 	var flag = false;
