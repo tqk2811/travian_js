@@ -70,7 +70,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 								false,
 								Show_TroopTrain_arr[2][i],
 								true,
-								"/build.php?newdid=" + village_id_ + "?gid=" +Show_TroopTrain_arr[0][i]);
+								"/build.php?newdid=" + village_id_ + "&gid=" +Show_TroopTrain_arr[0][i]);
 			flag =true;
 		}
 	}	
