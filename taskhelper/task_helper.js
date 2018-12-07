@@ -1,4 +1,4 @@
-function LoadLiBuildTimer(e,time,flag,color_,sound = false,adv_text = null,show_zero = false)
+function LoadLiBuildTimer(e,time,flag,color_,sound = false,adv_text = null,show_zero = false,navigate_url = null)
 {
   if(!show_zero && time-Math.round(Date.now()/1000,0) <= 0) return;
   var t = document.createElement("span");
@@ -14,14 +14,18 @@ function LoadLiBuildTimer(e,time,flag,color_,sound = false,adv_text = null,show_
   t.setAttribute("class","travian_js_timer");
   t.setAttribute("value",time - Math.round(Date.now()/1000,0));
   t.innerText = "Loading"
+  if(navigate_url != null)
+  {
+	  t.onclick = function(){ window.location.href = navigate_url}
+  }
   e.appendChild(t);
 }
 function ShowVillageData(li_element)
 {
 	var a_element = li_element.getElementsByTagName("a")[0];
 	var a_element_href = a_element.getAttribute("href");
-	var id_li_element = getQueryVariable(a_element_href,"newdid");	
-	var village_object = GetVillageObject(id_li_element);
+	var village_id_ = getQueryVariable(a_element_href,"newdid");	
+	var village_object = GetVillageObject(village_id_);
 	
 	var e_p1 = document.createElement("p1");
 	e_p1.setAttribute("style","font-size:"+font_size);
@@ -31,7 +35,7 @@ function ShowVillageData(li_element)
 	switch(default_task_helper_select)
 	{
 		case 1: Show_Build(village_object,e_p1); return;
-		case 2: Show_TroopTrain(village_object,e_p1); return;
+		case 2: Show_TroopTrain(village_object,e_p1,village_id_); return;
 		case 3: Show_Celebration(village_object,e_p1); return;
 		default: return;
 	}
@@ -51,7 +55,7 @@ function Show_Build(village_object,e_p1)
 }
 
 Show_TroopTrain_arr = [[19,29,20,30,21],["#0069FF","#78A5D3","#7700F6","#C574F3","#C84545"],["b","B","s","S","w"]];
-function Show_TroopTrain(village_object,e_p1)
+function Show_TroopTrain(village_object,e_p1,village_id_)
 {
 	var flag = false;
 	for(var i = 0; i < Show_TroopTrain_arr[0].length; i ++)
@@ -65,7 +69,8 @@ function Show_TroopTrain(village_object,e_p1)
 								Show_TroopTrain_arr[1][i],
 								false,
 								Show_TroopTrain_arr[2][i],
-								true);
+								true,
+								"/build.php?newdid=" + village_id_ + "?gid=" +Show_TroopTrain_arr[0][i]);
 			flag =true;
 		}
 	}	
