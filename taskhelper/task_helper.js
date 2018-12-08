@@ -77,8 +77,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 }
 function Show_Celebration(village_object,e_p1)
 {
-	if(	village_object["celebration_24"] == undefined || 
-		village_object["celebration_24"] < Math.round(Date.now()/1000,0)) return;
+	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < Math.round(Date.now()/1000,0)
 	LoadLiBuildTimer(e_p1,village_object["celebration_24"] ,false,task_helper_color_list[0],false,null,false);
 }
 
