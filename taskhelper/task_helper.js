@@ -48,7 +48,16 @@ function Show_Build(village_object,e_p1)
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
 		if(village_object.Builds[i] < Math.round(Date.now()/1000,0)) continue;
-		LoadLiBuildTimer(e_p1,village_object.Builds[i],flag,task_helper_color_list[j],true,null,false);
+		LoadLiBuildTimer(
+							e_p1,							//e
+							village_object.Builds[i],		//time
+							flag,							//flag
+							task_helper_color_list[j],		//color_
+							true,							//sound = false
+							null,							//adv_text = null
+							false,							//show_zero = false
+							null							//navigate_url = null
+							);
 		flag = true;
 		j++;
 	}
@@ -63,14 +72,14 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 		var isshow = village_object["troop_train_checkbox_"+Show_TroopTrain_arr[0][i]];
 		if(isshow !== undefined && isshow) 
 		{
-			LoadLiBuildTimer(	e_p1,
-								village_object["troop_train_"+Show_TroopTrain_arr[0][i]],
-								flag,
-								Show_TroopTrain_arr[1][i],
-								false,
-								Show_TroopTrain_arr[2][i],
-								true,
-								"/build.php?newdid=" + village_id_ + "&gid=" +Show_TroopTrain_arr[0][i]);
+			LoadLiBuildTimer(	e_p1,																		//e
+								village_object["troop_train_"+Show_TroopTrain_arr[0][i]],					//time
+								flag,																		//flag
+								Show_TroopTrain_arr[1][i],													//color_
+								false,																		//sound = false
+								Show_TroopTrain_arr[2][i],													//adv_text = null
+								true,																		//show_zero = false
+								"/build.php?newdid=" + village_id_ + "&gid=" +Show_TroopTrain_arr[0][i]);	//navigate_url = null
 			flag =true;
 		}
 	}	
@@ -78,7 +87,16 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 function Show_Celebration(village_object,e_p1)
 {
 	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < Math.round(Date.now()/1000,0)
-	LoadLiBuildTimer(e_p1,village_object["celebration_24"] ,false,task_helper_color_list[0],false,null,false);
+	LoadLiBuildTimer(
+						e_p1,								//e
+						village_object["celebration_24"] ,	//time
+						false,								//flag
+						task_helper_color_list[0],			//color_
+						false,								//sound = false
+						null,								//adv_text = null
+						true,								//show_zero = false
+						null								//navigate_url = null
+						);
 }
 
 
