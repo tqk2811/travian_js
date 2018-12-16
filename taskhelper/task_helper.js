@@ -36,7 +36,7 @@ function ShowVillageData(li_element)
 	{
 		case 1: Show_Build(village_object,e_p1); return;
 		case 2: Show_TroopTrain(village_object,e_p1,village_id_); return;
-		case 3: Show_Celebration(village_object,e_p1); return;
+		case 3: Show_Celebration(village_object,e_p1,village_id_); return;
 		default: return;
 	}
 }
@@ -84,7 +84,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 		}
 	}	
 }
-function Show_Celebration(village_object,e_p1)
+function Show_Celebration(village_object,e_p1,village_id_)
 {
 	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < Math.round(Date.now()/1000,0)
 	LoadLiBuildTimer(
@@ -95,7 +95,7 @@ function Show_Celebration(village_object,e_p1)
 						false,								//sound = false
 						null,								//adv_text = null
 						true,								//show_zero = false
-						null								//navigate_url = null
+						"/build.php?newdid="+village_id_+"&gid=24" //navigate_url = null
 						);
 }
 
