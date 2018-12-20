@@ -46,7 +46,7 @@ function gid15()//main building
 		var timers_ = demolish.getElementsByClassName("timer");
 		if(timers_.length == 1)
 		{
-			window.Current.village_object["demolish"] = timers_[0].getAttribute("value") + Math.round(Date.now()/1000,0);
+			window.Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + Math.round(Date.now()/1000,0);
 			SaveCurrentVillage();
 		}
 	}
