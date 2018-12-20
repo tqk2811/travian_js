@@ -44,11 +44,9 @@ function gid15()//main building
 	if(demolish !== null)
 	{
 		var timers_ = demolish.getElementsByClassName("timer");
-		if(timers_.length == 1)
-		{
-			window.Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + Math.round(Date.now()/1000,0);
-			SaveCurrentVillage();
-		}
+		if(timers_.length == 1)	Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + Math.round(Date.now()/1000,0);
+		else Current.village_object["demolish"] = 0;			
+		SaveCurrentVillage();
 	}
 }
 
