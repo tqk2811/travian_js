@@ -61,6 +61,17 @@ function Show_Build(village_object,e_p1)
 		flag = true;
 		j++;
 	}
+	if(village_object["demolish"] !== undefined && village_object["demolish"] > Math.round(Date.now()/1000,0))
+		LoadLiBuildTimer(
+							e_p1,
+							village_object["demolish"],
+							flag,
+							"#FF8080",
+							true,
+							null,
+							false,
+							null
+							);
 }
 
 Show_TroopTrain_arr = [[19,29,20,30,21],["#0069FF","#78A5D3","#7700F6","#C574F3","#C84545"],["b","B","s","S","w"]];

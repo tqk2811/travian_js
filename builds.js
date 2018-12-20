@@ -35,7 +35,19 @@ function build_gid_TotalRes(e)
 
 ///function TroopsResource_load(){var window.TroopsResource = [{unit =  },{},]}
 
-
+function gid15()//main building
+{
+	var demolish = document.getElementById("demolish");
+	if(demolish !== null)
+	{
+		var timers_ = demolish.getElementsByClassName("timer");
+		if(timers_.length == 1)
+		{
+			var village_object = GetVillageObject(window.Current.VillageId);
+			village_object["demolish"] = timers_[0].getAttribute("value") + Math.round(Date.now()/1000,0);
+		}
+	}
+}
 
 function gid16()
 {
