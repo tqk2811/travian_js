@@ -5,12 +5,15 @@ function Get_gid()
 	{
 		case 17: gid17(); return;//market
 		case 16: gid16(); return;
+		case 15: gid15(); return;
+		case 24: gid24(); return;//Town Hall
+		
 		case 19: //barrack
 		case 20: //stable
 		case 21: //workshop
 		case 29: //g barrack
 		case 30: troop_train(); return; //g stable
-		case 24: gid24(); return;//Town Hall
+		
 		default: return;
 	}
 }
