@@ -141,7 +141,7 @@ function InitHotkey()
 {
 	$(document).keypress(function(e)
 	{
-		if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
+		//if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
 		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE		
 		var key_press = e.which == "`".charCodeAt(0) || e.which=="~".charCodeAt(0);
 		
