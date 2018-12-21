@@ -137,6 +137,21 @@ function TimerCountingDownNoReload()
 		}
 	}
 }
+function InitHotkey()
+{
+	$(document).keypress(function(e)
+	{
+		if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
+		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE		
+		var key_press = e.which == "`".charCodeAt(0) || e.which=="~".charCodeAt(0);
+		
+		if (key_press) 
+		{
+			var next_e = document.getElementsByClassName("next");
+			if(next_e.length > 0) next_e[0].click();
+		}
+	});
+}
 
 window.Current = {};
 window.Current.Uid = -1;
@@ -157,6 +172,7 @@ FindCurrentVillageID();
 window.setInterval(TimerCountingDownNoReload,1000);
 window.Current.village_object = GetVillageObject(window.Current.VillageId);
 
+InitHotkey();
 console.log("uid:" + window.Current.Uid + "; gid:" + window.Current.Gid +"; village_id:" + window.Current.VillageId);
 
 AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));//read data -> task_helper
