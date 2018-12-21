@@ -145,11 +145,7 @@ function InitHotkey()
 		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE		
 		var key_press = e.which == "`".charCodeAt(0) || e.which=="~".charCodeAt(0);
 		
-		if (key_press) 
-		{
-			var next_e = document.getElementsByClassName("next");
-			if(next_e.length > 0) next_e[0].click();
-		}
+		if (key_press) window.location.href = "/dorf3.php";
 	});
 }
 
