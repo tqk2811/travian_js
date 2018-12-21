@@ -149,7 +149,7 @@ function InitHotkey()
 			case "~".charCodeAt(0):
 				window.location.href = "/dorf3.php";
 				return;
-			case "\t".charCodeAt(0):
+			case 9:// tab key
 				var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
 				var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
 				if(tabFavorSubWrapper.length == 1)
