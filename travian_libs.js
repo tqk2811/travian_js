@@ -142,10 +142,47 @@ function InitHotkey()
 	$(document).keypress(function(e)
 	{
 		//if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
-		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE		
-		var key_press = e.which == "`".charCodeAt(0) || e.which=="~".charCodeAt(0);
-		
-		if (key_press) window.location.href = "/dorf3.php";
+		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE	
+		switch(e.which)
+		{
+			case "`".charCodeAt(0):
+			case "~".charCodeAt(0):
+				window.location.href = "/dorf3.php";
+				return;
+			case "\t".charCodeAt(0):
+				var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
+				var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
+				if(tabFavorSubWrapper.length == 1)
+				{
+					var sub_container = tabFavorSubWrapper.getElementsByClassName("container");
+					var sub_active_container = tabFavorSubWrapper.getElementsByClassName("container active");
+					for(var i = 0; i < sub_container.length - 1; i++)
+					{
+						if(sub_container[i] == sub_active_container) 
+						{
+							sub_container[i+1].click();
+							return;
+						}
+					}//-> tabFavorWrapper
+				}
+				
+				if(tabFavorWrapper.length == 1)
+				{
+					var container = tabFavorWrapper.getElementsByClassName("container");
+					var active_container = tabFavorWrapper.getElementsByClassName("container active");
+					for(var i = 0; i < container.length - 1; i++)
+					{
+						if(container[i] == active_container) 
+						{
+							container[i+1].click();
+							return;
+						}
+					}
+					container[0].click();
+				}
+				return;
+			default: return;
+		}		
 	});
 }
 
