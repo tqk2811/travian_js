@@ -40,7 +40,7 @@ function berichte_read_report_onclick()
 
 function berichte_count_res()
 {
-	var entityWrapper_resource = document.getElementsByClassName("entityWrapper resources");//res
+	var entityWrapper_resource = document.getElementsByClassName("resources");//res
 	var rAreas = document.getElementsByClassName("rArea");//cranny
 	if(entityWrapper_resource.length == 4)
 	{
