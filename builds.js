@@ -49,7 +49,7 @@ function build_gid_TotalRes(e)
 				var e_value = e.getElementsByClassName("value");
 				var arr = [];
 				arr.push(name_unit);
-				for(var i = 0; i < 4; i++)arr.push(Number(e_value.innerText));
+				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
 				account_object[class_unit_strings[1]] = arr;
 				SaveObject("account",window.Current.Uid,account_object);
 			}
@@ -356,9 +356,9 @@ function gid17()//market
 
 				var br = document.createElement("br");
 				
-				var input_sellect = document.createElement("input");
-				input_sellect.setAttribute("type","select");
-				input_sellect.setAttribute("style","width:300px");
+				var e_sellect = document.createElement("select");
+				e_sellect.setAttribute("type","select");
+				e_sellect.setAttribute("style","width:150px");
 				
 				
 				
@@ -367,7 +367,7 @@ function gid17()//market
 				p_button.appendChild(button_Bigcelebration2);
 				p_button.appendChild(button_Bigcelebration3);
 				p_button.appendChild(br);
-				p_button.appendChild(input_sellect);
+				p_button.appendChild(e_sellect);
 				
 				if(window.Current.active_village !== null)
 				{
