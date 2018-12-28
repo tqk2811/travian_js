@@ -103,16 +103,16 @@ function FindCurrentVillageID()
 		window.Current.VillageId = Number(getParameterByName("newdid",window.Current.active_village.getElementsByTagName("a")[0].getAttribute("href")));
 	}
 }
-function GetVillageObject(id)
+function GetObject(name,id)
 {
-	var json_text = localStorage.getItem("village_"+id);
+	var json_text = localStorage.getItem(name+"_"+id);
 	var village_object = {};
 	if(json_text !== null) village_object = JSON.parse(json_text);
 	if(village_object == null) village_object = {};
 	return village_object;
 }
-function SaveVillageObject(id,village_object){	localStorage.setItem("village_"+id,JSON.stringify(village_object)); 		}
-function SaveCurrentVillage(){ 					SaveVillageObject(window.Current.VillageId,window.Current.village_object);	}
+function SaveObject(name,id,data){	localStorage.setItem(name+"_"+id,JSON.stringify(data)); 		}
+function SaveCurrentVillage(){ 					SaveObject("village",window.Current.VillageId,window.Current.village_object);	}
 function TimerCountingDownNoReload()
 {
 	var ListTimer = document.getElementsByClassName("travian_js_timer");
@@ -204,7 +204,7 @@ if(window.Current.e_build !== null) {
 window.Current.Uid = getuid();
 FindCurrentVillageID();
 window.setInterval(TimerCountingDownNoReload,1000);
-window.Current.village_object = GetVillageObject(window.Current.VillageId);
+window.Current.village_object = GetObject("village",window.Current.VillageId);
 
 InitHotkey();
 console.log("uid:" + window.Current.Uid + "; gid:" + window.Current.Gid +"; village_id:" + window.Current.VillageId);

@@ -34,6 +34,24 @@ function build_gid_TotalRes(e)
 		total_element.innerText = "Total: " + total_;
 		parent_ress.appendChild(total_element);
 	}
+	if(e.parentElement.getAttribute("class") == "details")
+	{
+		var e_imgs = e.parentElement.getElementsByTagName("img");
+		var e_imgs_unit = e.parentElement.getElementsByClassName("unit");
+		if(e_imgs.length == 1 && e_imgs_unit.length == 1 && e_imgs[0] == e_imgs_unit[0])
+		{
+			var class_unit_strings = e_imgs[0].getAttribute("class").split(" ");
+			if(class_unit_strings.length == 2)
+			{
+				var account_object = GetObject("account",window.Current.Uid);
+				var e_value = e.getElementsByClassName("value");
+				var arr = [];
+				for(var i = 0; i < 4; i++)arr.push(Number(e_value.innerText));
+				account_object[class_unit_strings[1]] = arr;
+				SaveObject("account",window.Current.Uid,account_object);
+			}
+		}
+	}
 }
 
 ///function TroopsResource_load(){var window.TroopsResource = [{unit =  },{},]}
