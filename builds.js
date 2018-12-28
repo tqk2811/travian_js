@@ -369,6 +369,7 @@ function gid17()//market
 						var e_option = document.createElement("option");
 						e_option.value = keys[i];
 						e_option.innerText = account_object["troop"][keys[i]][0];
+						e_sellect.appendChild(e_option);
 					}
 				}
 				
