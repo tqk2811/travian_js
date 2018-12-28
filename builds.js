@@ -45,12 +45,13 @@ function build_gid_TotalRes(e)
 			if(class_unit_strings.length == 2)
 			{
 				var account_object = GetObject("account",window.Current.Uid);
-				if(account_object[class_unit_strings[1]] !== undefined) return;
+				if(account_object["troop"] == undefined) account_object["troop"] = {};
+				if(account_object["troop"][class_unit_strings[1]] !== undefined) return;
 				var e_value = e.getElementsByClassName("value");
 				var arr = [];
 				arr.push(name_unit);
 				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
-				account_object[class_unit_strings[1]] = arr;
+				account_object["troop"][class_unit_strings[1]] = arr;
 				SaveObject("account",window.Current.Uid,account_object);
 			}
 		}
@@ -359,7 +360,17 @@ function gid17()//market
 				var e_sellect = document.createElement("select");
 				e_sellect.setAttribute("type","select");
 				e_sellect.setAttribute("style","width:150px");
-				
+				var account_object = GetObject("account",window.Current.Uid);
+				if(account_object["troop"] != undefined)
+				{
+					var keys = Object.keys(account_object["troop"]);
+					for(var i = 0; i < keys.length; i++)
+					{
+						var e_option = document.createElement("option");
+						e_option.value = keys[i];
+						e_option.innerText = account_object["troop"][keys[i]][0];
+					}
+				}
 				
 				
 				p_button.appendChild(button_Smallcelebration);
