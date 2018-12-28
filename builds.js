@@ -4,8 +4,8 @@ function Get_gid()
 	switch(window.Current.Gid)
 	{
 		case 17: gid17(); return;//market
-		case 16: gid16(); return;
-		case 15: gid15(); return;
+		case 16: gid16(); return;//rallypoint
+		case 15: gid15(); return;//main building
 		case 24: gid24(); return;//Town Hall
 		
 		case 19: //barrack
@@ -34,18 +34,21 @@ function build_gid_TotalRes(e)
 		total_element.innerText = "Total: " + total_;
 		parent_ress.appendChild(total_element);
 	}
-	if(e.parentElement.getAttribute("class") == "details")
+	if(window.Current.Gid >= 19 && window.Current.Gid <= 20 && e.parentElement.getAttribute("class") == "details")//return
 	{
 		var e_imgs = e.parentElement.getElementsByTagName("img");
 		var e_imgs_unit = e.parentElement.getElementsByClassName("unit");
 		if(e_imgs.length == 1 && e_imgs_unit.length == 1 && e_imgs[0] == e_imgs_unit[0])
 		{
 			var class_unit_strings = e_imgs[0].getAttribute("class").split(" ");
+			var name_unit = e_imgs[0].getAttribute("alt");
 			if(class_unit_strings.length == 2)
 			{
 				var account_object = GetObject("account",window.Current.Uid);
+				if(account_object[class_unit_strings[1]] !== undefined) return;
 				var e_value = e.getElementsByClassName("value");
 				var arr = [];
+				arr.push(name_unit);
 				for(var i = 0; i < 4; i++)arr.push(Number(e_value.innerText));
 				account_object[class_unit_strings[1]] = arr;
 				SaveObject("account",window.Current.Uid,account_object);
@@ -68,7 +71,7 @@ function gid15()//main building
 	}
 }
 
-function gid16()
+function gid16()//rallypoint
 {
 	if(window.Current.tabActives !== null)
 	{
@@ -257,12 +260,12 @@ function gid16_cata_multiwave_trigger_Interval()
 }
 
 
-function gid17()
+function gid17()//market
 {
 	if(window.Current.tabActives !== null)
 	{
 		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
-		if(tabItem.getAttribute("href").indexOf("t=0")>=0)
+		if(tabItem.getAttribute("href").indexOf("t=0")>=0)//manager
 		{
 			var descriptionAndInfo = document.getElementById("descriptionAndInfo");
 			if(descriptionAndInfo !== null)
@@ -323,7 +326,7 @@ function gid17()
 				}
 			}
 		}
-		else if(tabItem.getAttribute("href").indexOf("t=5")>=0)
+		else if(tabItem.getAttribute("href").indexOf("t=5")>=0)//send res
 		{
 			var marketSend_ = document.getElementById("marketSend");
 			if(marketSend_ !== null)
@@ -351,10 +354,20 @@ function gid17()
 				button_Bigcelebration3.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 				button_Bigcelebration3.setAttribute("onclick","gid17_celebration_click([9900,11084,10667,2234],3)");
 
+				var br = document.createElement("br");
+				
+				var input_sellect = document.createElement("input");
+				input_sellect.setAttribute("type","select");
+				input_sellect.setAttribute("style","width:300px");
+				
+				
+				
 				p_button.appendChild(button_Smallcelebration);
 				p_button.appendChild(button_Bigcelebration);
 				p_button.appendChild(button_Bigcelebration2);
 				p_button.appendChild(button_Bigcelebration3);
+				p_button.appendChild(br);
+				p_button.appendChild(input_sellect);
 				
 				if(window.Current.active_village !== null)
 				{
@@ -375,7 +388,12 @@ function gid17()
 					var enterVillageName = document.getElementById("enterVillageName");
 					enterVillageName.setAttribute("list","village_list");
 				}
-				// after form submit
+				
+				
+				
+				
+				
+				
 			}
 		}
 	}
@@ -527,7 +545,7 @@ function fastclick_train_onclick(i)
 	document.getElementById("s1").click();
 }
 
-function gid24()
+function gid24()//Town Hall
 {
 	read_time_gid_under_progress("celebration");
 }
