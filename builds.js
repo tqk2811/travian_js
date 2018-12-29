@@ -357,9 +357,9 @@ function gid17()//market
 
 				var br = document.createElement("br");
 				
-				var e_sellect = document.createElement("select");
-				e_sellect.setAttribute("type","select");
-				e_sellect.setAttribute("style","width:150px");
+				window.gid17_TroopResSelect = document.createElement("select");
+				gid17_TroopResSelect.setAttribute("style","width:150px");				
+				
 				var account_object = GetObject("account",window.Current.Uid);
 				if(account_object["troop"] != undefined)
 				{
@@ -369,9 +369,29 @@ function gid17()//market
 						var e_option = document.createElement("option");
 						e_option.value = keys[i];
 						e_option.innerText = account_object["troop"][keys[i]][0];
-						e_sellect.appendChild(e_option);
+						gid17_TroopResSelect.appendChild(e_option);
 					}
 				}
+				
+				gid17_TroopResSelect.setAttribute("onchange","gid17_TroopResSelect_onchange()");
+				
+				window.gid17_input_number_troop = document.createElement("input");
+				gid17_input_number_troop.setAttribute("type","number");
+				gid17_input_number_troop.setAttribute("style","width:50px");
+				gid17_input_number_troop.setAttribute("min","0");
+				gid17_input_number_troop.setAttribute("max","0");
+				gid17_input_number_troop.setAttribute("onchange","gid17_input_number_troop_onchange()");
+				
+				window.gid17_label_max_troop = document.createElement("label");
+				gid17_label_max_troop.innerText = "/0";
+				
+				window.gid17_noncrop = document.createElement("input");
+				gid17_noncrop.setAttribute("type","checkbox");
+				gid17_noncrop.setAttribute("id","gid17_noncrop");
+				gid17_noncrop.setAttribute("onchange","gid17_findmaxtroops()");
+				var label_noncrop = document.createElement("label");
+				label_noncrop.setAttribute("for","gid17_noncrop");
+				label_noncrop.innerText = "No crop";
 				
 				
 				p_button.appendChild(button_Smallcelebration);
@@ -379,36 +399,77 @@ function gid17()//market
 				p_button.appendChild(button_Bigcelebration2);
 				p_button.appendChild(button_Bigcelebration3);
 				p_button.appendChild(br);
-				p_button.appendChild(e_sellect);
+				p_button.appendChild(gid17_TroopResSelect);
+				p_button.appendChild(gid17_input_number_troop);
+				p_button.appendChild(gid17_label_max_troop);
+				p_button.appendChild(gid17_noncrop);				
 				
-				if(window.Current.active_village !== null)
+				
+				
+				var datalist_villagename = document.createElement("datalist");
+				datalist_villagename.setAttribute("id","village_list");					
+				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
+				for(var i = 0;i < window.Current.listVillage.length;i++)
 				{
-					var datalist_villagename = document.createElement("datalist");
-					datalist_villagename.setAttribute("id","village_list");					
-					marketSend_.insertAdjacentElement("afterend",datalist_villagename);
-					for(var i = 0;i < window.Current.listVillage.length;i++)
+					if(window.Current.listVillage[i] == window.Current.active_village) continue;
+					var name_ = window.Current.listVillage[i].getElementsByClassName("name");
+					if(name_.length > 0)
 					{
-						if(window.Current.listVillage[i] == window.Current.active_village) continue;
-						var name_ = window.Current.listVillage[i].getElementsByClassName("name");
-						if(name_.length > 0)
-						{
-							var option_datalist = document.createElement("option");
-							option_datalist.value = name_[0].innerText;
-							datalist_villagename.appendChild(option_datalist);
-						}
+						var option_datalist = document.createElement("option");
+						option_datalist.value = name_[0].innerText;
+						datalist_villagename.appendChild(option_datalist);
 					}
-					var enterVillageName = document.getElementById("enterVillageName");
-					enterVillageName.setAttribute("list","village_list");
 				}
-				
-				
-				
-				
-				
-				
+				var enterVillageName = document.getElementById("enterVillageName");
+				enterVillageName.setAttribute("list","village_list");
 			}
 		}
 	}
+}
+
+function gid17_TroopResSelect_onchange()
+{
+	var account_object = GetObject("account",window.Current.Uid);
+	window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
+	gid17_findmaxtroops();
+}
+
+function gid17_input_number_troop_onchange()
+{
+	var currentres = getCurrentRes();
+	var res_troops = [
+						currentres[0]*gid17_input_number_troop.value,
+						currentres[1]*gid17_input_number_troop.value,
+						currentres[2]*gid17_input_number_troop.value,
+						gid17_noncrop.checked ? 0 : currentres[3]*gid17_input_number_troop.value
+	];
+	gid17_celebration_click(res_troops,1);
+}
+function getCurrentRes()
+{
+	var ress = [];
+	for(var i =1; i <= 4; i++)
+	{
+		var ele = document.getElementById("1" + i.toString());
+		ress.push(Number(ele.innerText.replace(",","").replace(".","")));
+	}
+	return ress;
+}
+
+function gid17_findmaxtroops
+{
+	var currentres = getCurrentRes();
+	var maxtroops = -1;
+	
+	for(var i = 0; i < 4; i++)
+	{
+		var num = Math.floor(currentres[i]/gid17_TroopRes[i+1]);
+		if(gid17_noncrop.checked && i == 3) break;
+		if(maxtroops == -1) maxtroops = num;
+		if(num < maxtroops) maxtroops = num;
+	}
+	gid17_label_max_troop.innerText = "/" + maxtroops.toString();
+	gid17_input_number_troop.max = maxtroops;
 }
 
 function gid17_clear_select(name, did)
