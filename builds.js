@@ -384,6 +384,7 @@ function gid17()//market
 				
 				window.gid17_label_max_troop = document.createElement("label");
 				gid17_label_max_troop.innerText = "/0";
+				gid17_label_max_troop.setAttribute("style","margin-left:3px");
 				
 				window.gid17_noncrop = document.createElement("input");
 				gid17_noncrop.setAttribute("type","checkbox");
@@ -392,7 +393,7 @@ function gid17()//market
 				var label_noncrop = document.createElement("label");
 				label_noncrop.setAttribute("for","gid17_noncrop");
 				label_noncrop.innerText = "No crop";
-				
+				label_noncrop.setAttribute("style","margin-left:3px");
 				
 				p_button.appendChild(button_Smallcelebration);
 				p_button.appendChild(button_Bigcelebration);
@@ -402,7 +403,7 @@ function gid17()//market
 				p_button.appendChild(gid17_TroopResSelect);
 				p_button.appendChild(gid17_input_number_troop);
 				p_button.appendChild(gid17_label_max_troop);
-				p_button.appendChild(gid17_noncrop);				
+				p_button.appendChild(label_noncrop);				
 				
 				gid17_TroopResSelect_onchange();
 				
