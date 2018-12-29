@@ -390,9 +390,11 @@ function gid17()//market
 				gid17_noncrop.setAttribute("type","checkbox");
 				gid17_noncrop.setAttribute("id","gid17_noncrop");
 				gid17_noncrop.setAttribute("onchange","gid17_findmaxtroops()");
+				gid17_noncrop.setAttribute("style","margin-left:3px");
+				
 				var label_noncrop = document.createElement("label");
 				label_noncrop.innerText = "No crop";
-				label_noncrop.setAttribute("style","margin-left:3px");
+				label_noncrop.setAttribute("onclick","function(){gid17_noncrop.checked = !gid17_noncrop.checked;}")
 				
 				p_button.appendChild(button_Smallcelebration);
 				p_button.appendChild(button_Bigcelebration);
@@ -402,8 +404,8 @@ function gid17()//market
 				p_button.appendChild(gid17_TroopResSelect);
 				p_button.appendChild(gid17_input_number_troop);
 				p_button.appendChild(gid17_label_max_troop);
-				p_button.appendChild(gid17_noncrop);				
-				label_noncrop.setAttribute("for","gid17_noncrop");
+				p_button.appendChild(gid17_noncrop);
+				p_button.appendChild(label_noncrop);
 				gid17_TroopResSelect_onchange();
 				
 				var datalist_villagename = document.createElement("datalist");
