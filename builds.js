@@ -394,7 +394,7 @@ function gid17()//market
 				
 				var label_noncrop = document.createElement("label");
 				label_noncrop.innerText = "No crop";
-				label_noncrop.setAttribute("onclick","function(){gid17_noncrop.checked = !gid17_noncrop.checked;}")
+				label_noncrop.onclick = function(){gid17_noncrop.checked = !gid17_noncrop.checked;};
 				
 				p_button.appendChild(button_Smallcelebration);
 				p_button.appendChild(button_Bigcelebration);
