@@ -526,22 +526,23 @@ function gid17_clear()
 }
 function gid17_celebration_click(r,run_twice)
 {
+	var sumResources = 0;
 	for(var i=0;i<4;i++)
 	{
 		var e_r = document.getElementById("r" + (i + 1));
 		e_r.value = r[i];
+		sumResources += r[i];
 	}
+	document.getElementById("sumResources").innerText = sumResources;
+	
 	var e_run_twice = document.getElementById("x2");
-	if(e_run_twice !== null)
+	if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
+	else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox")
 	{
-		if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
-		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox")
+		switch(run_twice)
 		{
-			switch(run_twice)
-			{
-				case 2:e_run_twice.checked = true; break;
-				default: e_run_twice.checked = false; break;
-			}
+			case 2:e_run_twice.checked = true; break;
+			default: e_run_twice.checked = false; break;
 		}
 	}
 }
