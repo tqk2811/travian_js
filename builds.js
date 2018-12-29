@@ -404,7 +404,7 @@ function gid17()//market
 				p_button.appendChild(gid17_label_max_troop);
 				p_button.appendChild(gid17_noncrop);				
 				
-				
+				gid17_TroopResSelect_onchange();
 				
 				var datalist_villagename = document.createElement("datalist");
 				datalist_villagename.setAttribute("id","village_list");					
@@ -436,12 +436,11 @@ function gid17_TroopResSelect_onchange()
 
 function gid17_input_number_troop_onchange()
 {
-	var currentres = getCurrentRes();
 	var res_troops = [
-						currentres[0]*gid17_input_number_troop.value,
-						currentres[1]*gid17_input_number_troop.value,
-						currentres[2]*gid17_input_number_troop.value,
-						gid17_noncrop.checked ? 0 : currentres[3]*gid17_input_number_troop.value
+						gid17_TroopRes[1]*gid17_input_number_troop.value,
+						gid17_TroopRes[2]*gid17_input_number_troop.value,
+						gid17_TroopRes[3]*gid17_input_number_troop.value,
+						gid17_noncrop.checked ? 0 : gid17_TroopRes[4]*gid17_input_number_troop.value
 	];
 	gid17_celebration_click(res_troops,1);
 }
