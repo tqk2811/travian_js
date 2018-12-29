@@ -461,14 +461,19 @@ function gid17_findmaxtroops()
 {
 	var currentres = getCurrentRes();
 	var maxtroops = -1;
-	
-	for(var i = 0; i < 4; i++)
+	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
+	var total_res_for_troop = 0;
+	for(var i = 0; i < 4; i++)// max troop res
 	{
 		var num = Math.floor(currentres[i]/gid17_TroopRes[i+1]);
 		if(gid17_noncrop.checked && i == 3) break;
+		total_res_for_troop += gid17_TroopRes[i+1];
 		if(maxtroops == -1) maxtroops = num;
 		if(num < maxtroops) maxtroops = num;
 	}
+	var max_troops_merchant = Math.floor(merchantCapacityValue/total_res_for_troop);
+	if(max_troops_merchant < maxtroops) maxtroops = max_troops_merchant;
+	
 	gid17_label_max_troop.innerText = "/" + maxtroops.toString();
 	gid17_input_number_troop.max = maxtroops;
 }
