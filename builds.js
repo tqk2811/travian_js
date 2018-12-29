@@ -450,7 +450,7 @@ function getCurrentRes()
 	var ress = [];
 	for(var i =1; i <= 4; i++)
 	{
-		var ele = document.getElementById("1" + i.toString());
+		var ele = document.getElementById("l" + i.toString());
 		ress.push(Number(ele.innerText.replace(",","").replace(".","")));
 	}
 	return ress;
