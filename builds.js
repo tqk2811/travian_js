@@ -456,7 +456,7 @@ function getCurrentRes()
 	return ress;
 }
 
-function gid17_findmaxtroops
+function gid17_findmaxtroops()
 {
 	var currentres = getCurrentRes();
 	var maxtroops = -1;
