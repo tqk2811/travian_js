@@ -384,6 +384,7 @@ function gid17()//market
 				
 				window.gid17_label_max_troop = document.createElement("label");
 				gid17_label_max_troop.innerText = "/0";
+				gid17_label_max_troop.onclick = function(){gid17_input_number_troop.value = gid17_input_number_troop.max;};
 				gid17_label_max_troop.setAttribute("style","margin-left:3px");
 				
 				window.gid17_noncrop = document.createElement("input");
