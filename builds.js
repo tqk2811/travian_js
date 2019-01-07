@@ -435,6 +435,7 @@ function gid17()//market
 function gid17_TroopResSelect_onchange()
 {
 	var account_object = GetObject("account",window.Current.Uid);
+	if(gid17_TroopResSelect.value == "" ||account_object["troop"] == undefined) return;
 	window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
 	gid17_findmaxtroops();
 }
