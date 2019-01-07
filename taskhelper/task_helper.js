@@ -6,7 +6,7 @@ function LoadLiBuildTimer(li_obj)
   {
     var t2 = document.createElement("span");
     t2.innerText = "-";//ー
-    e.appendChild(t2);
+    li_obj.e.appendChild(t2);
   }
   t.setAttribute("style","color:" + li_obj.color);
   t.setAttribute("sound",li_obj.sound);
@@ -15,7 +15,7 @@ function LoadLiBuildTimer(li_obj)
   t.setAttribute("value",li_obj.time - Math.round(Date.now()/1000,0));
   t.innerText = "Loading"
   if(li_obj.navigate_url != null) t.onclick = function(){ window.location.href = li_obj.navigate_url}
-  e.appendChild(t);
+  li_obj.e.appendChild(t);
 }
 function ShowVillageData(li_element)
 {
