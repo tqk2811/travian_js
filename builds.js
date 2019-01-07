@@ -371,9 +371,8 @@ function gid17()//market
 						e_option.innerText = account_object["troop"][keys[i]][0];
 						gid17_TroopResSelect.appendChild(e_option);
 					}
-				}
-				
-				gid17_TroopResSelect.setAttribute("onchange","gid17_TroopResSelect_onchange()");
+					gid17_TroopResSelect.setAttribute("onchange","gid17_TroopResSelect_onchange()");
+				}				
 				
 				window.gid17_input_number_troop = document.createElement("input");
 				gid17_input_number_troop.setAttribute("type","number");
