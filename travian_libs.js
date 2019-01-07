@@ -62,7 +62,8 @@ function FindActiveVillage(listVillages)
 }
 function getQueryVariable(q,variable) 
 {
-    var query = q.substring(1);
+    var q_ = q.split('?');
+	var query = q_[q_.length -1];// \abc.php?test=1 or test=2
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) 
     {
@@ -195,7 +196,7 @@ window.Current.tabActives = document.getElementsByClassName("container active");
 window.Current.e_build = document.getElementById("build");
 window.Current.listVillage = null;
 window.Current.active_village = null;
-window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/ding.mp3"));
+window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("taskhelper/ding.mp3"));
 
 if(window.Current.e_build !== null) {
 	var gid_str = window.Current.e_build.getAttribute("class").split(" ")[0];
@@ -209,13 +210,13 @@ window.Current.village_object = GetObject("village",window.Current.VillageId);
 InitHotkey();
 console.log("uid:" + window.Current.Uid + "; gid:" + window.Current.Gid +"; village_id:" + window.Current.VillageId);
 
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/dorf.js"));//read data -> task_helper
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","builds.js"));//read data -> task_helper
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxActiveVillage.js"));//
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_plus/sidebarBoxLinklist.js"));//
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/hero.js"));//
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/berichte_n_messages.js"));//
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/allianz.js"));//
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","other/spieler.js"));//
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.js"));//
-   AddUriCss(httpGetGithubCdnUri("tqk2811","travian_js","master","taskhelper/task_helper.css"));//
+AddUriScript(httpGetGithubCdnUri("other/dorf.js"));//read data -> task_helper
+AddUriScript(httpGetGithubCdnUri("builds.js"));//read data -> task_helper
+AddUriScript(httpGetGithubCdnUri("travian_plus/sidebarBoxActiveVillage.js"));//
+AddUriScript(httpGetGithubCdnUri("travian_plus/sidebarBoxLinklist.js"));//
+AddUriScript(httpGetGithubCdnUri("other/hero.js"));//
+AddUriScript(httpGetGithubCdnUri("other/berichte_n_messages.js"));//
+AddUriScript(httpGetGithubCdnUri("other/allianz.js"));//
+AddUriScript(httpGetGithubCdnUri("other/spieler.js"));//
+AddUriScript(httpGetGithubCdnUri("taskhelper/task_helper.js"));//
+   AddUriCss(httpGetGithubCdnUri("taskhelper/task_helper.css"));//

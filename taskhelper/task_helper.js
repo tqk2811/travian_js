@@ -1,23 +1,20 @@
-function LoadLiBuildTimer(e,time,flag,color_,sound = false,adv_text = null,show_zero = false,navigate_url = null)
+function LoadLiBuildTimer(li_obj)
 {
-  if(!show_zero && time-Math.round(Date.now()/1000,0) <= 0) return;
+  if(!li_obj.show_zero && li_obj.time-Math.round(Date.now()/1000,0) <= 0) return;
   var t = document.createElement("span");
-  if(flag)
+  if(li_obj.flag)
   {
     var t2 = document.createElement("span");
     t2.innerText = "-";//ー
     e.appendChild(t2);
   }
-  t.setAttribute("style","color:" + color_);
-  t.setAttribute("sound",sound);
-  if(adv_text !== null) t.setAttribute("adv_text",adv_text);
+  t.setAttribute("style","color:" + li_obj.color);
+  t.setAttribute("sound",li_obj.sound);
+  if(li_obj.adv_text !== null) t.setAttribute("adv_text",li_obj.adv_text);
   t.setAttribute("class","travian_js_timer");
-  t.setAttribute("value",time - Math.round(Date.now()/1000,0));
+  t.setAttribute("value",li_obj.time - Math.round(Date.now()/1000,0));
   t.innerText = "Loading"
-  if(navigate_url != null)
-  {
-	  t.onclick = function(){ window.location.href = navigate_url}
-  }
+  if(li_obj.navigate_url != null) t.onclick = function(){ window.location.href = li_obj.navigate_url}
   e.appendChild(t);
 }
 function ShowVillageData(li_element)
@@ -45,36 +42,31 @@ function Show_Build(village_object,e_p1)
 	if(village_object.Builds === undefined) return;
 	var flag = false;
 	var j = 0;
+	var obj;
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
 		if(village_object.Builds[i] < Math.round(Date.now()/1000,0)) continue;
-		LoadLiBuildTimer(
-							e_p1,							//e
-							village_object.Builds[i],		//time
-							flag,							//flag
-							task_helper_color_list[j],		//color_
-							true,							//sound = false
-							null,							//adv_text = null
-							false,							//show_zero = false
-							null							//navigate_url = null
-							);
+		obj = GetLiBuildTimerObject();
+			obj.e = e_p1;
+			obj.time = village_object.Builds[i];
+			obj.flag = flag;
+			obj.color = task_helper_color_list[j];
+			obj.sound = true;		
+		LoadLiBuildTimer(obj);
 		flag = true;
 		j++;
-	}
+	}	
 	if(village_object["demolish"] !== undefined && village_object["demolish"] > Math.round(Date.now()/1000,0))
-		LoadLiBuildTimer(
-							e_p1,
-							village_object["demolish"],
-							flag,
-							"#FF8080",
-							true,
-							null,
-							false,
-							null
-							);
+	{
+		obj = GetLiBuildTimerObject();
+			obj.e = e_p1;
+			obj.time = village_object["demolish"];
+			obj.flag = flag;
+			obj.color = "#FF8080";
+			obj.sound = true;
+			LoadLiBuildTimer(obj);
+	}
 }
-
-Show_TroopTrain_arr = [[19,29,20,30,21],["#0069FF","#78A5D3","#7700F6","#C574F3","#C84545"],["b","B","s","S","w"]];
 function Show_TroopTrain(village_object,e_p1,village_id_)
 {
 	var flag = false;
@@ -83,14 +75,15 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 		var isshow = village_object["troop_train_checkbox_"+Show_TroopTrain_arr[0][i]];
 		if(isshow !== undefined && isshow) 
 		{
-			LoadLiBuildTimer(	e_p1,																		//e
-								village_object["troop_train_"+Show_TroopTrain_arr[0][i]],					//time
-								flag,																		//flag
-								Show_TroopTrain_arr[1][i],													//color_
-								false,																		//sound = false
-								Show_TroopTrain_arr[2][i],													//adv_text = null
-								true,																		//show_zero = false
-								"/build.php?newdid=" + village_id_ + "&gid=" +Show_TroopTrain_arr[0][i]);	//navigate_url = null
+			var obj = GetLiBuildTimerObject();
+				obj.e = e_p1;
+				obj.time = village_object["troop_train_"+Show_TroopTrain_arr[0][i]];
+				obj.flag = flag;
+				obj.color = Show_TroopTrain_arr[1][i];
+				obj.adv_text = Show_TroopTrain_arr[2][i];
+				obj.show_zero = true;
+				obj.navigate_url = "/build.php?newdid=" + village_id_ + "&gid=" +Show_TroopTrain_arr[0][i];				
+			LoadLiBuildTimer(obj);
 			flag =true;
 		}
 	}	
@@ -98,19 +91,14 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 function Show_Celebration(village_object,e_p1,village_id_)
 {
 	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < Math.round(Date.now()/1000,0)
-	LoadLiBuildTimer(
-						e_p1,								//e
-						village_object["celebration_24"] ,	//time
-						false,								//flag
-						task_helper_color_list[0],			//color_
-						false,								//sound = false
-						null,								//adv_text = null
-						true,								//show_zero = false
-						"/build.php?newdid="+village_id_+"&gid=24" //navigate_url = null
-						);
+	var obj = GetLiBuildTimerObject();
+		obj.e = e_p1;
+		obj.time = village_object["celebration_24"];
+		obj.color = task_helper_color_list[0];
+		obj.show_zero = true;
+		obj.navigate_url = "/build.php?newdid="+village_id_+"&gid=24";
+	LoadLiBuildTimer(obj);
 }
-
-
 function task_helper_select_onchange()
 {
 	localStorage.setItem("default_task_helper_select",window.task_helper_select.value);
@@ -119,12 +107,25 @@ function task_helper_select_onchange()
 	for(var i =0; i < listp1.length; ) listp1[0].remove();
 	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
 }
-
-
+function GetLiBuildTimerObject()
+{
+	var obj = {}
+	obj.e = null;//element
+	obj.time = 0;//time
+	obj.flag = false;
+	obj.color = null;
+	obj.sound = false;
+	obj.adv_text = null;
+	obj.show_zero = false;
+	obj.navigate_url = null;
+	return obj;
+}
 
 var task_helper_color_list = ["Blue","BlueGray","Gray"];
 var task_helper_select_list= ["Off","Builds","Troops","Celebration"];
-
+Show_TroopTrain_arr = [	[19,		29,			20,			30,			21			],
+						["#0069FF",	"#78A5D3",	"#7700F6",	"#C574F3",	"#C84545"	],
+						["b",		"B",		"s",		"S",		"w"			]];
 if(window.Current.sidebarBoxVillagelist != null)
 {
 	window.task_helper_select = document.createElement("select");
@@ -145,6 +146,6 @@ if(window.Current.sidebarBoxVillagelist != null)
 		task_helper_select.appendChild(option_);
 	}
 }
-
 if(window.Current.active_village !== null) 
 	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+

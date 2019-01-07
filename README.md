@@ -20,23 +20,23 @@ var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [Na
 function AddUriScript(uri)
 {
     var s = document.createElement('script');
-    s.setAttribute("src",uri + "?refresh_="+refresh_);
+    s.setAttribute("src",uri+"?refresh_="+refresh_);
     document.head.appendChild(s);
 }
-function httpGetGithubCdnUri(user,project_name,branch,file_path)
+function httpGetGithubCdnUri(FilePath,GithubUser = "tqk2811",Project_name = "travian_js",Branch = "master")
 {    
-    var sha_data = localStorage.getItem(user + "/" + project_name + "/" + branch+"/" + refresh_);//Check storage
+    var sha_data = localStorage.getItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+refresh_);//Check storage
     if(sha_data === null)
     {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET","https://api.github.com/repos/" + user + "/" + project_name + "/commits/" + branch, false );
+        xmlHttp.open( "GET","https://api.github.com/repos/"+GithubUser+"/"+Project_name+"/commits/"+Branch, false );
         xmlHttp.send();		
         var json_data = JSON.parse(xmlHttp.responseText);		
         sha_data = json_data.sha.substring(0,9);
-        localStorage.setItem(user + "/" + project_name + "/" + branch+"/"+refresh_,sha_data);
+        localStorage.setItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+refresh_,sha_data);
     }
-    return "https://cdn.rawgit.com/"+user+"/"+project_name+"/"+sha_data+"/"+file_path;
+    return "https://cdn.rawgit.com/"+GithubUser+"/"+Project_name+"/"+sha_data+"/"+FilePath;
 }
-AddUriScript(httpGetGithubCdnUri("tqk2811","travian_js","master","travian_libs.js"));
+AddUriScript(httpGetGithubCdnUri("travian_libs.js"));
 ```
 
