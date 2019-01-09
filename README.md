@@ -37,6 +37,6 @@ function httpGetGithubCdnUri(FilePath,GithubUser = "tqk2811",Project_name = "tra
     }
     return "https://cdn.rawgit.com/"+GithubUser+"/"+Project_name+"/"+sha_data+"/"+FilePath;
 }
-AddUriScript(httpGetGithubCdnUri("travian_libs.js"));
+AddUriScript(httpGetGithubCdnUri("libs.js"));
 ```
 
