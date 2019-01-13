@@ -5,6 +5,16 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove=function()
 		if(this[i] && this[i].parentElement) 
 			this[i].parentElement.removeChild(this[i]);
 }
+String.prototype.replaceAll = function(f,r)
+{
+	var str = this;
+	while(true)
+	{
+		if(str.indexOf(f) >= 0) str = str.replace(f,r);
+		else return str;
+	}
+}
+
 function AddUriCss(uri)
 {
     var s = document.createElement('link');
