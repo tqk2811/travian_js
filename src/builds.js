@@ -326,6 +326,7 @@ function gid17()//market
 					e_p_custom.appendChild(button_traderoute);
 					
 					var userHour = document.getElementById("userHour");
+					var userHour_option = userHour.children;
 					var userHour_parent = userHour.parentElement;
 					
 					var label_userhour = document.createElement("label");
@@ -333,7 +334,8 @@ function gid17()//market
 					userHour_parent.appendChild(label_userhour);
 					
 					var userHour_clone = userHour.cloneNode();
-					userHour_clone.id = "userHour2";
+					userHour_clone.id = "userHour2"; 
+					for(var i = 0; i < userHour_option.length; i++) userHour_clone.appendChild(userHour_option[i].cloneNode());
 					userHour_clone.value = 23;
 					userHour_parent.appendChild(userHour_clone);
 					
