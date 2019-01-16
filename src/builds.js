@@ -345,14 +345,16 @@ function gid17()//market
 					userHour_parent.appendChild(userHour_clone);
 					
 					userHour.onchange = function(){ 
-													var userHour = document.getElementById("userHour");
-													var userHour2 = document.getElementById("userHour2");
-													if(userHour2.value < userHour.value) userHour2.value = userHour.value;
+													var uh = document.getElementById("userHour");
+													var uh2 = document.getElementById("userHour2");
+													console.log(uh.value + " | " + uh2.value);
+													if(uh2.value < uh.value) uh2.value = uh.value;
 												};
 					userHour_clone.onchange = function(){
-													var userHour = document.getElementById("userHour");
-													var userHour2 = document.getElementById("userHour2");
-													if(userHour2.value < userHour.value) userHour.value = userHour2.value;
+													var uh = document.getElementById("userHour");
+													var uh2 = document.getElementById("userHour2");
+													console.log(uh.value + " | " + uh2.value);
+													if(uh2.value < uh.value) uh.value = uh2.value;
 												};
 				}
 			}
