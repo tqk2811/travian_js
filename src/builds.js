@@ -344,7 +344,7 @@ function gid17()//market
 					userHour_clone.value = 23;
 					userHour_parent.appendChild(userHour_clone);
 					
-					userHour. = function(){ 
+					userHour.onchange = function(){ 
 													console.log("userHour_clone:" + userHour_clone.value +" | userHour:" + userHour.value);  
 													if(userHour_clone.value < userHour.value) userHour_clone.value = userHour.value;
 												};
