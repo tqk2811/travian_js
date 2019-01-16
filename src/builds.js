@@ -539,7 +539,7 @@ function gid17_celebration_click(r,run_twice)
 	}
 	document.getElementById("sumResources").innerText = sumResources;
 	document.getElementById("merchantsNeededNumber").innerText 
-		= Math.ceil(sumResources/Number(document.getElementById("addRessourcesLink").innerText));
+		= Math.ceil(sumResources/Number(document.getElementById("addRessourcesLink1").innerText));
 	
 	var e_run_twice = document.getElementById("x2");
 	if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
