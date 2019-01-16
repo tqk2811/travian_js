@@ -326,7 +326,7 @@ function gid17()//market
 					e_p_custom.appendChild(button_traderoute);
 					
 					var userHour = document.getElementById("userHour");
-					var userHour_option = userHour.children;
+					var userHour_option = userHour.childNodes;
 					var userHour_parent = userHour.parentElement;
 					
 					var label_userhour = document.createElement("label");
