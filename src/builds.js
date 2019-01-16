@@ -344,18 +344,14 @@ function gid17()//market
 					userHour_clone.value = 23;
 					userHour_parent.appendChild(userHour_clone);
 					
-					userHour.onchange = function(){ 
-													var uh = document.getElementById("userHour");
-													var uh2 = document.getElementById("userHour2");
-													console.log(uh.value + " | " + uh2.value);
-													if(uh2.value < uh.value) uh2.value = uh.value;
+					userHour.onchange = function()
+						{
+							if(Number(userHour_clone.value) < Number(userHour.value)) userHour_clone.value = userHour.value;
 												};
-					userHour_clone.onchange = function(){
-													var uh = document.getElementById("userHour");
-													var uh2 = document.getElementById("userHour2");
-													console.log(uh.value + " | " + uh2.value);
-													if(uh2.value < uh.value) uh.value = uh2.value;
-												};
+					userHour_clone.onchange = function()
+						{
+							if(Number(userHour_clone.value) < Number(userHour.value)) userHour.value = userHour_clone.value;
+						};
 				}
 			}
 		}
