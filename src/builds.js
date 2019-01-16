@@ -345,12 +345,10 @@ function gid17()//market
 					userHour_parent.appendChild(userHour_clone);
 					
 					userHour.onchange = function(){ 
-													console.log("userHour_clone:" + userHour_clone.value +" | userHour:" + userHour.value);  
 													if(userHour_clone.value < userHour.value) userHour_clone.value = userHour.value;
 												};
 					userHour_clone.onchange = function(){
-													console.log("userHour_clone:" + userHour_clone.value +" | userHour:" + userHour.value);
-													if(userHour.value > userHour_clone.value) userHour.value = userHour_clone.value;
+													if(userHour_clone.value < userHour.value) userHour.value = userHour_clone.value;
 												};
 				}
 			}
