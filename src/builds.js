@@ -538,6 +538,8 @@ function gid17_celebration_click(r,run_twice)
 		sumResources += r[i];
 	}
 	document.getElementById("sumResources").innerText = sumResources;
+	document.getElementById("merchantsNeededNumber").innerText 
+		= Math.ceil(sumResources/Number(document.getElementById("addRessourcesLink").innerText));
 	
 	var e_run_twice = document.getElementById("x2");
 	if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
