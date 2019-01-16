@@ -324,6 +324,25 @@ function gid17()//market
 					button_traderoute.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 					button_traderoute.setAttribute("onclick","gid17_CreateTradeRoutes_click()");
 					e_p_custom.appendChild(button_traderoute);
+					
+					var userHour = document.getElementById("userHour");
+					var userHour_parent = userHour.parentElement;
+					
+					var label_userhour = document.createElement("label");
+					label_userhour.innerText = " ----> Time end: ";
+					userHour_parent.appendChild(label_userhour);
+					
+					var userHour_clone = userHour.cloneNode();
+					userHour_clone.id = "userHour2";
+					userHour_clone.value = 23;
+					userHour_parent.appendChild(userHour_clone);
+					
+					userHour.onchange = function(){ 
+													if(userHour_clone.value < userHour.value) userHour_clone.value = userHour.value;
+												};
+					userHour_clone.onchange = function(){
+													if(userHour.value > userHour_clone.value) userHour.value = userHour_clone.value;
+												};
 				}
 			}
 		}
@@ -557,7 +576,7 @@ function gid17_CreateTradeRoutes_click()
 	if(window.confirm("Confirm Create TradeRoutes?"))
 	{
 		var arr = [];
-		var arr_ = ["did_dest","r1","r2","r3","r4","userHour","repeat","Timespacing"]
+		var arr_ = ["did_dest","r1","r2","r3","r4","userHour","userHour2","repeat","Timespacing"]
 		for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
 		localStorage.setItem("trade_route",JSON.stringify(arr));
 		gid17_CreateTradeRoutes_load();
@@ -572,11 +591,11 @@ function gid17_CreateTradeRoutes_load()
 		if(tr[5] !== -1)
 		{
 			var current_userHour = tr[5];
-			var userHour = Number(tr[5]) + Number(tr[7]);
-			if(userHour > 23) tr[5] = -1;
+			var userHour = Number(tr[5]) + Number(tr[8]);
+			if(userHour > tr[6]) tr[5] = -1;
 			else tr[5] = userHour;
 			localStorage.setItem("trade_route",JSON.stringify(tr));
-			window.location.href=gid17_base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[6],tr[7]);
+			window.location.href=gid17_base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[7],tr[8]);
 		}
 	}
 }
