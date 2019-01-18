@@ -34,7 +34,7 @@ function build_gid_TotalRes(e)
 		total_element.innerText = "Total: " + total_;
 		parent_ress.appendChild(total_element);
 	}
-	if(window.Current.Gid >= 19 && window.Current.Gid <= 20 && e.parentElement.getAttribute("class") == "details")//return
+	if(window.Current.Gid >= 19 && window.Current.Gid <= 21 && e.parentElement.getAttribute("class") == "details")//return
 	{
 		var e_imgs = e.parentElement.getElementsByTagName("img");
 		var e_imgs_unit = e.parentElement.getElementsByClassName("unit");
