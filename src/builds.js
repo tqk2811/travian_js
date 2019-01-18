@@ -305,25 +305,11 @@ function gid17()//market
 				if(e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1 )
 				{
 					var e_trading_edit = document.getElementById("trading_edit");
-					var e_p_custom = document.createElement("p");
-					e_trading_edit.insertAdjacentElement("afterend",e_p_custom);
-					e_p_custom.innerText = "Time spacing:";
-
-					var spacing = document.createElement("input");
-					spacing.setAttribute("min",1);
-					spacing.setAttribute("max",12);
-					spacing.setAttribute("type","number");
-					spacing.setAttribute("value",2);
-					spacing.setAttribute("id","Timespacing");
-					spacing.setAttribute("maxlength",2);
-					spacing.setAttribute("style","padding:3px;margin:3px;");
-					e_p_custom.appendChild(spacing);
-
 					var button_traderoute = document.createElement("a");
 					button_traderoute.innerText = "Create TradeRoutes";
 					button_traderoute.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
 					button_traderoute.setAttribute("onclick","gid17_CreateTradeRoutes_click()");
-					e_p_custom.appendChild(button_traderoute);
+					e_trading_edit.insertAdjacentElement("afterend",button_traderoute);
 					
 					var userHour = document.getElementById("userHour");
 					var userHour_parent = userHour.parentElement;
@@ -343,6 +329,22 @@ function gid17()//market
 					}
 					userHour_clone.value = 23;
 					userHour_parent.appendChild(userHour_clone);
+					
+					var timestep_label = document.createElement("label");
+					timestep_label.innerText = "    With Step:"
+					userHour_parent.appendChild(timestep_label);
+					
+					var TimeStep = document.createElement("input");
+					TimeStep.setAttribute("min",1);
+					TimeStep.setAttribute("max",12);
+					TimeStep.setAttribute("type","number");
+					TimeStep.setAttribute("value",2);
+					TimeStep.setAttribute("id","TimeStep");
+					TimeStep.setAttribute("maxlength",2);
+					TimeStep.setAttribute("style","padding:3px;margin:3px;");
+					userHour_parent.appendChild(TimeStep);
+					
+					
 					
 					userHour.onchange = function()
 						{
@@ -585,7 +587,7 @@ function gid17_CreateTradeRoutes_click()
 	if(window.confirm("Confirm Create TradeRoutes?"))
 	{
 		var arr = [];
-		var arr_ = ["did_dest","r1","r2","r3","r4","userHour","userHour2","repeat","Timespacing"]
+		var arr_ = ["did_dest","r1","r2","r3","r4","userHour","userHour2","repeat","TimeStep"]
 		for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
 		localStorage.setItem("trade_route",JSON.stringify(arr));
 		gid17_CreateTradeRoutes_load();
@@ -597,9 +599,9 @@ function gid17_CreateTradeRoutes_load()
 	if(trade_route_str !== null && trade_route_str !== undefined)
 	{
 		tr = JSON.parse(trade_route_str);
-		if(tr[5] !== -1)
+		if(Number(tr[5]) !== -1)
 		{
-			var current_userHour = tr[5];
+			var current_userHour = Number(tr[5]);
 			var userHour = Number(tr[5]) + Number(tr[8]);
 			if(userHour > tr[6]) tr[5] = -1;
 			else tr[5] = userHour;
