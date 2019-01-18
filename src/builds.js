@@ -338,7 +338,7 @@ function gid17()//market
 					TimeStep.setAttribute("min",1);
 					TimeStep.setAttribute("max",12);
 					TimeStep.setAttribute("type","number");
-					TimeStep.setAttribute("value",2);
+					TimeStep.setAttribute("value",1);
 					TimeStep.setAttribute("id","TimeStep");
 					TimeStep.setAttribute("maxlength",2);
 					TimeStep.setAttribute("style","padding:3px;margin:3px;");
