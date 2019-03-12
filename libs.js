@@ -239,11 +239,11 @@ AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 
 window.err_label = document.createElement("label");
 err_label.setAttribute("style","color:red;");
-window.addEventListener("error", function (e){
-	err_label.innerText = "Script error.";
-	return false;
-});	
-console.log("Init catch exception complete.")
+//window.addEventListener("error", function (e){
+	//err_label.innerText = "Script error.";
+	//return false;
+//});	
+//console.log("Init catch exception complete.")
 
 
-null.get();
+//null.get();
