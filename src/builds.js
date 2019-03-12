@@ -624,7 +624,7 @@ function troop_train()//gid 19 20 29 30 21
 	e_checkbox_lb.innerText = "Show Time Training";
 	e_checkbox_lb.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_checkbox_lb.appendChild(window.troop_train_checkbox);
-	contract.insertAdjacentElement("beforeend",e_checkbox_lb);
+	contract.insertAdjacentElement("beforebegin",e_checkbox_lb);
 	
 	read_time_gid_under_progress("troop_train");
 	
