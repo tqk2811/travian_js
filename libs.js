@@ -237,18 +237,13 @@ AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//
 AddUriScript(httpGetGithubCdnUri("src/global.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
+window.err_label = document.createElement("label");
+err_label.setAttribute("style","color:red;");
+window.addEventListener("error", function (e){
+	err_label.innerText = "Script error.";
+	return false;
+});	
+console.log("Init catch exception complete.")
 
-var stockBar = document.getElementById("stockBar");
-if(stockBar !== null)
-{
-	window.err_label = document.createElement("label");
-	err_label.setAttribute("style","color:red;");
-	stockBar.insertAdjacentElement("beforeend",err_label);
-	window.addEventListener("error", function (e) {
-		err_label.innerText = "Script error.";
-		return false;
-	});	
-	console.log("Init catch exception complete.")
-}
 
 null.get();
