@@ -236,3 +236,16 @@ AddUriScript(httpGetGithubCdnUri("src/allianz.js"));//
 AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//
 AddUriScript(httpGetGithubCdnUri("src/global.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
+
+
+var sidebarBeforeContent = document.getElementById("sidebarBeforeContent");
+if(sidebarBeforeContent !== null)
+{
+	var err_label = document.createElement("label");
+	err_label.setAttribute("style","color:red;");
+	sidebarBeforeContent.insertAdjacentElement("afterend",err_label);
+	window.addEventListener("error", function (e) {
+		err_label.innerText = "Error occurred: " + e.error.message;
+		return false;
+	};
+}
