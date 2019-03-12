@@ -268,14 +268,14 @@ function gid17()//market
 		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0)//manager
 		{
-			var descriptionAndInfo = document.getElementById("descriptionAndInfo");
-			if(descriptionAndInfo !== null)
+			var contract = document.getElementById("contract");
+			if(contract !== null)
 			{
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Routes";
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
-				descriptionAndInfo.appendChild(button_clear);
+				contract.appendChild(button_clear);
 				
 				var arr_traderoute_desc = [];			
 				var trading_routes = document.getElementById("trading_routes");
@@ -298,7 +298,7 @@ function gid17()//market
 				window.gid17_select_clear = document.createElement("select");
 				gid17_select_clear.add(gid17_clear_select("All","-1"));
 				arr_traderoute_desc.forEach(function(child){ gid17_select_clear.add(gid17_clear_select(child[0],child[1])); });
-				descriptionAndInfo.appendChild(gid17_select_clear);
+				contract.appendChild(gid17_select_clear);
 				
 				
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
@@ -613,7 +613,7 @@ function gid17_CreateTradeRoutes_load()
 
 function troop_train()//gid 19 20 29 30 21
 {
-	var descriptionAndInfo = document.getElementById("descriptionAndInfo");
+	var contract = document.getElementById("contract");
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
 	window.troop_train_checkbox.checked = window.Current.village_object["troop_train_checkbox_" + window.Current.Gid];
@@ -624,7 +624,7 @@ function troop_train()//gid 19 20 29 30 21
 	e_checkbox_lb.innerText = "Show Time Training";
 	e_checkbox_lb.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_checkbox_lb.appendChild(window.troop_train_checkbox);
-	descriptionAndInfo.insertAdjacentElement("beforeend",e_checkbox_lb);
+	contract.insertAdjacentElement("beforeend",e_checkbox_lb);
 	
 	read_time_gid_under_progress("troop_train");
 	
@@ -634,7 +634,7 @@ function troop_train()//gid 19 20 29 30 21
 	{
 		var p = document.createElement("p");
 		var div_fastclick = document.createElement("div");
-		descriptionAndInfo.appendChild(div_fastclick);
+		contract.appendChild(div_fastclick);
 		
 		var label_fastclick = document.createElement("label");
 		label_fastclick.innerText = "Fast click (train all):";
