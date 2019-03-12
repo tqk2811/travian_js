@@ -238,18 +238,16 @@ AddUriScript(httpGetGithubCdnUri("src/global.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
 
-var sidebarBeforeContent = document.getElementById("sidebarBeforeContent");
-if(sidebarBeforeContent !== null)
+var stockBar = document.getElementById("stockBar");
+if(stockBar !== null)
 {
 	window.err_label = document.createElement("label");
 	err_label.setAttribute("style","color:red;");
-	sidebarBeforeContent.insertAdjacentElement("afterend",err_label);
+	stockBar.insertAdjacentElement("beforeend",err_label);
 	window.addEventListener("error", function (e) {
 		err_label.innerText = "Script error.";
 		return false;
-	});
-	
-	
+	});	
 	console.log("Init catch exception complete.")
 }
 
