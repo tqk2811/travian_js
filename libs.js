@@ -245,7 +245,7 @@ if(sidebarBeforeContent !== null)
 	err_label.setAttribute("style","color:red;");
 	sidebarBeforeContent.insertAdjacentElement("afterend",err_label);
 	window.addEventListener("error", function (e) {
-		err_label.innerText = "Error occurred: " + e.error.message;
+		err_label.innerText = "Script error.";
 		return false;
 	});
 	
