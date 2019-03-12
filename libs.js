@@ -248,4 +248,5 @@ if(sidebarBeforeContent !== null)
 		err_label.innerText = "Error occurred: " + e.error.message;
 		return false;
 	});
+	console.log("Init catch exception complete.")
 }
