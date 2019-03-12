@@ -241,11 +241,11 @@ AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 var sidebarBeforeContent = document.getElementById("sidebarBeforeContent");
 if(sidebarBeforeContent !== null)
 {
-	var err_label = document.createElement("label");
+	window.err_label = document.createElement("label");
 	err_label.setAttribute("style","color:red;");
 	sidebarBeforeContent.insertAdjacentElement("afterend",err_label);
 	window.addEventListener("error", function (e) {
 		err_label.innerText = "Error occurred: " + e.error.message;
 		return false;
-	};
+	});
 }
