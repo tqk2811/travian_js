@@ -616,6 +616,7 @@ function troop_train()//gid 19 20 29 30 21
 	//var contract = document.getElementById("contract");
 	var e_div = document.createElement("div");
 	build.insertAdjacentElement("afterbegin",e_div);
+	e_div.setAttribute("style","margin-bottom: 10px;");
 	
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
