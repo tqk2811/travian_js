@@ -43,8 +43,11 @@ function hero_code()
 	e_label.setAttribute("style","float:right");
 	spieler_details.insertAdjacentElement("afterend",e_label);
 	
-	var spieler_uid = getParameterByName("uid",window.location.href);
-	if(spieler_uid == null) spieler_uid = window.Current.Uid;//current account	
+	var titleInHeader = document.getElementsByClassName("titleInHeader")[0].innerText;
+	var pos = titleInHeader.search(/(?<= - ).+$/g);
+	var spieler_uid = null;//getParameterByName("uid",window.location.href);
+	if(pos == -1 ) spieler_uid = window.Current.Uid;//current account	
+	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	var ls_hero_string = localStorage.getItem("hero_" + spieler_uid);
 	if(ls_hero_string !== null)
 	{
