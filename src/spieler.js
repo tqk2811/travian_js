@@ -23,7 +23,7 @@ function spieler_addraidlist()
 		var uri_ = e_coords[i].getElementsByTagName("a")[0].href;
 		var x_ = getParameterByName("x",uri_);
 		var y_ = getParameterByName("y",uri_);
-						
+		if(x_ == null || y_ == null) continue;
 		var e_button = document.createElement("button");
 		e_button.innerText = "Add";
 		e_button.setAttribute("style","background-color:green;border:none;color:white;");
