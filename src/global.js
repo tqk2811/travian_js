@@ -85,7 +85,7 @@ function AddLinkerList(item)
 //task_helper
 function LoadLiBuildTimer(li_obj)
 {
-  if(!li_obj.show_zero && li_obj.time-Math.round(Date.now()/1000,0) <= 0) return;
+  if(!li_obj.show_zero && li_obj.time - CurrentSec() <= 0) return;
   var t = document.createElement("span");
   if(li_obj.flag)
   {
@@ -97,7 +97,7 @@ function LoadLiBuildTimer(li_obj)
   t.setAttribute("sound",li_obj.sound);
   if(li_obj.adv_text !== null) t.setAttribute("adv_text",li_obj.adv_text);
   t.setAttribute("class","travian_js_timer");
-  t.setAttribute("value",li_obj.time - Math.round(Date.now()/1000,0));
+  t.setAttribute("value",li_obj.time - CurrentSec());
   t.innerText = "Loading"
   if(li_obj.navigate_url != null) t.onclick = function(){ window.location.href = li_obj.navigate_url}
   li_obj.e.appendChild(t);
@@ -130,7 +130,7 @@ function Show_Build(village_object,e_p1)
 	var obj;
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
-		if(village_object.Builds[i] < Math.round(Date.now()/1000,0)) continue;
+		if(village_object.Builds[i] < CurrentSec()) continue;
 		obj = GetLiBuildTimerObject();
 			obj.e = e_p1;
 			obj.time = village_object.Builds[i];
@@ -141,7 +141,7 @@ function Show_Build(village_object,e_p1)
 		flag = true;
 		j++;
 	}	
-	if(village_object["demolish"] !== undefined && village_object["demolish"] > Math.round(Date.now()/1000,0))
+	if(village_object["demolish"] !== undefined && village_object["demolish"] > CurrentSec())
 	{
 		obj = GetLiBuildTimerObject();
 			obj.e = e_p1;
@@ -175,7 +175,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 }
 function Show_Celebration(village_object,e_p1,village_id_)
 {
-	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < Math.round(Date.now()/1000,0)
+	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < CurrentSec()
 	var obj = GetLiBuildTimerObject();
 		obj.e = e_p1;
 		obj.time = village_object["celebration_24"];

@@ -66,7 +66,7 @@ function gid15()//main building
 	if(demolish !== null)
 	{
 		var timers_ = demolish.getElementsByClassName("timer");
-		if(timers_.length == 1)	Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + Math.round(Date.now()/1000,0);
+		if(timers_.length == 1)	Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + CurrentSec();
 		else Current.village_object["demolish"] = 0;			
 		SaveCurrentVillage();
 	}
@@ -679,7 +679,7 @@ function read_time_gid_under_progress(name)
 		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
 		var value_time = Number(e_time.getAttribute("value"));
 		
-		window.Current.village_object[name + "_" + window.Current.Gid] = Math.round(Date.now()/1000,0) + value_time;		
+		window.Current.village_object[name + "_" + window.Current.Gid] = CurrentSec() + value_time;		
 	}else window.Current.village_object[name + "_" + window.Current.Gid] = 0;
 	SaveCurrentVillage();
 }

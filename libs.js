@@ -14,7 +14,10 @@ String.prototype.replaceAll = function(f,r)
 		else return str;
 	}
 }
-
+function CurrentSec()
+{
+	return Math.round(Date.now()/1000,0);
+}
 function AddUriCss(uri)
 {
     var s = document.createElement('link');

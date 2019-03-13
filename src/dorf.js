@@ -80,7 +80,7 @@ function troop_train_add_child(e,name,target_gid)
 	
 	var span_time = document.createElement("span");
 	
-	span_time.setAttribute("value",window.Current.village_object["troop_train_"+target_gid] - Math.round(Date.now()/1000,0));
+	span_time.setAttribute("value",window.Current.village_object["troop_train_"+target_gid] - CurrentSec());
 	span_time.setAttribute("style","float: left; width:60%;");
 	span_time.setAttribute("class","travian_js_timer");
 	span_time.innerText = "...";
@@ -93,13 +93,12 @@ function ReadDataBuilding()
 	var Builds_ = [];
 	var build = document.getElementsByClassName("buildDuration");
 	if(build.length !== 0)//read in dorf
-	{			
-		var current_SecondFrom1970 = Math.round(Date.now()/1000,0);
+	{
 		for(var k=0; k < build.length; k++)
 		{
 			var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
-			Builds_.push(current_SecondFrom1970 + timeleft);
-		}			
+			Builds_.push(CurrentSec() + timeleft);
+		}
 	}
 	window.Current.village_object.Builds = Builds_;
 	SaveCurrentVillage();

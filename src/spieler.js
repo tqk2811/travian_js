@@ -38,10 +38,36 @@ function hero_code()
 {
 	var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
 	var hero_code = getParameterByName("code",hero_img_e.getAttribute("src"));
-	var e_label = document.createElement("label");
+	
+	var e_label = document.createElement("p");
 	e_label.setAttribute("style","float:right");
-	e_label.innerText = "Current hero code: " + hero_code;
-	spieler_details.insertAdjacentElement("afterend",e_label);	
+	spieler_details.insertAdjacentElement("afterend",e_label);
+	
+	var spieler_uid = getParameterByName("uid",window.location.href);
+	if(spieler_uid == null) spieler_uid = window.Current.Uid;//current account	
+	var ls_hero_string = localStorage.getItem("hero_" + spieler_uid);
+	if(ls_hero_string !== null)
+	{
+		var ls_hero_obj = JSON.parse(ls_hero_string);
+		if(hero_code != ls_hero_obj.code)
+		{
+			ls_hero_obj.code = hero_code;
+			ls_hero_obj.time = CurrentSec();
+			e_label.innerText = "Check change hero: 0 sec ago.";
+		}
+		else
+		{
+			e_label.innerText = "Check change hero: " + GetTimeTextFromSecondLeft(CurrentSec() - ls_hero_obj.time) + " ago.";
+		}
+	}
+	else
+	{
+		e_label.innerText = "Check change hero: get data first times.";
+		var obj = {};
+		obj.time = CurrentSec();
+		obj.code = hero_code;
+		localStorage.setItem("hero_" + spieler_uid,JSON.stringify(obj));
+	}	
 }
 
 function spieler_main()
