@@ -31,7 +31,7 @@ function spieler_addraidlist()
 		
 		var e_td = document.createElement("td");
 		e_td.appendChild(e_button);
-		e_coords[i].insertAdjacentElement("afterend",e_td);
+		e_coords[i].parentElement.appendChild(e_td);
 	}
 }
 function hero_code()
