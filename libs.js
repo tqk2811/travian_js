@@ -55,14 +55,17 @@ function getParameterByName(name, url) {
 }
 function getuid()
 {
-	var heroImage = document.getElementsByClassName("heroImage");
-	if(heroImage.length > 0) 
-	{
-		var url_imagehero = heroImage[0].getAttribute("src");
-		var uid = getParameterByName("uid",url_imagehero);
-		if(uid !== null) return Number(uid);
-	}
-	return null;
+	//var heroImage = document.getElementsByClassName("heroImage");
+	//if(heroImage.length > 0) 
+	//{
+		//var url_imagehero = heroImage[0].getAttribute("src");
+		//var uid = getParameterByName("uid",url_imagehero);
+		//if(uid !== null) return Number(uid);
+	//}
+	//return null;
+	var sidebarBoxHero = document.getElementById("sidebarBoxHero");
+	var playerName = sidebarBoxHero.getElementsByClassName("playerName")[0];
+	return playerName.children[1].innerText;
 }
 String.prototype.format = function() {
   return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
