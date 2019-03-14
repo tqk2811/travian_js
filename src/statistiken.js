@@ -16,15 +16,15 @@ function statistiken()
 function statistiken_hero(table)
 {
 	var exp_hero = {};
-	var hero_exp_json = localStorage.getItem("exp_hero");
-	if(hero_exp_json !== null) exp_hero = JSON.parse(hero_exp_json);
+	var exp_hero_json = localStorage.getItem("exp_hero");
+	if(exp_hero_json !== null) exp_hero = JSON.parse(exp_hero_json);
 	
 	var current_time = CurrentSec();
 	var players_name = table.getElementsByClassName("pla");
 	var exps = table.getElementsByClassName("xp");
 	for(var i = 0; i < players_name.length; i++)
 	{
-		var curr = exp_hero[players_name.innerText];
+		var curr = exp_hero[players_name[i].innerText];
 		var exp = Number(exps[i].innerText);
 		if(curr !== undefined && exp > curr.exp)
 		{
@@ -38,7 +38,7 @@ function statistiken_hero(table)
 			var obj = {};
 			obj.exp = Number(exps[i].innerText);
 			obj.time = current_time;
-			exp_hero[players_name.innerText] = obj;
+			exp_hero[players_name[i].innerText] = obj;
 		}
 	}
 	localStorage.setItem("exp_hero",JSON.stringify(exp_hero));
