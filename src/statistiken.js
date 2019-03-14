@@ -26,7 +26,7 @@ function statistiken_hero(table)
 	{
 		var curr = hero[players_name[i].innerText];
 		var exp = Number(exps[i].innerText);
-		if(curr !== undefined && curr.exp !== undefined && cur.exp.exp > curr.exp)
+		if(curr !== undefined && curr.exp !== undefined && curr.exp.exp > curr.exp)
 		{
 			exps[i].innerText += "(+" + (exp - curr.exp.exp).toString() + ")";
 			exps[i].title = GetTimeTextFromSecondLeft(current_time - curr.time) + " ago";			
