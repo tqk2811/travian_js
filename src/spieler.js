@@ -36,6 +36,11 @@ function spieler_addraidlist()
 }
 function hero_code()
 {
+	var hero = {};
+	var hero_json = localStorage.getItem("hero");
+	if(hero_json !== null) hero = JSON.parse(hero_json);
+	
+	
 	var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
 	var hero_code = getParameterByName("code",hero_img_e.getAttribute("src"));
 	
@@ -48,30 +53,31 @@ function hero_code()
 	var spieler_uid = null;//getParameterByName("uid",window.location.href);
 	if(pos == -1 ) spieler_uid = window.Current.Uid;//current account	
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
-	var ls_hero_string = localStorage.getItem("hero_" + spieler_uid);
-	if(ls_hero_string !== null)
+	
+	var player_ = hero[spieler_uid];
+	if(player_ !== undefined && player_.code !== undefined)
 	{
-		var ls_hero_obj = JSON.parse(ls_hero_string);
-		if(hero_code != ls_hero_obj.code)
+		if(hero_code != player_.code.code)
 		{
-			ls_hero_obj.code = hero_code;
-			ls_hero_obj.time = CurrentSec();
+			player_.code.code = hero_code;
+			player_.code.time = CurrentSec();
 			e_label.innerText = "Check change hero: 0 sec ago.";
 		}
 		else
 		{
-			e_label.innerText = "Check change hero: " + GetTimeTextFromSecondLeft(CurrentSec() - ls_hero_obj.time) + " ago.";
+			e_label.innerText = "Check change hero: " + GetTimeTextFromSecondLeft(CurrentSec() - player_.code.time) + " ago.";
 		}
 	}
 	else
-	{
+	{		
 		e_label.innerText = "Check change hero: get data first times.";
-		var obj = {};
-		obj.time = CurrentSec();
-		obj.code = hero_code;
-		localStorage.setItem("hero_" + spieler_uid,JSON.stringify(obj));
+		if(player_ === undefined) hero[spieler_uid] = {};
+		hero[spieler_uid].code = {};
+		hero[spieler_uid].code.time = CurrentSec();
+		hero[spieler_uid].code.code = hero_code;
 	}
-	
+	localStorage.setItem("hero",JSON.stringify(hero));
+	//---------------------------------------------------
 	var details = document.getElementById("details");
 	var table_body = details.getElementsByTagName("tbody")[0];
 	

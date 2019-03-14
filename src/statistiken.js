@@ -15,31 +15,31 @@ function statistiken()
 
 function statistiken_hero(table)
 {
-	var exp_hero = {};
-	var exp_hero_json = localStorage.getItem("exp_hero");
-	if(exp_hero_json !== null) exp_hero = JSON.parse(exp_hero_json);
+	var hero = {};
+	var hero_json = localStorage.getItem("hero");
+	if(hero_json !== null) hero = JSON.parse(hero_json);
 	
 	var current_time = CurrentSec();
 	var players_name = table.getElementsByClassName("pla");
 	var exps = table.getElementsByClassName("xp");
 	for(var i = 0; i < players_name.length; i++)
 	{
-		var curr = exp_hero[players_name[i].innerText];
+		var curr = hero[players_name[i].innerText];
 		var exp = Number(exps[i].innerText);
-		if(curr !== undefined && exp > curr.exp)
+		if(curr !== undefined && curr.exp !== undefined && cur.exp.exp > curr.exp)
 		{
-			exps[i].innerText += "(+" + (exp - curr.exp).toString() + ")";
+			exps[i].innerText += "(+" + (exp - curr.exp.exp).toString() + ")";
 			exps[i].title = GetTimeTextFromSecondLeft(current_time - curr.time) + " ago";			
-			curr.exp = exp;
-			curr.time = current_time;
+			curr.exp.exp = exp;
+			curr.exp.time = current_time;
 		}
 		else
 		{
-			var obj = {};
-			obj.exp = Number(exps[i].innerText);
-			obj.time = current_time;
-			exp_hero[players_name[i].innerText] = obj;
+			if(curr === undefined) hero[players_name[i].innerText] = {};
+			hero[players_name[i].innerText].exp = {};
+			hero[players_name[i].innerText].exp.exp = Number(exps[i].innerText);
+			hero[players_name[i].innerText].exp.time = current_time;
 		}
 	}
-	localStorage.setItem("exp_hero",JSON.stringify(exp_hero));
+	localStorage.setItem("hero",JSON.stringify(hero));
 }
