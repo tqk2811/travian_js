@@ -29,7 +29,7 @@ function statistiken_hero(table)
 		if(curr !== undefined && curr.exp !== undefined && exp > curr.exp.exp )
 		{
 			exps[i].innerText += "(+" + (exp - curr.exp.exp).toString() + ")";
-			exps[i].title = GetTimeTextFromSecondLeft(current_time - curr.time) + " ago";			
+			exps[i].title = GetTimeTextFromSecondLeft(current_time - curr.exp.time) + " ago";			
 			curr.exp.exp = exp;
 			curr.exp.time = current_time;
 		}
