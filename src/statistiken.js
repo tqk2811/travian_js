@@ -41,4 +41,5 @@ function statistiken_hero(table)
 			hero_exp[players_name.innerText] = obj;
 		}
 	}
+	localStorage.setItem("hero_exp",JSON.stringify(hero_exp));
 }
