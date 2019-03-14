@@ -241,6 +241,7 @@ AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js"));//
 AddUriScript(httpGetGithubCdnUri("src/allianz.js"));//
 AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//
 AddUriScript(httpGetGithubCdnUri("src/global.js"));//
+AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
 window.err_label = document.createElement("label");
