@@ -80,7 +80,7 @@ function hero_code()
 	var td = document.createElement("td");
 	var a_ = document.createElement("a");
 	a_.setAttribute("href","/statistiken.php?id=3&name=" + spieler_uid);
-	a_.innerText("Find hero");
+	a_.innerText = "Find hero";
 	th.appendChild(a_);
 	tr.appendChild(th);
 	tr.appendChild(td);
