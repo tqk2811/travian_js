@@ -70,7 +70,21 @@ function hero_code()
 		obj.time = CurrentSec();
 		obj.code = hero_code;
 		localStorage.setItem("hero_" + spieler_uid,JSON.stringify(obj));
-	}	
+	}
+	
+	var details = document.getElementById("details");
+	var table_body = details.getElementsByTagName("tbody")[0];
+	
+	var tr = document.createElement("tr");
+	var th = document.createElement("th");
+	var td = document.createElement("td");
+	var a_ = document.createElement("a");
+	a_.setAttribute("href","/statistiken.php?id=3&name=" + spieler_uid);
+	a_.innerText("Find hero");
+	th.appendChild(a_);
+	tr.appendChild(th);
+	tr.appendChild(td);
+	table_body.insertAdjacentElement("afterbegin",tr);
 }
 
 function spieler_main()
