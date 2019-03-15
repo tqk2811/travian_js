@@ -67,7 +67,6 @@ function troop_train_show()
 	main_div.appendChild(div_barack);
 	main_div.appendChild(div_stable);
 	main_div.appendChild(div_workshop);
-	main_div.appendChild(err_label);
 	stockBar.insertAdjacentElement("beforeend",main_div);
 }
 function troop_train_add_child(e,name,target_gid)
