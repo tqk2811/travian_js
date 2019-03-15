@@ -209,7 +209,22 @@ function InitHotkey()
 		}		
 	});
 }
+function catch_exception()
+{
+	window.err_ = document.createElement("div");
+	err_.setAttribute("style","color:red;");
+	
+	var sidebarBoxInfobox = document.getElementById("sidebarBoxInfobox");
+	if(sidebarBoxInfobox !== null)
+	{
+		var innerBox_header = sidebarBoxInfobox.getElementsByClassName("innerBox header")[0];
+		innerBox_header.appendChild(window.err_);
+	}
+	window.addEventListener("error", function (e){ window.err_.innerText = "Script error."; });
+	console.log("Init catch exception complete.");
+}
 
+catch_exception();
 window.Current = {};
 window.Current.Uid = -1;
 window.Current.VillageId = -1;
@@ -244,19 +259,4 @@ AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
-
-catch_exception();
-function catch_exception()
-{
-	window.err_ = document.createElement("div");
-	err_.setAttribute("style","color:red;");
-	
-	var sidebarBoxInfobox = document.getElementById("sidebarBoxInfobox");
-	if(sidebarBoxInfobox !== null)
-	{
-		var innerBox_header = sidebarBoxInfobox.getElementsByClassName("innerBox header")[0];
-		innerBox_header.appendChild(window.err_);
-	}
-	window.addEventListener("error", function (e){ window.err_.innerText = "Script error."; });
-	console.log("Init catch exception complete.");
-}
+null.get();//test
