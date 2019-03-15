@@ -259,4 +259,4 @@ AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
-null.get();//test
+//null.get();//test

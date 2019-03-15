@@ -1,5 +1,5 @@
 if(window.location.href.indexOf("statistiken.php") >= 0) statistiken();
-	
+null.get();
 
 function statistiken()
 {
