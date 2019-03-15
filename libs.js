@@ -244,13 +244,19 @@ AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
-window.err_label = document.createElement("label");
-err_label.setAttribute("style","color:red;");
-//window.addEventListener("error", function (e){
-	//err_label.innerText = "Script error.";
-	//return false;
-//});	
-//console.log("Init catch exception complete.")
 
-
-//null.get();
+catch_exception();
+function catch_exception()
+{
+	window.err_ = document.createElement("div");
+	err_.setAttribute("style","color:red;");
+	
+	var sidebarBoxInfobox = document.getElementById("sidebarBoxInfobox");
+	if(sidebarBoxInfobox !== null)
+	{
+		var innerBox_header = sidebarBoxInfobox.getElementsByClassName("innerBox header")[0];
+		innerBox_header.appendChild(window.err_);
+	}
+	window.addEventListener("error", function (e){ window.err_.innerText = "Script error."; });
+	console.log("Init catch exception complete.");
+}
