@@ -11,11 +11,7 @@ function spieler_addraidlist()
 		e_option.innerText = list_raidlist[i][1];
 		e_sellect.appendChild(e_option);
 	}
-	spieler_villages.insertAdjacentElement("beforebegin",e_sellect);		
-	var e_th = document.createElement("th");
-	e_th.width = "20px";
-	e_th.innerText = "Add FarmList";
-	spieler_villages.getElementsByTagName("thead")[0].getElementsByTagName("tr")[0].insertAdjacentElement("beforeend",e_th);
+	spieler_villages.insertAdjacentElement("beforebegin",e_sellect);
 		
 	var e_coords = spieler_villages.getElementsByClassName("coords");
 	for(var i =0; i < e_coords.length; i++)
