@@ -545,7 +545,7 @@ function gid17_CreateTradeRoutes_click()
 	{
 		var obj = {};		
 		var arr_ = ["did_dest","r1","r2","r3","r4","repeat","hour_step","minute_step"];
-		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value));
+		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
 		
 		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
 		if(trade_route_mode_send.checked) obj["trade_route_mode"] = "send";
