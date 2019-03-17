@@ -565,6 +565,8 @@ function gid17_CreateTradeRoutes_load()
 	if(trade_route_str !== null)
 	{
 		var obj = JSON.parse(trade_route_str);
+		var tmp_hr = obj["hour"];
+		var tmp_min = obj["minute"];
 		
 		var time_start = obj["hour"] * 60 + obj["minute"];
 		var time_end = obj["hour_end"] * 60 + obj["minute_end"];
@@ -577,10 +579,11 @@ function gid17_CreateTradeRoutes_load()
 			{
 				obj["minute"] = time_start % 60;
 				obj["hour"] = (time_start - obj["minute"]) / 60;
-			}			
+				localStorage.setItem("trade_route",JSON.stringify(obj));
+			}
 			window.location.href=gid17_base_uri_traderoute.format(
 							obj["trade_route_destination"],obj["r1"],obj["r2"],obj["r3"],obj["r4"],
-							obj["trade_route_mode"],obj["hour"],obj["minute"],obj["repeat"]);
+							obj["trade_route_mode"],tmp_hr,tmp_min,obj["repeat"]);
 		}else localStorage.removeItem("trade_route");
 	}
 }
