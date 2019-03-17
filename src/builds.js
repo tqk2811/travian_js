@@ -541,7 +541,7 @@ function gid17_celebration_click(r,run_twice)
 }
 function gid17_CreateTradeRoutes_click()
 {
-	if(document.getElementById("tradeRouteError").innerText.length == 0 && window.confirm("Confirm Create TradeRoutes?"))
+	if(document.getElementById("tradeRouteError").innerText.trim().length == 0 && window.confirm("Confirm Create TradeRoutes?"))
 	{
 		var obj = {};		
 		var arr_ = ["did_dest","r1","r2","r3","r4","repeat","hour_step","minute_step"];
