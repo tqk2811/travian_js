@@ -310,7 +310,7 @@ function gid17()//market
 					timeSelector.insertAdjacentElement("afterend",div_timeend);
 					div_timeend.setAttribute("style","display: flex;");
 					
-					div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"step_hour\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"step_minute\"></div><button onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</button>"
+					div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"hour_step\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_step\"></div><div onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</div>"
 				}
 			}
 		}
@@ -544,7 +544,7 @@ function gid17_CreateTradeRoutes_click()
 	if(document.getElementById("tradeRouteError").innerText.trim().length == 0 && window.confirm("Confirm Create TradeRoutes?"))
 	{
 		var obj = {};		
-		var arr_ = ["did_dest","r1","r2","r3","r4","repeat","hour_step","minute_step"];
+		var arr_ = ["did_dest","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step"];
 		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
 		
 		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
@@ -552,20 +552,22 @@ function gid17_CreateTradeRoutes_click()
 		else obj["trade_route_mode"] = "deliver";
 		
 		obj["hour"] = Number(document.getElementsByName("hour")[0].value);
-		obj["minute"] = Number(document.getElementsByName("minute")[0].value);		
+		obj["minute"] = Number(document.getElementsByName("minute")[0].value);
 		
 		localStorage.setItem("trade_route",JSON.stringify(obj));
 		gid17_CreateTradeRoutes_load();
 	}
+	return false;
 }
 function gid17_CreateTradeRoutes_load()
 {
 	var trade_route_str = localStorage.getItem("trade_route");
-	if(trade_route_str !== null && trade_route_str !== undefined)
+	if(trade_route_str !== null)
 	{
-		tr = JSON.parse(trade_route_str);
+		var obj = JSON.parse(trade_route_str);
 		if(Number(tr[5]) !== -1)
 		{
+			
 			var current_userHour = Number(tr[5]);
 			var userHour = Number(tr[5]) + Number(tr[8]);
 			if(userHour > tr[6]) tr[5] = -1;

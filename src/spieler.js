@@ -24,14 +24,13 @@ function spieler_addraidlist()
 		var x_ = getParameterByName("x",uri_);
 		var y_ = getParameterByName("y",uri_);
 		if(x_ == null || y_ == null) continue;
-		var e_button = document.createElement("button");
-		e_button.innerText = "Add";
-		e_button.setAttribute("style","background-color:green;border:none;color:white;");
-		e_button.setAttribute("onclick","Travian.Game.RaidList.addSlotPopupWrapper(e_sellect.value.toString(), '"+x_+"', '"+y_+"'); return false;");
 		
-		var e_td = document.createElement("td");
-		e_td.appendChild(e_button);
-		e_coords[i].parentElement.appendChild(e_td);
+		var e_div = document.createElement("div");
+		e_div.innerText = "Add";
+		e_div.setAttribute("style","background-color:green;border:none;color:white;");
+		e_div.setAttribute("onclick","Travian.Game.RaidList.addSlotPopupWrapper(e_sellect.value.toString(), '"+x_+"', '"+y_+"'); return false;");
+		
+		e_coords[i].appendChild(e_div);
 	}
 }
 function hero_code()
