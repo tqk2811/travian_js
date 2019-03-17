@@ -565,16 +565,23 @@ function gid17_CreateTradeRoutes_load()
 	if(trade_route_str !== null)
 	{
 		var obj = JSON.parse(trade_route_str);
-		if(Number(tr[5]) !== -1)
+		
+		var time_start = obj["hour"] * 60 + obj["minute"];
+		var time_end = obj["hour_end"] * 60 + obj["minute_end"];
+		var time_step = obj["hour_step"] * 60 + obj["minute_step"];
+		if(time_start <= time_end)
 		{
-			
-			var current_userHour = Number(tr[5]);
-			var userHour = Number(tr[5]) + Number(tr[8]);
-			if(userHour > tr[6]) tr[5] = -1;
-			else tr[5] = userHour;
-			localStorage.setItem("trade_route",JSON.stringify(tr));
-			window.location.href=gid17_base_uri_traderoute.format(tr[0],tr[1],tr[2],tr[3],tr[4],current_userHour,tr[7],tr[8]);
-		}
+			time_start += time_step;
+			if(time_start > time_end) localStorage.removeItem("trade_route");
+			else
+			{
+				obj["minute"] = time_start % 60;
+				obj["hour"] = (time_start - obj["minute"]) / 60;
+			}			
+			window.location.href=gid17_base_uri_traderoute.format(
+							obj["did_dest"],obj["r1"],obj["r2"],obj["r3"],obj["r4"],
+							obj["trade_route_mode"],obj["hour"],obj["minute"],obj["repeat"]);
+		}else localStorage.removeItem("trade_route");
 	}
 }
 
@@ -653,7 +660,7 @@ function read_time_gid_under_progress(name)
 
 //function TroopResource_create(unit,name,res[])
 
-var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&userHour=%s&repeat=%s&a=1&t=0&trid=0&option=256&gid=17";
+var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&gid=17&a=1&t=0&trid=0&option=256";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
 //TroopsResource_load();
