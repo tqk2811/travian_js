@@ -544,7 +544,7 @@ function gid17_CreateTradeRoutes_click()
 	if(document.getElementById("tradeRouteError").innerText.trim().length == 0 && window.confirm("Confirm Create TradeRoutes?"))
 	{
 		var obj = {};		
-		var arr_ = ["did_dest","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step"];
+		var arr_ = ["trade_route_destination","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step"];
 		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
 		
 		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
@@ -579,7 +579,7 @@ function gid17_CreateTradeRoutes_load()
 				obj["hour"] = (time_start - obj["minute"]) / 60;
 			}			
 			window.location.href=gid17_base_uri_traderoute.format(
-							obj["did_dest"],obj["r1"],obj["r2"],obj["r3"],obj["r4"],
+							obj["trade_route_destination"],obj["r1"],obj["r2"],obj["r3"],obj["r4"],
 							obj["trade_route_mode"],obj["hour"],obj["minute"],obj["repeat"]);
 		}else localStorage.removeItem("trade_route");
 	}
