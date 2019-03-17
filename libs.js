@@ -257,6 +257,6 @@ AddUriScript(httpGetGithubCdnUri("src/allianz.js"));//
 AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//
 AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
-   AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
+//   AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 
 //null.get();//test
