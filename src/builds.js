@@ -304,56 +304,13 @@ function gid17()//market
 				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 				if(e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1 )
 				{
-					var e_trading_edit = document.getElementById("trading_edit");
-					var button_traderoute = document.createElement("a");
-					button_traderoute.innerText = "Create TradeRoutes";
-					button_traderoute.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
-					button_traderoute.setAttribute("onclick","gid17_CreateTradeRoutes_click()");
-					e_trading_edit.insertAdjacentElement("afterend",button_traderoute);
+					var timeSelector = document.getElementsByClassName("timeSelector")[0];
 					
-					var userHour = document.getElementById("userHour");
-					var userHour_parent = userHour.parentElement;
+					var div_timeend = document.createElement("div");
+					timeSelector.insertAdjacentElement("afterend",div_timeend);
+					div_timeend.setAttribute("style","display: flex;");
 					
-					var label_userhour = document.createElement("label");
-					label_userhour.innerText = " ----> Time end: ";
-					userHour_parent.appendChild(label_userhour);
-					
-					var userHour_clone = userHour.cloneNode();
-					userHour_clone.id = "userHour2"; 
-					for(var i = 0; i < 24; i++)
-					{
-						var option_userHour2 = document.createElement("option");
-						option_userHour2.value = i;
-						option_userHour2.innerText = i;
-						userHour_clone.appendChild(option_userHour2);
-					}
-					userHour_clone.value = 23;
-					userHour_parent.appendChild(userHour_clone);
-					
-					var timestep_label = document.createElement("label");
-					timestep_label.innerText = "    With Step:"
-					userHour_parent.appendChild(timestep_label);
-					
-					var TimeStep = document.createElement("input");
-					TimeStep.setAttribute("min",1);
-					TimeStep.setAttribute("max",12);
-					TimeStep.setAttribute("type","number");
-					TimeStep.setAttribute("value",1);
-					TimeStep.setAttribute("id","TimeStep");
-					TimeStep.setAttribute("maxlength",2);
-					TimeStep.setAttribute("style","padding:3px;margin:3px;");
-					userHour_parent.appendChild(TimeStep);
-					
-					
-					
-					userHour.onchange = function()
-						{
-							if(Number(userHour_clone.value) < Number(userHour.value)) userHour_clone.value = userHour.value;
-												};
-					userHour_clone.onchange = function()
-						{
-							if(Number(userHour_clone.value) < Number(userHour.value)) userHour.value = userHour_clone.value;
-						};
+					div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"step_hour\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"step_minute\"></div><button onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</button>"
 				}
 			}
 		}
@@ -584,12 +541,20 @@ function gid17_celebration_click(r,run_twice)
 }
 function gid17_CreateTradeRoutes_click()
 {
-	if(window.confirm("Confirm Create TradeRoutes?"))
+	if(document.getElementById("tradeRouteError").innerText.length == 0 && window.confirm("Confirm Create TradeRoutes?"))
 	{
-		var arr = [];
-		var arr_ = ["did_dest","r1","r2","r3","r4","userHour","userHour2","repeat","TimeStep"]
-		for(var i =0; i < arr_.length; i++) arr.push(document.getElementById(arr_[i]).value);
-		localStorage.setItem("trade_route",JSON.stringify(arr));
+		var obj = {};		
+		var arr_ = ["did_dest","r1","r2","r3","r4","repeat","hour_step","minute_step"];
+		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value));
+		
+		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
+		if(trade_route_mode_send.checked) obj["trade_route_mode"] = "send";
+		else obj["trade_route_mode"] = "deliver";
+		
+		obj["hour"] = Number(document.getElementsByName("hour")[0].value);
+		obj["minute"] = Number(document.getElementsByName("minute")[0].value);		
+		
+		localStorage.setItem("trade_route",JSON.stringify(obj));
 		gid17_CreateTradeRoutes_load();
 	}
 }
