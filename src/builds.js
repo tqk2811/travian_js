@@ -308,7 +308,7 @@ function gid17()//market
 					
 					var div_timeend = document.createElement("div");
 					timeSelector.insertAdjacentElement("afterend",div_timeend);
-					div_timeend.setAttribute("style","display: flex;");
+					div_timeend.setAttribute("style","display: flex;background: rgb(220, 247, 197)");
 					
 					div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"hour_step\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_step\"></div><div onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</div>"
 				}
