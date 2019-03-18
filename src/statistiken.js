@@ -1,7 +1,7 @@
-if(window.location.href.indexOf("statistiken.php") >= 0) statistiken();
+if(window.location.href.indexOf("statistiken.php") >= 0) statistiken_();
 
 
-function statistiken()
+function statistiken_()
 {
 	var table = document.getElementById("heroes");
 	if(table !== null) statistiken_hero(table);
