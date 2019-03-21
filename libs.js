@@ -162,11 +162,13 @@ function TimerCountingDownNoReload()
 }
 function InitHotkey()
 {
-	$(document).keypress(function(e)
+	$(document).keydown(function(e)
 	{
 		//if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
 		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE
-		console.log("Keycode:" + e.which);
+		console.log("e.which:" + e.which + " | e.keyCode " + e.keyCode);
+		var gid = getQueryVariable(window.location.href,"gid");
+		var filter = getQueryVariable(window.location.href,"filter");
 		switch(e.which)
 		{
 			case "`".charCodeAt(0):
@@ -205,8 +207,22 @@ function InitHotkey()
 					container[0].click();
 				}
 				return;
+			case 37:// left arrow
+				if(gid == "16" && filter !== null)
+				{
+					var nexts = window.Current.e_build.getElementsByClassName("previous");
+					if(nexts.length > 0) nexts[0].click();
+				}
+				return;
+			case 39:// right arrow
+				if(gid == "16" && filter !== null)
+				{
+					var nexts = window.Current.e_build.getElementsByClassName("next");
+					if(nexts.length > 0) nexts[0].click();
+				}
+				return;
 			default: return;
-		}		
+		}
 	});
 }
 function catch_exception()
