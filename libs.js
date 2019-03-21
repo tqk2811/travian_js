@@ -171,8 +171,7 @@ function InitHotkey()
 		var filter = getQueryVariable(window.location.href,"filter");
 		switch(e.which)
 		{
-			case "`".charCodeAt(0):
-			case "~".charCodeAt(0):
+			case 192:// ` ~
 				window.location.href = "/dorf3.php";
 				return;
 			case 9:// tab key
