@@ -187,6 +187,7 @@ function InitHotkey()
 						if(sub_container[i] == sub_active_container) 
 						{
 							sub_container[i+1].getElementsByTagName("a")[0].click();
+							console.log("click: " + sub_container[i+1].innerText);
 							return;
 						}
 					}//-> tabFavorWrapper
@@ -201,10 +202,12 @@ function InitHotkey()
 						if(container[i] == active_container) 
 						{
 							container[i+1].getElementsByTagName("a")[0].click();
+							console.log("click: " + container[i+1].innerText);
 							return;
 						}
 					}
 					container[0].getElementsByTagName("a")[0].click();
+					console.log("click: " + container[0].innerText);
 				}
 				return;
 			case 37:// left arrow
