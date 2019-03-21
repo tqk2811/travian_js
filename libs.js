@@ -180,8 +180,8 @@ function InitHotkey()
 				var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
 				if(tabFavorSubWrapper.length == 1)
 				{
-					var sub_container = tabFavorSubWrapper.getElementsByClassName("container");
-					var sub_active_container = tabFavorSubWrapper.getElementsByClassName("container active");
+					var sub_container = tabFavorSubWrapper[0].getElementsByClassName("container");
+					var sub_active_container = tabFavorSubWrapper[0].getElementsByClassName("container active");
 					for(var i = 0; i < sub_container.length - 1; i++)
 					{
 						if(sub_container[i] == sub_active_container) 
@@ -194,8 +194,8 @@ function InitHotkey()
 				
 				if(tabFavorWrapper.length == 1)
 				{
-					var container = tabFavorWrapper.getElementsByClassName("container");
-					var active_container = tabFavorWrapper.getElementsByClassName("container active");
+					var container = tabFavorWrapper[0].getElementsByClassName("container");
+					var active_container = tabFavorWrapper[0].getElementsByClassName("container active");
 					for(var i = 0; i < container.length - 1; i++)
 					{
 						if(container[i] == active_container) 
