@@ -103,6 +103,25 @@ function ReadDataBuilding()
 	SaveCurrentVillage();
 }
 
+var imgs_troop_move = [	["def1","/build.php?gid=16&tt=1&filter=1&subfilters=2,3"],//all def in
+						["def2","/build.php?gid=16&tt=1&filter=2&subfilters=5"],//def yellow out
+						["def3","/build.php?gid=16&tt=1&filter=1&subfilters=2,3"],//all def in
+						["att1","/build.php?gid=16&tt=1&filter=1&subfilters=1"],//att red in
+						["att2","/build.php?gid=16&tt=1&filter=2&subfilters=4"],//att yellow out
+						["att3","/build.php?gid=16&tt=1&filter=1&subfilters=1"]//att violet in (Oasis)
+					];
+function img_to_gid16()
+{
+	for(var i = 0; i < imgs_troop_move.length; i++)
+	{
+		var img_class = document.getElementsByClassName(imgs_troop_move[i][0]);
+		for(var j = 0; j < img_class.length;j++)
+			if(img_class[j].parentElement.tagName == "A")
+				img_class[j].parentElement.href = imgs_troop_move[i][1];
+	}
+}
+
+
 function dorf_main()
 {
 	if(window.location.href.indexOf("dorf1.php")>=0 || window.location.href.indexOf("dorf2.php")>=0)
@@ -113,6 +132,7 @@ function dorf_main()
 	{
 		dorf3_icon_count();
 	}
+	img_to_gid16();
 }
 
 dorf_main();
