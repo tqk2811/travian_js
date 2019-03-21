@@ -175,6 +175,7 @@ function InitHotkey()
 				window.location.href = "/dorf3.php";
 				return;
 			case 9:// tab key
+				if(window.location.href.indexOf("statistiken.php") == -1) return;
 				var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
 				var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
 				if(tabFavorSubWrapper.length == 1)
