@@ -184,7 +184,7 @@ function InitHotkey()
 					var sub_active_container = tabFavorSubWrapper[0].getElementsByClassName("container active");
 					for(var i = 0; i < sub_container.length - 1; i++)
 					{
-						if(sub_container[i] == sub_active_container) 
+						if(sub_container[i] == sub_active_container[0]) 
 						{
 							sub_container[i+1].getElementsByTagName("a")[0].click();
 							console.log("click: " + sub_container[i+1].innerText);
@@ -199,7 +199,7 @@ function InitHotkey()
 					var active_container = tabFavorWrapper[0].getElementsByClassName("container active");
 					for(var i = 0; i < container.length - 1; i++)
 					{
-						if(container[i] == active_container) 
+						if(container[i] == active_container[0]) 
 						{
 							container[i+1].getElementsByTagName("a")[0].click();
 							console.log("click: " + container[i+1].innerText);
