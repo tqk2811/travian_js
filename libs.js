@@ -177,7 +177,7 @@ function InitHotkey()
 				window.location.href = "/dorf3.php";
 				return;
 			case 9:// tab key
-				if(is_statistiken) return;
+				if(!is_statistiken) return;
 				var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
 				var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
 				if(tabFavorSubWrapper.length == 1)
