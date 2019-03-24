@@ -167,7 +167,6 @@ function InitHotkey()
 		//if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
 		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE
 		console.log("e.which:" + e.which + " | e.keyCode " + e.keyCode);
-		var gid = getQueryVariable(window.location.href,"gid");
 		var filter = getQueryVariable(window.location.href,"filter");
 		var is_berichte = window.location.href.indexOf("berichte.php") !== -1;
 		var is_statistiken = window.location.href.indexOf("statistiken.php") !== -1;
@@ -220,7 +219,7 @@ function InitHotkey()
 				{
 					var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 					if(reportQuickNavigations.length == 2) reportQuickNavigations[0].click();
-				}else if(gid == "16" && filter !== null)// RallyPoint
+				}else if(window.Current.Gid == 16 && filter !== null)// RallyPoint
 				{
 					var nexts = window.Current.e_build.getElementsByClassName("previous");
 					if(nexts.length > 0) nexts[0].click();
@@ -233,7 +232,7 @@ function InitHotkey()
 				{
 					var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 					if(reportQuickNavigations.length == 2) reportQuickNavigations[1].click();
-				}else if(gid == "16" && filter !== null)// RallyPoint
+				}else if(window.Current.Gid == 16 && filter !== null)// RallyPoint
 				{
 					var nexts = window.Current.e_build.getElementsByClassName("next");
 					if(nexts.length > 0) nexts[0].click();
