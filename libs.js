@@ -169,13 +169,16 @@ function InitHotkey()
 		console.log("e.which:" + e.which + " | e.keyCode " + e.keyCode);
 		var gid = getQueryVariable(window.location.href,"gid");
 		var filter = getQueryVariable(window.location.href,"filter");
+		var is_berichte = window.location.href.indexOf("berichte.php") == -1;
+		var is_statistiken = window.location.href.indexOf("statistiken.php") == -1;
+		
 		switch(e.which)
 		{
 			case 192:// ` ~
 				window.location.href = "/dorf3.php";
 				return;
 			case 9:// tab key
-				if(window.location.href.indexOf("statistiken.php") == -1) return;
+				if(is_statistiken) return;
 				var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
 				var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
 				if(tabFavorSubWrapper.length == 1)
@@ -210,15 +213,27 @@ function InitHotkey()
 					console.log("click: " + container[0].innerText);
 				}
 				return;
+			case 66://b
+				if(!is_berichte) return;
 			case 37:// left arrow
-				if(gid == "16" && filter !== null)
+				if(is_berichte) 
+				{
+					var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
+					if(reportQuickNavigations.length == 2) reportQuickNavigations[0].click();
+				}else if(gid == "16" && filter !== null)// RallyPoint
 				{
 					var nexts = window.Current.e_build.getElementsByClassName("previous");
 					if(nexts.length > 0) nexts[0].click();
 				}
 				return;
+			case 78://n
+				if(!is_berichte) return;
 			case 39:// right arrow
-				if(gid == "16" && filter !== null)
+				if(is_berichte)
+				{
+					var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
+					if(reportQuickNavigations.length == 2) reportQuickNavigations[1].click();
+				}else if(gid == "16" && filter !== null)// RallyPoint
 				{
 					var nexts = window.Current.e_build.getElementsByClassName("next");
 					if(nexts.length > 0) nexts[0].click();
