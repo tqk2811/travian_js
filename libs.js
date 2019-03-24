@@ -169,8 +169,8 @@ function InitHotkey()
 		console.log("e.which:" + e.which + " | e.keyCode " + e.keyCode);
 		var gid = getQueryVariable(window.location.href,"gid");
 		var filter = getQueryVariable(window.location.href,"filter");
-		var is_berichte = window.location.href.indexOf("berichte.php") == -1;
-		var is_statistiken = window.location.href.indexOf("statistiken.php") == -1;
+		var is_berichte = window.location.href.indexOf("berichte.php") !== -1;
+		var is_statistiken = window.location.href.indexOf("statistiken.php") !== -1;
 		
 		switch(e.which)
 		{
