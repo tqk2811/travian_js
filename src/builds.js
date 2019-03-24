@@ -268,14 +268,14 @@ function gid17()//market
 		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0)//manager
 		{
-			var contract = document.getElementById("contract");
-			if(contract !== null)
+			var trading_routes = document.getElementById("trading_routes");
+			if(trading_routes !== null)
 			{
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Routes";
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
-				contract.appendChild(button_clear);
+				trading_routes.insertAdjacentElement("beforebegin",button_clear);
 				
 				var arr_traderoute_desc = [];			
 				var trading_routes = document.getElementById("trading_routes");
@@ -298,20 +298,19 @@ function gid17()//market
 				window.gid17_select_clear = document.createElement("select");
 				gid17_select_clear.add(gid17_clear_select("All","-1"));
 				arr_traderoute_desc.forEach(function(child){ gid17_select_clear.add(gid17_clear_select(child[0],child[1])); });
-				contract.appendChild(gid17_select_clear);
+				trading_routes.insertAdjacentElement("beforebegin",gid17_select_clear);
+			}
 				
+			var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
+			if(e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1 )
+			{
+				var timeSelector = document.getElementsByClassName("timeSelector")[0];
 				
-				var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
-				if(e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1 )
-				{
-					var timeSelector = document.getElementsByClassName("timeSelector")[0];
-					
-					var div_timeend = document.createElement("div");
-					timeSelector.insertAdjacentElement("afterend",div_timeend);
-					div_timeend.setAttribute("style","display: flex;background: rgb(220, 247, 197)");
-					
-					div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"hour_step\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_step\"></div><div onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</div>"
-				}
+				var div_timeend = document.createElement("div");
+				timeSelector.insertAdjacentElement("afterend",div_timeend);
+				div_timeend.setAttribute("style","display: flex;background: rgb(220, 247, 197)");
+				
+				div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"hour_step\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_step\"></div><div onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</div>"
 			}
 		}
 		else if(tabItem.getAttribute("href").indexOf("t=5")>=0)//send res
