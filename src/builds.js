@@ -29,7 +29,7 @@ function build_gid()
 		}			
 	else for(var i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
 }
-window.e_merge = { isOn = false, e_text = null };
+window.e_merge = { isOn : false, e_text : null };
 function build_gid_TotalRes(e)
 {
 	var ress = e.getElementsByTagName("span");
