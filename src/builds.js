@@ -43,9 +43,9 @@ function build_gid_TotalRes(e)
 			if (window.e_merge.e_text == null) 
 			{
 				window.e_merge.e_text = document.createElement("span");
-				parent_ress.appendChild(total_element);
+				parent_ress.appendChild(window.e_merge.e_text);
 			}
-			total_element.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString();
+			window.e_merge.e_text.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString();
 		}else 
 		{
 			var total_element =  document.createElement("span");
