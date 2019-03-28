@@ -560,6 +560,11 @@ function gid17_CreateTradeRoutes_click()
 }
 function gid17_CreateTradeRoutes_load()
 {
+	if(window.Current.Gid != 17) 
+	{
+		localStorage.removeItem("trade_route");
+		return;
+	}
 	var trade_route_str = localStorage.getItem("trade_route");
 	if(trade_route_str !== null)
 	{
