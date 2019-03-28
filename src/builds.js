@@ -19,10 +19,15 @@ function Get_gid()
 }
 function build_gid()
 {
-	var e_showCosts = document.getElementsByClassName("showCosts");
-	for(var i =0; i < e_showCosts.length; i++) build_gid_TotalRes(e_showCosts[i]);
+	var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
+	if(	e_resourceWrappers.length == 1 && window.Current.Gid == 16 && 
+		getQueryVariable(window.location.href,"m") !== null && getQueryVariable(window.location.href,"tt") == "2")
+			build_gid_TotalRes(e_resourceWrappers[0],true);
+			
+	else for(var i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
 }
-function build_gid_TotalRes(e)
+window.e_merge = null;
+function build_gid_TotalRes(e, merge = false)
 {
 	var ress = e.getElementsByTagName("span");
 	if(ress !== null)
@@ -31,8 +36,14 @@ function build_gid_TotalRes(e)
 		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
 		var parent_ress = ress[0].parentNode.parentNode;
 		var total_element = document.createElement("span");
-		total_element.innerText = "Total: " + total_;
+		if(merge)
+		{
+			total_element.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString();
+			window.e_merge = e;
+			window.setInterval(function(){ build_gid_TotalRes(window.e_merge); },500);
+		}else total_element.innerText = "Total: " + total_;
 		parent_ress.appendChild(total_element);
+		
 	}
 	if(window.Current.Gid >= 19 && window.Current.Gid <= 21 && e.parentElement.getAttribute("class") == "details")//return
 	{

@@ -79,9 +79,9 @@ function FindActiveVillage(listVillages)
 	  if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
   return null; 
 }
-function getQueryVariable(q,variable) 
+function getQueryVariable(url,variable) 
 {
-    var q_ = q.split('?');
+    var q_ = url.split('?');
 	var query = q_[q_.length -1];// \abc.php?test=1 or test=2
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) 
