@@ -22,12 +22,15 @@ function build_gid()
 	var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
 	if(	e_resourceWrappers.length == 1 && window.Current.Gid == 16 && 
 		getQueryVariable(window.location.href,"m") !== null && getQueryVariable(window.location.href,"tt") == "2")
-			build_gid_TotalRes(e_resourceWrappers[0],true);
+		{
+			window.e_merge.isOn = true;
 			
+			window.setInterval(function(){ build_gid_TotalRes(e_resourceWrappers[0]); },500);
+		}			
 	else for(var i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
 }
-window.e_merge = null;
-function build_gid_TotalRes(e, merge = false)
+window.e_merge = { isOn = false, e_text = null };
+function build_gid_TotalRes(e)
 {
 	var ress = e.getElementsByTagName("span");
 	if(ress !== null)
@@ -35,15 +38,20 @@ function build_gid_TotalRes(e, merge = false)
 		var total_ = 0;
 		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
 		var parent_ress = ress[0].parentNode.parentNode;
-		var total_element = document.createElement("span");
-		if(merge)
+		if(window.e_merge.isOn)
 		{
+			if (window.e_merge.e_text == null) 
+			{
+				window.e_merge.e_text = document.createElement("span");
+				parent_ress.appendChild(total_element);
+			}
 			total_element.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString();
-			window.e_merge = e;
-			window.setInterval(function(){ build_gid_TotalRes(window.e_merge); },500);
-		}else total_element.innerText = "Total: " + total_;
-		parent_ress.appendChild(total_element);
-		
+		}else 
+		{
+			var total_element =  document.createElement("span");
+			total_element.innerText = "Total: " + total_;
+			parent_ress.appendChild(total_element);
+		}		
 	}
 	if(window.Current.Gid >= 19 && window.Current.Gid <= 21 && e.parentElement.getAttribute("class") == "details")//return
 	{
