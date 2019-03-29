@@ -19,17 +19,23 @@ function Get_gid()
 }
 function build_gid()
 {
-	var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
-	if(	e_resourceWrappers.length == 1 && window.Current.Gid == 16 && 
-		getQueryVariable(window.location.href,"m") !== null && getQueryVariable(window.location.href,"tt") == "2")
+	window.e_merge = { isOn : false, e_text : null };
+	if(window.Current.Gid == 16 && getQueryVariable(window.location.href,"m") !== null && getQueryVariable(window.location.href,"tt") == "2")
 		{
-			window.e_merge.isOn = true;
-			
-			window.setInterval(function(){ build_gid_TotalRes(e_resourceWrappers[0]); },500);
+			window.e_merge.isOn = true;			
+			window.setInterval(function(){ 
+						var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
+						if(e_resourceWrappers.length == 1) build_gid_TotalRes(e_resourceWrappers[0]);
+					},
+				500);
 		}			
-	else for(var i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
+	else 
+	{
+		var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
+		for(var i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
+	}
 }
-window.e_merge = { isOn : false, e_text : null };
+
 function build_gid_TotalRes(e)
 {
 	var ress = e.getElementsByTagName("span");
@@ -76,8 +82,6 @@ function build_gid_TotalRes(e)
 		}
 	}
 }
-
-///function TroopsResource_load(){var window.TroopsResource = [{unit =  },{},]}
 
 function gid15()//main building
 {
