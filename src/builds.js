@@ -50,18 +50,18 @@ function build_gid_TotalRes(e)
 			{
 				if (window.e_merge.e_text == null) 
 				{
-					window.e_merge.e_text = document.createElement("span");
+					window.e_merge.e_text = document.createElement("div");
 					window.e_merge.e_text.setAttribute("id","e_merge");
 				}
-				parent_ress.appendChild(window.e_merge.e_text);
+				e.insertAdjacentElement("afterend",window.e_merge.e_text);
 				window.e_merge.e_text.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString() + ")";		
 			}
 		}
 		else 
 		{
-			var total_element =  document.createElement("span");
+			var total_element =  document.createElement("div");
 			total_element.innerText = "Total: " + total_;
-			parent_ress.appendChild(total_element);
+			e.appendChild(total_element);
 		}		
 	}
 	if(window.Current.Gid >= 19 && window.Current.Gid <= 21 && e.parentElement.getAttribute("class") == "details")//return
