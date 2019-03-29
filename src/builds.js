@@ -44,15 +44,18 @@ function build_gid_TotalRes(e)
 		var total_ = 0;
 		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
 		var parent_ress = ress[0].parentNode.parentNode;
-		if(window.e_merge.isOn && document.getElementById("e_merge") == null)
+		if(window.e_merge.isOn)
 		{
-			if (window.e_merge.e_text == null) 
+			if(document.getElementById("e_merge") == null)
 			{
-				window.e_merge.e_text = document.createElement("span");
-				window.e_merge.e_text.setAttribute("id","e_merge");
+				if (window.e_merge.e_text == null) 
+				{
+					window.e_merge.e_text = document.createElement("span");
+					window.e_merge.e_text.setAttribute("id","e_merge");
+				}
+				parent_ress.appendChild(window.e_merge.e_text);
+				window.e_merge.e_text.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString() + ")";		
 			}
-			parent_ress.appendChild(window.e_merge.e_text);
-			window.e_merge.e_text.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString() + ")";		
 		}
 		else 
 		{
