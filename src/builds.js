@@ -603,6 +603,7 @@ function gid17_CreateTradeRoutes_load()
 		var time_start = obj["hour"] * 60 + obj["minute"];
 		var time_end = obj["hour_end"] * 60 + obj["minute_end"];
 		var time_step = obj["hour_step"] * 60 + obj["minute_step"];
+		if(time_step == 0){localStorage.removeItem("trade_route");return;}
 		if(time_start < time_end)
 		{
 			time_start += time_step;
