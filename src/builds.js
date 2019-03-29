@@ -46,8 +46,12 @@ function build_gid_TotalRes(e)
 		var parent_ress = ress[0].parentNode.parentNode;
 		if(window.e_merge.isOn)
 		{
-			if (window.e_merge.e_text == null) window.e_merge.e_text = document.createElement("span");
-			if (window.e_merge.e_text.parentElement == null) parent_ress.appendChild(window.e_merge.e_text);
+			if (window.e_merge.e_text == null) 
+			{
+				window.e_merge.e_text = document.createElement("span");
+				window.e_merge.e_text.setAttribute("id","e_merge");
+			}
+			if (document.getElementById("e_merge") == null) parent_ress.appendChild(window.e_merge.e_text);
 			window.e_merge.e_text.innerText = "Total: " + total_ + " (" + total_ + " % 40k res = " + (total_ % 40000).toString();
 		}else 
 		{
