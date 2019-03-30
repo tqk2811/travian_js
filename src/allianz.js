@@ -54,7 +54,7 @@ function ally_main()
 		{
 			ally_roa_attackcount();
 		}
-		
+		ally_regionalTop5();
 	}
 }
 ally_main();
