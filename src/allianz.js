@@ -18,8 +18,9 @@ function ally_roa_attackcount()
 	}
 }
 
-var color_region_control = "";
-
+var color_region_control = "#b7ffb7";
+var color_region_50percent = "#e2c6ff";
+var color_region_otherally = "#ffc6d5";
 function ally_regionalTop5()
 {
 	var regionalTop5 = document.getElementById("regionalTop5");
@@ -37,8 +38,15 @@ function ally_regionalTop5()
 		{
 			var td = document.createElement("td");
 			td.innerText = trs[i]._travianTooltip.text;//var title =   /^.+(?= )/
-			td.setAttribute("style","font-size:" + window.font_size);
+			td.setAttribute("style","font-size:" + window.font_size + ";");
 			trs[i].appendChild(td);
+			
+			var backcolor = color_region_otherally;			
+			if(trs[i]._travianTooltip.text.indexOf(curr_ally_tag) == 0) backcolor = color_region_control;
+			else if (trs[i]._travianTooltip.text.indexOf("50%") > 0) backcolor = color_region_50percent;
+				
+			var tds = trs[i].getElementsByTagName("td");
+			for(var j = 0; j < tds.length; j++) tds[j].style.background = backcolor;
 		}
 	}
 }
