@@ -18,9 +18,9 @@ function ally_roa_attackcount()
 	}
 }
 
-var color_region_control = "#b7ffb7";
-var color_region_50percent = "#e2c6ff";
-var color_region_otherally = "#ffc6d5";
+var color_region_control = "#e3f9e3";
+var color_region_50percent = "#f5e3f9";
+var color_region_otherally = "#f9e3e3";
 function ally_regionalTop5()
 {
 	var regionalTop5 = document.getElementById("regionalTop5");
