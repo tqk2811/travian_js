@@ -18,6 +18,31 @@ function ally_roa_attackcount()
 	}
 }
 
+var color_region_control = "";
+
+function ally_regionalTop5()
+{
+	var regionalTop5 = document.getElementById("regionalTop5");
+	if(regionalTop5 !== null)
+	{
+		var titleInHeaders = document.getElementsByClassName("titleInHeader");		
+		var curr_ally_tag = titleInHeaders[0].innerText.match(/(?<= - ).+$/);
+		
+		var trs = regionalTop5.getElementsByTagName("tr");
+		var th = document.createElement("th");
+		th.innerText = "Thông tin";
+		trs[0].appendChild(th);
+		
+		for(var i = 1; i< trs.length; i++)
+		{
+			var td = document.createElement("td");
+			td.innerText = trs[i]._travianTooltip.text;//var title =   /^.+(?= )/
+			td.setAttribute("style","font-size:" + window.font_size);
+			trs[i].appendChild(td);
+		}
+	}
+}
+
 function ally_main()
 {
 	if(window.location.href.indexOf("allianz.php")>=0)
@@ -29,6 +54,7 @@ function ally_main()
 		{
 			ally_roa_attackcount();
 		}
+		
 	}
 }
 ally_main();
