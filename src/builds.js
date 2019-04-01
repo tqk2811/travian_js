@@ -74,7 +74,7 @@ function build_gid_TotalRes(e)
 			var name_unit = e_imgs[0].getAttribute("alt");
 			if(class_unit_strings.length == 2)
 			{
-				var account_object = GetObject("account",window.Current.Uid);
+				var account_object = GetObject("account",window.Current.UserName);
 				if(account_object["troop"] == undefined) account_object["troop"] = {};
 				if(account_object["troop"][class_unit_strings[1]] !== undefined) return;
 				var e_value = e.getElementsByClassName("value");
@@ -82,7 +82,7 @@ function build_gid_TotalRes(e)
 				arr.push(name_unit);
 				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
 				account_object["troop"][class_unit_strings[1]] = arr;
-				SaveObject("account",window.Current.Uid,account_object);
+				SaveObject("account",window.Current.UserName,account_object);
 			}
 		}
 	}
@@ -114,7 +114,7 @@ function gid16()//rallypoint
 									Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
 									listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
 									])
-			localStorage.setItem(window.Current.Uid + "_list_raidlist",JSON.stringify(list_raidlist));//
+			localStorage.setItem(window.Current.UserName + "_list_raidlist",JSON.stringify(list_raidlist));//
 			
 			var e_bt_CheckAllGreenAttack = document.createElement("button");
 			e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
@@ -374,7 +374,7 @@ function gid17()//market
 				window.gid17_TroopResSelect = document.createElement("select");
 				gid17_TroopResSelect.setAttribute("style","width:150px");				
 				
-				var account_object = GetObject("account",window.Current.Uid);
+				var account_object = GetObject("account",window.Current.UserName);
 				if(account_object["troop"] != undefined)
 				{
 					var keys = Object.keys(account_object["troop"]);
@@ -448,7 +448,7 @@ function gid17()//market
 
 function gid17_TroopResSelect_onchange()
 {
-	var account_object = GetObject("account",window.Current.Uid);
+	var account_object = GetObject("account",window.Current.UserName);
 	if(gid17_TroopResSelect.value == "" ||account_object["troop"] == undefined) return;
 	window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
 	gid17_findmaxtroops();

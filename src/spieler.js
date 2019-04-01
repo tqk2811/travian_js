@@ -46,7 +46,7 @@ function hero_code()
 	var titleInHeader = document.getElementsByClassName("titleInHeader")[0].innerText;
 	var pos = titleInHeader.search(/(?<= - ).+$/g);
 	var spieler_uid = null;//getParameterByName("uid",window.location.href);
-	if(pos == -1 ) spieler_uid = window.Current.Uid;//current account	
+	if(pos == -1 ) spieler_uid = window.Current.UserName;//current account	
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	
 	var player_ = hero[spieler_uid];
@@ -97,7 +97,7 @@ function spieler_main()
 		window.spieler_details = document.getElementById("details");
 		if(spieler_villages !== null)
 		{
-			var get_list_raidlist = localStorage.getItem(window.Current.Uid + "_list_raidlist");
+			var get_list_raidlist = localStorage.getItem(window.Current.UserName + "_list_raidlist");
 			if(get_list_raidlist !== null) list_raidlist = JSON.parse(get_list_raidlist);
 			if(list_raidlist.length > 0) spieler_addraidlist();
 		}

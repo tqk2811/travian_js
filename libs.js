@@ -14,6 +14,8 @@ String.prototype.replaceAll = function(f,r)
 		else return str;
 	}
 }
+
+
 function CurrentSec()
 {
 	return Math.round(Date.now()/1000,0);
@@ -53,9 +55,9 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-function getuid()
+function GetUsername()
 {
-	//var heroImage = document.getElementsByClassName("heroImage");
+	//var heroImage = document.getElementsByClassName("heroImage");//get uid
 	//if(heroImage.length > 0) 
 	//{
 		//var url_imagehero = heroImage[0].getAttribute("src");
@@ -263,7 +265,8 @@ function catch_exception()
 
 catch_exception();
 window.Current = {};
-window.Current.Uid = -1;
+window.Current.UserName = -1;
+window.Current.UserName = "";
 window.Current.VillageId = -1;
 window.Current.Gid = -1;
 window.Current.tabActives = document.getElementsByClassName("container active");
@@ -276,13 +279,14 @@ if(window.Current.e_build !== null) {
 	var gid_str = window.Current.e_build.getAttribute("class").split(" ")[0];
 	window.Current.Gid = Number(gid_str.substring(3,gid_str.length));
 }
-window.Current.Uid = getuid();
+window.Current.UserName = GetUsername();
 FindCurrentVillageID();
 window.setInterval(TimerCountingDownNoReload,1000);
 window.Current.village_object = GetObject("village",window.Current.VillageId);
 
 InitHotkey();
-console.log("uid:" + window.Current.Uid + 
+console.log("uid:" + window.Current.UserName + 
+			"; UserName:" + window.Current.UserName +
 			"; gid:" + window.Current.Gid +
 			"; village_id:" + window.Current.VillageId);
 
@@ -297,4 +301,6 @@ AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
 
+var titles = document.getElementsByTagName("title");
+titles[0].innerText = window.Current.UserName + " " + titles[0].innerText
 //null.get();//test
