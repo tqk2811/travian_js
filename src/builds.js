@@ -650,8 +650,10 @@ function troop_train()//gid 19 20 29 30 21
 		var div_fastclick = document.createElement("div");
 		e_div.appendChild(div_fastclick);
 		
+		
 		var label_fastclick = document.createElement("label");
-		label_fastclick.innerText = "Fast click (train all):";
+		var fastclick_ischeck = localStorage.getItem("fastclick_train") == "true" ? "true" : "false";
+		label_fastclick.innerHTML = "<input type=\"checkbox\" checked=" + fastclick_ischeck +" id=\"fastclick\" onclick=\"fastclick_checkedchange(this)\">Fast click (train all):"
 		div_fastclick.appendChild(label_fastclick);
 		
 		window.traintroop_actions = trainUnits[0].getElementsByClassName("action");
@@ -667,12 +669,19 @@ function troop_train()//gid 19 20 29 30 21
 		}
 	}	
 }
+function fastclick_checkedchange(e)
+{
+	localStorage.setItem("fastclick_train",e.checked);
+}
 function fastclick_train_onclick(i)
 {
-	if(!confirm("Confirm train?")) return;
-	var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
-	e_a[e_a.length-1].click();
-	document.getElementById("s1").click();
+	var fastclick_ischeck = document.getElementById("fastclick");	
+	if(fastclick_ischeck.checked || confirm("Confirm train?"))
+	{
+		var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
+		e_a[e_a.length-1].click();
+		document.getElementById("s1").click();
+	}
 }
 
 function gid24()//Town Hall
