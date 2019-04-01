@@ -652,8 +652,8 @@ function troop_train()//gid 19 20 29 30 21
 		
 		
 		var label_fastclick = document.createElement("label");
-		var fastclick_ischeck = localStorage.getItem("fastclick_train") == "true" ? "true" : "false";
-		label_fastclick.innerHTML = "<input type=\"checkbox\" checked=" + fastclick_ischeck +" id=\"fastclick\" onclick=\"fastclick_checkedchange(this)\">Fast click (train all):"
+		var fastclick_ischeck = localStorage.getItem("fastclick_train") == "true" ? "checked" : "";
+		label_fastclick.innerHTML = "<input type=\"checkbox\" " + fastclick_ischeck +" id=\"fastclick\" onclick=\"fastclick_checkedchange(this)\">Fast click (train all):"
 		div_fastclick.appendChild(label_fastclick);
 		
 		window.traintroop_actions = trainUnits[0].getElementsByClassName("action");
