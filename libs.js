@@ -64,8 +64,11 @@ function getuid()
 	//}
 	//return null;
 	var sidebarBoxHero = document.getElementById("sidebarBoxHero");
-	var playerNames = sidebarBoxHero.getElementsByClassName("playerName");
-	if(playerNames.length >= 1)return playerNames[0].children[1].innerText;
+	if(sidebarBoxHero !== null)
+	{
+		var playerNames = sidebarBoxHero.getElementsByClassName("playerName");
+		if(playerNames.length >= 1)return playerNames[0].children[1].innerText;
+	}
 	return null;
 }
 String.prototype.format = function() {
