@@ -247,10 +247,10 @@ function catch_exception()
 	window.err_ = document.createElement("div");
 	err_.setAttribute("style","color:red;");
 	
-	var sidebarBoxInfobox = document.getElementById("sidebarBoxInfobox");
-	if(sidebarBoxInfobox !== null)
+	var sidebarBoxLinklist = document.getElementById("sidebarBoxLinklist");
+	if(sidebarBoxLinklist !== null)
 	{
-		var innerBox_header = sidebarBoxInfobox.getElementsByClassName("innerBox header")[0];
+		var innerBox_header = sidebarBoxLinklist.getElementsByClassName("innerBox header")[0];
 		innerBox_header.appendChild(window.err_);
 	}
 	window.addEventListener("error", function (e){ window.err_.innerText = "Script error."; });
