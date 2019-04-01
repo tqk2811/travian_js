@@ -64,8 +64,9 @@ function getuid()
 	//}
 	//return null;
 	var sidebarBoxHero = document.getElementById("sidebarBoxHero");
-	var playerName = sidebarBoxHero.getElementsByClassName("playerName")[0];
-	return playerName.children[1].innerText;
+	var playerNames = sidebarBoxHero.getElementsByClassName("playerName");
+	if(playerNames.length >= 1)return playerNames[0].children[1].innerText;
+	return null;
 }
 String.prototype.format = function() {
   return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
@@ -291,5 +292,6 @@ AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//
 AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
+AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
 
 //null.get();//test
