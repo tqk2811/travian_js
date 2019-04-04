@@ -119,6 +119,12 @@ function img_to_gid16()
 			if(img_class[j].parentElement.tagName == "A")
 				img_class[j].parentElement.href = imgs_troop_move[i][1];
 	}
+	var troops = document.getElementById("troops");
+	if(troops !== null)
+	{
+		var a_s = troops.getElementsByTagName("a");
+		for(var i = 0; i < a_s.length; i++) a_s[i].setAttribute("href","/build.php?gid=16&tt=1&filter=3");
+	}
 }
 
 
@@ -126,13 +132,14 @@ function dorf_main()
 {
 	if(window.location.href.indexOf("dorf1.php")>=0 || window.location.href.indexOf("dorf2.php")>=0)
 	{
+		img_to_gid16();
 		troop_train_show();
 		ReadDataBuilding();
 	}else if(window.location.href.indexOf("dorf3.php")>=0)
 	{
 		dorf3_icon_count();
 	}
-	img_to_gid16();
+	
 }
 
 dorf_main();
