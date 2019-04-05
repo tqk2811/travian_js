@@ -660,6 +660,7 @@ function troop_train()//gid 19 20 29 30 21
 		for(var i = 0; i< traintroop_actions.length; i++)
 		{
 			var unit = traintroop_actions[i].getElementsByClassName("unit")[0];
+			if(unit === undefined) continue;
 			var img_ = document.createElement("img");
 			img_.setAttribute("src","img/x.gif");
 			img_.setAttribute("style","margin-left:10px;margin-right:10px");
