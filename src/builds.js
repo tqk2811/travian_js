@@ -39,7 +39,7 @@ function build_gid()
 function build_gid_TotalRes(e)
 {
 	var ress = e.getElementsByTagName("span");
-	if(ress !== null)
+	if(ress.length >= 4)
 	{
 		var total_ = 0;
 		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
