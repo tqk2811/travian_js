@@ -303,4 +303,5 @@ AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
 
 var titles = document.getElementsByTagName("title");
 titles[0].innerText = window.Current.UserName + " " + titles[0].innerText
-//null.get();//test
+
+$(".errorMessage,.inlineIconList.resourceWrapper").css("margin-top","0px");
