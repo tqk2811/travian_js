@@ -61,7 +61,7 @@ function build_gid_TotalRes(e)
 		{
 			var total_element =  document.createElement("div");
 			total_element.innerText = "Total: " + total_;
-			e.insertAdjacentElement("afterend",total_element);
+			e.appendChild(total_element);//e.insertAdjacentElement("afterend",total_element);
 		}		
 	}
 	if(window.Current.Gid >= 19 && window.Current.Gid <= 21 && e.parentElement.getAttribute("class") == "details")//return
