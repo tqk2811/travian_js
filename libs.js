@@ -172,6 +172,7 @@ function InitHotkey()
 	{
 		//if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
 		//if(e.which==26 ? 0 : 1) return;//checkWebkitandIE
+		if(document.activeElement.tagName == "INPUT") return;
 		console.log("e.which:" + e.which + " | e.keyCode " + e.keyCode);
 		var filter = getQueryVariable(window.location.href,"filter");
 		var is_berichte = window.location.href.indexOf("berichte.php") !== -1;
