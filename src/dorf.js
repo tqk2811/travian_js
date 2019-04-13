@@ -127,6 +127,28 @@ function img_to_gid16()
 	}
 }
 
+function read_celebration_tab()
+{
+	var culture_points = document.getElementById("culture_points");
+	if(culture_points !== null)
+	{
+		var sec_now = CurrentSec();
+		var vil_fcs = culture_points.getElementsByClassName("vil fc");
+		var cels = culture_points.getElementsByClassName("cel");
+		for(var i = 0; i< vil_fcs.length;i++)
+		{
+			var village_id_ = getQueryVariable(vil_fcs[i].getElementsByTagName("a")[0].getAttribute("href"),"newdid");
+			var e_span = cels[i].getElementsByTagName("span")[0];
+			var e_span_class = e_span.getAttribute("class");
+			if(e_span_class == "none") continue;
+			
+			var village_object = GetObject("village",village_id_);
+			if(e_span_class == "dot") village_object["celebration_24"] = 0;
+			else village_object["celebration_24"] = sec_now + Number(e_span.getAttribute("value")); // timer
+			SaveObject("village",village_id_,village_object);
+		}
+	}
+}
 
 function dorf_main()
 {
@@ -138,6 +160,7 @@ function dorf_main()
 	}else if(window.location.href.indexOf("dorf3.php")>=0)
 	{
 		dorf3_icon_count();
+		read_celebration_tab();
 	}
 	
 }

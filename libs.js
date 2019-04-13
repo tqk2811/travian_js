@@ -1,12 +1,10 @@
 Element.prototype.remove = function(){this.parentElement.removeChild(this);}
-NodeList.prototype.remove = HTMLCollection.prototype.remove=function()
-{
+NodeList.prototype.remove = HTMLCollection.prototype.remove=function(){
     for(var i=this.length-1;i>= 0;i--) 
 		if(this[i] && this[i].parentElement) 
 			this[i].parentElement.removeChild(this[i]);
 }
-String.prototype.replaceAll = function(f,r)
-{
+String.prototype.replaceAll = function(f,r){
 	var str = this;
 	while(true)
 	{
@@ -14,22 +12,21 @@ String.prototype.replaceAll = function(f,r)
 		else return str;
 	}
 }
+String.prototype.format = function(){
+  return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
+};
 
-
-function CurrentSec()
-{
+function CurrentSec(){
 	return Math.round(Date.now()/1000,0);
 }
-function AddUriCss(uri)
-{
+function AddUriCss(uri){
     var s = document.createElement('link');
     s.setAttribute("href",uri + "?refresh_="+refresh_);
 	s.setAttribute("rel","stylesheet");
 	s.setAttribute("type","text/css");
     document.head.appendChild(s);
 }
-function MoveElementUp(e,times = 1)
-{
+function MoveElementUp(e,times = 1){
 	while(times >0) 
 	{
 		if(e.previousElementSibling) e.parentNode.insertBefore(e, e.previousElementSibling);
@@ -37,8 +34,7 @@ function MoveElementUp(e,times = 1)
 		times--;
 	}
 }
-function MoveElementDown(e,times = 1)
-{
+function MoveElementDown(e,times = 1){
 	while(times >0) 
 	{
 		if(e.nextElementSibling) e.parentNode.insertBefore(e.nextElementSibling, e);
@@ -46,7 +42,7 @@ function MoveElementDown(e,times = 1)
 		times--;
 	}
 }
-function getParameterByName(name, url) {
+function getParameterByName(name, url){
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -55,8 +51,7 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-function GetUsername()
-{
+function GetUsername(){
 	//var heroImage = document.getElementsByClassName("heroImage");//get uid
 	//if(heroImage.length > 0) 
 	//{
@@ -73,20 +68,15 @@ function GetUsername()
 	}
 	return null;
 }
-String.prototype.format = function() {
-  return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
-};
-function sleep(ms) {
+function sleep(ms){
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-function FindActiveVillage(listVillages)
-{
+function FindActiveVillage(listVillages){
   for(var i = 0; i < listVillages.length; i++) 
 	  if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
   return null; 
 }
-function getQueryVariable(url,variable) 
-{
+function getQueryVariable(url,variable){
     var q_ = url.split('?');
 	var query = q_[q_.length -1];// \abc.php?test=1 or test=2
     var vars = query.split('&');
@@ -97,8 +87,7 @@ function getQueryVariable(url,variable)
     }
   return null;
 }
-function GetTimeTextFromSecondLeft(num)
-{
+function GetTimeTextFromSecondLeft(num){
 	var sec_ =num % 60;
 	var temp_ = (num - sec_)/60;
 	var min_ = temp_ % 60;
@@ -108,8 +97,7 @@ function GetTimeTextFromSecondLeft(num)
 	if(hour_ > 0)text_ = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text_;
 	return text_;
 }
-function CreateSoundElement(url_sound)
-{
+function CreateSoundElement(url_sound){
     var v = document.createElement("video");    
     v.src = url_sound;
     v.volume = 1;
@@ -119,8 +107,7 @@ function CreateSoundElement(url_sound)
     document.body.appendChild(v);
     return v;
 }
-function FindCurrentVillageID()
-{
+function FindCurrentVillageID(){
 	window.Current.sidebarBoxVillagelist = document.getElementById("sidebarBoxVillagelist");
 	if(window.Current.sidebarBoxVillagelist !== null)
 	{
@@ -130,20 +117,20 @@ function FindCurrentVillageID()
 			window.Current.active_village.getElementsByTagName("a")[0].getAttribute("href")));
 	}
 }
-function GetObject(name,id)
-{
+function GetObject(name,id){
 	var json_text = localStorage.getItem(name+"_"+id);
 	var village_object = {};
 	if(json_text !== null) village_object = JSON.parse(json_text);
 	if(village_object == null) village_object = {};
 	return village_object;
 }
-function SaveObject(name,id,data)
-{localStorage.setItem(name+"_"+id,JSON.stringify(data)); }
-function SaveCurrentVillage()
-{SaveObject("village",window.Current.VillageId,window.Current.village_object);}
-function TimerCountingDownNoReload()
-{
+function SaveObject(name,id,data){
+	localStorage.setItem(name+"_"+id,JSON.stringify(data));
+}
+function SaveCurrentVillage(){
+	SaveObject("village",window.Current.VillageId,window.Current.village_object);
+}
+function TimerCountingDownNoReload(){
 	var ListTimer = document.getElementsByClassName("travian_js_timer");
 	for(var i = 0; i < ListTimer.length; i ++)
 	{
@@ -166,8 +153,7 @@ function TimerCountingDownNoReload()
 		}
 	}
 }
-function InitHotkey()
-{
+function InitHotkey(){
 	$(document).keydown(function(e)
 	{
 		//if (e.ctrlKey ? 1 : 0 || e.altKey ? 0 : 1) return;// if not alt or ctrl key press -> return
@@ -249,8 +235,7 @@ function InitHotkey()
 		}
 	});
 }
-function catch_exception()
-{
+function catch_exception(){
 	window.err_ = document.createElement("div");
 	err_.setAttribute("style","color:red;");
 	
@@ -276,7 +261,7 @@ window.Current.listVillage = null;
 window.Current.active_village = null;
 window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3"));
 
-if(window.Current.e_build !== null) {
+if(window.Current.e_build !== null){
 	var gid_str = window.Current.e_build.getAttribute("class").split(" ")[0];
 	window.Current.Gid = Number(gid_str.substring(3,gid_str.length));
 }
