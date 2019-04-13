@@ -231,8 +231,10 @@ if(window.Current.sidebarBoxVillagelist != null)
 		task_helper_select.appendChild(option_);
 	}
 }
-if(window.Current.active_village !== null) 
-	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+window.setTimeout(function(){ 
+								if(window.Current.active_village !== null) 
+									for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+							},window.Current.Timeout);
 
 
 

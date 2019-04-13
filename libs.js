@@ -260,6 +260,7 @@ window.Current.e_build = document.getElementById("build");
 window.Current.listVillage = null;
 window.Current.active_village = null;
 window.Current.ding_sound = CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3"));
+window.Current.Timeout = 500;//ms
 
 if(window.Current.e_build !== null){
 	var gid_str = window.Current.e_build.getAttribute("class").split(" ")[0];
