@@ -99,6 +99,8 @@ window.npc_helper = {
 		this.e_div.style = "position: relative;width: 150px; height: 150px;";
 		this.e_div.hidden = true;
 		document.body.appendChild(this.e_div);
+		
+		$( function() {$( "#draggable" ).draggable();} );	
 	},
 	
 	Trade : function(){
