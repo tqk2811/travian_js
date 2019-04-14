@@ -96,7 +96,7 @@ window.npc_helper = {
 	create_ediv : function(){
 		this.e_div = document.createElement("div");
 		this.e_div.id = "npc_helper_draggable";
-		this.e_div.style = "position: relative;width: 150px; height: 150px;";
+		this.e_div.style = "position: relative;width: 150px; height: 150px;z-index:10000";
 		this.e_div.hidden = true;
 		this.e_div.addEventListener('mousedown', this.mouseDown, false);
 		window.addEventListener('mouseup', this.mouseUp, false);
