@@ -98,8 +98,8 @@ window.npc_helper = {
 		this.e_div.id = "npc_helper_draggable";
 		this.e_div.style = "position: relative;width: 150px; height: 150px;";
 		this.e_div.hidden = true;
-		this.e_div.addEventListener('mousedown', mouseDown, false);
-		window.addEventListener('mouseup', mouseUp, false);
+		this.e_div.addEventListener('mousedown', this.mouseDown, false);
+		window.addEventListener('mouseup', this.mouseUp, false);
 		document.body.appendChild(this.e_div);		
 	},
 	mouseUp :function(){window.removeEventListener('mousemove', this.divMove, true);},
