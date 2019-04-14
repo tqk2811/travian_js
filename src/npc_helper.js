@@ -100,7 +100,7 @@ window.npc_helper = {
 		this.e_div.hidden = true;
 		document.body.appendChild(this.e_div);
 		
-		$( function() {$( "#" + this.e_div.id ).draggable();} );	
+		$(function(){$("#npc_helper_draggable").draggable();});
 	},
 	
 	Trade : function(){
