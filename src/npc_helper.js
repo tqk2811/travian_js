@@ -105,10 +105,9 @@ window.npc_helper = {
 	mouseUp :function(){window.removeEventListener('mousemove', this.divMove, true);},
 	mouseDown :function(e){window.addEventListener('mousemove', this.divMove, true);},
 	divMove :function(e){
-		var div = document.getElementById('dxy');
-		div.style.position = 'absolute';
-		div.style.top = e.clientY + 'px';
-		div.style.left = e.clientX + 'px';
+		this.e_div.style.position = 'absolute';
+		this.e_div.style.top = e.clientY + 'px';
+		this.e_div.style.left = e.clientX + 'px';
 	},​
 	
 	Trade : function(){
