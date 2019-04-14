@@ -108,7 +108,7 @@ window.npc_helper = {
 		this.e_div.style.position = 'absolute';
 		this.e_div.style.top = e.clientY + 'px';
 		this.e_div.style.left = e.clientX + 'px';
-	},​
+	},
 	
 	Trade : function(){
 		if(this.e_div == null) this.create_ediv();
