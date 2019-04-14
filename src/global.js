@@ -216,7 +216,14 @@ if(window.Current.sidebarBoxVillagelist != null)
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("style","margin-right: 40px;");
 	task_helper_select.onchange = task_helper_select_onchange;
-	window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",task_helper_select);
+	
+	var e_div = document.createElement("div");
+	var trade_img = document.createElement("img"); 
+	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
+	trade_img.setAttribute("onclick","npc_helper.Trade()");
+	e_div.appendChild(trade_img);
+	e_div.appendChild(task_helper_select);
+	window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
 	
 	window.default_task_helper_select = localStorage.getItem("default_task_helper_select");
 	if (default_task_helper_select == null) default_task_helper_select = 0;

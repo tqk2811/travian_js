@@ -288,6 +288,7 @@ AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
    AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
 AddUriScript(httpGetGithubCdnUri("src/region.js"));//
+AddUriScript(httpGetGithubCdnUri("src/npc_helper.js"));//
 
 var titles = document.getElementsByTagName("title");
 titles[0].innerText = window.Current.UserName + " " + titles[0].innerText
