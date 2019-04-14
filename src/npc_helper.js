@@ -72,9 +72,8 @@ window.npc_helper = {
 	//Egypt: u52-> u59
 	[[790,500,1360,520],[1120,820,1960,640],[1120,700,360,400],[2260,1420,2440,880],[2800,2340,5080,1240],[6070,2400,2920,640],[5980,6140,5480,760],[17500,25200,27600,25360]],
 	//Hung: u62->u69
-	[[],[],[],[],[],[],[],[]]
+	[[940,540,680,520],[1120,700,360,400],[1840,1580,1720,430],[2020,1500,2840,460],[2800,2340,5080,1000],[6460,1420,3080,580],[5800,5220,5160,520],[19100,14000,20560,16720]]
 	],
-	
 	
 	DataTroopsTrain: [//10 troops per tribe
 	//basic, , , , , ,Ram,Cata,Chief,Settler
@@ -92,7 +91,19 @@ window.npc_helper = {
 	[[130,80,40,40],[140,110,60,60],[170,150,20,40],[290,370,190,45],[320,350,330,50],[450,560,610,140],[1060,330,360,70],[950,1280,620,60],[37200,27600,25200,27600],[6100,4600,4800,5400]]
 	],
 	
+	e_div : null,
+	
+	create_ediv : function(){
+		this.e_div = document.createElement("div");
+		this.e_div.id = "npc_helper_draggable";
+		this.e_div.style = "position: relative;width: 150px; height: 150px;";
+		this.e_div.hidden = true;
+		document.body.appendChild(this.e_div);
+	},
+	
 	Trade : function(){
+		if(this.e_div == null) this.create_ediv();
+		this.e_div.hidden = !this.e_div.hidden;
 		return;
 	}
 }
