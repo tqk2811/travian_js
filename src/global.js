@@ -221,6 +221,7 @@ if(window.Current.sidebarBoxVillagelist != null)
 	var trade_img = document.createElement("img"); 
 	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
 	trade_img.setAttribute("onclick","npc_helper.Trade()");
+	trade_img.setAttribute("style","margin-right: 5px;")
 	e_div.appendChild(trade_img);
 	e_div.appendChild(task_helper_select);
 	window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
