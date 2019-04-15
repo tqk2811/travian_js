@@ -96,25 +96,25 @@ window.npc_helper = {
 	e_div : null,
 	
 	create_ediv : function(){
-		this.e_div = document.createElement("div");
-		this.e_div.id = "npc_helper_draggable";
-		this.e_div.style = "position: fixed;width: 150px; height: 150px;z-index:10000;background-color:black;top:200px;left:200px";
-		this.e_div.hidden = true;
-		this.e_div.addEventListener('mousedown', this.mouseDown, false);
-		window.addEventListener('mouseup', this.mouseUp, false);
-		document.body.appendChild(this.e_div);		
+		npc_helper.e_div = document.createElement("div");
+		npc_helper.e_div.id = "npc_helper_draggable";
+		npc_helper.e_div.style = "position: fixed;width: 150px; height: 150px;z-index:10000;background-color:black;top:200px;left:200px";
+		npc_helper.e_div.hidden = true;
+		npc_helper.e_div.addEventListener('mousedown', npc_helper.mouseDown, false);
+		window.addEventListener('mouseup', npc_helper.mouseUp, false);
+		document.body.appendChild(npc_helper.e_div);		
 	},
-	mouseUp :function(){window.removeEventListener('mousemove', this.divMove, true);},
-	mouseDown :function(e){window.addEventListener('mousemove', this.divMove, true);},
+	mouseUp :function(){window.removeEventListener('mousemove', npc_helper.divMove, true);},
+	mouseDown :function(e){window.addEventListener('mousemove', npc_helper.divMove, true);},
 	divMove :function(e){
-		this.e_div.style.position = 'absolute';
-		this.e_div.style.top = e.clientY + 'px';
-		this.e_div.style.left = e.clientX + 'px';
+		npc_helper.e_div.style.position = 'absolute';
+		npc_helper.e_div.style.top = e.clientY + 'px';
+		npc_helper.e_div.style.left = e.clientX + 'px';
 	},
 	
 	Trade : function(){
-		if(this.e_div == null) this.create_ediv();
-		this.e_div.hidden = !this.e_div.hidden;
+		if(npc_helper.e_div == null) npc_helper.create_ediv();
+		npc_helper.e_div.hidden = !npc_helper.e_div.hidden;
 		return;
 	}
 }
