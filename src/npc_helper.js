@@ -119,8 +119,8 @@ window.npc_helper = {
 		},
 	divMove :function(e){
 		npc_helper.e_div.style.position = 'absolute';
-		npc_helper.e_div.style.top = (e.clientY - currentPos.Mouse.clientY + currentPos.Div.clientY) + 'px';
-		npc_helper.e_div.style.left = (e.clientX - currentPos.Mouse.clientX + currentPos.Div.clientX) + 'px';
+		npc_helper.e_div.style.top = (e.clientY - npc_helper.currentPos.Mouse.clientY + npc_helper.currentPos.Div.clientY) + 'px';
+		npc_helper.e_div.style.left = (e.clientX - npc_helper.currentPos.Mouse.clientX + npc_helper.currentPos.Div.clientX) + 'px';
 	},
 	
 	Trade : function(){
