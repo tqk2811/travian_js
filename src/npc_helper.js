@@ -77,11 +77,11 @@ window.npc_helper = {
 	
 	DataTroopsTrain: [//10 troops per tribe
 	//basic, , , , , ,Ram,Cata,Chief,Settler
-	//roman class: u1 -> u10
+	//roman : u1 -> u10
 	[[120,100,150,30],[100,130,160,70],[150,160,210,80],[140,160,20,40],[550,440,320,100],[550,640,800,180],[900,360,500,70],[950,1350,600,90],[30750,27200,45000,37500],[4600,4200,5800,4400]],
-	//teuton class : u11 -> u20
+	//teuton : u11 -> u20
 	[[95,75,40,40],[145,70,85,40],[130,120,170,70],[160,100,50,50],[370,270,290,75],[450,515,480,80],[1000,300,350,70],[900,1200,600,60],[35500,26600,25000,27200],[5800,4400,4600,5200]],
-	//gaul class: u21 -> u30
+	//gaul : u21 -> u30
 	[[100,130,55,30],[140,150,185,60],[170,150,20,40],[350,450,230,60],[360,330,280,120],[500,620,675,170],[950,555,330,75],[960,1450,630,90],[30750,45400,31000,37500],[4400,5600,4200,3900]],
 	//animals: u31 -> u40
 	//Natars: u41 -> u50
@@ -91,12 +91,14 @@ window.npc_helper = {
 	[[130,80,40,40],[140,110,60,60],[170,150,20,40],[290,370,190,45],[320,350,330,50],[450,560,610,140],[1060,330,360,70],[950,1280,620,60],[37200,27600,25200,27600],[6100,4600,4800,5400]]
 	],
 	
+	Celebration : [[6400,6650,5940,1340],[29700,33250,32000,6700]],
+	
 	e_div : null,
 	
 	create_ediv : function(){
 		this.e_div = document.createElement("div");
 		this.e_div.id = "npc_helper_draggable";
-		this.e_div.style = "position: relative;width: 150px; height: 150px;z-index:10000";
+		this.e_div.style = "position: fixed;width: 150px; height: 150px;z-index:10000;background-color:black;top:200px;left:200px";
 		this.e_div.hidden = true;
 		this.e_div.addEventListener('mousedown', this.mouseDown, false);
 		window.addEventListener('mouseup', this.mouseUp, false);
