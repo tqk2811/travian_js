@@ -113,8 +113,8 @@ window.npc_helper = {
 	mouseDown :function(e){
 		npc_helper.currentPos.Mouse.clientX = e.clientX;
 		npc_helper.currentPos.Mouse.clientY = e.clientY;
-		npc_helper.currentPos.Div.clientX = npc_helper.e_div.style.left;
-		npc_helper.currentPos.Div.clientY = npc_helper.e_div.style.top;		
+		npc_helper.currentPos.Div.clientX = Number(npc_helper.e_div.style.left.toString().match(/\d+/));
+		npc_helper.currentPos.Div.clientY = Number(npc_helper.e_div.style.top.toString().match(/\d+/));
 		window.addEventListener('mousemove', npc_helper.divMove, true);
 		},
 	divMove :function(e){
