@@ -98,18 +98,25 @@ window.npc_helper = {
 	create_ediv : function(){
 		npc_helper.e_div = document.createElement("div");
 		npc_helper.e_div.id = "npc_helper_draggable";
-		npc_helper.e_div.style = "position: fixed;width: 150px; height: 150px;z-index:10000;background-color:black;top:200px;left:200px";
+		npc_helper.e_div.style = "position: absolute;width: 150px; height: 150px;z-index:10000;background-color:black;top:200px;left:200px";
 		npc_helper.e_div.hidden = true;
 		npc_helper.e_div.addEventListener('mousedown', npc_helper.mouseDown, false);
 		window.addEventListener('mouseup', npc_helper.mouseUp, false);
 		document.body.appendChild(npc_helper.e_div);		
 	},
+	currentPos = {Mouse :{},Div:{} },
 	mouseUp :function(){window.removeEventListener('mousemove', npc_helper.divMove, true);},
-	mouseDown :function(e){window.addEventListener('mousemove', npc_helper.divMove, true);},
+	mouseDown :function(e){
+		npc_helper.currentMousePos.Mouse.clientX = e.clientX;
+		npc_helper.currentMousePos.Mouse.clientY = e.clientY;
+		npc_helper.currentMousePos.Div.clientX = npc_helper.e_div.style.left;
+		npc_helper.currentMousePos.Div.clientY = npc_helper.e_div.style.top;
+		window.addEventListener('mousemove', npc_helper.divMove, true);
+		},
 	divMove :function(e){
 		npc_helper.e_div.style.position = 'absolute';
-		npc_helper.e_div.style.top = e.clientY + 'px';
-		npc_helper.e_div.style.left = e.clientX + 'px';
+		npc_helper.e_div.style.top = (e.clientY - currentPos.Mouse.clientY + currentPos.Div.clientY) + 'px';
+		npc_helper.e_div.style.left = (e.clientX - currentPos.Mouse.clientX + currentPos.Div.clientX) + 'px';
 	},
 	
 	Trade : function(){
