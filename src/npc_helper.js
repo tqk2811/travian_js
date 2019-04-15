@@ -104,13 +104,16 @@ window.npc_helper = {
 		window.addEventListener('mouseup', npc_helper.mouseUp, false);
 		document.body.appendChild(npc_helper.e_div);		
 	},
-	currentPos : {Mouse:{}, Div:{}},
+	currentPos : null,
 	mouseUp :function(){window.removeEventListener('mousemove', npc_helper.divMove, true);},
 	mouseDown :function(e){
 		npc_helper.currentMousePos.Mouse.clientX = e.clientX;
 		npc_helper.currentMousePos.Mouse.clientY = e.clientY;
 		npc_helper.currentMousePos.Div.clientX = npc_helper.e_div.style.left;
 		npc_helper.currentMousePos.Div.clientY = npc_helper.e_div.style.top;
+		npc_helper.currentPos = {};
+		npc_helper.currentPos.Mouse = {};
+		npc_helper.currentPos.Div = {};
 		window.addEventListener('mousemove', npc_helper.divMove, true);
 		},
 	divMove :function(e){
