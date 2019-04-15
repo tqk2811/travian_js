@@ -102,11 +102,9 @@ window.npc_helper = {
 		npc_helper.e_div.hidden = true;
 		npc_helper.e_div.addEventListener('mousedown', npc_helper.mouseDown, false);
 		window.addEventListener('mouseup', npc_helper.mouseUp, false);
-		npc_helper.currentPos.Mouse ={};
-		npc_helper.currentPos.Div ={};
 		document.body.appendChild(npc_helper.e_div);		
 	},
-	currentPos = { },
+	currentPos : {Mouse:{}, Div:{}},
 	mouseUp :function(){window.removeEventListener('mousemove', npc_helper.divMove, true);},
 	mouseDown :function(e){
 		npc_helper.currentMousePos.Mouse.clientX = e.clientX;
