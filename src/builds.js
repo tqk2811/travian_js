@@ -161,8 +161,10 @@ function gid16()//rallypoint
 		}
 		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
 		{
-			var e_class_catas = document.getElementsByClassName("cata");
-			if(e_class_catas.length == 1) gid16_cata_multiwave();
+			//var e_class_catas = document.getElementsByClassName("cata");
+			//if(e_class_catas.length == 1) gid16_attack_multiwave();
+			var rallyPointButtonsContainer = document.getElementById("rallyPointButtonsContainer");
+			if(rallyPointButtonsContainer !== null) gid16_attack_multiwave();
 		}
 	}
 }
@@ -198,9 +200,9 @@ function gid16_bt_CheckAllGreenAttack_onclick()
 	}
 }
 
-function gid16_cata_multiwave()
+function gid16_attack_multiwave()
 {
-	localStorage.setItem("cata_multiwave","0");
+	localStorage.setItem("attack_multiwave","0");
 	var e_main = document.createElement("div");
 	e_main.setAttribute("style","display: inline-block;");
 	window.Current.e_build.insertAdjacentElement("beforeend",e_main);
@@ -208,22 +210,22 @@ function gid16_cata_multiwave()
 	window.gid16_BT_StartCata = document.createElement("button");
 	gid16_BT_StartCata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 	gid16_BT_StartCata.innerText = "Start multi-wave (first wave)";
-	gid16_BT_StartCata.setAttribute("onclick","gid16_cata_multiwave_start()");
+	gid16_BT_StartCata.setAttribute("onclick","gid16_attack_multiwave_start()");
 	e_main.appendChild(gid16_BT_StartCata);
 
 	var e_p = document.createElement("p");
 	e_main.appendChild(e_p);
 
-	window.gid16_Input_CataTrigger = document.createElement("input");
-	gid16_Input_CataTrigger.id = "gid16_Input_CataTrigger";
-	gid16_Input_CataTrigger.type = "checkbox";
-	gid16_Input_CataTrigger.setAttribute("onclick","gid16_cata_multiwave_trigger()");
-	e_main.appendChild(gid16_Input_CataTrigger);
+	window.gid16_Input_AttackTrigger = document.createElement("input");
+	gid16_Input_AttackTrigger.id = "gid16_Input_AttackTrigger";
+	gid16_Input_AttackTrigger.type = "checkbox";
+	gid16_Input_AttackTrigger.setAttribute("onclick","gid16_attack_multiwave_trigger()");
+	e_main.appendChild(gid16_Input_AttackTrigger);
 
-	var label_gid16_Input_CataTrigger = document.createElement("label");
-	label_gid16_Input_CataTrigger.setAttribute("for","gid16_Input_CataTrigger");
-	label_gid16_Input_CataTrigger.innerText = "Wait first wave";
-	e_main.appendChild(label_gid16_Input_CataTrigger);
+	var label_gid16_Input_AttackTrigger = document.createElement("label");
+	label_gid16_Input_AttackTrigger.setAttribute("for","gid16_Input_AttackTrigger");
+	label_gid16_Input_AttackTrigger.innerText = "Wait first wave";
+	e_main.appendChild(label_gid16_Input_AttackTrigger);
 	
 	var e_p2 = document.createElement("p");
 	e_main.appendChild(e_p2);
@@ -246,24 +248,25 @@ function gid16_cata_multiwave()
 	gid16_Label_Delay.hidden = true;
 	e_main.appendChild(gid16_Label_Delay);
 	
+	//
 	var select_kata2s = document.getElementsByName("kata2");
 	if(select_kata2s.length == 1) select_kata2s[0].value = 99;
 }
-function gid16_cata_multiwave_start()
+function gid16_attack_multiwave_start()
 {
 	if(window.confirm("Start?"))
 	{
 		var bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
-		localStorage.setItem("cata_multiwave","1");		
+		localStorage.setItem("attack_multiwave","1");		
 	}
 }
-function gid16_cata_multiwave_trigger()
+function gid16_attack_multiwave_trigger()
 {
-	if(gid16_Input_CataTrigger.checked) 
+	if(gid16_Input_AttackTrigger.checked) 
 	{
-		localStorage.setItem("cata_multiwave","0");
-		window.gid16_Interval_id = window.setInterval(gid16_cata_multiwave_trigger_Interval,10);
+		localStorage.setItem("attack_multiwave","0");
+		window.gid16_Interval_id = window.setInterval(gid16_attack_multiwave_trigger_Interval,10);
 		gid16_BT_StartCata.hidden = true;
 		gid16_Label_Delay.hidden = false;
 		gid16_Input_delay.hidden = false;		
@@ -276,10 +279,10 @@ function gid16_cata_multiwave_trigger()
 		gid16_Input_delay.hidden = true;
 	}
 }
-function gid16_cata_multiwave_trigger_Interval()
+function gid16_attack_multiwave_trigger_Interval()
 {
-	var cata_multiwave_flag = localStorage.getItem("cata_multiwave");
-	if(cata_multiwave_flag !== null && cata_multiwave_flag == "1")
+	var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
+	if(attack_multiwave_flag !== null && attack_multiwave_flag == "1")
 	{		
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
