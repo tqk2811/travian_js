@@ -214,7 +214,7 @@ Show_TroopTrain_arr = [	[19,		29,			20,			30,			21			],
 if(window.Current.sidebarBoxVillagelist != null)
 {
 	window.task_helper_select = document.createElement("select");
-	task_helper_select.setAttribute("style","margin-right: 40px;");
+	//task_helper_select.setAttribute("style","margin-right: 40px;");
 	task_helper_select.onchange = task_helper_select_onchange;
 	
 	var e_div = document.createElement("div");
@@ -224,7 +224,8 @@ if(window.Current.sidebarBoxVillagelist != null)
 	trade_img.setAttribute("style","margin-right: 5px;")
 	e_div.appendChild(trade_img);
 	e_div.appendChild(task_helper_select);
-	window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
+	document.getElementById("sidebarAfterContent").insertAdjacentElement("beforebegin",e_div);
+	//window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
 	
 	window.default_task_helper_select = localStorage.getItem("default_task_helper_select");
 	if (default_task_helper_select == null) default_task_helper_select = 0;
