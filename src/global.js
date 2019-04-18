@@ -218,6 +218,7 @@ if(window.Current.sidebarBoxVillagelist != null)
 	task_helper_select.onchange = task_helper_select_onchange;
 	
 	var e_div = document.createElement("div");
+	e_div.setAttribute("align","right");
 	var trade_img = document.createElement("img"); 
 	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
 	trade_img.setAttribute("onclick","npc_helper.Trade()");
