@@ -1,4 +1,4 @@
-if(window.location.href.indexOf("region.php") >= 0) region_();
+//if(window.location.href.indexOf("region.php") >= 0) region_();
 
 
 function region_()
