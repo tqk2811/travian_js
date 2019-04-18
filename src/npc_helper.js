@@ -98,8 +98,9 @@ window.npc_helper = {
 	create_ediv : function(){
 		npc_helper.e_div = document.createElement("div");
 		npc_helper.e_div.id = "npc_helper_draggable";
-		npc_helper.e_div.style = "position: absolute;width: 150px; height: 150px;z-index:10000;background-color:black;top:200px;left:200px";
+		npc_helper.e_div.style = "position: absolute;width: 150px; height: 150px;z-index:10000;background-color:white;top:200px;left:200px";
 		npc_helper.e_div.hidden = true;
+		npc_helper.e_div.innerText = "in dev"
 		npc_helper.e_div.addEventListener('mousedown', npc_helper.mouseDown, false);
 		window.addEventListener('mouseup', npc_helper.mouseUp, false);
 		document.body.appendChild(npc_helper.e_div);
