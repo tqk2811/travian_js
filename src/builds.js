@@ -574,7 +574,7 @@ function gid17_CreateTradeRoutes_click()
 	if(document.getElementById("tradeRouteError").innerText.trim().length == 0 && window.confirm("Confirm Create TradeRoutes?"))
 	{
 		var obj = {};		
-		var arr_ = ["trade_route_destination","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step"];
+		var arr_ = ["trade_route_destination","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step","every"];
 		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
 		
 		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
@@ -619,7 +619,7 @@ function gid17_CreateTradeRoutes_load()
 			}
 			window.location.href=gid17_base_uri_traderoute.format(
 							obj["trade_route_destination"],obj["r1"],obj["r2"],obj["r3"],obj["r4"],
-							obj["trade_route_mode"],tmp_hr,tmp_min,obj["repeat"]);
+							obj["trade_route_mode"],tmp_hr,tmp_min,obj["repeat"],obj["every"]);
 		}else localStorage.removeItem("trade_route");
 	}
 }
@@ -708,8 +708,7 @@ function read_time_gid_under_progress(name)
 }
 
 //function TroopResource_create(unit,name,res[])
-
-var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&gid=17&a=1&t=0&trid=0&option=256";
+var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&every=%s&gid=17&a=1&t=0&trid=0&option=256";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
 //TroopsResource_load();
