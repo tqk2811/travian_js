@@ -236,7 +236,7 @@ function InitHotkey(){
 				{
 					var num = Number(window.task_helper_select.value);
 					num++;
-					if(num == 3) num = 1;
+					if(num == 4) num = 1;
 					window.task_helper_select.value = num;
 					window.task_helper_select.onchange();
 				}
