@@ -214,7 +214,7 @@ Show_TroopTrain_arr = [	[19,		29,			20,			30,			21			],
 if(window.Current.sidebarBoxVillagelist != null)
 {
 	window.task_helper_select = document.createElement("select");
-	//task_helper_select.setAttribute("style","margin-right: 40px;");
+	task_helper_select.setAttribute("title","Hot key: Q");
 	task_helper_select.onchange = task_helper_select_onchange;
 	
 	var e_div = document.createElement("div");

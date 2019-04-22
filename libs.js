@@ -231,6 +231,16 @@ function InitHotkey(){
 					if(nexts.length > 0) nexts[0].click();
 				}
 				return;
+			case 81://key q
+				if(window.task_helper_select != undefined)
+				{
+					var num = Number(window.task_helper_select.value);
+					num++;
+					if(num == 3) num = 1;
+					window.task_helper_select.value = num;
+					window.task_helper_select.onchange();
+				}
+				return;
 			default: return;
 		}
 	});
