@@ -206,6 +206,17 @@ function GetLiBuildTimerObject()
 	return obj;
 }
 
+function show_culture()
+{
+	var expansionSlotInfos = window.Current.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
+	var boxTitles = window.Current.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
+	if(expansionSlotInfos.length == 1 && boxTitles.length == 1)
+	{
+		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+.\/\d+$/);
+		boxTitles[0].innerText = tooltip_text;
+	}
+}
+
 var task_helper_color_list = ["Blue","BlueGray","Gray"];
 var task_helper_select_list= ["Off","Builds","Troops","Celebration"];
 Show_TroopTrain_arr = [	[19,		29,			20,			30,			21			],
@@ -216,6 +227,8 @@ if(window.Current.sidebarBoxVillagelist != null)
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
 	task_helper_select.onchange = task_helper_select_onchange;
+	
+	show_culture();
 	
 	var e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
