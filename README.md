@@ -1,7 +1,8 @@
 Travian version 4.4  
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/989b6cd2/demo.png)
 
-Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigjmcpcpkmhogomapikjbjdk) (or [old version](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija)) and add script below to extension in your travian and click Save.
+Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigjmcpcpkmhogomapikjbjdk) (or [old version](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija)) and add script below to extension in your travian and click Save.  
+Android? Install [kiwibrowser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) and install chrome extension  
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
 Note: For update code, please clear cache your browser or change value of "refresh_" to other string 
