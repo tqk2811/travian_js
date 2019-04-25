@@ -100,7 +100,16 @@ window.npc_helper = {
 		npc_helper.e_div.id = "npc_helper_draggable";
 		npc_helper.e_div.style = "position: absolute;width: 150px; height: 150px;z-index:10000;background-color:white;top:200px;left:200px";
 		npc_helper.e_div.hidden = true;
-		npc_helper.e_div.innerText = "in dev"
+		
+		var url_npc = httpGetGithubCdnUri("src/npc_helper.html");
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET",url_npc, false );
+		xmlHttp.onreadystatechange =function()
+			{
+				if (this.readyState == 4 && this.status == 200) npc_helper.e_div.innerHTML = xhttp.responseText;
+			}
+		xmlHttp.send();
+		
 		npc_helper.e_div.addEventListener('mousedown', npc_helper.mouseDown, false);
 		window.addEventListener('mouseup', npc_helper.mouseUp, false);
 		document.body.appendChild(npc_helper.e_div);
