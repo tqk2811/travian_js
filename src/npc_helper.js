@@ -106,7 +106,7 @@ window.npc_helper = {
 		xmlHttp.open("GET",url_npc, false );
 		xmlHttp.onreadystatechange =function()
 			{
-				if (this.readyState == 4 && this.status == 200) npc_helper.e_div.innerHTML = xhttp.responseText;
+				if (this.readyState == 4 && this.status == 200) npc_helper.e_div.innerHTML = xmlHttp.responseText;
 			}
 		xmlHttp.send();
 		
