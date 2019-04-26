@@ -68,6 +68,9 @@ function GetUsername(){
 	}
 	return null;
 }
+function sleep(ms){
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 function FindActiveVillage(listVillages){
   for(var i = 0; i < listVillages.length; i++) 
 	  if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
