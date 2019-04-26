@@ -294,10 +294,14 @@ function gid16_attack_multiwave_trigger_Interval()
 	var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
 	if(attack_multiwave_flag !== null && attack_multiwave_flag == "1")
 	{		
-		var bt_ok = document.getElementById("btn_ok");
+		window.bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		sleep(Number(gid16_Input_delay.value));
-		bt_ok.click();
+		window.setTimeout(
+			function(){window.bt_ok.click();},
+			Number(gid16_Input_delay.value)
+		);
+		//sleep(Number(gid16_Input_delay.value));
+		//bt_ok.click();
 	}
 }
 
