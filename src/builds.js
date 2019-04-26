@@ -81,15 +81,15 @@ function build_gid_TotalRes(e)
 				
 				var unit_id = Number(class_unit_strings[1].substring(1));
 				var unit_tribe = "tribe_error";
-				if 		(unit_id >=  1 && unit_id <= 10) unit_tribe = "Roman";
-				else if (unit_id >= 11 && unit_id <= 20) unit_tribe = "Teuton";
-				else if (unit_id >= 21 && unit_id <= 30) unit_tribe = "Gaul";
-				else if (unit_id >= 51 && unit_id <= 60) unit_tribe = "Egypt";
-				else if (unit_id >= 61 && unit_id <= 70) unit_tribe = "Huns";
+				//if (unit_id >= 1 && unit_id =< 10) unit_tribe = "Roman";
+				//else if (unit_id >= 11 && unit_id =< 20) unit_tribe = "Teuton";
+				//else if (unit_id >= 21 && unit_id <= 30) unit_tribe = "Gaul";
+				//else if (unit_id >= 51 && unit_id <= 60) unit_tribe = "Egypt";
+				//else if (unit_id >= 61 && unit_id <= 70) unit_tribe = "Huns";
 				
 				var e_value = e.getElementsByClassName("value");
 				var arr = [];
-				arr.push(name_unit + " (" + unit_tribe + ")");
+				arr.push(name_unit );//+ " (" + unit_tribe + ")"
 				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
 				account_object["troop"][class_unit_strings[1]] = arr;
 				SaveObject("account",window.Current.UserName,account_object);
