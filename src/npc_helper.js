@@ -13,7 +13,7 @@ window.npc_helper = {
 			[[1200,1480,870,1600],[2160,2665,1565,2880],[3890,4795,2820,5185],[7000,8630,5075,9330],[12595,15535,9135,16795]],
 			[[130,160,90,40],[165,205,115,50],[215,260,145,65],[275,335,190,85],[350,430,240,105],[445,550,310,135],[570,705,395,175],[730,900,505,225],[935,1155,650,290],[1200,1475,830,370],[1535,1890,1065,470],[1965,2420,1360,605],[2515,3095,1740,775],[3220,3960,2230,990],[4120,5070,2850,1270],[5275,6490,3650,1625],[6750,8310,4675,2075],[8640,10635,5980,2660],[11060,13610,7655,3405],[14155,17420,9800,4355]],
 			[[80,100,70,20],[100,130,90,25],[130,165,115,35],[170,210,145,40],[215,270,190,55],[275,345,240,70],[350,440,310,90],[450,565,395,115],[575,720,505,145],[740,920,645,185],[945,1180,825,235],[1210,1510,1060,300],[1545,1935,1355,385],[1980,2475,1735,495],[2535,3170,2220,635],[3245,4055,2840,810],[4155,5190,3635,1040],[5315,6645,4650,1330],[6805,8505,5955,1700],[8710,10890,7620,2180]],
-			//12 was remove
+			[],//12 Armoury was remove
 			[[180,250,500,160],[230,320,640,205],[295,410,820,260],[375,525,1050,335],[485,670,1340,430],[620,860,1720,550],[790,1100,2200,705],[1015,1405,2815,900],[1295,1800,3605,1155],[1660,2305,4610,1475],[2125,2950,5905,1890],[2720,3780,7555,2420],[3480,4835,9670,3095],[4455,6190,12380,3960],[5705,7925,15845,5070],[7300,10140,20280,6490],[9345,12980,25960,8310],[11965,16615,33230,10635],[15315,21270,42535,13610],[19600,27225,54445,17420]],
 			[[1750,2250,1530,240],[2240,2880,1960,305],[2865,3685,2505,395],[3670,4720,3210,505],[4700,6040,4105,645],[6015,7730,5255,825],[7695,9895,6730,1055],[9850,12665,8615,1350],[12610,16215,11025,1730],[16140,20755,14110,2215],[20660,26565,18065,2835],[26445,34000,23120,3625],[33850,43520,29595,4640],[43330,55705,37880,5940],[55460,71305,48490,7605],[70990,91270,62065,9735],[90865,116825,79440,12460],[116305,149540,101685,15950],[148875,191410,130160,20415],[190560,245005,166600,26135]],
 			[[70,40,60,20],[90,50,75,25],[115,65,100,35],[145,85,125,40],[190,105,160,55],[240,135,205,70],[310,175,265,90],[395,225,340,115],[505,290,430,145],[645,370,555,185],[825,470,710,235],[1060,605,905,300],[1355,775,1160,385],[1735,990,1485,495],[2220,1270,1900,635],[2840,1625,2435,810],[3635,2075,3115,1040],[4650,2660,3990,1330],[5955,3405,5105,1700],[7620,4355,6535,2180]],
@@ -55,7 +55,7 @@ window.npc_helper = {
 	,
 	BuildingName:[
 			"Woodcutter","Clay Pit","Iron Mine","Cropland","Sawmill","Brickyard","Iron Foundry","Grain Mill","Bakery",//1->9
-			"Warehouse","Smithy","Tournament Square","Main Building","Rally Point","Marketplace","Embassy",//10,11,12 was remove (Joining to 13),13-> 18
+			"Warehouse","Smithy","Armoury","Tournament Square","Main Building","Rally Point","Marketplace","Embassy",//10,11,12 was remove (Joining to 13),13-> 18
 			"Barracks","Stable","Workshop","Academy","Cranny","Town Hall","Residence","Palace","Treasury",//19 -> 27
 			"Trade Office","Great Barracks","Great Stable","City Wall","Earth Wall","Palisade","Stonemason's Lodge",//28 -> 34
 			"Brewery","Trapper","Hero's Mansion","Great Warehouse","Great Granary","Wonder of the World",//35 -> 40
@@ -101,14 +101,14 @@ window.npc_helper = {
 		npc_helper.e_div.style = "position: absolute;width: 150px; height: 150px;z-index:10000;background-color:white;top:200px;left:200px";
 		npc_helper.e_div.hidden = true;
 		
-		var url_npc = httpGetGithubCdnUri("src/npc_helper.html");
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.open("GET",url_npc, false );
-		xmlHttp.onreadystatechange =function()
-			{
-				if (this.readyState == 4 && this.status == 200) npc_helper.e_div.innerHTML = xmlHttp.responseText;
-			}
-		xmlHttp.send();
+		//var url_npc = httpGetGithubCdnUri("src/npc_helper.html");
+		//var xmlHttp = new XMLHttpRequest();
+		//xmlHttp.open("GET",url_npc, false );
+		//xmlHttp.onreadystatechange =function()
+			//{
+				//if (this.readyState == 4 && this.status == 200) npc_helper.e_div.innerHTML = xmlHttp.responseText;
+			//}
+		//xmlHttp.send();
 		
 		npc_helper.e_div.addEventListener('mousedown', npc_helper.mouseDown, false);
 		window.addEventListener('mouseup', npc_helper.mouseUp, false);
@@ -128,7 +128,7 @@ window.npc_helper = {
 		window.addEventListener('mousemove', npc_helper.divMove, true);
 		},
 	divMove :function(e){
-		npc_helper.e_div.style.position = 'absolute';
+		//npc_helper.e_div.style.position = 'absolute';
 		npc_helper.e_div.style.top = (e.clientY - npc_helper.currentPos.Mouse.clientY + npc_helper.currentPos.Div.clientY) + 'px';
 		npc_helper.e_div.style.left = (e.clientX - npc_helper.currentPos.Mouse.clientX + npc_helper.currentPos.Div.clientX) + 'px';
 	},

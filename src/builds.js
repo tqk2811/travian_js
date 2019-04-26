@@ -333,7 +333,7 @@ function gid17()//market
 			}
 				
 			var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
-			if(e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1 )
+			if(false && e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1)//disable create multi traderoute
 			{
 				var timeSelector = document.getElementsByClassName("timeSelector")[0];
 				
