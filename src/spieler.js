@@ -31,6 +31,7 @@ function spieler_addraidlist()
 }
 function func_hero_code()
 {
+	var default_checkchangehero_string = "Check change hero item: ";
 	var hero = {};
 	var hero_json = localStorage.getItem("hero");
 	if(hero_json !== null) hero = JSON.parse(hero_json);
@@ -56,16 +57,16 @@ function func_hero_code()
 		{
 			player_.code.code = hero_item_code;
 			player_.code.time = CurrentSec();
-			e_label.innerText = "Check change hero: 0 sec ago.";
+			e_label.innerText = default_checkchangehero_string + "0 sec ago.";
 		}
 		else
 		{
-			e_label.innerText = "Check change hero: " + GetTimeTextFromSecondLeft(CurrentSec() - player_.code.time) + " ago.";
+			e_label.innerText = default_checkchangehero_string + GetTimeTextFromSecondLeft(CurrentSec() - player_.code.time) + " ago.";
 		}
 	}
 	else
 	{		
-		e_label.innerText = "Check change hero: get data first times.";
+		e_label.innerText = default_checkchangehero_string + "get data first times.";
 		if(player_ === undefined) hero[spieler_uid] = {};
 		hero[spieler_uid].code = {};
 		hero[spieler_uid].code.time = CurrentSec();
