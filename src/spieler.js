@@ -105,7 +105,7 @@ function func_hero_code()
 	var td = document.createElement("td");
 	var a_ = document.createElement("a");
 	a_.setAttribute("href","/statistiken.php?id=3&name=" + spieler_uid);
-	a_.innerText = "Find hero";
+	a_.innerText = "Find hero exp";
 	if(detected_item) td.innerText = detected;
 	th.appendChild(a_);
 	tr.appendChild(th);
