@@ -29,7 +29,7 @@ function spieler_addraidlist()
 		e_coords[i].appendChild(e_div);
 	}
 }
-function hero_code()
+function func_hero_code()
 {
 	var hero = {};
 	var hero_json = localStorage.getItem("hero");
@@ -73,8 +73,32 @@ function hero_code()
 	}
 	localStorage.setItem("hero",JSON.stringify(hero));
 	//---------------------------------------------------
+	//hero code: 0-37: skin
+	
+	//find hero item (map and boot %)
+	var left_hand = hero_code.substring(56,58);
+	var boot = hero_code.substring(64,66);
+	var detected = "Detected: ";
+	var detected_item = false;
+	switch(left_hand)
+	{
+		case "3d": detected += "Map 30%; "; detected_item = true; break;
+		case "3e": detected += "Map 40%; "; detected_item = true; break;
+		case "3f": detected += "Map 50%; "; detected_item = true; break;
+		default: break;
+	}
+	switch(boot)
+	{
+		case "61": detected += "Boot 25%"; detected_item = true; break;
+		case "62": detected += "Boot 50%"; detected_item = true; break;
+		case "63": detected += "Boot 75%"; detected_item = true; break;
+		default: break;
+	}
+	
+	//---------------------------------------------------
 	var details = document.getElementById("details");
 	var table_body = details.getElementsByTagName("tbody")[0];
+	
 	
 	var tr = document.createElement("tr");
 	var th = document.createElement("th");
@@ -82,6 +106,7 @@ function hero_code()
 	var a_ = document.createElement("a");
 	a_.setAttribute("href","/statistiken.php?id=3&name=" + spieler_uid);
 	a_.innerText = "Find hero";
+	if(detected_item) td.innerText = detected;
 	th.appendChild(a_);
 	tr.appendChild(th);
 	tr.appendChild(td);
@@ -101,7 +126,7 @@ function spieler_main()
 			if(get_list_raidlist !== null) list_raidlist = JSON.parse(get_list_raidlist);
 			if(list_raidlist.length > 0) spieler_addraidlist();
 		}
-		if(spieler_content !== null && spieler_details !== null) hero_code();
+		if(spieler_content !== null && spieler_details !== null) func_hero_code();
 	}
 }
 spieler_main();
