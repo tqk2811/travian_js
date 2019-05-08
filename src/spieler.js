@@ -38,7 +38,7 @@ function func_hero_code()
 	
 	var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
 	var hero_code = getParameterByName("code",hero_img_e.getAttribute("src"));
-	
+	var hero_item_code = hero_code.substring(38);
 	var e_label = document.createElement("p");
 	e_label.setAttribute("style","float:right");
 	spieler_details.insertAdjacentElement("afterend",e_label);
@@ -52,9 +52,9 @@ function func_hero_code()
 	var player_ = hero[spieler_uid];
 	if(player_ !== undefined && player_.code !== undefined)
 	{
-		if(hero_code != player_.code.code)
+		if(hero_item_code != player_.code.code)
 		{
-			player_.code.code = hero_code;
+			player_.code.code = hero_item_code;
 			player_.code.time = CurrentSec();
 			e_label.innerText = "Check change hero: 0 sec ago.";
 		}
@@ -69,7 +69,7 @@ function func_hero_code()
 		if(player_ === undefined) hero[spieler_uid] = {};
 		hero[spieler_uid].code = {};
 		hero[spieler_uid].code.time = CurrentSec();
-		hero[spieler_uid].code.code = hero_code;
+		hero[spieler_uid].code.code = hero_item_code;
 	}
 	localStorage.setItem("hero",JSON.stringify(hero));
 	//---------------------------------------------------
