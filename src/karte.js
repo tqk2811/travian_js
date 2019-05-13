@@ -19,6 +19,7 @@ function manual_()
 		label_checkbox_50.innerText = "Auto zoom 50%";		
 		
 		titleInHeaders[0].appendChild(checkbox_50);
+		titleInHeaders[0].appendChild(label_checkbox_50);
 		if(checkbox_50.checked == true)
 		{
 			var zoom = getQueryVariable(window.location.href,"zoom");
