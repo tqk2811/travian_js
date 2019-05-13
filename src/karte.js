@@ -12,7 +12,7 @@ function manual_()
 		checkbox_50.style = "margin-left: 50px;"
 		if(localStorage["auto_zoom50"] !== undefined && localStorage["auto_zoom50"] !== "true") checkbox_50.checked = false;
 		else checkbox_50.checked = true;
-		checkbox_50.onchange = function(){ localStorage["auto_zoom50"] = this.checked;}
+		checkbox_50.onchange = function(){ localStorage.setItem("auto_zoom50",this.checked);}
 		
 		var label_checkbox_50 = document.createElement("label");
 		label_checkbox_50.setAttribute("for",checkbox_50.id);
