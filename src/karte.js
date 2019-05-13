@@ -24,7 +24,7 @@ function manual_()
 		if(checkbox_50.checked == true)
 		{
 			var zoom = getQueryVariable(window.location.href,"zoom");
-			if(zoom == "1") document.getElementsByClassName("iconButton zoomIn")[0].click();
+			if(zoom == "1") window.setTimeout(function(){document.getElementsByClassName("iconButton zoomIn")[0].click();},1000);
 		}
 	}
 }
