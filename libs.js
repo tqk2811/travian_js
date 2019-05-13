@@ -287,21 +287,43 @@ console.log("uid:" + window.Current.UserName +
 			"; UserName:" + window.Current.UserName +
 			"; gid:" + window.Current.Gid +
 			"; village_id:" + window.Current.VillageId);
-
-AddUriScript(httpGetGithubCdnUri("src/dorf.js"));//read data -> task_helper
-AddUriScript(httpGetGithubCdnUri("src/builds.js"));//read data -> task_helper
-AddUriScript(httpGetGithubCdnUri("src/hero.js"));//
-AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js"));//
-AddUriScript(httpGetGithubCdnUri("src/allianz.js"));//
-AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//
+			
 AddUriScript(httpGetGithubCdnUri("src/global.js"));//
-AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
-   AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
-AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
-AddUriScript(httpGetGithubCdnUri("src/region.js"));//
+AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
 AddUriScript(httpGetGithubCdnUri("src/npc_helper.js"));//
-
+if(window.firstLoad == undefined || window.firstLoad)
+{
+	AddUriScript(httpGetGithubCdnUri("src/dorf.js"));//read data -> task_helper
+	AddUriScript(httpGetGithubCdnUri("src/builds.js"));//read data -> task_helper
+	AddUriScript(httpGetGithubCdnUri("src/hero.js"));//
+	AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js"));//
+	AddUriScript(httpGetGithubCdnUri("src/allianz.js"));//
+	AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//	
+	AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//		
+	AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
+	AddUriScript(httpGetGithubCdnUri("src/region.js"));//	
+	AddUriScript(httpGetGithubCdnUri("src/karte.js"));//
+}
+else
+{
+	switch(window.location.pathname)
+	{
+		case "/dorf1.php":
+		case "/dorf2.php":
+		case "/dorf3.php": AddUriScript(httpGetGithubCdnUri("src/dorf.js")); break;
+		case "/build.php": AddUriScript(httpGetGithubCdnUri("src/builds.js")); break;
+		case "/berichte.php":		
+		case "/messages.php": AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js")); break;
+		case "/hero.php": AddUriScript(httpGetGithubCdnUri("src/hero.js")); break;
+		case "/allianz.php": AddUriScript(httpGetGithubCdnUri("src/allianz.js")); break;
+		case "/spieler.php": AddUriScript(httpGetGithubCdnUri("src/spieler.js")); break;
+		case "/statistiken.php": AddUriScript(httpGetGithubCdnUri("src/statistiken.js")); break;
+		case "/manual.php": AddUriScript(httpGetGithubCdnUri("src/manual.js")); break;
+		case "/region.php": AddUriScript(httpGetGithubCdnUri("src/region.js")); break;
+		case "/karte.php": AddUriScript(httpGetGithubCdnUri("src/karte.js")); break;
+		default: break;
+	}
+}
 var titles = document.getElementsByTagName("title");
-titles[0].innerText = window.Current.UserName + " " + titles[0].innerText
-
+titles[0].innerText = window.Current.UserName + " " + titles[0].innerText;
 $(".errorMessage,.inlineIconList.resourceWrapper").css("margin-top","0px");

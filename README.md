@@ -12,11 +12,9 @@ Note: For update code, please clear cache your browser or change value of "refre
 ```
 var refresh_ = "00000001";//some string for refresh
 var font_size = "10px";
-var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [Name,url]
+var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [[Name,url],[Name2,url2],....]
     ["FarmList","/build.php?tt=99&id=39"],
-    ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"],
-    ["Green Attack Report","/berichte.php?t=1&opt=AAABAA=="],
-    ["troopEscape","/build.php?tt=0&id=39"]
+    ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"]
 ];
 function AddUriScript(uri)
 {
@@ -29,6 +27,7 @@ function httpGetGithubCdnUri(FilePath,GithubUser = "tqk2811",Project_name = "tra
     var sha_data = localStorage.getItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+refresh_);//Check storage
     if(sha_data === null)
     {
+		window.firstLoad = true;
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET","https://api.github.com/repos/"+GithubUser+"/"+Project_name+"/commits/"+Branch, false );
         xmlHttp.send();		

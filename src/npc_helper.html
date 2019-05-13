@@ -17,9 +17,9 @@
 			<tr id="npc_add" style="background-color:#41f4f1">
 				<td><select id="npc_add_item"></select></td>
 				<td>
-					<input type="number" id="npc_level_from" min="0" max="24" style="width:50px"></input>
+					<input type="number" id="npc_level_from" min="0" max="24" style="width:50px" onchange="input_number_onchange()"></input>
 					-
-					<input type="number" id="npc_level_to" min="1" max="25" style="width:50px"></input>
+					<input type="number" id="npc_level_to" min="1" max="25" style="width:50px" onchange="input_number_onchange()"></input>
 				</td>
 				<td>l</td>
 				<td><button>Add</button></td>
@@ -39,34 +39,43 @@
 		e_option.value = "-1";
 		npc_helper.e_npc_add_item.appendChild(e_option);
 		
-		for(var i = 0; i < npc_helper.BuildingName.length;i++)
+		var optgroup_building = document.createElement("optgroup");
+		optgroup_building.label = "Buildings";
+		npc_helper.e_npc_add_item.appendChild(optgroup_building);
+		for(var key in npc_helper.DataResource)
 		{
-			if(i == 11) continue;//skip uid 12
 			e_option = document.createElement("option");
-			e_option.value = i;
-			e_option.innerText = npc_helper.BuildingName[i];
-			npc_helper.e_npc_add_item.appendChild(e_option);
+			e_option.value = key;
+			e_option.innerText = npc_helper.IDName[key];
+			optgroup_building.appendChild(e_option);
 		}
-		npc_helper.e_npc_add_item.onchange = function()
-			{
-				if(npc_helper.e_npc_add_item.value == "-1") return;
-				window.npc_helper.npc_level_from = $("#npc_level_from")[0];
-				window.npc_helper.npc_level_to = $("#npc_level_to")[0];
-				
-				npc_helper.npc_level_from.value = 0;
-				npc_helper.npc_level_from.min = 0;
-				npc_helper.npc_level_from.max = npc_helper.DataBuildings[Number(npc_helper.e_npc_add_item.value)].length -1;
-				
-				npc_helper.npc_level_to.value = 1;
-				npc_helper.npc_level_to.min = 1;
-				npc_helper.npc_level_to.max = npc_helper.DataBuildings[Number(npc_helper.e_npc_add_item.value)].length;
-			}
-			
+		
+		//var optgroup_TroopsResearch = document.createElement("optgroup");
+		//optgroup_TroopsResearch.label = "TroopsResearch";
+		//npc_helper.e_npc_add_item.appendChild(optgroup_TroopsResearch);
+		
+		
+		npc_helper.e_npc_add_item.onchange = e_npc_add_item_onchange;			
+	}
+	
+	function e_npc_add_item_onchange()
+	{
+		if(npc_helper.e_npc_add_item.value == "-1") return;
+		window.npc_helper.npc_level_from = $("#npc_level_from")[0];
+		window.npc_helper.npc_level_to = $("#npc_level_to")[0];
+		
+		npc_helper.npc_level_from.value = 0;
+		npc_helper.npc_level_from.min = 0;
+		npc_helper.npc_level_from.max = npc_helper.DataResource[npc_helper.e_npc_add_item.value].length -1;
+		
+		npc_helper.npc_level_to.value = 1;
+		npc_helper.npc_level_to.min = 1;
+		npc_helper.npc_level_to.max = npc_helper.DataResource[npc_helper.e_npc_add_item.value].length;
 	}
 	
 	function input_number_onchange()
 	{
-		
+		window.npc_helper.e_npc_add_item.value
 	}
 	</script>
 </div>
