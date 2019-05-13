@@ -10,8 +10,9 @@ function manual_()
 		checkbox_50.type = "checkbox";
 		checkbox_50.id = "checkbox_50";
 		checkbox_50.style = "margin-left: 50px;"
-		if(localStorage["auto_zoom50"] !== undefined && localStorage["auto_zoom50"] !== "true") checkbox_50.checked = false;
-		else checkbox_50.checked = true;
+		var auto_zoom50 = localStorage.getItem("auto_zoom50");
+		if( auto_zoom50 !== null && auto_zoom50 == "true") checkbox_50.checked = true;
+		else checkbox_50.checked = false;
 		checkbox_50.onchange = function(){ localStorage.setItem("auto_zoom50",this.checked);}
 		
 		var label_checkbox_50 = document.createElement("label");
