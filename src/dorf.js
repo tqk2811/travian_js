@@ -117,7 +117,11 @@ function img_to_gid16()
 		var img_class = document.getElementsByClassName(imgs_troop_move[i][0]);
 		for(var j = 0; j < img_class.length;j++)
 			if(img_class[j].parentElement.tagName == "A")
-				img_class[j].parentElement.href = imgs_troop_move[i][1];
+			{
+				var village_id_str = getQueryVariable(img_class[j].parentElement.href,"newdid");			
+				if(village_id_str !== null) img_class[j].parentElement.href = imgs_troop_move[i][1] + "&newdid=" + village_id_str;
+				else img_class[j].parentElement.href = imgs_troop_move[i][1];
+			}
 	}
 	var troops = document.getElementById("troops");
 	if(troops !== null)
