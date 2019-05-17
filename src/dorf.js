@@ -158,7 +158,6 @@ function dorf_main()
 {
 	if(window.location.href.indexOf("dorf1.php")>=0 || window.location.href.indexOf("dorf2.php")>=0)
 	{
-		img_to_gid16();
 		troop_train_show();
 		ReadDataBuilding();
 	}else if(window.location.href.indexOf("dorf3.php")>=0)
@@ -166,7 +165,7 @@ function dorf_main()
 		dorf3_icon_count();
 		read_celebration_tab();
 	}
-	
+	img_to_gid16();
 }
 
 dorf_main();
