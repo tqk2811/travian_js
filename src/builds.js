@@ -64,7 +64,8 @@ function build_gid_TotalRes(e)
 			e.appendChild(total_element);//e.insertAdjacentElement("afterend",total_element);
 		}		
 	}
-	if(window.Current.Gid >= 19 && window.Current.Gid <= 21 && e.parentElement.getAttribute("class") == "details")//return
+	//19,20,21,36: barrack,stable,workshop,traper
+	if(((window.Current.Gid >= 19 && window.Current.Gid <= 21) || window.Current.Gid == 36) && e.parentElement.getAttribute("class") == "details")
 	{
 		var e_imgs = e.parentElement.getElementsByTagName("img");
 		var e_imgs_unit = e.parentElement.getElementsByClassName("unit");
@@ -73,20 +74,17 @@ function build_gid_TotalRes(e)
 			var class_unit_strings = e_imgs[0].getAttribute("class").split(" ");
 			var name_unit = e_imgs[0].getAttribute("alt");
 			if(class_unit_strings.length == 2)
-			{
-				
+			{				
 				var account_object = GetObject("account",window.Current.UserName);
 				if(account_object["troop"] == undefined) account_object["troop"] = {};
-				//if(account_object["troop"][class_unit_strings[1]] !== undefined) return;
 				
 				var unit_id = Number(class_unit_strings[1].substring(1));
 				var unit_tribe = "tribe_error";
 				if 		(unit_id >=  1 && unit_id <= 10) unit_tribe = "Roman";
 				else if (unit_id >= 11 && unit_id <= 20) unit_tribe = "Teuton";
-				else if (unit_id >= 21 && unit_id <= 30) unit_tribe = "Gaul";
+				else if ((unit_id >= 21 && unit_id <= 30) | unit_id == 99) unit_tribe = "Gaul";
 				else if (unit_id >= 51 && unit_id <= 60) unit_tribe = "Egypt";
 				else if (unit_id >= 61 && unit_id <= 70) unit_tribe = "Huns";
-				
 				var e_value = e.getElementsByClassName("value");
 				var arr = [];
 				arr.push(name_unit + " (" + unit_tribe + ")");
