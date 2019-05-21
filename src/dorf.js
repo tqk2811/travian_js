@@ -154,8 +154,7 @@ function read_celebration_tab()
 		var slots_villages = document.getElementsByClassName("slo lc");
 		for(var i = 0; i < slots_villages.length; i++)
 		{
-			var text_ = slots_villages[i].innerText.getASCII();
-			var nums_ = text_.match(/\d/g);
+			var nums_ = slots_villages[i].innerText.match(/\d/g);
 			if(nums_[0] == nums_[1] && (nums_[0] == "1" || nums_[0]  == "2" )) slots_villages[i].setAttribute("style","background:#ff99ba");
 		}		
 	}
