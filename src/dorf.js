@@ -156,7 +156,7 @@ function read_celebration_tab()
 		{
 			var text_ = slots_villages[i].innerText.getASCII();
 			var nums_ = text_.match(/\d/g);
-			if(nums_[0] !== "0" && nums_[0] == nums_[1]) slots_villages[i].setAttribute("style","background:#ff99ba");
+			if(nums_[0] == nums_[1] && (nums_[0] == "1" || nums_[0]  == "2" )) slots_villages[i].setAttribute("style","background:#ff99ba");
 		}		
 	}
 }
