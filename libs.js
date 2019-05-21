@@ -15,6 +15,9 @@ String.prototype.replaceAll = function(f,r){
 String.prototype.format = function(){
   return [...arguments].reduce((p,c) => p.replace(/%s/,c), this);
 };
+String.prototype.getASCII = function(){
+	return this.replace(/[^\x00-\x7F]/g, "");
+}
 
 function CurrentSec(){
 	return Math.round(Date.now()/1000,0);

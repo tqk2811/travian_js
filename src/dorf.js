@@ -151,6 +151,13 @@ function read_celebration_tab()
 			else village_object["celebration_24"] = sec_now + Number(e_span.getAttribute("value")); // timer
 			SaveObject("village",village_id_,village_object);
 		}
+		var slots_villages = document.getElementsByClassName("slo lc");
+		for(var i = 0; i < slots_villages.length; i++)
+		{
+			var text_ = slots_villages[i].innerText.getASCII();
+			var nums_ = text_.match(/\d/g);
+			if(nums_[0] !== "0" && nums_[0] == nums_[1]) slots_villages[i].setAttribute("style","background:#ff99ba");
+		}		
 	}
 }
 
