@@ -166,12 +166,13 @@ function dorf_main()
 	{
 		troop_train_show();
 		ReadDataBuilding();
+		img_to_gid16();
 	}else if(window.location.href.indexOf("dorf3.php")>=0)
 	{
 		dorf3_icon_count();
 		read_celebration_tab();
+		img_to_gid16();
 	}
-	img_to_gid16();
 }
 
 dorf_main();
