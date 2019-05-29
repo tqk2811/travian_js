@@ -37,37 +37,38 @@ var troop_train_timer = [];
 function troop_train_show()
 {
 	var stockBar = document.getElementById("stockBar");
-	var main_div = document.createElement("div");
-	main_div.setAttribute("style","height:100%; width:100%; overflow: hidden; margin-top:10px;");
+	if(stockBar !== null)
+	{
+		var main_div = document.createElement("div");
+		main_div.setAttribute("style","height:100%; width:100%; overflow: hidden; margin-top:10px;");
 	
-	var div_barack = document.createElement("div");// gid 19,29
-	div_barack.setAttribute("style",troop_train_child_div_style);
+		var div_barack = document.createElement("div");// gid 19,29
+		div_barack.setAttribute("style",troop_train_child_div_style);
 	
-	var barack_19 = window.Current.village_object["troop_train_checkbox_19"];
-	if(barack_19 !== undefined && barack_19) troop_train_add_child(div_barack,"Barrack",19);
+		var barack_19 = window.Current.village_object["troop_train_checkbox_19"];
+		if(barack_19 !== undefined && barack_19) troop_train_add_child(div_barack,"Barrack",19);
 	
-	var barack_29 = window.Current.village_object["troop_train_checkbox_29"];
-	if(barack_29 !== undefined && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
+		var barack_29 = window.Current.village_object["troop_train_checkbox_29"];
+		if(barack_29 !== undefined && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
+		var div_stable = document.createElement("div");// gid 20,30
+		div_stable.setAttribute("style",troop_train_child_div_style);
+		var stable_20 = window.Current.village_object["troop_train_checkbox_20"];
+		if(stable_20 !== undefined && stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
-	var div_stable = document.createElement("div");// gid 20,30
-	div_stable.setAttribute("style",troop_train_child_div_style);
-	var stable_20 = window.Current.village_object["troop_train_checkbox_20"];
-	if(stable_20 !== undefined && stable_20) troop_train_add_child(div_stable,"Stable",20);
+		var stable_30 = window.Current.village_object["troop_train_checkbox_30"];	
+		if(stable_30 !== undefined && stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
-	var stable_30 = window.Current.village_object["troop_train_checkbox_30"];	
-	if(stable_30 !== undefined && stable_30) troop_train_add_child(div_stable,"GStable",30);
-	
-	var div_workshop = document.createElement("div");// gid 21
-	div_workshop.setAttribute("style",troop_train_child_div_style);
-	var workshop = window.Current.village_object["troop_train_checkbox_21"];
-	if(workshop !== undefined && workshop) troop_train_add_child(div_workshop,"Workshop",21);
-	
-	
-	main_div.appendChild(div_barack);
-	main_div.appendChild(div_stable);
-	main_div.appendChild(div_workshop);
-	stockBar.insertAdjacentElement("beforeend",main_div);
+		var div_workshop = document.createElement("div");// gid 21
+		div_workshop.setAttribute("style",troop_train_child_div_style);
+		var workshop = window.Current.village_object["troop_train_checkbox_21"];
+		if(workshop !== undefined && workshop) troop_train_add_child(div_workshop,"Workshop",21);
+
+		main_div.appendChild(div_barack);
+		main_div.appendChild(div_stable);
+		main_div.appendChild(div_workshop);
+		stockBar.insertAdjacentElement("beforeend",main_div);
+	}
 }
 function troop_train_add_child(e,name,target_gid)
 {
