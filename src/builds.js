@@ -347,7 +347,7 @@ function gid17()//market
 				}
 				
 				window.gid17_select_clear = document.createElement("select");
-				gid17_select_clear.add(gid17_clear_select("All","-1"));
+				gid17_select_clear.add(gid17_clear_select(null));
 				arr_traderoute_desc.forEach(function(child){gid17_select_clear.add(gid17_clear_select(child));});
 				trading_routes.insertAdjacentElement("beforebegin",gid17_select_clear);
 			}
@@ -525,8 +525,16 @@ var gid17_clear_select_value =  "%s_%s_%s_%s_%s";
 function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
 {
 	var e_option = document.createElement("option");
-	e_option.text = gid17_clear_select_text.format(item[0],getParameterByName("newdid",item[1]),item[2][0],item[2][1],item[2][2],item[2][3])
-	e_option.value = gid17_clear_select_value.format(item[1],item[2][0],item[2][1],item[2][2],item[2][3]);
+	if(item == null)
+	{
+		e_option.text = "All";
+		e_option.value = "-1";
+	}
+	else
+	{
+		e_option.text = gid17_clear_select_text.format(item[0],getParameterByName("newdid",item[1]),item[2][0],item[2][1],item[2][2],item[2][3])
+		e_option.value = gid17_clear_select_value.format(item[1],item[2][0],item[2][1],item[2][2],item[2][3]);
+	}
 	return e_option;
 }
 
