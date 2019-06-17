@@ -325,10 +325,10 @@ function gid17()//market
 					{
 						var a_desc = desc[i].getElementsByTagName("a");
 						var r = [
-									desc.getElementsByClassName("r1")[0].parentElement.innerText,
-									desc.getElementsByClassName("r2")[0].parentElement.innerText,
-									desc.getElementsByClassName("r3")[0].parentElement.innerText,
-									desc.getElementsByClassName("r1")[0].parentElement.innerText
+									desc[i].getElementsByClassName("r1")[0].parentElement.innerText,
+									desc[i].getElementsByClassName("r2")[0].parentElement.innerText,
+									desc[i].getElementsByClassName("r3")[0].parentElement.innerText,
+									desc[i].getElementsByClassName("r1")[0].parentElement.innerText
 								];
 						if(a_desc.length > 0)
 						{
