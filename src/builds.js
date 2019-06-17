@@ -519,7 +519,7 @@ function gid17_findmaxtroops()
 	gid17_input_number_troop.max = maxtroops;
 }
 
-var gid17_clear_select_text =  "%s (%s) [%s,%s,%s,%s]";
+var gid17_clear_select_text =  "%s -- {(%s)[%s,%s,%s,%s]}";
 var gid17_clear_select_value =  "%s_%s_%s_%s_%s";
 
 function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
