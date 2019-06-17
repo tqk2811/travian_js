@@ -532,8 +532,9 @@ function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
 	}
 	else
 	{
-		e_option.text = gid17_clear_select_text.format(item[0],getParameterByName("newdid",item[1]),item[2][0],item[2][1],item[2][2],item[2][3])
-		e_option.value = gid17_clear_select_value.format(item[1],item[2][0],item[2][1],item[2][2],item[2][3]);
+		var v_id = getParameterByName("newdid",item[1]);
+		e_option.text = gid17_clear_select_text.format(item[0],v_id,item[2][0],item[2][1],item[2][2],item[2][3])
+		e_option.value = gid17_clear_select_value.format(v_id,item[2][0],item[2][1],item[2][2],item[2][3]);
 	}
 	return e_option;
 }
