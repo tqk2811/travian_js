@@ -20,7 +20,7 @@ function Get_gid()
 function build_gid()
 {
 	window.e_merge = { isOn : false, e_text : null };
-	if(window.Current.Gid == 16 && getQueryVariable(window.location.href,"m") !== null && getQueryVariable(window.location.href,"tt") == "2")
+	if(window.Current.Gid == 16 && getParameterByName("m",window.location.href) !== null && getParameterByName("tt",window.location.href) == "2")
 		{
 			window.e_merge.isOn = true;			
 			window.setInterval(function(){ 
@@ -323,23 +323,35 @@ function gid17()//market
 					var desc = trading_routes.getElementsByClassName("desc");
 					for( var i = 0; i < desc.length; i++)
 					{
-						var a_desc = desc[i].getElementsByTagName("a");				
+						var a_desc = desc[i].getElementsByTagName("a");
+						var r = [
+									desc.getElementsByClassName("r1")[0].parentElement.innerText,
+									desc.getElementsByClassName("r2")[0].parentElement.innerText,
+									desc.getElementsByClassName("r3")[0].parentElement.innerText,
+									desc.getElementsByClassName("r1")[0].parentElement.innerText
+								];
 						if(a_desc.length > 0)
 						{
 							var href_a_desc = a_desc[0].getAttribute("href");
 							var flag_add = true;
-							for(var j = 0; j< arr_traderoute_desc.length; j++)if(arr_traderoute_desc[j][1] === href_a_desc) { flag_add = false; break; }
-							if(flag_add) arr_traderoute_desc.push([a_desc[0].innerText,href_a_desc]);						
+							for(var j = 0; j< arr_traderoute_desc.length; j++)
+								if(arr_traderoute_desc[j][1] == href_a_desc && 
+									r[0] == arr_traderoute_desc[j][2][0] && r[1] == arr_traderoute_desc[j][2][1] &&
+									r[2] == arr_traderoute_desc[j][2][2] && r[3] == arr_traderoute_desc[j][2][3]
+									) { flag_add = false; break; }
+								
+								
+							if(flag_add) arr_traderoute_desc.push([a_desc[0].innerText,href_a_desc,r]);			
 						}
 					}
 				}
 				
 				window.gid17_select_clear = document.createElement("select");
 				gid17_select_clear.add(gid17_clear_select("All","-1"));
-				arr_traderoute_desc.forEach(function(child){ gid17_select_clear.add(gid17_clear_select(child[0],child[1])); });
+				arr_traderoute_desc.forEach(function(child){gid17_select_clear.add(gid17_clear_select(child));});
 				trading_routes.insertAdjacentElement("beforebegin",gid17_select_clear);
 			}
-				
+
 			var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 			if(false && e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1)//disable create multi traderoute
 			{
@@ -507,11 +519,14 @@ function gid17_findmaxtroops()
 	gid17_input_number_troop.max = maxtroops;
 }
 
-function gid17_clear_select(name, did)
+var gid17_clear_select_text =  "%s (%s) [%s,%s,%s,%s]";
+var gid17_clear_select_value =  "%s_%s_%s_%s_%s";
+
+function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
 {
 	var e_option = document.createElement("option");
-	e_option.text = name + " (" + did + ")";
-	e_option.value = did;
+	e_option.text = gid17_clear_select_text.format(item[0],getParameterByName("newdid",item[1]),item[2][0],item[2][1],item[2][2],item[2][3])
+	e_option.value = gid17_clear_select_value.format(item[1],item[2][0],item[2][1],item[2][2],item[2][3]);
 	return e_option;
 }
 
@@ -543,13 +558,30 @@ function gid17_clear()
 					sel_trs[0].getElementsByTagName("a")[0].click();
 					return;
 				}
-				else if(trs[i].getElementsByClassName("desc")[0].getElementsByTagName("a")[0].getAttribute("href") == gid17_des_clear) 
+				else
 				{
-					sel_trs[0].getElementsByTagName("a")[0].click();
-					return;
+					var curr_desc = trs[i].getElementsByClassName("desc")[0];
+					var curr_href = curr_desc.getElementsByTagName("a")[0].getAttribute("href");
+					
+					var curr_newdid = getParameterByName("newdid",curr_href);
+					var curr_r = [
+								curr_desc.getElementsByClassName("r1").parentElement.innerText,
+								curr_desc.getElementsByClassName("r2").parentElement.innerText,
+								curr_desc.getElementsByClassName("r3").parentElement.innerText,
+								curr_desc.getElementsByClassName("r4").parentElement.innerText
+								];
+					var target = gid17_des_clear.split("_");
+					
+					if(curr_newdid == target[0] && 
+									curr_r[0] == target[1] && curr_r[1] == target[2] && 
+									curr_r[2] == target[3] && curr_r[3] == target[4]	)
+					{
+						sel_trs[0].getElementsByTagName("a")[0].click();
+						return;
+					}
 				}
 			}
-		}		
+		}
 	}
 	localStorage.setItem("Flag_deleteAll_Trading_routes",-1);
 }

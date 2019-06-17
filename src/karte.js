@@ -23,7 +23,7 @@ function manual_()
 		titleInHeaders[0].appendChild(label_checkbox_50);
 		if(checkbox_50.checked == true)
 		{
-			var zoom = getQueryVariable(window.location.href,"zoom");
+			var zoom = getParameterByName("zoom",window.location.href);
 			if(zoom == "1") window.setTimeout(function(){document.getElementsByClassName("iconButton zoomIn")[0].click();},1000);
 		}
 	}

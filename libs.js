@@ -79,17 +79,6 @@ function FindActiveVillage(listVillages){
 	  if(listVillages[i].getAttribute("class").indexOf("active") >=0) return listVillages[i];
   return null; 
 }
-function getQueryVariable(url,variable){
-    var q_ = url.split('?');
-	var query = q_[q_.length -1];// \abc.php?test=1 or test=2
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) 
-    {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) return decodeURIComponent(pair[1]);
-    }
-  return null;
-}
 function GetTimeTextFromSecondLeft(num){
 	var sec_ =num % 60;
 	var temp_ = (num - sec_)/60;
@@ -164,7 +153,7 @@ function InitHotkey(){
 		if(document.activeElement.tagName == "INPUT") return;
 		if(document.activeElement.tagName == "TEXTAREA") return;
 		console.log("e.which:" + e.which + " | e.keyCode " + e.keyCode);
-		var filter = getQueryVariable(window.location.href,"filter");
+		var filter = getParameterByName("filter",window.location.href);
 		var is_berichte = window.location.href.indexOf("berichte.php") !== -1;
 		var is_statistiken = window.location.href.indexOf("statistiken.php") !== -1;
 		

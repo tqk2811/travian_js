@@ -106,7 +106,7 @@ function ShowVillageData(li_element)
 {
 	var a_element = li_element.getElementsByTagName("a")[0];
 	var a_element_href = a_element.getAttribute("href");
-	var village_id_ = getQueryVariable(a_element_href,"newdid");	
+	var village_id_ = getParameterByName("newdid",a_element_href);	
 	var village_object = GetObject("village",village_id_);
 	
 	var e_p1 = document.createElement("p1");

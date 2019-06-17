@@ -119,7 +119,7 @@ function img_to_gid16()
 		for(var j = 0; j < img_class.length;j++)
 			if(img_class[j].parentElement.tagName == "A")
 			{
-				var village_id_str = getQueryVariable(img_class[j].parentElement.href,"newdid");			
+				var village_id_str = getParameterByName("newdid",img_class[j].parentElement.href);			
 				if(village_id_str !== null) img_class[j].parentElement.href = imgs_troop_move[i][1] + "&newdid=" + village_id_str;
 				else img_class[j].parentElement.href = imgs_troop_move[i][1];
 			}
@@ -142,7 +142,7 @@ function read_celebration_tab()
 		var cels = culture_points.getElementsByClassName("cel");
 		for(var i = 0; i< vil_fcs.length;i++)
 		{
-			var village_id_ = getQueryVariable(vil_fcs[i].getElementsByTagName("a")[0].getAttribute("href"),"newdid");
+			var village_id_ = getParameterByName("newdid",vil_fcs[i].getElementsByTagName("a")[0].getAttribute("href"));
 			var e_span = cels[i].getElementsByTagName("span")[0];
 			var e_span_class = e_span.getAttribute("class");
 			if(e_span_class == "none") continue;
