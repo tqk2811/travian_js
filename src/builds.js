@@ -328,7 +328,7 @@ function gid17()//market
 									desc[i].getElementsByClassName("r1")[0].parentElement.innerText,
 									desc[i].getElementsByClassName("r2")[0].parentElement.innerText,
 									desc[i].getElementsByClassName("r3")[0].parentElement.innerText,
-									desc[i].getElementsByClassName("r1")[0].parentElement.innerText
+									desc[i].getElementsByClassName("r4")[0].parentElement.innerText
 								];
 						if(a_desc.length > 0)
 						{
