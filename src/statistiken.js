@@ -6,9 +6,9 @@ function statistiken_()
 	var table = document.getElementById("heroes");
 	if(table !== null) statistiken_hero(table);
 	
-	//if(window.Current.tabActives.length == 1)
+	//if(TJS.CurrentData.tabActives.length == 1)
 	//{
-		//if(window.Current.tabActives[0].getElementsByTagName("a").href.indexOf("id=3") >= 0) statistiken_hero();
+		//if(TJS.CurrentData.tabActives[0].getElementsByTagName("a").href.indexOf("id=3") >= 0) statistiken_hero();
 	//}
 }
 
@@ -19,7 +19,7 @@ function statistiken_hero(table)
 	var hero_json = localStorage.getItem("hero");
 	if(hero_json !== null) hero = JSON.parse(hero_json);
 	
-	var current_time = CurrentSec();
+	var current_time = TJS.CurrentSec();
 	var players_name = table.getElementsByClassName("pla");
 	var exps = table.getElementsByClassName("xp");
 	for(var i = 0; i < players_name.length; i++)
@@ -29,7 +29,7 @@ function statistiken_hero(table)
 		if(curr !== undefined && curr.exp !== undefined && exp > curr.exp.exp )
 		{
 			exps[i].innerText += "(+" + (exp - curr.exp.exp).toString() + ")";
-			exps[i].title = GetTimeTextFromSecondLeft(current_time - curr.exp.time) + " ago";			
+			exps[i].title = TJS.GetTimeTextFromSecondLeft(current_time - curr.exp.time) + " ago";			
 			curr.exp.exp = exp;
 			curr.exp.time = current_time;
 		}

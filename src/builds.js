@@ -1,7 +1,7 @@
 function Get_gid()
 {
 	build_gid();
-	switch(window.Current.Gid)
+	switch(TJS.CurrentData.Gid)
 	{
 		case 17: gid17(); return;//market
 		case 16: gid16(); return;//rallypoint
@@ -20,9 +20,9 @@ function Get_gid()
 function build_gid()
 {
 	window.e_merge = { isOn : false, e_text : null };
-	if(window.Current.Gid == 16 && getParameterByName("m",window.location.href) !== null && getParameterByName("tt",window.location.href) == "2")
+	if(TJS.CurrentData.Gid == 16 && TJS.getParameterByName(window.location.href,"m") !== null && TJS.getParameterByName(window.location.href,"tt") == "2")
 		{
-			window.e_merge.isOn = true;			
+			window.e_merge.isOn = true;
 			window.setInterval(function(){ 
 						var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
 						if(e_resourceWrappers.length == 1) build_gid_TotalRes(e_resourceWrappers[0]);
@@ -65,7 +65,7 @@ function build_gid_TotalRes(e)
 		}		
 	}
 	//19,20,21,36: barrack,stable,workshop,traper
-	if(((window.Current.Gid >= 19 && window.Current.Gid <= 21) || window.Current.Gid == 36) && e.parentElement.getAttribute("class") == "details")
+	if(((TJS.CurrentData.Gid >= 19 && TJS.CurrentData.Gid <= 21) || TJS.CurrentData.Gid == 36) && e.parentElement.getAttribute("class") == "details")
 	{
 		var e_imgs = e.parentElement.getElementsByTagName("img");
 		var e_imgs_unit = e.parentElement.getElementsByClassName("unit");
@@ -75,7 +75,7 @@ function build_gid_TotalRes(e)
 			var name_unit = e_imgs[0].getAttribute("alt");
 			if(class_unit_strings.length == 2)
 			{				
-				var account_object = GetObject("account",window.Current.UserName);
+				var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
 				if(account_object["troop"] == undefined) account_object["troop"] = {};
 				
 				var unit_id = Number(class_unit_strings[1].substring(1));
@@ -90,7 +90,7 @@ function build_gid_TotalRes(e)
 				arr.push(name_unit + " (" + unit_tribe + ")");
 				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
 				account_object["troop"][class_unit_strings[1]] = arr;
-				SaveObject("account",window.Current.UserName,account_object);
+				TJS.LSSaveObject("account",TJS.CurrentData.UserName,account_object);
 			}
 		}
 	}
@@ -102,17 +102,17 @@ function gid15()//main building
 	if(demolish !== null)
 	{
 		var timers_ = demolish.getElementsByClassName("timer");
-		if(timers_.length == 1)	Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + CurrentSec();
+		if(timers_.length == 1)	Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + TJS.CurrentSec();
 		else Current.village_object["demolish"] = 0;			
-		SaveCurrentVillage();
+		TJS.SaveCurrentVillage();
 	}
 }
 
 function gid16()//rallypoint
 {
-	if(window.Current.tabActives !== null)
+	if(TJS.CurrentData.tabActives !== null)
 	{
-		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
+		var tabItem = TJS.CurrentData.tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
 		{
 			var list_raidlist = [];
@@ -122,7 +122,7 @@ function gid16()//rallypoint
 									Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
 									listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
 									])
-			localStorage.setItem(window.Current.UserName + "_list_raidlist",JSON.stringify(list_raidlist));//
+			localStorage.setItem(TJS.CurrentData.UserName + "_list_raidlist",JSON.stringify(list_raidlist));//
 			
 			var e_bt_CheckAllGreenAttack = document.createElement("button");
 			e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
@@ -165,7 +165,7 @@ function gid16()//rallypoint
 			e_div.appendChild(e_LB_attacking);			
 			e_div.appendChild(e_LB_yellow);
 			e_div.appendChild(e_LB_red);
-			window.Current.e_build.insertAdjacentElement("afterbegin",e_div);
+			TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
 		}
 		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
 		{
@@ -213,7 +213,7 @@ function gid16_attack_multiwave()
 	localStorage.setItem("attack_multiwave","0");
 	var e_main = document.createElement("div");
 	e_main.setAttribute("style","display: inline-block;");
-	window.Current.e_build.insertAdjacentElement("beforeend",e_main);
+	TJS.CurrentData.e_build.insertAdjacentElement("beforeend",e_main);
 
 	window.gid16_BT_StartCata = document.createElement("button");
 	gid16_BT_StartCata.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
@@ -302,9 +302,9 @@ function gid16_attack_multiwave_trigger_Interval()
 
 function gid17()//market
 {
-	if(window.Current.tabActives !== null)
+	if(TJS.CurrentData.tabActives !== null)
 	{
-		var tabItem = window.Current.tabActives[0].getElementsByClassName("tabItem")[0];
+		var tabItem = TJS.CurrentData.tabActives[0].getElementsByClassName("tabItem")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0)//manager
 		{
 			var trading_routes = document.getElementById("trading_routes");
@@ -353,7 +353,7 @@ function gid17()//market
 			}
 
 			var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
-			if(false && e_tradeRouteEdit !== null && Number(getParameterByName("option",window.location.href)) == 1)//disable create multi traderoute
+			if(false && e_tradeRouteEdit !== null && Number(TJS.getParameterByName(window.location.href,"option")) == 1)//disable create multi traderoute
 			{
 				var timeSelector = document.getElementsByClassName("timeSelector")[0];
 				
@@ -397,7 +397,7 @@ function gid17()//market
 				window.gid17_TroopResSelect = document.createElement("select");
 				gid17_TroopResSelect.setAttribute("style","width:150px");				
 				
-				var account_object = GetObject("account",window.Current.UserName);
+				var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
 				if(account_object["troop"] != undefined)
 				{
 					var keys = Object.keys(account_object["troop"]);
@@ -451,10 +451,10 @@ function gid17()//market
 				var datalist_villagename = document.createElement("datalist");
 				datalist_villagename.setAttribute("id","village_list");					
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
-				for(var i = 0;i < window.Current.listVillage.length;i++)
+				for(var i = 0;i < TJS.CurrentData.listVillage.length;i++)
 				{
-					if(window.Current.listVillage[i] == window.Current.active_village) continue;
-					var name_ = window.Current.listVillage[i].getElementsByClassName("name");
+					if(TJS.CurrentData.listVillage[i] == TJS.CurrentData.active_village) continue;
+					var name_ = TJS.CurrentData.listVillage[i].getElementsByClassName("name");
 					if(name_.length > 0)
 					{
 						var option_datalist = document.createElement("option");
@@ -471,7 +471,7 @@ function gid17()//market
 
 function gid17_TroopResSelect_onchange()
 {
-	var account_object = GetObject("account",window.Current.UserName);
+	var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
 	if(gid17_TroopResSelect.value == "" ||account_object["troop"] == undefined) return;
 	window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
 	gid17_findmaxtroops();
@@ -532,7 +532,7 @@ function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
 	}
 	else
 	{
-		var v_id = getParameterByName("newdid",item[1]);
+		var v_id = TJS.getParameterByName(item[1],"newdid");
 		e_option.text = gid17_clear_select_text.format(item[0],v_id,item[2][0],item[2][1],item[2][2],item[2][3])
 		e_option.value = gid17_clear_select_value.format(v_id,item[2][0],item[2][1],item[2][2],item[2][3]);
 	}
@@ -543,7 +543,7 @@ function gid17_clear_onclick()
 {
 	if(window.confirm("Are you sure to clear trade routes?"))
 	{
-		localStorage.setItem("Flag_deleteAll_Trading_routes",window.Current.VillageId);
+		localStorage.setItem("Flag_deleteAll_Trading_routes",TJS.CurrentData.VillageId);
 		localStorage.setItem("gid17_des_clear",window.gid17_select_clear.value);
 		window.location.href = "/build.php?t=0&gid=17";
 	}
@@ -552,7 +552,7 @@ function gid17_clear()
 {
 	var id = localStorage.getItem("Flag_deleteAll_Trading_routes");
 	var gid17_des_clear = localStorage.getItem("gid17_des_clear");
-	if(id !== null && Number(id) != -1 && Number(id) == window.Current.VillageId)
+	if(id !== null && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)
 	{
 		var trading_routes = document.getElementById("trading_routes");
 		if(trading_routes !== null)
@@ -572,7 +572,7 @@ function gid17_clear()
 					var curr_desc = trs[i].getElementsByClassName("desc")[0];
 					var curr_href = curr_desc.getElementsByTagName("a")[0].getAttribute("href");
 					
-					var curr_newdid = getParameterByName("newdid",curr_href);
+					var curr_newdid = TJS.getParameterByName(curr_href,"newdid");
 					var curr_r = [
 								curr_desc.getElementsByClassName("r1").parentElement.innerText,
 								curr_desc.getElementsByClassName("r2").parentElement.innerText,
@@ -640,7 +640,7 @@ function gid17_CreateTradeRoutes_click()
 }
 function gid17_CreateTradeRoutes_load()
 {
-	if(window.Current.Gid != 17) 
+	if(TJS.CurrentData.Gid != 17) 
 	{
 		localStorage.removeItem("trade_route");
 		return;
@@ -682,10 +682,10 @@ function troop_train()//gid 19 20 29 30 21
 	
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
-	window.troop_train_checkbox.checked = window.Current.village_object["troop_train_checkbox_" + window.Current.Gid];
+	window.troop_train_checkbox.checked = TJS.CurrentData.village_object["troop_train_checkbox_" + TJS.CurrentData.Gid];
 	window.troop_train_checkbox.onchange = function()
-		{	window.Current.village_object["troop_train_checkbox_" + window.Current.Gid] = window.troop_train_checkbox.checked;
-			SaveCurrentVillage();	}
+		{	TJS.CurrentData.village_object["troop_train_checkbox_" + TJS.CurrentData.Gid] = window.troop_train_checkbox.checked;
+			TJS.SaveCurrentVillage();	}
 	var e_checkbox_lb = document.createElement("label");
 	e_checkbox_lb.innerText = "Show Time Training";
 	e_checkbox_lb.setAttribute("style","border:none;color:black;padding: 3px;");
@@ -751,9 +751,9 @@ function read_time_gid_under_progress(name)
 		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
 		var value_time = Number(e_time.getAttribute("value"));
 		
-		window.Current.village_object[name + "_" + window.Current.Gid] = CurrentSec() + value_time;		
-	}else window.Current.village_object[name + "_" + window.Current.Gid] = 0;
-	SaveCurrentVillage();
+		TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = TJS.CurrentSec() + value_time;		
+	}else TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = 0;
+	TJS.SaveCurrentVillage();
 }
 
 //function TroopResource_create(unit,name,res[])
@@ -761,4 +761,4 @@ var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&
 gid17_clear();
 gid17_CreateTradeRoutes_load();
 //TroopsResource_load();
-if(window.Current.e_build !== null) Get_gid();
+if(TJS.CurrentData.e_build !== null) Get_gid();

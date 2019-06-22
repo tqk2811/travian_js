@@ -85,7 +85,7 @@ function AddLinkerList(item)
 //task_helper
 function LoadLiBuildTimer(li_obj)
 {
-  if(!li_obj.show_zero && li_obj.time - CurrentSec() <= 0) return;
+  if(!li_obj.show_zero && li_obj.time - TJS.CurrentSec() <= 0) return;
   var t = document.createElement("span");
   if(li_obj.flag)
   {
@@ -96,8 +96,8 @@ function LoadLiBuildTimer(li_obj)
   t.setAttribute("style","color:" + li_obj.color);
   t.setAttribute("sound",li_obj.sound);
   if(li_obj.adv_text !== null) t.setAttribute("adv_text",li_obj.adv_text);
-  t.setAttribute("class","travian_js_timer");
-  t.setAttribute("value",li_obj.time - CurrentSec());
+  t.setAttribute("class",TJS.Const.ClassTimer);
+  t.setAttribute("value",li_obj.time - TJS.CurrentSec());
   t.innerText = "Loading"
   if(li_obj.navigate_url != null) t.onclick = function(){ window.location.href = li_obj.navigate_url}
   li_obj.e.appendChild(t);
@@ -106,8 +106,8 @@ function ShowVillageData(li_element)
 {
 	var a_element = li_element.getElementsByTagName("a")[0];
 	var a_element_href = a_element.getAttribute("href");
-	var village_id_ = getParameterByName("newdid",a_element_href);	
-	var village_object = GetObject("village",village_id_);
+	var village_id_ = TJS.getParameterByName(a_element_href,"newdid");	
+	var village_object = TJS.LSGetObject("village",village_id_);
 	
 	var e_p1 = document.createElement("p1");
 	e_p1.setAttribute("style","font-size:"+font_size);
@@ -130,7 +130,7 @@ function Show_Build(village_object,e_p1)
 	var obj;
 	for(var i = 0; i < village_object.Builds.length; i++) 
 	{
-		if(village_object.Builds[i] < CurrentSec()) continue;
+		if(village_object.Builds[i] < TJS.CurrentSec()) continue;
 		obj = GetLiBuildTimerObject();
 			obj.e = e_p1;
 			obj.time = village_object.Builds[i];
@@ -141,7 +141,7 @@ function Show_Build(village_object,e_p1)
 		flag = true;
 		j++;
 	}	
-	if(village_object["demolish"] !== undefined && village_object["demolish"] > CurrentSec())
+	if(village_object["demolish"] !== undefined && village_object["demolish"] > TJS.CurrentSec())
 	{
 		obj = GetLiBuildTimerObject();
 			obj.e = e_p1;
@@ -175,7 +175,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 }
 function Show_Celebration(village_object,e_p1,village_id_)
 {
-	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < CurrentSec()
+	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < TJS.CurrentSec()
 	var obj = GetLiBuildTimerObject();
 		obj.e = e_p1;
 		obj.time = village_object["celebration_24"];
@@ -190,7 +190,7 @@ function task_helper_select_onchange()
 	default_task_helper_select = Number(window.task_helper_select.value);
 	var listp1 = document.getElementsByClassName("task_helper_p1");
 	for(var i =0; i < listp1.length; ) listp1[0].remove();
-	for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
+	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
 }
 function GetLiBuildTimerObject()
 {
@@ -208,8 +208,8 @@ function GetLiBuildTimerObject()
 
 function show_culture()
 {
-	var expansionSlotInfos = window.Current.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
-	var boxTitles = window.Current.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
+	var expansionSlotInfos = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
+	var boxTitles = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
 	if(expansionSlotInfos.length == 1 && boxTitles.length == 1)
 	{
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+.\/\d+$/);
@@ -222,7 +222,7 @@ var task_helper_select_list= ["Off","Builds","Troops","Celebration"];
 Show_TroopTrain_arr = [	[19,		29,			20,			30,			21			],
 						["#0069FF",	"#78A5D3",	"#7700F6",	"#C574F3",	"#C84545"	],
 						["b",		"B",		"s",		"S",		"w"			]];
-if(window.Current.sidebarBoxVillagelist != null)
+if(TJS.CurrentData.sidebarBoxVillagelist != null)
 {
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
@@ -239,7 +239,7 @@ if(window.Current.sidebarBoxVillagelist != null)
 	e_div.appendChild(trade_img);
 	e_div.appendChild(task_helper_select);
 	document.getElementById("sidebarAfterContent").insertAdjacentElement("beforebegin",e_div);
-	//window.Current.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
+	//TJS.CurrentData.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
 	
 	window.default_task_helper_select = localStorage.getItem("default_task_helper_select");
 	if (default_task_helper_select == null) default_task_helper_select = 0;
@@ -255,9 +255,9 @@ if(window.Current.sidebarBoxVillagelist != null)
 	}
 }
 window.setTimeout(function(){ 
-								if(window.Current.active_village !== null) 
-									for(var i =0; i < window.Current.listVillage.length; i++) ShowVillageData(window.Current.listVillage[i]);
-							},window.Current.Timeout);
+								if(TJS.CurrentData.active_village !== null) 
+									for(var i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
+							},TJS.CurrentData.Timeout);
 
 
 

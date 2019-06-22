@@ -55,9 +55,9 @@ function ally_main()
 {
 	if(window.location.href.indexOf("allianz.php")>=0)
 	{
-		if (window.Current.tabActives.length == 2 && 
-			window.Current.tabActives[0].getElementsByTagName("a")[0].getAttribute("href").indexOf("s=1") >= 0 &&
-			window.Current.tabActives[1].getElementsByTagName("a")[0].getAttribute("href").indexOf("action=members") >= 0
+		if (TJS.CurrentData.tabActives.length == 2 && 
+			TJS.CurrentData.tabActives[0].getElementsByTagName("a")[0].getAttribute("href").indexOf("s=1") >= 0 &&
+			TJS.CurrentData.tabActives[1].getElementsByTagName("a")[0].getAttribute("href").indexOf("action=members") >= 0
 			)
 		{
 			ally_roa_attackcount();

@@ -17,8 +17,8 @@ function spieler_addraidlist()
 	for(var i =0; i < e_coords.length; i++)
 	{
 		var uri_ = e_coords[i].getElementsByTagName("a")[0].href;
-		var x_ = getParameterByName("x",uri_);
-		var y_ = getParameterByName("y",uri_);
+		var x_ = TJS.getParameterByName(uri_,"x");
+		var y_ = TJS.getParameterByName(uri_,"y");
 		if(x_ == null || y_ == null) continue;
 		
 		var e_div = document.createElement("div");
@@ -38,7 +38,7 @@ function func_hero_code()
 	
 	
 	var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
-	var hero_code = getParameterByName("code",hero_img_e.getAttribute("src"));
+	var hero_code = TJS.getParameterByName(hero_img_e.getAttribute("src"),"code");
 	var hero_item_code = hero_code.substring(38);
 	var e_label = document.createElement("p");
 	e_label.setAttribute("style","float:right");
@@ -46,8 +46,8 @@ function func_hero_code()
 	
 	var titleInHeader = document.getElementsByClassName("titleInHeader")[0].innerText;
 	var pos = titleInHeader.search(/(?<= - ).+$/g);
-	var spieler_uid = null;//getParameterByName("uid",window.location.href);
-	if(pos == -1 ) spieler_uid = window.Current.UserName;//current account	
+	var spieler_uid = null;//TJS.getParameterByName(window.location.href,"uid");
+	if(pos == -1 ) spieler_uid = TJS.CurrentData.UserName;//current account	
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	
 	var player_ = hero[spieler_uid];
@@ -56,12 +56,12 @@ function func_hero_code()
 		if(hero_item_code != player_.code.code)
 		{
 			player_.code.code = hero_item_code;
-			player_.code.time = CurrentSec();
+			player_.code.time = TJS.CurrentSec();
 			e_label.innerText = default_checkchangehero_string + "0 sec ago.";
 		}
 		else
 		{
-			e_label.innerText = default_checkchangehero_string + GetTimeTextFromSecondLeft(CurrentSec() - player_.code.time) + " ago.";
+			e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - player_.code.time) + " ago.";
 		}
 	}
 	else
@@ -69,7 +69,7 @@ function func_hero_code()
 		e_label.innerText = default_checkchangehero_string + "get data first times.";
 		if(player_ === undefined) hero[spieler_uid] = {};
 		hero[spieler_uid].code = {};
-		hero[spieler_uid].code.time = CurrentSec();
+		hero[spieler_uid].code.time = TJS.CurrentSec();
 		hero[spieler_uid].code.code = hero_item_code;
 	}
 	localStorage.setItem("hero",JSON.stringify(hero));
@@ -123,7 +123,7 @@ function spieler_main()
 		window.spieler_details = document.getElementById("details");
 		if(spieler_villages !== null)
 		{
-			var get_list_raidlist = localStorage.getItem(window.Current.UserName + "_list_raidlist");
+			var get_list_raidlist = localStorage.getItem(TJS.CurrentData.UserName + "_list_raidlist");
 			if(get_list_raidlist !== null) list_raidlist = JSON.parse(get_list_raidlist);
 			if(list_raidlist.length > 0) spieler_addraidlist();
 		}
