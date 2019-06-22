@@ -75,7 +75,7 @@ TJS = {
 		v.autoplay = false;
 		document.body.appendChild(v);
 		return v;
-	}
+	},
 	LSGetObject : function(name,id){
 		var json_text = localStorage.getItem(name+"_"+id);
 		var village_object = {};
