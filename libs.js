@@ -242,7 +242,10 @@ TJS.Const = {
 	ClassTimer : "TJS_timer",//TJS_timer
 };
 TJS.CurrentData = {
+	Uid : -1,
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
+	tabActives : document.getElementsByClassName("container active"),
+	e_build : document.getElementById("build"),
 	UserName : function(){
 		var sidebarBoxHero = document.getElementById("sidebarBoxHero");
 		if(sidebarBoxHero !== null)
@@ -251,37 +254,41 @@ TJS.CurrentData = {
 			if(playerNames.length >= 1)return playerNames[0].children[1].innerText;
 		}
 		return null;
-	}(),
-	Uid : -1,
-	tabActives : document.getElementsByClassName("container active"),
-	e_build : document.getElementById("build"),
-	Gid : function(){
-		if(e_build == null) return -1;
-		var gid_str = TJS.CurrentData.e_build.getAttribute("class").split(" ")[0];
-		return Number(gid_str.substring(3,gid_str.length));
-	}(),
-	listVillage : function() {
-		if(TJS.CurrentData.sidebarBoxVillagelist !== null) return TJS.CurrentData.sidebarBoxVillagelist.getElementsByTagName("li");
-		else return null;
-	}(),
-	active_village : function(){
-		for(var i = 0; i < TJS.CurrentData.listVillages.length; i++) 
-			if(TJS.CurrentData.listVillages[i].getAttribute("class").indexOf("active") >=0) 
-				return TJS.CurrentData.listVillages[i];
-		return null; 
-	}(),
-	VillageId : function(){
-		if (TJS.CurrentData.active_village !== null)
-			return Number(getParameterByName(TJS.CurrentData.active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid"));
-		else return null;
-	}(),
-	village_object : function(){
-		if(TJS.CurrentData.VillageId !== null) return TJS.LSGetObject("village",TJS.CurrentData.VillageId);
-		else return null;
-	}(),
+	}(),	
+	Gid : -1,
+	listVillage : null,
+	active_village : null,
+	VillageId : null,
+	village_object : null,
 	ding_sound : TJS.CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3")),	
 	Timeout : 200
 }
+TJS.CurrentData.Gid = function(){
+	if(TJS.CurrentData.e_build == null) return -1;
+	var gid_str = TJS.CurrentData.e_build.getAttribute("class").split(" ")[0];
+	return Number(gid_str.substring(3,gid_str.length));
+}();
+TJS.CurrentData.listVillage = function() {
+	if(TJS.CurrentData.sidebarBoxVillagelist !== null) 
+		return TJS.CurrentData.sidebarBoxVillagelist.getElementsByTagName("li");
+	else return null;
+}();
+TJS.CurrentData.active_village = function(){
+	for(var i = 0; i < TJS.CurrentData.listVillages.length; i++) 
+		if(TJS.CurrentData.listVillages[i].getAttribute("class").indexOf("active") >=0) 
+			return TJS.CurrentData.listVillages[i];
+	return null; 
+}();
+TJS.CurrentData.VillageId = function(){
+	if (TJS.CurrentData.active_village !== null)
+		return Number(getParameterByName(TJS.CurrentData.active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid"));
+	else return null;
+}();
+TJS.CurrentData.village_object = function(){
+	if(TJS.CurrentData.VillageId !== null) return TJS.LSGetObject("village",TJS.CurrentData.VillageId);
+	else return null;
+}();
+
 TJS.AccountSetting = {
 	ReadSetting : function(){
 		
