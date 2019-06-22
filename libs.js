@@ -256,6 +256,7 @@ TJS.CurrentData = {
 	tabActives : document.getElementsByClassName("container active"),
 	e_build : document.getElementById("build"),
 	Gid : function(){
+		if(e_build == null) return -1;
 		var gid_str = TJS.CurrentData.e_build.getAttribute("class").split(" ")[0];
 		return Number(gid_str.substring(3,gid_str.length));
 	}(),
