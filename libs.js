@@ -182,13 +182,13 @@ TJS = {
 	HotKeyBack : function(){
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[0].click();
-		var previous = window.Current.e_build.getElementsByClassName("previous");
+		var previous = TJS.CurrentData.e_build.getElementsByClassName("previous");
 		if(previous.length > 0) previous[0].click();
 	},
 	HotKeyNext : function(){
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[1].click();
-		var nexts = window.Current.e_build.getElementsByClassName("next");
+		var nexts = TJS.CurrentData.e_build.getElementsByClassName("next");
 		if(nexts.length > 0) nexts[0].click();
 	},
 	
