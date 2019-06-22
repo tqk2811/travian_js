@@ -281,7 +281,7 @@ TJS.CurrentData.active_village = function(){
 }();
 TJS.CurrentData.VillageId = function(){
 	if (TJS.CurrentData.active_village !== null)
-		return Number(getParameterByName(TJS.CurrentData.active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid"));
+		return Number(TJS.getParameterByName(TJS.CurrentData.active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid"));
 	else return null;
 }();
 TJS.CurrentData.village_object = function(){
