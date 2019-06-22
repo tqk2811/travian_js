@@ -327,3 +327,5 @@ TJS.AddHotKey(81,function(){ // Q change task_helper_select
 		window.task_helper_select.onchange();
 	}
 });
+
+null.test_catch_error()
