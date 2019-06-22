@@ -328,4 +328,4 @@ TJS.AddHotKey(81,function(){ // Q change task_helper_select
 	}
 });
 
-null.test_catch_error()
+//null.test_catch_error()
