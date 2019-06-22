@@ -143,7 +143,7 @@ TJS = {
 		}
 		window.addEventListener("error", function (e){ window.err_.innerText = "Script error."; });
 		console.log("Init catch exception complete.");
-	}
+	},
 	HotKeyTabKey : function(){
 		var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
 		var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
@@ -305,11 +305,11 @@ console.log("uid:" + TJS.CurrentData.UserName +
 			"; gid:" + TJS.CurrentData.Gid +
 			"; village_id:" + TJS.CurrentData.VillageId);
 
-TJS.AddHotKey(192,function(){ window.location.href = "/dorf3.php"; });\\~
-TJS.AddHotKey(9,TJS.HotKeyTabKey);\\ tab
-TJS.AddHotKey([66,37],TJS.HotKeyBack);\\b
-TJS.AddHotKey([78,39],TJS.HotKeyNext);\\left arrow
-TJS.AddHotKey(81,function(){
+TJS.AddHotKey(192,function(){ window.location.href = "/dorf3.php";});// ` ~
+TJS.AddHotKey(9,TJS.HotKeyTabKey);// tab
+TJS.AddHotKey([66,37],TJS.HotKeyBack);//back & left arrow
+TJS.AddHotKey([78,39],TJS.HotKeyNext);//next & right arrow
+TJS.AddHotKey(81,function(){ // Q change task_helper_select
 	if(window.task_helper_select != undefined);
 	{
 		var num = Number(window.task_helper_select.value);
