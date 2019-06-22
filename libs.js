@@ -274,9 +274,9 @@ TJS.CurrentData.listVillage = function() {
 	else return null;
 }();
 TJS.CurrentData.active_village = function(){
-	for(var i = 0; i < TJS.CurrentData.listVillages.length; i++) 
-		if(TJS.CurrentData.listVillages[i].getAttribute("class").indexOf("active") >=0) 
-			return TJS.CurrentData.listVillages[i];
+	for(var i = 0; i < TJS.CurrentData.listVillage.length; i++) 
+		if(TJS.CurrentData.listVillage[i].getAttribute("class").indexOf("active") >=0) 
+			return TJS.CurrentData.listVillage[i];
 	return null; 
 }();
 TJS.CurrentData.VillageId = function(){
