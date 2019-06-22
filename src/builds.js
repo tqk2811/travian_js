@@ -102,8 +102,8 @@ function gid15()//main building
 	if(demolish !== null)
 	{
 		var timers_ = demolish.getElementsByClassName("timer");
-		if(timers_.length == 1)	Current.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + TJS.CurrentSec();
-		else Current.village_object["demolish"] = 0;			
+		if(timers_.length == 1)	TJS.CurrentData.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + TJS.CurrentSec();
+		else TJS.CurrentData.village_object["demolish"] = 0;			
 		TJS.SaveCurrentVillage();
 	}
 }
