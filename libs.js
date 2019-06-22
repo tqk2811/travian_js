@@ -18,7 +18,9 @@ String.prototype.format = function(){
 String.prototype.getASCII = function(){
 	return this.replace(/[^\x00-\x7F]/g, "");
 }
-
+function IsNullOrUndefined(a){
+	return a == undefined || a == null;
+}
 function AddUriCss(uri){
     var s = document.createElement('link');
     s.setAttribute("href",uri + "?refresh_="+refresh_);
@@ -182,14 +184,20 @@ TJS = {
 	HotKeyBack : function(){
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[0].click();
-		var previous = TJS.CurrentData.e_build.getElementsByClassName("previous");
-		if(previous.length > 0) previous[0].click();
+		if(!IsNullOrUndefined(TJS.CurrentData.e_build))
+		{
+			var previous = TJS.CurrentData.e_build.getElementsByClassName("previous");
+			if(previous.length > 0) previous[0].click();
+		}
 	},
 	HotKeyNext : function(){
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[1].click();
-		var nexts = TJS.CurrentData.e_build.getElementsByClassName("next");
-		if(nexts.length > 0) nexts[0].click();
+		if(!IsNullOrUndefined(TJS.CurrentData.e_build))
+		{
+			var nexts = TJS.CurrentData.e_build.getElementsByClassName("next");
+			if(nexts.length > 0) nexts[0].click();
+		}
 	},
 	
 	SaveCurrentVillage : function(){
