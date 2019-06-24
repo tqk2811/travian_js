@@ -238,23 +238,23 @@ function gid16_attack_multiwave()
 	var e_p2 = document.createElement("p");
 	e_main.appendChild(e_p2);
 	
-	window.gid16_Input_delay = document.createElement("input");
-	gid16_Input_delay.setAttribute("id","gid16_Input_delay")
-	gid16_Input_delay.setAttribute("min",0);
-	gid16_Input_delay.setAttribute("max",5000);
-	gid16_Input_delay.setAttribute("type","number");
-	gid16_Input_delay.setAttribute("value",100);
-	gid16_Input_delay.setAttribute("maxlength",4);
-	gid16_Input_delay.setAttribute("style","padding:3px;margin:3px;");
-	gid16_Input_delay.hidden = true;
-	e_main.appendChild(gid16_Input_delay);
+	//window.gid16_Input_delay = document.createElement("input");
+	//gid16_Input_delay.setAttribute("id","gid16_Input_delay")
+	//gid16_Input_delay.setAttribute("min",0);
+	//gid16_Input_delay.setAttribute("max",5000);
+	//gid16_Input_delay.setAttribute("type","number");
+	//gid16_Input_delay.setAttribute("value",100);
+	//gid16_Input_delay.setAttribute("maxlength",4);
+	//gid16_Input_delay.setAttribute("style","padding:3px;margin:3px;");
+	//gid16_Input_delay.hidden = true;
+	//e_main.appendChild(gid16_Input_delay);
 	
-	window.gid16_Label_Delay = document.createElement("label");
-	gid16_Label_Delay.setAttribute("id","label_gid16_Input_delay");
-	gid16_Label_Delay.setAttribute("for","gid16_Input_delay");
-	gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
-	gid16_Label_Delay.hidden = true;
-	e_main.appendChild(gid16_Label_Delay);
+	//window.gid16_Label_Delay = document.createElement("label");
+	//gid16_Label_Delay.setAttribute("id","label_gid16_Input_delay");
+	//gid16_Label_Delay.setAttribute("for","gid16_Input_delay");
+	//gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
+	//gid16_Label_Delay.hidden = true;
+	//e_main.appendChild(gid16_Label_Delay);
 	
 	//
 	var select_kata2s = document.getElementsByName("kata2");
@@ -277,14 +277,14 @@ function gid16_attack_multiwave_trigger()
 		window.gid16_Interval_id = window.setInterval(gid16_attack_multiwave_trigger_Interval,10);
 		gid16_BT_StartCata.hidden = true;
 		gid16_Label_Delay.hidden = false;
-		gid16_Input_delay.hidden = false;		
+		//gid16_Input_delay.hidden = false;		
 	}
 	else 
 	{
 		if(gid16_Interval_id !== undefined) window.clearInterval(gid16_Interval_id);
 		gid16_BT_StartCata.hidden = false;
 		gid16_Label_Delay.hidden = true;
-		gid16_Input_delay.hidden = true;
+		//gid16_Input_delay.hidden = true;
 	}
 }
 function gid16_attack_multiwave_trigger_Interval()
@@ -294,7 +294,7 @@ function gid16_attack_multiwave_trigger_Interval()
 	{		
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		sleep(Number(gid16_Input_delay.value));
+		//sleep(Number(gid16_Input_delay.value));
 		bt_ok.click();
 	}
 }
@@ -682,9 +682,9 @@ function troop_train()//gid 19 20 29 30 21
 	
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
-	window.troop_train_checkbox.checked = TJS.CurrentData.village_object["troop_train_checkbox_" + TJS.CurrentData.Gid];
+	window.troop_train_checkbox.checked = TJS.CurrentData.village_object[TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid];
 	window.troop_train_checkbox.onchange = function()
-		{	TJS.CurrentData.village_object["troop_train_checkbox_" + TJS.CurrentData.Gid] = window.troop_train_checkbox.checked;
+		{	TJS.CurrentData.village_object[TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid] = window.troop_train_checkbox.checked;
 			TJS.SaveCurrentVillage();	}
 	var e_checkbox_lb = document.createElement("label");
 	e_checkbox_lb.innerText = "Show Time Training";

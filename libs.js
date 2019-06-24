@@ -112,6 +112,27 @@ TJS = {
 			}
 		}
 	},
+	SaveCurrentVillage : function(){
+		TJS.LSSaveObject("village",TJS.CurrentData.VillageId,TJS.CurrentData.village_object);
+	},
+	TitleUsername : function(){
+		var titles = document.getElementsByTagName("title");
+		titles[0].innerText = TJS.CurrentData.UserName + " " + titles[0].innerText;
+	},
+	GetLiBuildTimerObject : function(){
+		var obj = {}
+		obj.e = null;//element
+		obj.time = 0;//time
+		obj.flag = false;
+		obj.color = null;
+		obj.sound = false;
+		obj.adv_text = null;
+		obj.show_zero = false;
+		obj.navigate_url = null;
+		return obj;
+	}
+	
+	
 	HotKeyList : [], 
 	InitHotkey : function(){
 		$(document).keydown(function(e){
@@ -200,13 +221,6 @@ TJS = {
 		}
 	},
 	
-	SaveCurrentVillage : function(){
-		TJS.LSSaveObject("village",TJS.CurrentData.VillageId,TJS.CurrentData.village_object);
-	},
-	TitleUsername : function(){
-		var titles = document.getElementsByTagName("title");
-		titles[0].innerText = TJS.CurrentData.UserName + " " + titles[0].innerText;
-	},
 	LoadLib : function(){
 		AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 		AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
@@ -246,8 +260,20 @@ TJS = {
 		}
 	},
 };
-TJS.Const = {
+TJS.Const = {	
 	ClassTimer : "TJS_timer",//TJS_timer
+	ClassTaskHelper_p1 : "task_helper_p1",
+	LS_trooptrain : "troop_train_",
+	LS_trooptrain_checkbox : "troop_train_checkbox_",
+	
+	
+	
+	task_helper_color_list : ["Blue","BlueGray","Gray"],
+	task_helper_select_list : ["Off","Builds","Troops","Celebration"],
+	Show_TroopTrain_arr : [	[19,		29,			20,			30,			21			],
+							["#0069FF",	"#78A5D3",	"#7700F6",	"#C574F3",	"#C84545"	],
+							["b",		"B",		"s",		"S",		"w"			]],
+	
 };
 TJS.CurrentData = {
 	Uid : -1,
@@ -268,7 +294,7 @@ TJS.CurrentData = {
 	active_village : null,
 	VillageId : null,
 	village_object : null,
-	ding_sound : TJS.CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3")),	
+	ding_sound : TJS.CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3")),
 	Timeout : 200
 }
 TJS.CurrentData.Gid = function(){
