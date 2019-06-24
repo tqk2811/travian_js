@@ -338,7 +338,7 @@ TJS.GlobalSetting = {
 
 TJS.catch_exception();
 window.setInterval(TJS.TimerCountingDownNoReload,1000);
-TJS.InitHotkey();
+
 TJS.LoadLib();
 TJS.TitleUsername();
 $(".errorMessage,.inlineIconList.resourceWrapper").css("margin-top","0px");
@@ -361,5 +361,5 @@ TJS.AddHotKey(81,function(){ // Q change task_helper_select
 		window.task_helper_select.onchange();
 	}
 });
-
+TJS.InitHotkey();
 //null.test_catch_error()
