@@ -131,9 +131,7 @@ TJS = {
 		obj.navigate_url = null;
 		return obj;
 	}
-	
-	
-	HotKeyList : [], 
+
 	InitHotkey : function(){
 		$(document).keydown(function(e){
 			if(document.activeElement.tagName == "INPUT") return;
@@ -338,7 +336,7 @@ TJS.GlobalSetting = {
 
 TJS.catch_exception();
 window.setInterval(TJS.TimerCountingDownNoReload,1000);
-
+TJS.HotKeyList = [];
 TJS.LoadLib();
 TJS.TitleUsername();
 $(".errorMessage,.inlineIconList.resourceWrapper").css("margin-top","0px");
