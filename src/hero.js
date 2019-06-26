@@ -12,11 +12,4 @@ function bid()
 		}
 	}
 }
-function hero_main()
-{
-	if(window.location.href.indexOf("hero.php")>=0)
-	{
-		bid();
-	}
-}
-hero_main();
+if(window.location.href.indexOf("hero.php")>=0)bid();

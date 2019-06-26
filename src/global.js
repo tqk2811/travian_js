@@ -1,6 +1,5 @@
 //sidebarBoxActiveVillage
-function Change_sidebarBoxActiveVillage_Button(index)
-{
+function Change_sidebarBoxActiveVillage_Button(index){
 	var item = list_sidebarBoxActiveVillage[index];
 	if (item.length > 0 && item[0] !== undefined)
 	{
@@ -20,8 +19,7 @@ var list_sidebarBoxActiveVillage = [
 	[document.getElementsByClassName("layoutButton marketBlack gold  ")[0],"/build.php?gid=17"]//market
 ]
 var sidebarBoxActiveVillage = document.getElementById("sidebarBoxActiveVillage");
-if(sidebarBoxActiveVillage !== null)
-{
+if(sidebarBoxActiveVillage !== null){
 	var innerBox_header_sidebarBoxActiveVillage = sidebarBoxActiveVillage.getElementsByClassName("innerBox header ")[0];
 	for(var i = 0; i < list_sidebarBoxActiveVillage.length; i++) Change_sidebarBoxActiveVillage_Button(i);
 }
@@ -32,8 +30,7 @@ if(sidebarBoxActiveVillage !== null)
 //sidebarBoxLinklist
 var storage_linkerlisttop = localStorage.getItem("linkerlisttop") == "true";
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
-if(sidebarBoxLinklist_ !== null)
-{
+if(sidebarBoxLinklist_ !== null){
 	if(storage_linkerlisttop == true) sidebarBeforeContent_swap(storage_linkerlisttop); 	
 	var BoxLinklist_InnerBox = sidebarBoxLinklist_.getElementsByClassName("sidebarBoxInnerBox")[0];
 	var innerBox_content = BoxLinklist_InnerBox.getElementsByClassName("innerBox content")[0];
@@ -57,21 +54,18 @@ if(sidebarBoxLinklist_ !== null)
 	innerBox_content.appendChild(label_checkbox_linkerlisttop);
 }
 
-function checkbox_linkerlisttop_change()
-{
+function checkbox_linkerlisttop_change(){
 	localStorage.setItem("linkerlisttop",checkbox_linkerlisttop.checked);
 	storage_linkerlisttop = checkbox_linkerlisttop.checked;
 	sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);
 }
 
-function sidebarBeforeContent_swap(flag)
-{
+function sidebarBeforeContent_swap(flag){
 	if(flag) TJS.MoveElementUp(sidebarBoxLinklist_,5);//move to top
 	else TJS.MoveElementDown(sidebarBoxLinklist_,5);// back to bot
 }
 
-function AddLinkerList(item)
-{
+function AddLinkerList(item){
     var li_ = document.createElement('li');
     var aTag = document.createElement('a');
     aTag.setAttribute('href',item[1]);
@@ -83,8 +77,7 @@ function AddLinkerList(item)
 
 
 //task_helper
-function LoadLiBuildTimer(li_obj)
-{
+function LoadLiBuildTimer(li_obj){
   if(!li_obj.show_zero && li_obj.time - TJS.CurrentSec() <= 0) return;
   var t = document.createElement("span");
   if(li_obj.flag)
@@ -102,8 +95,18 @@ function LoadLiBuildTimer(li_obj)
   if(li_obj.navigate_url != null) t.onclick = function(){ window.location.href = li_obj.navigate_url}
   li_obj.e.appendChild(t);
 }
-function ShowVillageData(li_element)
-{
+function LoadLi(li_obj){
+	var t = document.createElement("span");
+	if(li_obj.flag){
+		var t2 = document.createElement("span");
+		t2.innerText = "-";//ー
+		li_obj.e.appendChild(t2);
+	}
+	t.setAttribute("style","color:" + li_obj.color);
+	t.innerText = li_obj.text;
+}
+
+function ShowVillageData(li_element){
 	var a_element = li_element.getElementsByTagName("a")[0];
 	var a_element_href = a_element.getAttribute("href");
 	var village_id_ = TJS.getParameterByName(a_element_href,"newdid");	
@@ -119,11 +122,12 @@ function ShowVillageData(li_element)
 		case 1: Show_Build(village_object,e_p1); return;
 		case 2: Show_TroopTrain(village_object,e_p1,village_id_); return;
 		case 3: Show_Celebration(village_object,e_p1,village_id_); return;
+		case 4: Show_Resource(village_object,e_p1,village_id_); return;
+		case 5: Show_AttackRed(village_object,e_p1,village_id_); return;
 		default: return;
 	}
 }
-function Show_Build(village_object,e_p1)
-{
+function Show_Build(village_object,e_p1){
 	if(village_object.Builds === undefined) return;
 	var flag = false;
 	var j = 0;
@@ -152,8 +156,7 @@ function Show_Build(village_object,e_p1)
 			LoadLiBuildTimer(obj);
 	}
 }
-function Show_TroopTrain(village_object,e_p1,village_id_)
-{
+function Show_TroopTrain(village_object,e_p1,village_id_){
 	var flag = false;
 	for(var i = 0; i < TJS.Const.Show_TroopTrain_arr[0].length; i ++)
 	{
@@ -173,8 +176,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_)
 		}
 	}	
 }
-function Show_Celebration(village_object,e_p1,village_id_)
-{
+function Show_Celebration(village_object,e_p1,village_id_){
 	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < TJS.CurrentSec()
 	var obj = TJS.GetLiBuildTimerObject();
 		obj.e = e_p1;
@@ -184,8 +186,24 @@ function Show_Celebration(village_object,e_p1,village_id_)
 		obj.navigate_url = "/build.php?newdid="+village_id_+"&gid=24";
 	LoadLiBuildTimer(obj);
 }
-function task_helper_select_onchange()
-{
+function Show_Resource(village_object,e_p1,village_id_){
+	if(village_object["res"] == undefined) return;
+	flag = false;
+	for(var i = 0; i < village_object["res"].length; i++)
+	{
+		var li_obj = {};
+		li_obj.text = village_object["res"][i]%1000 +"k";
+		li_obj.flag = flag;
+		li_obj.color = TJS.Const.task_helper_color_list[0];		
+		LoadLi(li_obj);
+		flag = true;
+	}
+}
+function Show_AttackRed(village_object,e_p1,village_id_){
+	
+}
+
+function task_helper_select_onchange(){
 	localStorage.setItem("default_task_helper_select",window.task_helper_select.value);
 	default_task_helper_select = Number(window.task_helper_select.value);
 	var listp1 = document.getElementsByClassName(TJS.Const.ClassTaskHelper_p1);
@@ -193,8 +211,7 @@ function task_helper_select_onchange()
 	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
 }
 
-function show_culture()
-{
+function show_culture(){
 	var expansionSlotInfos = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
 	var boxTitles = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
 	if(expansionSlotInfos.length == 1 && boxTitles.length == 1)
@@ -204,8 +221,7 @@ function show_culture()
 	}
 }
 
-if(TJS.CurrentData.sidebarBoxVillagelist != null)
-{
+if(TJS.CurrentData.sidebarBoxVillagelist != null){
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
 	task_helper_select.onchange = task_helper_select_onchange;

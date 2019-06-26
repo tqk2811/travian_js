@@ -268,7 +268,7 @@ TJS.Const = {
 	
 	
 	task_helper_color_list : ["Blue","BlueGray","Gray"],
-	task_helper_select_list : ["Off","Builds","Troops","Celebration"],
+	task_helper_select_list : ["Off","Builds","Troops","Celebration","Resource","AttackRed"],
 	Show_TroopTrain_arr : [	[19,		29,			20,			30,			21			],
 							["#0069FF",	"#78A5D3",	"#7700F6",	"#C574F3",	"#C84545"	],
 							["b",		"B",		"s",		"S",		"w"			]],
@@ -321,6 +321,18 @@ TJS.CurrentData.village_object = function(){
 	if(TJS.CurrentData.VillageId !== null) return TJS.LSGetObject("village",TJS.CurrentData.VillageId);
 	else return null;
 }();
+TJS.CurrentData.Resource = function(){
+	var res = [
+		Number(document.getElementById("l1").innerText.replaceAll(".","").replaceAll(",",""));
+		Number(document.getElementById("l2").innerText.replaceAll(".","").replaceAll(",",""));
+		Number(document.getElementById("l3").innerText.replaceAll(".","").replaceAll(",",""));
+		Number(document.getElementById("l4").innerText.replaceAll(".","").replaceAll(",",""));
+	];
+	TJS.CurrentData.village_object["res"] = res;
+	TJS.SaveCurrentVillage();
+	return res;
+}();
+
 
 TJS.AccountSetting = {
 	ReadSetting : function(){

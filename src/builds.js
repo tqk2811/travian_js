@@ -1,5 +1,4 @@
-function Get_gid()
-{
+function Get_gid(){
 	build_gid();
 	switch(TJS.CurrentData.Gid)
 	{
@@ -17,8 +16,7 @@ function Get_gid()
 		default: return;
 	}
 }
-function build_gid()
-{
+function build_gid(){
 	window.e_merge = { isOn : false, e_text : null };
 	if(TJS.CurrentData.Gid == 16 && TJS.getParameterByName(window.location.href,"m") !== null && TJS.getParameterByName(window.location.href,"tt") == "2")
 		{
@@ -36,8 +34,7 @@ function build_gid()
 	}
 }
 
-function build_gid_TotalRes(e)
-{
+function build_gid_TotalRes(e){
 	var ress = e.getElementsByTagName("span");
 	if(ress.length >= 4)
 	{
@@ -96,11 +93,9 @@ function build_gid_TotalRes(e)
 	}
 }
 
-function gid15()//main building
-{
+function gid15(){//main building
 	var demolish = document.getElementById("demolish");
-	if(demolish !== null)
-	{
+	if(demolish !== null){
 		var timers_ = demolish.getElementsByClassName("timer");
 		if(timers_.length == 1)	TJS.CurrentData.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + TJS.CurrentSec();
 		else TJS.CurrentData.village_object["demolish"] = 0;			
@@ -108,13 +103,10 @@ function gid15()//main building
 	}
 }
 
-function gid16()//rallypoint
-{
-	if(TJS.CurrentData.tabActives !== null)
-	{
+function gid16(){//rallypoint
+	if(TJS.CurrentData.tabActives !== null){
 		var tabItem = TJS.CurrentData.tabActives[0].getElementsByClassName("tabItem")[0];
-		if(tabItem.getAttribute("href").indexOf("tt=99")>=0)
-		{
+		if(tabItem.getAttribute("href").indexOf("tt=99")>=0){
 			var list_raidlist = [];
 			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
 			for(var i = 0; i < listEntrys.length; i++) 
@@ -176,8 +168,7 @@ function gid16()//rallypoint
 		}
 	}
 }
-function gid16_bt_CheckAllGreenAttack_onclick()
-{
+function gid16_bt_CheckAllGreenAttack_onclick(){
 	var e_listContents = document.getElementsByClassName("listContent");
 	var count = 0;
 	var e_temp = null;
@@ -208,8 +199,7 @@ function gid16_bt_CheckAllGreenAttack_onclick()
 	}
 }
 
-function gid16_attack_multiwave()
-{
+function gid16_attack_multiwave(){
 	localStorage.setItem("attack_multiwave","0");
 	var e_main = document.createElement("div");
 	e_main.setAttribute("style","display: inline-block;");
@@ -260,8 +250,7 @@ function gid16_attack_multiwave()
 	var select_kata2s = document.getElementsByName("kata2");
 	if(select_kata2s.length == 1) select_kata2s[0].value = 99;
 }
-function gid16_attack_multiwave_start()
-{
+function gid16_attack_multiwave_start(){
 	if(window.confirm("Start?"))
 	{
 		var bt_ok = document.getElementById("btn_ok");
@@ -269,8 +258,7 @@ function gid16_attack_multiwave_start()
 		localStorage.setItem("attack_multiwave","1");		
 	}
 }
-function gid16_attack_multiwave_trigger()
-{
+function gid16_attack_multiwave_trigger(){
 	if(gid16_Input_AttackTrigger.checked) 
 	{
 		localStorage.setItem("attack_multiwave","0");
@@ -287,8 +275,7 @@ function gid16_attack_multiwave_trigger()
 		//gid16_Input_delay.hidden = true;
 	}
 }
-function gid16_attack_multiwave_trigger_Interval()
-{
+function gid16_attack_multiwave_trigger_Interval(){
 	var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
 	if(attack_multiwave_flag !== null && attack_multiwave_flag == "1")
 	{		
@@ -300,8 +287,7 @@ function gid16_attack_multiwave_trigger_Interval()
 }
 
 
-function gid17()//market
-{
+function gid17(){//market
 	if(TJS.CurrentData.tabActives !== null)
 	{
 		var tabItem = TJS.CurrentData.tabActives[0].getElementsByClassName("tabItem")[0];
@@ -469,16 +455,14 @@ function gid17()//market
 	}
 }
 
-function gid17_TroopResSelect_onchange()
-{
+function gid17_TroopResSelect_onchange(){
 	var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
 	if(gid17_TroopResSelect.value == "" ||account_object["troop"] == undefined) return;
 	window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
 	gid17_findmaxtroops();
 }
 
-function gid17_input_number_troop_onchange()
-{
+function gid17_input_number_troop_onchange(){
 	var res_troops = [
 						gid17_TroopRes[1]*gid17_input_number_troop.value,
 						gid17_TroopRes[2]*gid17_input_number_troop.value,
@@ -487,26 +471,14 @@ function gid17_input_number_troop_onchange()
 	];
 	gid17_celebration_click(res_troops,1);
 }
-function getCurrentRes()
-{
-	var ress = [];
-	for(var i =1; i <= 4; i++)
-	{
-		var ele = document.getElementById("l" + i.toString());
-		ress.push(Number(ele.innerText.replaceAll(",","").replaceAll(".","")));
-	}
-	return ress;
-}
 
-function gid17_findmaxtroops()
-{
-	var currentres = getCurrentRes();
+function gid17_findmaxtroops(){
 	var maxtroops = -1;
 	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
 	var total_res_for_troop = 0;
 	for(var i = 0; i < 4; i++)// max troop res
 	{
-		var num = Math.floor(currentres[i]/gid17_TroopRes[i+1]);
+		var num = Math.floor(TJS.CurrentData.Resource[i]/gid17_TroopRes[i+1]);
 		if(gid17_noncrop.checked && i == 3) break;
 		total_res_for_troop += gid17_TroopRes[i+1];
 		if(maxtroops == -1) maxtroops = num;
@@ -539,36 +511,28 @@ function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
 	return e_option;
 }
 
-function gid17_clear_onclick()
-{
-	if(window.confirm("Are you sure to clear trade routes?"))
-	{
+function gid17_clear_onclick(){
+	if(window.confirm("Are you sure to clear trade routes?")){
 		localStorage.setItem("Flag_deleteAll_Trading_routes",TJS.CurrentData.VillageId);
 		localStorage.setItem("gid17_des_clear",window.gid17_select_clear.value);
 		window.location.href = "/build.php?t=0&gid=17";
 	}
 }
-function gid17_clear()
-{
+function gid17_clear(){
 	var id = localStorage.getItem("Flag_deleteAll_Trading_routes");
 	var gid17_des_clear = localStorage.getItem("gid17_des_clear");
-	if(id !== null && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)
-	{
+	if(id !== null && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)	{
 		var trading_routes = document.getElementById("trading_routes");
-		if(trading_routes !== null)
-		{
+		if(trading_routes !== null)		{
 			var trs = trading_routes.getElementsByTagName("tr");
-			for(var i = 1; i< trs.length; i++)
-			{
+			for(var i = 1; i< trs.length; i++)			{
 				var sel_trs = trs[i].getElementsByClassName("sel");
 				if(sel_trs.length == 0) continue;
-				if(gid17_des_clear == "-1") 
-				{
+				if(gid17_des_clear == "-1"){
 					sel_trs[0].getElementsByTagName("a")[0].click();
 					return;
 				}
-				else
-				{
+				else{
 					var curr_desc = trs[i].getElementsByClassName("desc")[0];
 					var curr_href = curr_desc.getElementsByTagName("a")[0].getAttribute("href");
 					
@@ -583,8 +547,7 @@ function gid17_clear()
 					
 					if(curr_newdid == target[0] && 
 									curr_r[0] == target[1] && curr_r[1] == target[2] && 
-									curr_r[2] == target[3] && curr_r[3] == target[4]	)
-					{
+									curr_r[2] == target[3] && curr_r[3] == target[4]	){
 						sel_trs[0].getElementsByTagName("a")[0].click();
 						return;
 					}
@@ -594,11 +557,9 @@ function gid17_clear()
 	}
 	localStorage.setItem("Flag_deleteAll_Trading_routes",-1);
 }
-function gid17_celebration_click(r,run_twice)
-{
+function gid17_celebration_click(r,run_twice){
 	var sumResources = 0;
-	for(var i=0;i<4;i++)
-	{
+	for(var i=0;i<4;i++){
 		var e_r = document.getElementById("r" + (i + 1));
 		e_r.value = r[i];
 		sumResources += r[i];
@@ -609,72 +570,15 @@ function gid17_celebration_click(r,run_twice)
 	
 	var e_run_twice = document.getElementById("x2");
 	if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
-	else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox")
-	{
-		switch(run_twice)
-		{
+	else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox"){
+		switch(run_twice){
 			case 2:e_run_twice.checked = true; break;
 			default: e_run_twice.checked = false; break;
 		}
 	}
 }
-function gid17_CreateTradeRoutes_click()
-{
-	if(document.getElementById("tradeRouteError").innerText.trim().length == 0 && window.confirm("Confirm Create TradeRoutes?"))
-	{
-		var obj = {};		
-		var arr_ = ["trade_route_destination","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step","every"];
-		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
-		
-		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
-		if(trade_route_mode_send.checked) obj["trade_route_mode"] = "send";
-		else obj["trade_route_mode"] = "deliver";
-		
-		obj["hour"] = Number(document.getElementsByName("hour")[0].value);
-		obj["minute"] = Number(document.getElementsByName("minute")[0].value);
-		
-		localStorage.setItem("trade_route",JSON.stringify(obj));
-		gid17_CreateTradeRoutes_load();
-	}
-	return false;
-}
-function gid17_CreateTradeRoutes_load()
-{
-	if(TJS.CurrentData.Gid != 17) 
-	{
-		localStorage.removeItem("trade_route");
-		return;
-	}
-	var trade_route_str = localStorage.getItem("trade_route");
-	if(trade_route_str !== null)
-	{
-		var obj = JSON.parse(trade_route_str);
-		var tmp_hr = obj["hour"];
-		var tmp_min = obj["minute"];
-		
-		var time_start = obj["hour"] * 60 + obj["minute"];
-		var time_end = obj["hour_end"] * 60 + obj["minute_end"];
-		var time_step = obj["hour_step"] * 60 + obj["minute_step"];
-		if(time_step == 0){localStorage.removeItem("trade_route");return;}
-		if(time_start < time_end)
-		{
-			time_start += time_step;
-			if(time_start > time_end) localStorage.removeItem("trade_route");
-			else
-			{
-				obj["minute"] = time_start % 60;
-				obj["hour"] = (time_start - obj["minute"]) / 60;
-				localStorage.setItem("trade_route",JSON.stringify(obj));
-			}
-			window.location.href=gid17_base_uri_traderoute.format(
-							obj["trade_route_destination"],obj["r1"],obj["r2"],obj["r3"],obj["r4"],
-							obj["trade_route_mode"],tmp_hr,tmp_min,obj["repeat"],obj["every"]);
-		}else localStorage.removeItem("trade_route");
-	}
-}
 
-function troop_train()//gid 19 20 29 30 21
-{
+function troop_train(){//gid 19 20 29 30 21
 	//var contract = document.getElementById("contract");
 	var e_div = document.createElement("div");
 	build.insertAdjacentElement("afterbegin",e_div);
@@ -722,12 +626,10 @@ function troop_train()//gid 19 20 29 30 21
 		}
 	}	
 }
-function fastclick_checkedchange(e)
-{
+function fastclick_checkedchange(e){
 	localStorage.setItem("fastclick_train",e.checked);
 }
-function fastclick_train_onclick(i)
-{
+function fastclick_train_onclick(i){
 	var fastclick_ischeck = document.getElementById("fastclick");	
 	if(fastclick_ischeck.checked || confirm("Confirm train?"))
 	{
@@ -737,13 +639,11 @@ function fastclick_train_onclick(i)
 	}
 }
 
-function gid24()//Town Hall
-{
+function gid24(){//Town Hall
 	read_time_gid_under_progress("celebration");
 }
 
-function read_time_gid_under_progress(name)
-{
+function read_time_gid_under_progress(name){
 	var under_progress = document.getElementsByClassName("under_progress");	
 	if(under_progress.length == 1)
 	{
@@ -756,7 +656,7 @@ function read_time_gid_under_progress(name)
 	TJS.SaveCurrentVillage();
 }
 
-//function TroopResource_create(unit,name,res[])
+
 var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&every=%s&gid=17&a=1&t=0&trid=0&option=256";
 gid17_clear();
 gid17_CreateTradeRoutes_load();
