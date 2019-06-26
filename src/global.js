@@ -282,7 +282,7 @@ if(TJS.CurrentData.sidebarBoxVillagelist != null){
 }
 var movements = document.getElementById("movements");
 if(movements !== null){
-	var trs = movements.getElementsByClassName("tr");
+	var trs = movements.getElementsByTagName("tr");
 	for(var i = 0; i< trs.length;i++)
 	{
 		var att1s = trs[i].getElementsByClassName("att1");
