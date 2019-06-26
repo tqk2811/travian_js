@@ -290,7 +290,7 @@ if(movements !== null){
 		{
 			var timers = trs[i].getElementsByClassName("timer");
 			var att_obj = {};
-			att_obj.timeend = timers[0].value + TJS.CurrentSec();
+			att_obj.timeend = Number(timers[0].getAttribute("value")) + TJS.CurrentSec();
 			att_obj.count = Number(trs[i].getElementsByClassName("a1")[0].innerText.match(/\d+/));
 			TJS.CurrentData.village_object["attack1"] = att_obj;
 			TJS.SaveCurrentVillage();
