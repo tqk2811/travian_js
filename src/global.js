@@ -193,7 +193,7 @@ function Show_Resource(village_object,e_p1,village_id_){
 	for(var i = 0; i < village_object["res"].length; i++)
 	{
 		var li_obj = {};
-		li_obj.text = village_object["res"][i]%1000 +"k";
+		li_obj.text = Math.round(village_object["res"][i] / 1000) +"k";
 		li_obj.flag = flag;
 		li_obj.e = e_p1;
 		li_obj.color = TJS.Const.task_helper_color_list[0];		
