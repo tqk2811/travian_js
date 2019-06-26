@@ -209,7 +209,7 @@ function Show_AttackRed(village_object,e_p1,village_id_){
 	var img = document.createElement("img");
 	img.class = "att1";
 	var t = document.createElement("span");	
-	t.setAttribute("style","color:" + );
+	t.setAttribute("style","color:" + "Red");
 	var t2 = document.createElement("span");
 	if(!timeend)
 	{
