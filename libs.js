@@ -329,6 +329,10 @@ TJS.CurrentData.Resource = function(){
 		Number(document.getElementById("l4").innerText.replaceAll(".","").replaceAll(",",""))
 	];
 	TJS.CurrentData.village_object["res"] = res;
+	TJS.CurrentData.Storage = Number(document.getElementById("stockBarWarehouse").innerText.match(/[\d.,]+/).replaceAll(",","").replaceAll(".",""));
+	TJS.CurrentData.Granary = Number(document.getElementById("stockBarGranary").innerText.match(/[\d.,]+/).replaceAll(",","").replaceAll(".",""));
+	TJS.CurrentData.village_object["storage"] = TJS.CurrentData.Storage;
+	TJS.CurrentData.village_object["granary"] = TJS.CurrentData.Granary;
 	TJS.SaveCurrentVillage();
 	return res;
 }();
