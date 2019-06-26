@@ -215,7 +215,7 @@ function Show_AttackRed(village_object,e_p1,village_id_){
 	{
 		t.innerText = village_object["attack1"].count + " attack in ";
 		t2.setAttribute("class",TJS.Const.ClassTimer);
-		t2.setAttribute("value",village_object["attack1"].time - TJS.CurrentSec());
+		t2.setAttribute("value",TJS.CurrentSec() - village_object["attack1"].time);
 	}
 	else 
 	{
