@@ -280,7 +280,7 @@ if(TJS.CurrentData.sidebarBoxVillagelist != null){
 		task_helper_select.appendChild(option_);
 	}
 }
-var movements = document.getElementById(movements);
+var movements = document.getElementById("movements");
 if(movements !== null){
 	var trs = movements.getElementsByClassName("tr");
 	for(var i = 0; i< trs.length;i++)
