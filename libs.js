@@ -371,7 +371,7 @@ TJS.AddHotKey(81,function(){ // Q change task_helper_select
 	{
 		var num = Number(window.task_helper_select.value);
 		num++;
-		if(num == 4) num = 1;
+		if(num == TJS.Const.task_helper_select_list.length - 1) num = 1;
 		window.task_helper_select.value = num;
 		window.task_helper_select.onchange();
 	}
