@@ -161,7 +161,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_){
 	var flag = false;
 	for(var i = 0; i < TJS.Const.Show_TroopTrain_arr[0].length; i ++)
 	{
-		var isshow = village_object[TJS.Const.LS_trooptrain_checkbox+Show_TroopTrain_arr[0][i]];
+		var isshow = village_object[TJS.Const.LS_trooptrain_checkbox + TJS.Const.Show_TroopTrain_arr[0][i]];
 		if(isshow !== undefined && isshow) 
 		{
 			var obj = TJS.GetLiBuildTimerObject();
