@@ -104,6 +104,7 @@ function LoadLi(li_obj){
 	}
 	t.setAttribute("style","color:" + li_obj.color);
 	t.innerText = li_obj.text;
+	li_obj.e.appendChild(t);
 }
 
 function ShowVillageData(li_element){
