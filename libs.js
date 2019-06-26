@@ -323,10 +323,10 @@ TJS.CurrentData.village_object = function(){
 }();
 TJS.CurrentData.Resource = function(){
 	var res = [
-		Number(document.getElementById("l1").innerText.replaceAll(".","").replaceAll(",",""));
-		Number(document.getElementById("l2").innerText.replaceAll(".","").replaceAll(",",""));
-		Number(document.getElementById("l3").innerText.replaceAll(".","").replaceAll(",",""));
-		Number(document.getElementById("l4").innerText.replaceAll(".","").replaceAll(",",""));
+		Number(document.getElementById("l1").innerText.replaceAll(".","").replaceAll(",","")),
+		Number(document.getElementById("l2").innerText.replaceAll(".","").replaceAll(",","")),
+		Number(document.getElementById("l3").innerText.replaceAll(".","").replaceAll(",","")),
+		Number(document.getElementById("l4").innerText.replaceAll(".","").replaceAll(",",""))
 	];
 	TJS.CurrentData.village_object["res"] = res;
 	TJS.SaveCurrentVillage();
