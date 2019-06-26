@@ -574,10 +574,10 @@ function gid17_clear()
 					
 					var curr_newdid = TJS.getParameterByName(curr_href,"newdid");
 					var curr_r = [
-								curr_desc.getElementsByClassName("r1").parentElement.innerText,
-								curr_desc.getElementsByClassName("r2").parentElement.innerText,
-								curr_desc.getElementsByClassName("r3").parentElement.innerText,
-								curr_desc.getElementsByClassName("r4").parentElement.innerText
+								curr_desc.getElementsByClassName("r1")[0].parentElement.innerText,
+								curr_desc.getElementsByClassName("r2")[0].parentElement.innerText,
+								curr_desc.getElementsByClassName("r3")[0].parentElement.innerText,
+								curr_desc.getElementsByClassName("r4")[0].parentElement.innerText
 								];
 					var target = gid17_des_clear.split("_");
 					
