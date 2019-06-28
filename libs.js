@@ -131,6 +131,20 @@ TJS = {
 		obj.navigate_url = null;
 		return obj;
 	},
+	CreateDataListVillageName : function(id = "village_list"){
+		var datalist_villagename = document.createElement("datalist");
+		datalist_villagename.setAttribute("id",id);
+		for(var i = 0;i < TJS.CurrentData.listVillage.length;i++){
+			if(TJS.CurrentData.listVillage[i] == TJS.CurrentData.active_village) continue;
+			var name_ = TJS.CurrentData.listVillage[i].getElementsByClassName("name");
+			if(name_.length > 0){
+				var option_datalist = document.createElement("option");
+				option_datalist.value = name_[0].innerText;
+				datalist_villagename.appendChild(option_datalist);
+			}
+		}
+		return datalist_villagename;
+	},
 	
 	HotKeyList : [],
 	InitHotkey : function(){

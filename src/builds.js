@@ -288,14 +288,11 @@ function gid16_attack_multiwave_trigger_Interval(){
 
 
 function gid17(){//market
-	if(TJS.CurrentData.tabActives !== null)
-	{
+	if(TJS.CurrentData.tabActives !== null){
 		var tabItem = TJS.CurrentData.tabActives[0].getElementsByClassName("tabItem")[0];
-		if(tabItem.getAttribute("href").indexOf("t=0")>=0)//manager
-		{
+		if(tabItem.getAttribute("href").indexOf("t=0")>=0){//manager
 			var trading_routes = document.getElementById("trading_routes");
-			if(trading_routes !== null)
-			{
+			if(trading_routes !== null){
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Routes";
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
@@ -304,11 +301,9 @@ function gid17(){//market
 				
 				var arr_traderoute_desc = [];			
 				var trading_routes = document.getElementById("trading_routes");
-				if(trading_routes !== null)
-				{
+				if(trading_routes !== null){
 					var desc = trading_routes.getElementsByClassName("desc");
-					for( var i = 0; i < desc.length; i++)
-					{
+					for( var i = 0; i < desc.length; i++){
 						var a_desc = desc[i].getElementsByTagName("a");
 						var r = [
 									desc[i].getElementsByClassName("r1")[0].parentElement.innerText,
@@ -316,17 +311,14 @@ function gid17(){//market
 									desc[i].getElementsByClassName("r3")[0].parentElement.innerText,
 									desc[i].getElementsByClassName("r4")[0].parentElement.innerText
 								];
-						if(a_desc.length > 0)
-						{
+						if(a_desc.length > 0){
 							var href_a_desc = a_desc[0].getAttribute("href");
 							var flag_add = true;
 							for(var j = 0; j< arr_traderoute_desc.length; j++)
 								if(arr_traderoute_desc[j][1] == href_a_desc && 
 									r[0] == arr_traderoute_desc[j][2][0] && r[1] == arr_traderoute_desc[j][2][1] &&
 									r[2] == arr_traderoute_desc[j][2][2] && r[3] == arr_traderoute_desc[j][2][3]
-									) { flag_add = false; break; }
-								
-								
+									) { flag_add = false; break; }								
 							if(flag_add) arr_traderoute_desc.push([a_desc[0].innerText,href_a_desc,r]);			
 						}
 					}
@@ -350,11 +342,9 @@ function gid17(){//market
 				div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"hour_step\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_step\"></div><div onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</div>"
 			}
 		}
-		else if(tabItem.getAttribute("href").indexOf("t=5")>=0)//send res
-		{
+		else if(tabItem.getAttribute("href").indexOf("t=5")>=0){//send res
 			var marketSend_ = document.getElementById("marketSend");
-			if(marketSend_ !== null)
-			{
+			if(marketSend_ !== null){
 				var p_button = document.createElement("p1");
 				marketSend_.insertAdjacentElement("beforebegin",p_button);
 
@@ -381,19 +371,22 @@ function gid17(){//market
 				var br = document.createElement("br");
 				
 				window.gid17_TroopResSelect = document.createElement("select");
-				gid17_TroopResSelect.setAttribute("style","width:150px");				
+				gid17_TroopResSelect.setAttribute("style","width:150px");	
+				gid17_TroopResSelect.appendChild(gid17_createoption("-1",""));// empty option
+				
+				gid17_TroopResSelect.appendChild(gid17_createoption("b_0","Balance current village"));
+				gid17_TroopResSelect.appendChild(gid17_createoption("b_1","Balance target village"));
+				
+				gid17_TroopResSelect.appendChild(gid17_createoption("c_0","Small Celebration"));
+				gid17_TroopResSelect.appendChild(gid17_createoption("c_1","Big Celebration"));
+				gid17_TroopResSelect.appendChild(gid17_createoption("c_2","Big Celebration / 2"));
+				gid17_TroopResSelect.appendChild(gid17_createoption("c_3","Big Celebration / 3"));
 				
 				var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
-				if(account_object["troop"] != undefined)
-				{
+				if(account_object["troop"] != undefined){
 					var keys = Object.keys(account_object["troop"]);
 					for(var i = 0; i < keys.length; i++)
-					{
-						var e_option = document.createElement("option");
-						e_option.value = keys[i];
-						e_option.innerText = account_object["troop"][keys[i]][0];
-						gid17_TroopResSelect.appendChild(e_option);
-					}
+						gid17_TroopResSelect.appendChild(gid17_createoption(keys[i],account_object["troop"][keys[i]][0]));
 					gid17_TroopResSelect.setAttribute("onchange","gid17_TroopResSelect_onchange()");
 				}				
 				
@@ -422,6 +415,18 @@ function gid17(){//market
 				label_noncrop.innerText = "No crop";
 				label_noncrop.onclick = function(){gid17_noncrop.checked = !gid17_noncrop.checked;};
 				
+				window.gid17_SaveBigCelebration = document.createElement("input");
+				gid17_SaveBigCelebration.setAttribute("type","checkbox");
+				gid17_SaveBigCelebration.setAttribute("id","gid17_SaveBigCelebration");
+				gid17_SaveBigCelebration.setAttribute("onchange","");///////////////////////
+				gid17_SaveBigCelebration.setAttribute("style","margin-left:3px");
+				
+				var label_SaveBigCelebration = document.createElement("label");
+				label_SaveBigCelebration.innerText = "Save Big Celebration";
+				label_SaveBigCelebration.onclick = function(){gid17_SaveBigCelebration.checked = !gid17_SaveBigCelebration.checked;};
+				
+				
+				
 				p_button.appendChild(button_Smallcelebration);
 				p_button.appendChild(button_Bigcelebration);
 				p_button.appendChild(button_Bigcelebration2);
@@ -432,27 +437,29 @@ function gid17(){//market
 				p_button.appendChild(gid17_label_max_troop);
 				p_button.appendChild(gid17_noncrop);
 				p_button.appendChild(label_noncrop);
-				gid17_TroopResSelect_onchange();
+				p_button.appendChild(gid17_SaveBigCelebration);
+				p_button.appendChild(label_SaveBigCelebration);
 				
-				var datalist_villagename = document.createElement("datalist");
-				datalist_villagename.setAttribute("id","village_list");					
+				gid17_TroopResSelect_onchange();
+				//
+				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
-				for(var i = 0;i < TJS.CurrentData.listVillage.length;i++)
-				{
-					if(TJS.CurrentData.listVillage[i] == TJS.CurrentData.active_village) continue;
-					var name_ = TJS.CurrentData.listVillage[i].getElementsByClassName("name");
-					if(name_.length > 0)
-					{
-						var option_datalist = document.createElement("option");
-						option_datalist.value = name_[0].innerText;
-						datalist_villagename.appendChild(option_datalist);
-					}
-				}
 				var enterVillageName = document.getElementById("enterVillageName");
 				enterVillageName.setAttribute("list","village_list");
+				enterVillageName.onchange = gid17_enterVillageName;
 			}
 		}
 	}
+}
+
+function gid17_enterVillageName(){
+	
+}
+function gid17_createoption(value_,name){
+	var e_option = document.createElement("option");
+	e_option.value = value_;
+	e_option.innerText = name;
+	return e_option;
 }
 
 function gid17_TroopResSelect_onchange(){
