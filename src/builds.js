@@ -345,6 +345,9 @@ function gid17(){//market
 		else if(tabItem.getAttribute("href").indexOf("t=5")>=0){//send res
 			var marketSend_ = document.getElementById("marketSend");
 			if(marketSend_ !== null){
+				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry")
+				if(e_carry.length == 1) e_carry[0].remove();				
+				
 				var p_button = document.createElement("p1");
 				marketSend_.insertAdjacentElement("beforebegin",p_button);
 				var br = document.createElement("br");				
