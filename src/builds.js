@@ -347,29 +347,7 @@ function gid17(){//market
 			if(marketSend_ !== null){
 				var p_button = document.createElement("p1");
 				marketSend_.insertAdjacentElement("beforebegin",p_button);
-
-				var button_Smallcelebration = document.createElement("button");
-				button_Smallcelebration.innerText = "Small celebration";
-				button_Smallcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
-				button_Smallcelebration.setAttribute("onclick","gid17_celebration_click([6400,6650,5940,1340],1)");
-
-				var button_Bigcelebration = document.createElement("button");
-				button_Bigcelebration.innerText = "Big celebration";
-				button_Bigcelebration.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
-				button_Bigcelebration.setAttribute("onclick","gid17_celebration_click([29700,33250,32000,6700],1)");
-
-				var button_Bigcelebration2 = document.createElement("button");
-				button_Bigcelebration2.innerText = "Big celebration/2";
-				button_Bigcelebration2.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
-				button_Bigcelebration2.setAttribute("onclick","gid17_celebration_click([14850,16625,16000,3350],2)");
-
-				var button_Bigcelebration3 = document.createElement("button");
-				button_Bigcelebration3.innerText = "Big celebration/3";
-				button_Bigcelebration3.setAttribute("style","background-color:green;border:none;color:white;padding:3px;margin:3px;");
-				button_Bigcelebration3.setAttribute("onclick","gid17_celebration_click([9900,11084,10667,2234],3)");
-
-				var br = document.createElement("br");
-				
+				var br = document.createElement("br");				
 				window.gid17_TroopResSelect = document.createElement("select");
 				gid17_TroopResSelect.setAttribute("style","width:150px");	
 				gid17_TroopResSelect.appendChild(gid17_createoption("-1",""));// empty option
@@ -425,20 +403,14 @@ function gid17(){//market
 				label_SaveBigCelebration.innerText = "Save Big Celebration";
 				label_SaveBigCelebration.onclick = function(){gid17_SaveBigCelebration.checked = !gid17_SaveBigCelebration.checked;};
 				
-				
-				
-				p_button.appendChild(button_Smallcelebration);
-				p_button.appendChild(button_Bigcelebration);
-				p_button.appendChild(button_Bigcelebration2);
-				p_button.appendChild(button_Bigcelebration3);
-				p_button.appendChild(br);
-				p_button.appendChild(gid17_TroopResSelect);
-				p_button.appendChild(gid17_input_number_troop);
-				p_button.appendChild(gid17_label_max_troop);
 				p_button.appendChild(gid17_noncrop);
 				p_button.appendChild(label_noncrop);
 				p_button.appendChild(gid17_SaveBigCelebration);
 				p_button.appendChild(label_SaveBigCelebration);
+				p_button.appendChild(br);
+				p_button.appendChild(gid17_TroopResSelect);
+				p_button.appendChild(gid17_input_number_troop);
+				p_button.appendChild(gid17_label_max_troop);				
 				
 				gid17_TroopResSelect_onchange();
 				//
