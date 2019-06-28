@@ -102,7 +102,7 @@ function ShowVillageData(li_element){
 	if(!global_loader && !TJS.CurrentData.isPlus && village_object["attack1"] !== undefined){
 		var timeend = false;
 		if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
-		if(!timeend | village_object["attack1"].count - 1 > 0) img.setAttribute("class","att1");
+		if(!timeend | village_object["attack1"].count - 1 > 0) img.setAttribute("src",TJS.attacks_img);
 	}
 	switch(default_task_helper_select)
 	{

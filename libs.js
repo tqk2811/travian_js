@@ -219,6 +219,7 @@ TJS = {
 			if(nexts.length > 0) nexts[0].click();
 		}
 	},
+	attacks_img : httpGetGithubCdnUri("src/attacks.gif"),
 	
 	LoadLib : function(){
 		AddUriScript(httpGetGithubCdnUri("src/global.js"));//
@@ -263,9 +264,7 @@ TJS.Const = {
 	ClassTimer : "TJS_timer",//TJS_timer
 	ClassTaskHelper_p1 : "task_helper_p1",
 	LS_trooptrain : "troop_train_",
-	LS_trooptrain_checkbox : "troop_train_checkbox_",
-	
-	
+	LS_trooptrain_checkbox : "troop_train_checkbox_",	
 	
 	task_helper_color_list : ["Blue","BlueGray","Gray"],
 	task_helper_select_list : ["Off","Builds","Troops","Celebration","Resource","AttackRed"],
@@ -295,6 +294,7 @@ TJS.CurrentData = {
 	VillageId : null,
 	village_object : null,
 	ding_sound : TJS.CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3")),
+	
 	Timeout : 200
 }
 TJS.CurrentData.Gid = function(){
