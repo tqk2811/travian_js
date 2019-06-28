@@ -276,7 +276,7 @@ TJS.Const = {
 };
 TJS.CurrentData = {
 	Uid : -1,
-	isPlus : false;
+	isPlus : false,
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
 	tabActives : document.getElementsByClassName("container active"),
 	e_build : document.getElementById("build"),
