@@ -203,7 +203,7 @@ function Show_AttackRed(village_object,e_p1,village_id_,img){
 	}
 	else 
 	{
-		if(village_object["attack1"].count - 1 == 0) return;
+		if(village_object["attack1"].count - 1 <= 0) return;
 		else
 		{
 			t.innerText = (village_object["attack1"].count - 1) + " attack in ???";
