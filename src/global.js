@@ -3,7 +3,7 @@ function Change_sidebarBoxActiveVillage_Button_onclick(uri){window.location = ur
 if(!TJS.CurrentData.isPlus)
 	for(var i = 0; i < TJS.CurrentData.list_sidebarBoxActiveVillage.length; i++)	{
 		var attibute_class = TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].getAttribute("class");
-		if(attibute_class.search("disable") > 0) { break;}
+		if(attibute_class.search("disable") > 0) continue;
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","Change_sidebarBoxActiveVillage_Button_onclick(\""+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1]+"\")");
 		$("#"+TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].id).off("click");
