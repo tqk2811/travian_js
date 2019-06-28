@@ -345,8 +345,18 @@ function gid17(){//market
 		else if(tabItem.getAttribute("href").indexOf("t=5")>=0){//send res
 			var marketSend_ = document.getElementById("marketSend");
 			if(marketSend_ !== null){
-				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry")
-				if(e_carry.length == 1) e_carry[0].remove();				
+				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry");
+				if(e_carry.length == 1) e_carry[0].remove();
+				
+				if(TJS.CurrentData.village_object["celebration_24"] !== undefined){
+					var traderCounts = TJS.CurrentData.e_build.getElementsByClassName("traderCount");
+					var span_timer = document.createElement("span");
+					span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
+					span_timer.setAttribute("class","TJS_timer");
+					span_timer.setAttribute("adv_text","Celebration in this village ");
+					span_timer.setAttribute("sound",false);
+					traderCounts[0].insertAdjacentElement("afterend",span_timer)
+				}
 				
 				var p_button = document.createElement("p1");
 				marketSend_.insertAdjacentElement("beforebegin",p_button);
@@ -389,7 +399,7 @@ function gid17(){//market
 				window.gid17_noncrop = document.createElement("input");
 				gid17_noncrop.setAttribute("type","checkbox");
 				gid17_noncrop.setAttribute("id","gid17_noncrop");
-				gid17_noncrop.setAttribute("onchange","gid17_findmaxtroops()");
+				gid17_noncrop.setAttribute("onchange","gid17_TroopResSelect_onchange()");
 				gid17_noncrop.setAttribute("style","margin-left:3px");
 				
 				var label_noncrop = document.createElement("label");
@@ -399,7 +409,7 @@ function gid17(){//market
 				window.gid17_SaveBigCelebration = document.createElement("input");
 				gid17_SaveBigCelebration.setAttribute("type","checkbox");
 				gid17_SaveBigCelebration.setAttribute("id","gid17_SaveBigCelebration");
-				gid17_SaveBigCelebration.setAttribute("onchange","");///////////////////////
+				gid17_SaveBigCelebration.setAttribute("onchange","gid17_TroopResSelect_onchange()");
 				gid17_SaveBigCelebration.setAttribute("style","margin-left:3px");
 				
 				var label_SaveBigCelebration = document.createElement("label");
