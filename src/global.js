@@ -277,6 +277,11 @@ if(window.location.href.indexOf("dorf1") >= 0){
 				att_obj.count = Number(trs[i].getElementsByClassName("a1")[0].innerText.match(/\d+/));
 				break;
 			}
+			else
+			{
+				att_obj.timeend = 0;
+				att_obj.count = 0;			
+			}			
 		}	
 	}
 	else
