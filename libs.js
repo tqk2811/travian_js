@@ -276,6 +276,7 @@ TJS.Const = {
 };
 TJS.CurrentData = {
 	Uid : -1,
+	isPlus : false;
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
 	tabActives : document.getElementsByClassName("container active"),
 	e_build : document.getElementById("build"),
@@ -336,6 +337,13 @@ TJS.CurrentData.Resource = function(){
 	TJS.SaveCurrentVillage();
 	return res;
 }();
+TJS.CurrentData.list_sidebarBoxActiveVillage = [
+	[document.getElementsByClassName("layoutButton workshopBlack gold  ")[0],"/build.php?gid=21"],//workshop
+	[document.getElementsByClassName("layoutButton stableBlack gold  ")[0],"/build.php?gid=20"],//stable
+	[document.getElementsByClassName("layoutButton barracksBlack gold  ")[0],"/build.php?gid=19"],//barracks
+	[document.getElementsByClassName("layoutButton marketBlack gold  ")[0],"/build.php?gid=17"]//market
+];
+if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
 
 
 TJS.AccountSetting = {
