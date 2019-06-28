@@ -464,9 +464,22 @@ function gid17_createoption(value_,name){
 
 function gid17_TroopResSelect_onchange(){
 	var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
-	if(gid17_TroopResSelect.value == "" ||account_object["troop"] == undefined) return;
-	window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
-	gid17_findmaxtroops();
+	switch(gid17_TroopResSelect.value)
+	{
+		case "-1"  : return;
+		case "b_0" : break;
+		case "b_1" : break;
+		
+		case "c_0" : break;
+		case "c_1" : break;
+		case "c_2" : break;
+		case "c_3" : break;
+		
+		default:
+			window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
+			gid17_findmaxtroops();
+			return;
+	}
 }
 
 function gid17_input_number_troop_onchange(){
