@@ -152,13 +152,6 @@ TJS = {
 		return datalist_villagename;
 	},
 	ListVillageName : [],// [{ id, name},{...}]
-	ReInit_MarketPlace_sendRessources : function(callback_){
-		var f = marketPlace.sendRessources;
-		window.marketPlace.sendRessources = function(){
-			f.call(window.marketPlace);
-			callback_();
-		}
-	},
 	Re_MarketPlace_sendRessources : function(callback_){
 		window.marketPlace.sendRessources = function() {//line 7856 in crypt-xxxxx.js:formatted
 			var b = window.marketPlace;//fix "this"
