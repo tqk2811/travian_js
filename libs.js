@@ -156,7 +156,7 @@ TJS = {
 		var f = marketPlace.sendRessources;
 		window.marketPlace.sendRessources = function(){
 			var thisArg = document.getElementById(id);
-			f.call(thisArg);
+			f.bind(thisArg);
 			callback_();
 		}
 	},
