@@ -353,11 +353,11 @@ function gid17(){//market
 					var span_timer = document.createElement("span");
 					span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
 					span_timer.setAttribute("class","TJS_timer");
-					span_timer.setAttribute("adv_text","Celebration in this village ");
+					span_timer.setAttribute("adv_text","Celebration in this village");
 					span_timer.setAttribute("sound",false);
+					span_timer.style("float:right; width:50%;");
 					span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
-					traderCounts[0].insertAdjacentElement("afterend",span_timer);
-					traderCounts[0].insertAdjacentElement("afterend",TJS.DivClear());					
+					traderCounts[0].insertAdjacentElement("afterend",span_timer);			
 				}
 				
 				var div_market = document.createElement("div");
