@@ -154,7 +154,10 @@ TJS = {
 	ListVillageName : [],// [{ id, name},{...}]
 	ReInit_MarketPlace_sendRessources : function(callback_){
 		var f = marketPlace.sendRessources;
-		window.marketPlace.sendRessources = function(){ f(); callback_();}
+		window.marketPlace.sendRessources = function(){ 
+			f(); 
+			callback_();
+		}
 	},
 	DivClear : function(){
 		var div_clear = document.createElement("div");
