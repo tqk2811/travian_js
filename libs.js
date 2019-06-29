@@ -142,7 +142,7 @@ TJS = {
 				option_datalist.value = name_[0].innerText;
 				datalist_villagename.appendChild(option_datalist);
 				
-				var id_village = getParameterByName(TJS.CurrentData.listVillage[i].getElementsByTagName("a")[0].getAttribute("href"),"newdid");
+				var id_village = TJS.getParameterByName(TJS.CurrentData.listVillage[i].getElementsByTagName("a")[0].getAttribute("href"),"newdid");
 				TJS.ListVillageName.push({
 											id : id_village,
 											name: name_[0].innerText
