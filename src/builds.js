@@ -454,6 +454,7 @@ function gid17(){//market
 				div1.appendChild(target_label);
 				
 				window.gid17_target_span = document.createElement("span");
+				div1.appendChild(gid17_target_span);
 				//gid17_target_span.setAttribute("id",)
 				
 				
