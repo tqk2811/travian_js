@@ -461,10 +461,15 @@ function gid17(){//market
 	}
 }
 function gid17_MarketPlace_sendRessources_callback(){
-	var enterVillageName = document.getElementById("enterVillageName");
-	enterVillageName.setAttribute("list","village_list");
-	window.gid17_target_span.innerText = "";
-	enterVillageName.onchange = gid17_enterVillageName;
+	window.gid17_MarketPlace_sendRessources_callback_interval = window.setInterval(function(){
+		var enterVillageName = document.getElementById("enterVillageName");
+		if(enterVillageName !== null) {
+			enterVillageName.setAttribute("list","village_list");
+			window.gid17_target_span.innerText = "";
+			enterVillageName.onchange = gid17_enterVillageName;
+			window.clearInterval(window.gid17_MarketPlace_sendRessources_callback_interval);
+		}
+	},TJS.CurrentData.Timeout)
 }
 function gid17_enterVillageName(){
 	for(var i = 0; i < TJS.ListVillageName.length; i++){
