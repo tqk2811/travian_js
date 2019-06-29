@@ -436,18 +436,40 @@ function gid17(){//market
 				div1_market.appendChild(gid17_label_max);				
 				
 				gid17_TypeResSelect_onchange();
-				//
+				
+				////////////////////////
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 				var enterVillageName = document.getElementById("enterVillageName");
 				enterVillageName.setAttribute("list","village_list");
 				enterVillageName.onchange = gid17_enterVillageName;
+				
+				var div1 = document.createElement("div");
+				var div2 = document.createElement("div");
+				div2_market.appendChild(div1);
+				div2_market.appendChild(div2);
+				
+				var target_label = document.createElement("label");
+				target_label.innerText = "Target Village Id:";
+				div1.appendChild(target_label);
+				
+				window.gid17_target_span = document.createElement("span");
+				//gid17_target_span.setAttribute("id",)
+				
+				
+				div2.innerText ="...";
 			}
 		}
 	}
 }
 function gid17_enterVillageName(){
-	
+	for(var i = 0; i < TJS.ListVillageName.length; i++){
+		if(TJS.ListVillageName[i].name == this.value){
+			window.gid17_target_span.innerText = TJS.ListVillageName[i].id;
+			return;
+		}
+	}
+	window.gid17_target_span.innerText = "";
 }
 function gid17_createoption(value_,name){
 	var e_option = document.createElement("option");
