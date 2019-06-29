@@ -456,6 +456,7 @@ function gid17(){//market
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 				gid17_MarketPlace_sendRessources_callback();
+				gid17_enterVillageName();
 			}
 		}
 	}
