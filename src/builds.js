@@ -356,8 +356,8 @@ function gid17(){//market
 					span_timer.setAttribute("adv_text","Celebration in this village ");
 					span_timer.setAttribute("sound",false);
 					span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
-					traderCounts[0].insertAdjacentElement("afterend",TJS.DivClear());
 					traderCounts[0].insertAdjacentElement("afterend",span_timer);
+					traderCounts[0].insertAdjacentElement("afterend",TJS.DivClear());					
 				}
 				
 				var div_market = document.createElement("div");
