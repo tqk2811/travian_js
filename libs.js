@@ -145,6 +145,11 @@ TJS = {
 		}
 		return datalist_villagename;
 	},
+	DivClear : function(){
+		var div_clear = document.createElement("div");
+		div_clear.setAttribute("class","clear");
+		return div_clear;
+	},
 	
 	HotKeyList : [],
 	InitHotkey : function(){
