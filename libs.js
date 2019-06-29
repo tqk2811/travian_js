@@ -155,7 +155,7 @@ TJS = {
 	ReInit_MarketPlace_sendRessources : function(callback_){
 		var f = marketPlace.sendRessources;
 		window.marketPlace.sendRessources = function(){
-			f.call(Travian.Game.Marketplace);
+			f.call(window.marketPlace);
 			callback_();
 		}
 	},
