@@ -152,10 +152,11 @@ TJS = {
 		return datalist_villagename;
 	},
 	ListVillageName : [],// [{ id, name},{...}]
-	ReInit_MarketPlace_sendRessources : function(callback_){
+	ReInit_MarketPlace_sendRessources : function(callback_,id){
 		var f = marketPlace.sendRessources;
-		window.marketPlace.sendRessources = function(){ 
-			f(); 
+		window.marketPlace.sendRessources = function(){
+			var thisArg = document.getElementById(id);
+			f.call(thisArg);
 			callback_();
 		}
 	},
