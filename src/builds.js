@@ -440,9 +440,7 @@ function gid17(){//market
 				////////////////////////
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
-				var enterVillageName = document.getElementById("enterVillageName");
-				enterVillageName.setAttribute("list","village_list");
-				enterVillageName.onchange = gid17_enterVillageName;
+				gid17_MarketPlace_sendRessources_callback();
 				
 				var div1 = document.createElement("div");
 				var div2 = document.createElement("div");
@@ -459,9 +457,17 @@ function gid17(){//market
 				
 				
 				div2.innerText ="...";
+				
+				TJS.ReInit_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);
 			}
 		}
 	}
+}
+function gid17_MarketPlace_sendRessources_callback(){
+	var enterVillageName = document.getElementById("enterVillageName");
+	enterVillageName.setAttribute("list","village_list");
+	window.gid17_target_span.innerText = "";
+	enterVillageName.onchange = gid17_enterVillageName;
 }
 function gid17_enterVillageName(){
 	for(var i = 0; i < TJS.ListVillageName.length; i++){
