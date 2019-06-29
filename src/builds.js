@@ -451,7 +451,7 @@ function gid17(){//market
 				div1.appendChild(gid17_target_span);
 				div2.innerText ="...";
 				
-				TJS.ReInit_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback,"enabledButton");
+				TJS.ReInit_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);
 				
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);

@@ -152,11 +152,10 @@ TJS = {
 		return datalist_villagename;
 	},
 	ListVillageName : [],// [{ id, name},{...}]
-	ReInit_MarketPlace_sendRessources : function(callback_,id){
+	ReInit_MarketPlace_sendRessources : function(callback_){
 		var f = marketPlace.sendRessources;
 		window.marketPlace.sendRessources = function(){
-			var thisArg = document.getElementById(id);
-			f();//.apply(thisArg);
+			f.call(Travian.Game.Marketplace);
 			callback_();
 		}
 	},
