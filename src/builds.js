@@ -355,51 +355,63 @@ function gid17(){//market
 					span_timer.setAttribute("class","TJS_timer");
 					span_timer.setAttribute("adv_text","Celebration in this village ");
 					span_timer.setAttribute("sound",false);
-					traderCounts[0].insertAdjacentElement("afterend",span_timer)
+					span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
+					traderCounts[0].insertAdjacentElement("afterend",span_timer);
 				}
 				
-				var p_button = document.createElement("p1");
-				marketSend_.insertAdjacentElement("beforebegin",p_button);
+				var div_market = document.createElement("div");
+				marketSend_.insertAdjacentElement("beforebegin",div_market);				
+				var div1_market = document.createElement("div");
+				div1_market.setAttribute("style","float:left; width:50%;");				
+				var div2_market = document.createElement("div");
+				div2_market.setAttribute("style","float:right; width:50%;");
+				div_market.appendChild(div1_market);
+				div_market.appendChild(div2_market);
+				
+				var div_clear = document.createElement("div");
+				div_clear.setAttribute("class","clear");
+				div_market.insertAdjacentElement("afterend",div_clear);
+				
 				var br = document.createElement("br");				
-				window.gid17_TroopResSelect = document.createElement("select");
-				gid17_TroopResSelect.setAttribute("style","width:150px");	
-				gid17_TroopResSelect.appendChild(gid17_createoption("-1",""));// empty option
+				window.gid17_TypeResSelect = document.createElement("select");
+				gid17_TypeResSelect.setAttribute("style","width:150px");	
+				gid17_TypeResSelect.appendChild(gid17_createoption("-1",""));// empty option
 				
-				gid17_TroopResSelect.appendChild(gid17_createoption("b_0","Balance current village"));
-				gid17_TroopResSelect.appendChild(gid17_createoption("b_1","Balance target village"));
+				gid17_TypeResSelect.appendChild(gid17_createoption("b_0","Balance current village"));
+				gid17_TypeResSelect.appendChild(gid17_createoption("b_1","Balance target village"));
 				
-				gid17_TroopResSelect.appendChild(gid17_createoption("c_0","Small Celebration"));
-				gid17_TroopResSelect.appendChild(gid17_createoption("c_1","Big Celebration"));
-				gid17_TroopResSelect.appendChild(gid17_createoption("c_2","Big Celebration / 2"));
-				gid17_TroopResSelect.appendChild(gid17_createoption("c_3","Big Celebration / 3"));
+				gid17_TypeResSelect.appendChild(gid17_createoption("c_0","Small Celebration"));
+				gid17_TypeResSelect.appendChild(gid17_createoption("c_1","Big Celebration"));
+				gid17_TypeResSelect.appendChild(gid17_createoption("c_2","Big Celebration / 2"));
+				gid17_TypeResSelect.appendChild(gid17_createoption("c_3","Big Celebration / 3"));
 				
 				var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
 				if(account_object["troop"] != undefined){
 					var keys = Object.keys(account_object["troop"]);
 					for(var i = 0; i < keys.length; i++)
-						gid17_TroopResSelect.appendChild(gid17_createoption(keys[i],account_object["troop"][keys[i]][0]));
-					gid17_TroopResSelect.setAttribute("onchange","gid17_TroopResSelect_onchange()");
-				}				
+						gid17_TypeResSelect.appendChild(gid17_createoption(keys[i],account_object["troop"][keys[i]][0]));
+					gid17_TypeResSelect.setAttribute("onchange","gid17_TypeResSelect_onchange()");
+				}
 				
-				window.gid17_input_number_troop = document.createElement("input");
-				gid17_input_number_troop.setAttribute("type","number");
-				gid17_input_number_troop.setAttribute("style","width:50px");
-				gid17_input_number_troop.setAttribute("min","0");
-				gid17_input_number_troop.setAttribute("max","0");
-				gid17_input_number_troop.setAttribute("onchange","gid17_input_number_troop_onchange()");
+				window.gid17_input_number = document.createElement("input");
+				gid17_input_number.setAttribute("type","number");
+				gid17_input_number.setAttribute("style","width:50px");
+				gid17_input_number.setAttribute("min","0");
+				gid17_input_number.setAttribute("max","0");
+				gid17_input_number.setAttribute("onchange","gid17_input_number_onchange()");
 				
-				window.gid17_label_max_troop = document.createElement("label");
-				gid17_label_max_troop.innerText = "/0";
-				gid17_label_max_troop.onclick = function(){
-															gid17_input_number_troop.value = gid17_input_number_troop.max;
-															gid17_input_number_troop_onchange();															
+				window.gid17_label_max = document.createElement("label");
+				gid17_label_max.innerText = "/0";
+				gid17_label_max.onclick = function(){
+															gid17_input_number.value = gid17_input_number.max;
+															gid17_input_number_onchange();															
 														};
-				gid17_label_max_troop.setAttribute("style","margin-left:3px");
+				gid17_label_max.setAttribute("style","margin-left:3px");
 				
 				window.gid17_noncrop = document.createElement("input");
 				gid17_noncrop.setAttribute("type","checkbox");
 				gid17_noncrop.setAttribute("id","gid17_noncrop");
-				gid17_noncrop.setAttribute("onchange","gid17_TroopResSelect_onchange()");
+				gid17_noncrop.setAttribute("onchange","gid17_TypeResSelect_onchange()");
 				gid17_noncrop.setAttribute("style","margin-left:3px");
 				
 				var label_noncrop = document.createElement("label");
@@ -409,23 +421,23 @@ function gid17(){//market
 				window.gid17_SaveBigCelebration = document.createElement("input");
 				gid17_SaveBigCelebration.setAttribute("type","checkbox");
 				gid17_SaveBigCelebration.setAttribute("id","gid17_SaveBigCelebration");
-				gid17_SaveBigCelebration.setAttribute("onchange","gid17_TroopResSelect_onchange()");
+				gid17_SaveBigCelebration.setAttribute("onchange","gid17_TypeResSelect_onchange()");
 				gid17_SaveBigCelebration.setAttribute("style","margin-left:3px");
 				
 				var label_SaveBigCelebration = document.createElement("label");
 				label_SaveBigCelebration.innerText = "Save Big Celebration";
 				label_SaveBigCelebration.onclick = function(){gid17_SaveBigCelebration.checked = !gid17_SaveBigCelebration.checked;};
 				
-				p_button.appendChild(gid17_noncrop);
-				p_button.appendChild(label_noncrop);
-				p_button.appendChild(gid17_SaveBigCelebration);
-				p_button.appendChild(label_SaveBigCelebration);
-				p_button.appendChild(br);
-				p_button.appendChild(gid17_TroopResSelect);
-				p_button.appendChild(gid17_input_number_troop);
-				p_button.appendChild(gid17_label_max_troop);				
+				div1_market.appendChild(gid17_noncrop);
+				div1_market.appendChild(label_noncrop);
+				div1_market.appendChild(gid17_SaveBigCelebration);
+				div1_market.appendChild(label_SaveBigCelebration);
+				div1_market.appendChild(br);
+				div1_market.appendChild(gid17_TypeResSelect);
+				div1_market.appendChild(gid17_input_number);
+				div1_market.appendChild(gid17_label_max);				
 				
-				gid17_TroopResSelect_onchange();
+				gid17_TypeResSelect_onchange();
 				//
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
@@ -436,7 +448,6 @@ function gid17(){//market
 		}
 	}
 }
-
 function gid17_enterVillageName(){
 	
 }
@@ -446,10 +457,9 @@ function gid17_createoption(value_,name){
 	e_option.innerText = name;
 	return e_option;
 }
-
-function gid17_TroopResSelect_onchange(){
+function gid17_TypeResSelect_onchange(){
 	var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
-	switch(gid17_TroopResSelect.value)
+	switch(gid17_TypeResSelect.value)
 	{
 		case "-1"  : return;
 		case "b_0" : break;
@@ -461,22 +471,21 @@ function gid17_TroopResSelect_onchange(){
 		case "c_3" : break;
 		
 		default:
-			window.gid17_TroopRes = account_object["troop"][gid17_TroopResSelect.value];
+			window.gid17_TroopRes = account_object["troop"][gid17_TypeResSelect.value];
 			gid17_findmaxtroops();
 			return;
 	}
 }
-
-function gid17_input_number_troop_onchange(){
+function gid17_input_number_onchange(){
+	if(gid17_TypeResSelect.value == "-1") return;
 	var res_troops = [
-						gid17_TroopRes[1]*gid17_input_number_troop.value,
-						gid17_TroopRes[2]*gid17_input_number_troop.value,
-						gid17_TroopRes[3]*gid17_input_number_troop.value,
-						gid17_noncrop.checked ? 0 : gid17_TroopRes[4]*gid17_input_number_troop.value
+						gid17_TroopRes[1]*gid17_input_number.value,
+						gid17_TroopRes[2]*gid17_input_number.value,
+						gid17_TroopRes[3]*gid17_input_number.value,
+						gid17_noncrop.checked ? 0 : gid17_TroopRes[4]*gid17_input_number.value
 	];
 	gid17_celebration_click(res_troops,1);
 }
-
 function gid17_findmaxtroops(){
 	var maxtroops = -1;
 	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
@@ -492,15 +501,14 @@ function gid17_findmaxtroops(){
 	var max_troops_merchant = Math.floor(merchantCapacityValue/total_res_for_troop);
 	if(max_troops_merchant < maxtroops) maxtroops = max_troops_merchant;
 	
-	gid17_label_max_troop.innerText = "/" + maxtroops.toString();
-	gid17_input_number_troop.max = maxtroops;
+	gid17_label_max.innerText = "/" + maxtroops.toString();
+	gid17_input_number.max = maxtroops;
 }
 
 var gid17_clear_select_text =  "%s - [id:%s res:%s,%s,%s,%s]";
 var gid17_clear_select_value =  "%s_%s_%s_%s_%s";
 
-function gid17_clear_select(item)//[village name, href ,res:[r1,r2,r3,r4]]
-{
+function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 	var e_option = document.createElement("option");
 	if(item == null)
 	{
