@@ -449,7 +449,20 @@ function gid17(){//market
 				
 				window.gid17_target_span = document.createElement("span");
 				div1.appendChild(gid17_target_span);
-				div2.innerText ="...";
+				
+				window.gid17_r1 = gid17_MarketPlace_icon_n_res(div2,"r1");
+				window.gid17_r2 = gid17_MarketPlace_icon_n_res(div2,"r2");
+				window.gid17_r3 = gid17_MarketPlace_icon_n_res(div2,"r3");
+				window.gid17_r4 = gid17_MarketPlace_icon_n_res(div2,"r4");
+				
+				window.gid17_timer = document.createElement("span");
+				gid17_timer.setAttribute("class",TJS.Const.ClassTimer);
+				gid17_timer.setAttribute("counting","up");
+				gid17_timer.setAttribute("adv_text","(update %s ago)");
+				gid17_timer.setAttribute("state","stop");
+				gid17_timer.setAttribute("value","0");
+				gid17_timer.innerText = "";
+				div2.appendChild(gid17_timer);
 				
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);
 				
@@ -460,6 +473,16 @@ function gid17(){//market
 			}
 		}
 	}
+}
+
+function gid17_MarketPlace_icon_n_res(e_parent,class_name){
+	var e_i = document.createElement("i");
+	e_i.setAttribute("class",class_name);
+	var e_span = document.createElement("span");
+	e_span.innerText = "0";
+	e_parent.appendChild(e_i);
+	e_parent.appendChild(e_span);
+	return e_span;
 }
 function gid17_MarketPlace_sendRessources_callback(){
 	enterVillageName.setAttribute("list","village_list");
@@ -498,9 +521,7 @@ function gid17_TypeResSelect_onchange(){
 			gid17_input_number.max = 100;
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 0;
-			gid17_label_max.innerText = "/100% merchants";
-			
-			
+			gid17_label_max.innerText = "/100%";
 			break;
 		
 		case "c_0" : 
@@ -530,6 +551,7 @@ function gid17_input_number_onchange(){
 		case "b_1" : 
 			var v_obj_current = TJS.CurrentData.village_object;
 			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
+			if(v_obj_target["res"] == undefined) return;
 			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
 			var res_merchantsend = Math.round(Number(window.gid17_input_number.value)*merchantCapacityValue/100);
 			var total_current_res = 0;

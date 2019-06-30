@@ -88,26 +88,30 @@ TJS = {
 	LSSaveObject : function(name,id,data){
 		localStorage.setItem(name+"_"+id,JSON.stringify(data));
 	},
-	TimerCountingDownNoReload : function(){
+	TJS_Timer : function(){
 		var ListTimer = document.getElementsByClassName(TJS.Const.ClassTimer);
 		for(var i = 0; i < ListTimer.length; i ++)
 		{
-			var num = parseFloat(ListTimer[i].getAttribute("value")) - 1;
-			var sound = ListTimer[i].getAttribute("sound");
-			var adv_text = ListTimer[i].getAttribute("adv_text");
-			var loader = ListTimer[i].getAttribute("loader");
-			if(adv_text == null) adv_text = "";
-			else adv_text += ":";
-			if(num >= 0)//if(num == 0) ListTimer[i].innerText = adv_text + "00:00";
-			{
-				if(num == 1 && sound !== null) TJS.CurrentData.ding_sound.play(); 
-				ListTimer[i].innerText = adv_text + TJS.GetTimeTextFromSecondLeft(num);
+			var state = ListTimer[i].getAttribute("state");//run,stop
+			if(state !== null && state == "stop") continue;						
+			var sound = ListTimer[i].getAttribute("sound");//url
+			var counting = ListTimer[i].getAttribute("counting");//up,down
+			var adv_text = ListTimer[i].getAttribute("adv_text");//use with String.prototype.format
+			var loader = ListTimer[i].getAttribute("loader");//true,false
+			
+			var isdown = counting == null ? true : ( counting == "down" ? true : false );
+			var num = 0;
+			if(isdown) Number(ListTimer[i].getAttribute("value")) - 1;
+			else Number(ListTimer[i].getAttribute("value")) + 1;
+			
+			if(adv_text == null) adv_text = "%s";
+			if(num >= 0){
+				if(num == 1 && sound !== null) TJS.CurrentData.ding_sound.play();
+				ListTimer[i].innerText = adv_text.format(TJS.GetTimeTextFromSecondLeft(num));
 				ListTimer[i].setAttribute("value",num);
-				if(loader == null) ListTimer[i].setAttribute("loader",true);
-			}
-			else if(loader == null)
-			{
-				ListTimer[i].innerText = adv_text + "00:00";
+				if(loader == null || loader == "false") ListTimer[i].setAttribute("loader",true);
+			}else if(loader == null || loader == "false"){
+				ListTimer[i].innerText = adv_text.format("00:00");
 				ListTimer[i].setAttribute("loader",true);
 			}
 		}
@@ -423,6 +427,7 @@ TJS.CurrentData.Resource = function(){
 	TJS.CurrentData.Granary = Number(document.getElementById("stockBarGranary").innerText.replaceAll(",","").replaceAll(".","").match(/[\d.,]+/));
 	TJS.CurrentData.village_object["storage"] = TJS.CurrentData.Storage;
 	TJS.CurrentData.village_object["granary"] = TJS.CurrentData.Granary;
+	TJS.CurrentData.village_object["updatein"] = TJS.CurrentSec();
 	TJS.SaveCurrentVillage();
 	return res;
 }();
@@ -449,7 +454,7 @@ TJS.GlobalSetting = {
 };
 
 TJS.catch_exception();
-window.setInterval(TJS.TimerCountingDownNoReload,1000);
+window.setInterval(TJS.TJS_Timer,1000);
 
 TJS.LoadLib();
 TJS.TitleUsername();
