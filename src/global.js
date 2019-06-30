@@ -235,7 +235,7 @@ function show_culture(){
 			span_timer.setAttribute("class",TJS.Const.ClassTimer);
 			span_timer.setAttribute("adv_text","%s ");
 			span_timer.setAttribute("sound",false);
-			span_timer.setAttribute("style","float:right;");
+			span_timer.setAttribute("style","float:right;padding-right: 8px;");
 			span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
 			boxTitles[0].insertAdjacentElement("beforebegin",span_timer);			
 		}			
