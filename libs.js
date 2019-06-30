@@ -210,8 +210,14 @@ TJS = {
 			else { v = Math.floor(budget/(i+1)); flag = true; }
 			for(var j = 0 ; j <= i;j++)
 			{
-				arr_sort[j].r += v;
-				budget -= v;
+				var l = arr_sort[j].v - arr_sort[j].r;
+				if( l > v ){
+					arr_sort[j].r += v;
+					budget -= v;
+				}else{
+					arr_sort[j].r += l;
+					budget -= l;
+				}
 			}
 			if(flag) break;
 		}

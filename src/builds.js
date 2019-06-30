@@ -566,11 +566,15 @@ function gid17_input_number_onchange(){
 			
 			var VillageCanSendOrGet = [];
 			if(b_flag) VillageCanSendOrGet = v_obj_current["res"];
-			else VillageCanSendOrGet = [	v_obj_target["storage"] - v_obj_target["res"][0],
+			else {
+				VillageCanSendOrGet = [	v_obj_target["storage"] - v_obj_target["res"][0],
 											v_obj_target["storage"] - v_obj_target["res"][1],
 											v_obj_target["storage"] - v_obj_target["res"][2],
 											v_obj_target["granary"] - v_obj_target["res"][3]
 										];
+				for(var i = 0; i< VillageCanSendOrGet.length; i++)
+					if(v_obj_current["res"][i] > VillageCanSendOrGet[i]) VillageCanSendOrGet[i] = v_obj_current["res"][i];
+			}
 			var result = TJS.FillLevel(res_max_can_send,VillageCanSendOrGet);
 			gid17_write_res(result,1);
 			break;
