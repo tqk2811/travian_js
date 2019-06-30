@@ -435,6 +435,16 @@ function gid17(){//market
 				target_label.innerText = "Target Village Id:";
 				div1.appendChild(target_label);
 				
+				window.gid17_timer = document.createElement("span");
+				gid17_timer.setAttribute("class",TJS.Const.ClassTimer);
+				gid17_timer.setAttribute("counting","up");
+				gid17_timer.setAttribute("adv_text","(update %s ago)");
+				gid17_timer.setAttribute("state","stop");
+				gid17_timer.setAttribute("value","0");
+				gid17_timer.setAttribute("style","float:right;");
+				gid17_timer.innerText = "";
+				div1.appendChild(gid17_timer);
+				
 				window.gid17_target_span = document.createElement("span");
 				div1.appendChild(gid17_target_span);
 				
@@ -442,15 +452,6 @@ function gid17(){//market
 				window.gid17_r2 = gid17_MarketPlace_icon_n_res(div2,"r2");
 				window.gid17_r3 = gid17_MarketPlace_icon_n_res(div2,"r3");
 				window.gid17_r4 = gid17_MarketPlace_icon_n_res(div2,"r4");
-				
-				window.gid17_timer = document.createElement("span");
-				gid17_timer.setAttribute("class",TJS.Const.ClassTimer);
-				gid17_timer.setAttribute("counting","up");
-				gid17_timer.setAttribute("adv_text","(update %s ago)");
-				gid17_timer.setAttribute("state","stop");
-				gid17_timer.setAttribute("value","0");
-				gid17_timer.innerText = "";
-				div2.appendChild(gid17_timer);
 				
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);
 				
