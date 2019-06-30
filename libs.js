@@ -436,7 +436,7 @@ TJS.CurrentData.Resource = function(){
 	TJS.CurrentData.village_object["updatein"] = TJS.CurrentSec();
 	TJS.SaveCurrentVillage();
 	return res;
-}();
+};
 TJS.CurrentData.list_sidebarBoxActiveVillage = [
 	[document.getElementsByClassName("layoutButton workshopBlack gold  ")[0],"/build.php?gid=21"],//workshop
 	[document.getElementsByClassName("layoutButton stableBlack gold  ")[0],"/build.php?gid=20"],//stable
@@ -458,7 +458,7 @@ TJS.AccountSetting = {
 TJS.GlobalSetting = {
 	
 };
-
+TJS.CurrentData.Resource();
 TJS.catch_exception();
 window.setInterval(TJS.TJS_Timer,1000);
 
