@@ -456,7 +456,7 @@ function gid17(){//market
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 				gid17_MarketPlace_sendRessources_callback();
-				gid17_enterVillageName.call(enterVillageName);
+				gid17_enterVillageName();
 			}
 		}
 	}
@@ -468,8 +468,10 @@ function gid17_MarketPlace_sendRessources_callback(){
 }
 function gid17_enterVillageName(){
 	for(var i = 0; i < TJS.ListVillageName.length; i++){
-		if(TJS.ListVillageName[i].name == this.value){
+		if(TJS.ListVillageName[i].name == enterVillageName.value){
 			window.gid17_target_span.innerText = TJS.ListVillageName[i].id;
+			
+			
 			return;
 		}
 	}
@@ -485,14 +487,33 @@ function gid17_TypeResSelect_onchange(){
 	var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
 	switch(gid17_TypeResSelect.value)
 	{
-		case "-1"  : return;
-		case "b_0" : break;
-		case "b_1" : break;
+		case "-1"  : 
+			gid17_input_number.max = 0;
+			gid17_input_number.min = 0;
+			gid17_input_number.value = 0;
+			gid17_label_max.innerText = "/0";			
+			break;
+		case "b_0" : 
+		case "b_1" : 
+			gid17_input_number.max = 100;
+			gid17_input_number.min = 0;
+			gid17_input_number.value = 0;
+			gid17_label_max.innerText = "/100% merchants";
+			
+			
+			break;
 		
-		case "c_0" : break;
-		case "c_1" : break;
-		case "c_2" : break;
-		case "c_3" : break;
+		case "c_0" : 
+		case "c_1" : 
+		case "c_2" : 
+		case "c_3" : 
+			gid17_input_number.max = 1;
+			gid17_input_number.min = 0;
+			gid17_input_number.value = 0;
+			gid17_label_max.innerText = "/1";
+			
+			
+			break;
 		
 		default:
 			window.gid17_TroopRes = account_object["troop"][gid17_TypeResSelect.value];
@@ -501,14 +522,58 @@ function gid17_TypeResSelect_onchange(){
 	}
 }
 function gid17_input_number_onchange(){
-	if(gid17_TypeResSelect.value == "-1") return;
-	var res_troops = [
-						gid17_TroopRes[1]*gid17_input_number.value,
-						gid17_TroopRes[2]*gid17_input_number.value,
-						gid17_TroopRes[3]*gid17_input_number.value,
-						gid17_noncrop.checked ? 0 : gid17_TroopRes[4]*gid17_input_number.value
-	];
-	gid17_celebration_click(res_troops,1);
+	var b_flag = false;
+	switch(gid17_TypeResSelect.value)
+	{
+		case "-1" : return;
+		case "b_0" : b_flag = true;//true is balance current
+		case "b_1" : 
+			var v_obj_current = TJS.CurrentData.village_object;
+			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
+			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
+			var res_merchantsend = Math.round(Number(window.gid17_input_number.value)*merchantCapacityValue/100);
+			var total_current_res = 0;
+			for(var i = 0 ;i < 4; i++) total_current_res += v_obj_current["res"][i];
+			var target_needed_res = 0;
+			for(var i = 0 ;i < 3; i++) target_needed_res += v_obj_target["storage"] - v_obj_target["res"][i];
+			target_needed_res += v_obj_target["granary"] - v_obj_target["res"][3];
+			
+			var res_max_can_send = Math.min(res_merchantsend,b_flag ? target_needed_res:total_current_res);
+			
+			var max_can_send = [];
+			if(b_flag){
+				
+			}
+			
+			var res_send = [
+				TJS.CurrentData.village_object["res"][0],
+				TJS.CurrentData.village_object["res"][1],
+				TJS.CurrentData.village_object["res"][2],
+				TJS.CurrentData.village_object["res"][3]
+				]
+			
+			break;
+			
+		case "c_0" : 
+		case "c_1" : 
+		case "c_2" : 
+		case "c_3" : 
+			if(Number(gid17_input_number.value) == 1){
+				gid17_write_res(TJS.Const.CelebrationResource[gid17_TypeResSelect.value].r,
+					TJS.Const.CelebrationResource[gid17_TypeResSelect.value].run_twice);
+			}
+			break;
+			
+		default:
+			var res_troops = [
+						gid17_TroopRes[1]*Number(gid17_input_number.value),
+						gid17_TroopRes[2]*Number(gid17_input_number.value),
+						gid17_TroopRes[3]*Number(gid17_input_number.value),
+						gid17_noncrop.checked ? 0 : gid17_TroopRes[4]*Number(gid17_input_number.value)
+			];
+			gid17_write_res(res_troops,1);
+			break;
+	}
 }
 function gid17_findmaxtroops(){
 	var maxtroops = -1;
@@ -594,7 +659,7 @@ function gid17_clear(){
 	}
 	localStorage.setItem("Flag_deleteAll_Trading_routes",-1);
 }
-function gid17_celebration_click(r,run_twice){
+function gid17_write_res(r,run_twice){
 	var sumResources = 0;
 	for(var i=0;i<4;i++){
 		var e_r = document.getElementById("r" + (i + 1));
@@ -606,7 +671,7 @@ function gid17_celebration_click(r,run_twice){
 		= Math.ceil(sumResources/Number(document.getElementById("addRessourcesLink1").innerText));
 	
 	var e_run_twice = document.getElementById("x2");
-	if(e_run_twice.tagName == "SELECT") e_run_twice.selectedIndex = run_twice-1;
+	if(e_run_twice.tagName == "SELECT") e_run_twice.value = run_twice;
 	else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox"){
 		switch(run_twice){
 			case 2:e_run_twice.checked = true; break;

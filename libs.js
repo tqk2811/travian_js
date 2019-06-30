@@ -181,6 +181,7 @@ TJS = {
 							b.reloadMarketPlace();
 							Travian.Game.Layout.updateResources();
 							b.updateAutoCompleter()
+							TJS.CurrentData.Resource();////
 							callback_();/////
 						}
 					}
@@ -188,13 +189,33 @@ TJS = {
 			})
 		}
 	},
-	
 	DivClear : function(){
 		var div_clear = document.createElement("div");
 		div_clear.setAttribute("class","clear");
 		return div_clear;
 	},
-	
+	FillLevel : function(budget,arr){// budget,array
+		var arr_sort = [];
+		for(var i = 0; i < arr.length; i++) arr_sort.push({ v:arr[i] , p: i , r : 0});
+		arr_sort.sort(function(a, b){return b.v - a.v;});//max to min v
+		for(var i = 0; i< arr_sort.length - 1; i++)
+		{
+			var v = 0;
+			var flag = false;
+			if(budget >= (arr_sort[i].v - arr_sort[i+1].v)*(i+1)) v = arr_sort[i].v - arr_sort[i+1].v;
+			else { v = Math.floor(budget/(i+1)); flag = true; }
+			for(var j = 0 ; j <= i;j++)
+			{
+				arr_sort[j].r += v;
+				budget -= v;
+			}
+			if(flag) break;
+		}
+		arr_sort.sort(function(a,b){return a.p - b.p;})// de-sort to nomal state (min to max p)
+		var result_arr = [];
+		for(var i = 0; i < arr_sort.length;i++) result_arr.push(arr_sort[i].r);
+		return result_arr;
+	},
 	HotKeyList : [],
 	InitHotkey : function(){
 		$(document).keydown(function(e){
@@ -334,7 +355,12 @@ TJS.Const = {
 	Show_TroopTrain_arr : [	[19,		29,			20,			30,			21			],
 							["#0069FF",	"#78A5D3",	"#7700F6",	"#C574F3",	"#C84545"	],
 							["b",		"B",		"s",		"S",		"w"			]],
-	
+	CelebrationResource : {
+		"c_0" : { r: [6400,6650,5940,1340], run_twice: 1},//Small Celebration
+		"c_1" : { r: [29700,33250,32000,6700], run_twice: 1},//Big Celebration
+		"c_2" : { r: [14850,16625,16000,3350], run_twice: 2},//Big Celebration / 2
+		"c_3" : { r: [9900,11084,10667,2234], run_twice: 3}//Big Celebration / 3
+	},
 };
 TJS.CurrentData = {
 	Uid : -1,
