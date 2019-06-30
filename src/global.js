@@ -228,6 +228,17 @@ function show_culture(){
 	{
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+.\/\d+$/);
 		boxTitles[0].innerText = tooltip_text;
+		
+		if(TJS.CurrentData.village_object["celebration_24"] !== undefined){
+			var span_timer = document.createElement("span");
+			span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
+			span_timer.setAttribute("class",TJS.Const.ClassTimer);
+			span_timer.setAttribute("adv_text","%s ");
+			span_timer.setAttribute("sound",false);
+			span_timer.setAttribute("style","float:right; width:50%;");
+			span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
+			boxTitles[0].insertAdjacentElement("beforebegin",span_timer);			
+		}			
 	}
 }
 

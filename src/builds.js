@@ -347,19 +347,7 @@ function gid17(){//market
 			if(marketSend_ !== null){
 				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry");
 				if(e_carry.length == 1) e_carry[0].remove();
-				
-				if(TJS.CurrentData.village_object["celebration_24"] !== undefined){
-					var traderCounts = TJS.CurrentData.e_build.getElementsByClassName("traderCount");
-					var span_timer = document.createElement("span");
-					span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
-					span_timer.setAttribute("class","TJS_timer");
-					span_timer.setAttribute("adv_text","Celebration in this village");
-					span_timer.setAttribute("sound",false);
-					span_timer.setAttribute("style","float:right; width:50%;");
-					span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
-					traderCounts[0].insertAdjacentElement("afterend",span_timer);			
-				}
-				
+								
 				var div_market = document.createElement("div");
 				marketSend_.insertAdjacentElement("beforebegin",div_market);				
 				var div1_market = document.createElement("div");
