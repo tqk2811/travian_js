@@ -203,9 +203,10 @@ TJS = {
 		var arr_sort = [];
 		for(var i = 0; i < arr.length; i++) arr_sort.push({ v:arr[i] , p: i , r : 0});
 		arr_sort.sort(function(a, b){return b.v - a.v;});//max to min v
+		var v = 0;
 		for(var i = 0; i< arr_sort.length - 1; i++)
 		{
-			var v = 0;
+			v = 0;
 			var flag = false;
 			if(budget >= (arr_sort[i].v - arr_sort[i+1].v)*(i+1)) v = arr_sort[i].v - arr_sort[i+1].v;
 			else { v = Math.floor(budget/(i+1)); flag = true; }
@@ -221,6 +222,13 @@ TJS = {
 				}
 			}
 			if(flag) break;
+		}
+		if(budget >= arr_sort.length){
+			v = Math.floor(budget/arr_sort.length);
+			for(var i = 0; i < arr_sort.length; i++){
+				arr_sort[i].r +=v;
+				budget -=v;
+			}
 		}
 		arr_sort.sort(function(a,b){return a.p - b.p;})// de-sort to nomal state (min to max p)
 		var result_arr = [];
