@@ -481,12 +481,25 @@ function gid17_enterVillageName(){
 	for(var i = 0; i < TJS.ListVillageName.length; i++){
 		if(TJS.ListVillageName[i].name == enterVillageName.value){
 			window.gid17_target_span.innerText = TJS.ListVillageName[i].id;
-			
-			
-			return;
+			var v_obj_target = TJS.LSGetObject("village",TJS.ListVillageName[i].id);
+			if(v_obj_target["res"] !== undefined){
+				window.gid17_r1.innerText = v_obj_target["res"][0];
+				window.gid17_r2.innerText = v_obj_target["res"][1];
+				window.gid17_r3.innerText = v_obj_target["res"][2];
+				window.gid17_r4.innerText = v_obj_target["res"][3];
+				window.gid17_timer.setAttribute("value",TJS.CurrentSec() - v_obj_target["updatein"]);
+				window.gid17_timer.setAttribute("state","run");
+				return;
+			}			
 		}
 	}
 	window.gid17_target_span.innerText = "";
+	window.gid17_timer.setAttribute("state","stop");
+	window.gid17_timer.innerText = "";
+	window.gid17_r1.innerText = 0;
+	window.gid17_r2.innerText = 0;
+	window.gid17_r3.innerText = 0;
+	window.gid17_r4.innerText = 0;
 }
 function gid17_createoption(value_,name){
 	var e_option = document.createElement("option");
