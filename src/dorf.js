@@ -78,8 +78,7 @@ function troop_train_add_child(e,name,target_gid)
 	e_a.innerText = name + ":";
 	e_a.setAttribute("style","float: left; width:40%;color:black;");
 	
-	var span_time = document.createElement("span");
-	
+	var span_time = document.createElement("span");	
 	span_time.setAttribute("value",TJS.CurrentData.village_object[TJS.Const.LS_trooptrain+target_gid] - TJS.CurrentSec());
 	span_time.setAttribute("style","float: left; width:60%;");
 	span_time.setAttribute("class",TJS.Const.ClassTimer);

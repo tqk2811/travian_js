@@ -155,7 +155,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_){
 				obj.time = village_object[TJS.Const.LS_trooptrain + TJS.Const.Show_TroopTrain_arr[0][i]];
 				obj.flag = flag;
 				obj.color = TJS.Const.Show_TroopTrain_arr[1][i];
-				obj.adv_text = TJS.Const.Show_TroopTrain_arr[2][i];
+				obj.adv_text = TJS.Const.Show_TroopTrain_arr[2][i] + ":%s";
 				obj.show_zero = true;
 				obj.navigate_url = "/build.php?newdid=" + village_id_ + "&gid=" + TJS.Const.Show_TroopTrain_arr[0][i];				
 			LoadLiBuildTimer(obj);
