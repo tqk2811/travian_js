@@ -199,6 +199,7 @@ TJS = {
 		return div_clear;
 	},
 	FillLevel : function(budget,arr){// budget,array
+		console.log("budget:" + budget + " | arr:" + arr);
 		var arr_sort = [];
 		for(var i = 0; i < arr.length; i++) arr_sort.push({ v:arr[i] , p: i , r : 0});
 		arr_sort.sort(function(a, b){return b.v - a.v;});//max to min v
