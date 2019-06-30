@@ -101,8 +101,8 @@ TJS = {
 			
 			var isdown = counting == null ? true : ( counting == "down" ? true : false );
 			var num = 0;
-			if(isdown) Number(ListTimer[i].getAttribute("value")) - 1;
-			else Number(ListTimer[i].getAttribute("value")) + 1;
+			if(isdown) parseFloat(ListTimer[i].getAttribute("value")) - 1;
+			else parseFloat(ListTimer[i].getAttribute("value")) + 1;
 			
 			if(adv_text == null) adv_text = "%s";
 			if(num >= 0){
