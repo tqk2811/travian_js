@@ -564,8 +564,16 @@ function gid17_input_number_onchange(){
 			
 			var res_max_can_send = Math.min(res_merchantsend,b_flag ? total_current_res : target_needed_res);
 			
+			var res_current =  v_obj_current["res"].slice();
+			if(gid17_SaveBigCelebration.checked)
+					for(var i = 0; i< res_current.length; i++){
+						if(res_current[i] > TJS.Const.CelebrationResource["c_1"].r[i]) 
+							res_current[i] = res_current[i] - TJS.Const.CelebrationResource["c_1"].r[i];
+						else res_current[i] = 0;
+					}
+		
 			var VillageCanSendOrGet = [];
-			if(b_flag) VillageCanSendOrGet = v_obj_current["res"];
+			if(b_flag) VillageCanSendOrGet = res_current;
 			else {
 				VillageCanSendOrGet = [	v_obj_target["storage"] - v_obj_target["res"][0],
 											v_obj_target["storage"] - v_obj_target["res"][1],
@@ -573,8 +581,9 @@ function gid17_input_number_onchange(){
 											v_obj_target["granary"] - v_obj_target["res"][3]
 										];
 				for(var i = 0; i< VillageCanSendOrGet.length; i++)
-					if(v_obj_current["res"][i] < VillageCanSendOrGet[i]) VillageCanSendOrGet[i] = v_obj_current["res"][i];
+					if(res_current[i] < VillageCanSendOrGet[i]) VillageCanSendOrGet[i] = res_current[i];
 			}
+			if(window.gid17_noncrop.checked) VillageCanSendOrGet[3] = 0;
 			var result = TJS.FillLevel(res_max_can_send,VillageCanSendOrGet);
 			gid17_write_res(result,1);
 			break;
