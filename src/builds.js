@@ -538,20 +538,17 @@ function gid17_input_number_onchange(){
 			for(var i = 0 ;i < 3; i++) target_needed_res += v_obj_target["storage"] - v_obj_target["res"][i];
 			target_needed_res += v_obj_target["granary"] - v_obj_target["res"][3];
 			
-			var res_max_can_send = Math.min(res_merchantsend,b_flag ? target_needed_res:total_current_res);
+			var res_max_can_send = Math.min(res_merchantsend,b_flag ? total_current_res : target_needed_res);
 			
-			var max_can_send = [];
-			if(b_flag){
-				
-			}
-			
-			var res_send = [
-				TJS.CurrentData.village_object["res"][0],
-				TJS.CurrentData.village_object["res"][1],
-				TJS.CurrentData.village_object["res"][2],
-				TJS.CurrentData.village_object["res"][3]
-				]
-			
+			var VillageCanSendOrGet = [];
+			if(b_flag) VillageCanSendOrGet = v_obj_current["res"];
+			else VillageCanSendOrGet = [	v_obj_target["storage"] - v_obj_target["res"][0],
+											v_obj_target["storage"] - v_obj_target["res"][1],
+											v_obj_target["storage"] - v_obj_target["res"][2],
+											v_obj_target["granary"] - v_obj_target["res"][3]
+										];
+			var result = TJS.FillLevel(res_max_can_send,VillageCanSendOrGet);
+			gid17_write_res(result,1);
 			break;
 			
 		case "c_0" : 
