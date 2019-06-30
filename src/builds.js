@@ -376,8 +376,8 @@ function gid17(){//market
 					var keys = Object.keys(account_object["troop"]);
 					for(var i = 0; i < keys.length; i++)
 						gid17_TypeResSelect.appendChild(gid17_createoption(keys[i],account_object["troop"][keys[i]][0]));
-					gid17_TypeResSelect.setAttribute("onchange","gid17_TypeResSelect_onchange()");
 				}
+				gid17_TypeResSelect.setAttribute("onchange","gid17_TypeResSelect_onchange()");
 				
 				window.gid17_input_number = document.createElement("input");
 				gid17_input_number.setAttribute("type","number");
