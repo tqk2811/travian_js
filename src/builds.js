@@ -573,7 +573,7 @@ function gid17_input_number_onchange(){
 											v_obj_target["granary"] - v_obj_target["res"][3]
 										];
 				for(var i = 0; i< VillageCanSendOrGet.length; i++)
-					if(v_obj_current["res"][i] > VillageCanSendOrGet[i]) VillageCanSendOrGet[i] = v_obj_current["res"][i];
+					if(v_obj_current["res"][i] < VillageCanSendOrGet[i]) VillageCanSendOrGet[i] = v_obj_current["res"][i];
 			}
 			var result = TJS.FillLevel(res_max_can_send,VillageCanSendOrGet);
 			gid17_write_res(result,1);
