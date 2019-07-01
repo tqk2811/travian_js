@@ -448,7 +448,7 @@ function gid17(){//market
 				divr1.appendChild(gid17_timer);
 				
 				window.gid17_target_span = document.createElement("span");
-				div1.appendChild(gid17_target_span);
+				divr1.appendChild(gid17_target_span);
 				
 				window.gid17_r1 = gid17_MarketPlace_icon_n_res(divr2,"r1");
 				window.gid17_r2 = gid17_MarketPlace_icon_n_res(divr2,"r2");
