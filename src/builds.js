@@ -492,12 +492,15 @@ function gid17(){//market
 }
 
 function gid17_MarketPlace_icon_n_res(e_parent,class_name){
+	var div_ = document.createElement("div");
+	div_.setAttribute("style","float:left; width:24%;");
+	e_parent.appendChild(div_);
 	var e_i = document.createElement("i");
 	e_i.setAttribute("class",class_name);
 	var e_span = document.createElement("span");
 	e_span.innerText = "0";
-	e_parent.appendChild(e_i);
-	e_parent.appendChild(e_span);
+	div_.appendChild(e_i);
+	div_.appendChild(e_span);
 	return e_span;
 }
 function gid17_MarketPlace_sendRessources_callback(){
