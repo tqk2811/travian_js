@@ -455,11 +455,24 @@ function gid17(){//market
 				window.gid17_r3 = gid17_MarketPlace_icon_n_res(divr2,"r3");
 				window.gid17_r4 = gid17_MarketPlace_icon_n_res(divr2,"r4");
 				
-				window.gid17_target_storage = gid17_MarketPlace_icon_n_res(divr2,"warehouse");
-				window.gid17_target_granary = gid17_MarketPlace_icon_n_res(divr2,"granary");
+				var div_warehouse = document.createElement("div");
+				div_warehouse.setAttribute("style","float:left; width:30%;")
+				div_warehouse.innerText = "Warehouse:";
+				window.gid17_target_storage = document.createElement("span");
+				gid17_target_storage.innerText = 0;
+				div_warehouse.appendChild(gid17_target_storage);
 				
-				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);
+				var div_granary = document.createElement("div");
+				div_warehouse.setAttribute("style","float:left; width:30%;")
+				div_warehouse.innerText = "Granary:";
+				window.gid17_target_granary = document.createElement("span");
+				gid17_target_granary.innerText = 0;
+				div_warehouse.appendChild(gid17_target_granary);
 				
+				divr3.appendChild(div_warehouse);
+				divr3.appendChild(div_granary);				
+				
+				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 				gid17_MarketPlace_sendRessources_callback();
