@@ -350,12 +350,12 @@ function gid17(){//market
 								
 				var div_market = document.createElement("div");
 				marketSend_.insertAdjacentElement("beforebegin",div_market);				
-				var div1_market = document.createElement("div");
-				div1_market.setAttribute("style","float:left; width:50%;");				
-				var div2_market = document.createElement("div");
-				div2_market.setAttribute("style","float:right; width:50%;");
-				div_market.appendChild(div1_market);
-				div_market.appendChild(div2_market);
+				var div_left_market = document.createElement("div");
+				div_left_market.setAttribute("style","float:left; width:50%;");				
+				var div_right_market = document.createElement("div");
+				div_right_market.setAttribute("style","float:right; width:50%;");
+				div_market.appendChild(div_left_market);
+				div_market.appendChild(div_right_market);
 				div_market.insertAdjacentElement("afterend",TJS.DivClear());
 				
 				var br = document.createElement("br");				
@@ -414,26 +414,28 @@ function gid17(){//market
 				label_SaveBigCelebration.innerText = "Save Big Celebration";
 				label_SaveBigCelebration.onclick = function(){gid17_SaveBigCelebration.checked = !gid17_SaveBigCelebration.checked;};
 				
-				div1_market.appendChild(gid17_noncrop);
-				div1_market.appendChild(label_noncrop);
-				div1_market.appendChild(gid17_SaveBigCelebration);
-				div1_market.appendChild(label_SaveBigCelebration);
-				div1_market.appendChild(br);
-				div1_market.appendChild(gid17_TypeResSelect);
-				div1_market.appendChild(gid17_input_number);
-				div1_market.appendChild(gid17_label_max);				
+				div_left_market.appendChild(gid17_noncrop);
+				div_left_market.appendChild(label_noncrop);
+				div_left_market.appendChild(gid17_SaveBigCelebration);
+				div_left_market.appendChild(label_SaveBigCelebration);
+				div_left_market.appendChild(br);
+				div_left_market.appendChild(gid17_TypeResSelect);
+				div_left_market.appendChild(gid17_input_number);
+				div_left_market.appendChild(gid17_label_max);				
 				
 				gid17_TypeResSelect_onchange();
 				
-				////////////////////////
-				var div1 = document.createElement("div");
-				var div2 = document.createElement("div");
-				div2_market.appendChild(div1);
-				div2_market.appendChild(div2);
+				///right zone
+				var divr1 = document.createElement("div");
+				var divr2 = document.createElement("div");
+				var divr3 = document.createElement("div");
+				div_right_market.appendChild(divr1);
+				div_right_market.appendChild(divr2);
+				div_right_market.appendChild(divr3);
 				
 				var target_label = document.createElement("label");
 				target_label.innerText = "Target Village Id:";
-				div1.appendChild(target_label);
+				divr1.appendChild(target_label);
 				
 				window.gid17_timer = document.createElement("span");
 				gid17_timer.setAttribute("class",TJS.Const.ClassTimer);
@@ -443,15 +445,18 @@ function gid17(){//market
 				gid17_timer.setAttribute("value","0");
 				gid17_timer.setAttribute("style","float:right;");
 				gid17_timer.innerText = "";
-				div1.appendChild(gid17_timer);
+				divr1.appendChild(gid17_timer);
 				
 				window.gid17_target_span = document.createElement("span");
 				div1.appendChild(gid17_target_span);
 				
-				window.gid17_r1 = gid17_MarketPlace_icon_n_res(div2,"r1");
-				window.gid17_r2 = gid17_MarketPlace_icon_n_res(div2,"r2");
-				window.gid17_r3 = gid17_MarketPlace_icon_n_res(div2,"r3");
-				window.gid17_r4 = gid17_MarketPlace_icon_n_res(div2,"r4");
+				window.gid17_r1 = gid17_MarketPlace_icon_n_res(divr2,"r1");
+				window.gid17_r2 = gid17_MarketPlace_icon_n_res(divr2,"r2");
+				window.gid17_r3 = gid17_MarketPlace_icon_n_res(divr2,"r3");
+				window.gid17_r4 = gid17_MarketPlace_icon_n_res(divr2,"r4");
+				
+				window.gid17_target_storage = gid17_MarketPlace_icon_n_res(divr2,"warehouse");
+				window.gid17_target_granary = gid17_MarketPlace_icon_n_res(divr2,"granary");
 				
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);
 				
