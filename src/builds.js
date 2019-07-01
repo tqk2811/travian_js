@@ -351,9 +351,9 @@ function gid17(){//market
 				var div_market = document.createElement("div");
 				marketSend_.insertAdjacentElement("beforebegin",div_market);				
 				var div_left_market = document.createElement("div");
-				div_left_market.setAttribute("style","float:left; width:50%;");				
+				div_left_market.setAttribute("style","float:left; width:45%;");				
 				var div_right_market = document.createElement("div");
-				div_right_market.setAttribute("style","float:right; width:50%;");
+				div_right_market.setAttribute("style","float:right; width:55%;");
 				div_market.appendChild(div_left_market);
 				div_market.appendChild(div_right_market);
 				div_market.insertAdjacentElement("afterend",TJS.DivClear());
@@ -456,18 +456,27 @@ function gid17(){//market
 				window.gid17_r4 = gid17_MarketPlace_icon_n_res(divr2,"r4");
 				
 				var div_warehouse = document.createElement("div");
-				div_warehouse.setAttribute("style","float:left; width:30%;")
+				div_warehouse.setAttribute("style","float:left; width:42%;")
 				div_warehouse.innerText = "Warehouse:";
 				window.gid17_target_storage = document.createElement("span");
 				gid17_target_storage.innerText = 0;
 				div_warehouse.appendChild(gid17_target_storage);
 				
 				var div_granary = document.createElement("div");
-				div_granary.setAttribute("style","float:left; width:30%;")
+				div_granary.setAttribute("style","float:left; width:42%;")
 				div_granary.innerText = "Granary:";
 				window.gid17_target_granary = document.createElement("span");
 				gid17_target_granary.innerText = 0;
 				div_granary.appendChild(gid17_target_granary);
+				
+				var div_percent = document.createElement("div");
+				div_percent.setAttribute("style","float:right; width:15%;");
+				window.gid17_percent = document.createElement("span");
+				gid17_percent.innerText = 0;
+				div_percent.appendChild(gid17_percent);
+				var label_percent = document.createElement("span");
+				label_percent.innerText = "%";
+				div_percent.appendChild(label_percent);
 				
 				divr3.appendChild(div_warehouse);
 				divr3.appendChild(div_granary);				
