@@ -463,11 +463,11 @@ function gid17(){//market
 				div_warehouse.appendChild(gid17_target_storage);
 				
 				var div_granary = document.createElement("div");
-				div_warehouse.setAttribute("style","float:left; width:30%;")
-				div_warehouse.innerText = "Granary:";
+				div_granary.setAttribute("style","float:left; width:30%;")
+				div_granary.innerText = "Granary:";
 				window.gid17_target_granary = document.createElement("span");
 				gid17_target_granary.innerText = 0;
-				div_warehouse.appendChild(gid17_target_granary);
+				div_granary.appendChild(gid17_target_granary);
 				
 				divr3.appendChild(div_warehouse);
 				divr3.appendChild(div_granary);				
