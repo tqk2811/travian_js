@@ -227,7 +227,7 @@ TJS = {
 				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
 			var arr_temp = [0,0,0,0];
 			var r_temp = 0;
-			for(var j = 0; j < i; j++){				
+			for(var j = 0; j <= i; j++){				
 				arr_temp[j] += Math.floor((arr[j].percent - arr[i + 1].percent) * (bc ? arr[j].sc : arr[j].st));
 				r_temp += arr_temp[j];
 			}
