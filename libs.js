@@ -224,16 +224,16 @@ TJS = {
 		var flag = false;
 		for(var i = 0; i < arr.length - 1; i++){
 			for(var j = 0; j < arr.length; j++) 
-				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[i].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
+				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
 			var arr_temp = [0,0,0,0];
 			var r_temp = 0;
 			for(var j = 0; j <= i; j++){				
-				arr_temp[i] += Math.floor((arr[i].percent - arr[i + 1].percent) * (bc ? arr[i].sc : arr[i].st));
-				r_temp += arr_temp[i];
+				arr_temp[j] += Math.floor((arr[j].percent - arr[i + 1].percent) * (bc ? arr[j].sc : arr[j].st));
+				r_temp += arr_temp[j];
 			}
 			if(r_temp < max_res_can_send){
 				max_res_can_send -= r_temp;
-				for(var j = 0; j <= i; j++) arr[j].r = arr_temp[i];
+				for(var j = 0; j <= i; j++) arr[j].r += arr_temp[i];
 			}else flag = true;
 			if(flag) break;
 		}
