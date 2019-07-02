@@ -198,47 +198,53 @@ TJS = {
 		div_clear.setAttribute("class","clear");
 		return div_clear;
 	},
-	FillLevel : function(budget,arr){// budget,array
-		console.log("budget:" + budget + " | arr:" + arr);
-		var arr_sort = [];
-		var arr_total = 0;
-		for(var i = 0; i < arr.length; i++) {
-			arr_sort.push({ v:arr[i] , p: i , r : 0});
-			arr_total += arr[i];
-		}
-		if(budget > arr_total) budget = arr_total;
-		arr_sort.sort(function(a, b){return b.v - a.v;});//max to min v
-		var v = 0;
-		for(var i = 0; i< arr_sort.length - 1; i++)
-		{
-			v = 0;
-			var flag = false;
-			if(budget >= (arr_sort[i].v - arr_sort[i+1].v)*(i+1)) v = arr_sort[i].v - arr_sort[i+1].v;
-			else { v = Math.floor(budget/(i+1)); flag = true; }
-			for(var j = 0 ; j <= i;j++)
-			{
-				var l = arr_sort[j].v - arr_sort[j].r;
-				if( l > v ){
-					arr_sort[j].r += v;
-					budget -= v;
-				}else{
-					arr_sort[j].r += l;
-					budget -= l;
-				}
+	BalanceRes : function(mc,bc,arr){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
+		//mc: merchant carry, bc:balance current true/false, 
+		//rc: resource current, sc:storage current, 			rt: resource target, st: storage target 
+		//percent
+		//rtn: resource target need; r: result; pos:position, 
+		console.log("merchant carry:" + mc + " | arr:" + arr);
+		var max_res_can_send = 0;
+		var total_storage = 0;
+		for(var i = 0; i < arr.length; i++){
+			arr[i].pos = i;//save pos
+			arr[i].r = 0;
+			if(bc) {
+				max_res_can_send += arr[i].rc;
+				total_storage += arr[i].sc;
 			}
+			else {
+				arr[i].rtn = Math.floor(arr[i].st * 0.98 - arr[i].rt);// 2% empty storage
+				max_res_can_send +=arr[i].rtn;
+				total_storage += arr[i].st;
+			}				
+		}
+		if(max_res_can_send > mc) max_res_can_send = mc;
+		arr.sort(function(a,b){ return b.percent - a.percent;});//sort max to min
+		var flag = false;
+		for(var i = 0; i < arr.length - 1; i++){
+			for(var j = 0; j < arr.length; j++) 
+				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[i].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
+			var arr_temp = [0,0,0,0];
+			var r_temp = 0;
+			for(var j = 0; j <= i; j++){				
+				arr_temp[i] += Math.floor((arr[i].percent - arr[i + 1].percent) * (bc ? arr[i].sc : arr[i].st));
+				r_temp += arr_temp[i];
+			}
+			if(r_temp < max_res_can_send){
+				max_res_can_send -= r_temp;
+				for(var j = 0; j <= i; j++) arr[j].r = arr_temp[i];
+			}else flag = true;
 			if(flag) break;
 		}
-		if(budget >= arr_sort.length){
-			v = Math.floor(budget/arr_sort.length);
-			for(var i = 0; i < arr_sort.length; i++){
-				arr_sort[i].r +=v;
-				budget -=v;
-			}
+		if(max_res_can_send > 0){
+			var storage_rate = [0,0,0,0];
+			for(var i = 0 ;i < arr.length; i++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);			
 		}
-		arr_sort.sort(function(a,b){return a.p - b.p;})// de-sort to nomal state (min to max p)
-		var result_arr = [];
-		for(var i = 0; i < arr_sort.length;i++) result_arr.push(arr_sort[i].r);
-		return result_arr;
+		arr.sort(function(a,b){ return a.pos - b.pos;});
+		var result = [];
+		for(var i = 0; i < arr.length; i++) result.push(arr[i].r);
+		return result;
 	},
 	HotKeyList : [],
 	InitHotkey : function(){
