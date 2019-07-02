@@ -595,7 +595,7 @@ function gid17_input_number_onchange(){
 					obj.rt = v_obj_target["res"][i];
 					obj.st =  i == 3 ? v_obj_target["granary"] : v_obj_target["storage"];
 				}
-				obj.toString = function(){ return "rc:" +obj.rc +" |sc:" + obj.sc + (b_flag ? "" : "rt:" + obj.rt + " |st:" + obj.st );}
+				obj.toString = function(){ return "{ rc:" +obj.rc +" ,sc:" + obj.sc + (b_flag ? "}" : ", rt:" + obj.rt + " ,st:" + obj.st +"}" );}
 				arr.push(obj);
 			}			
 			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr);
