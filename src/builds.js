@@ -520,6 +520,8 @@ function gid17_enterVillageName(){
 				window.gid17_r4.innerText = v_obj_target["res"][3];
 				window.gid17_timer.setAttribute("value",TJS.CurrentSec() - v_obj_target["updatein"]);
 				window.gid17_timer.setAttribute("state","run");
+				window.div_warehouse.innerText = v_obj_target["storage"];
+				window.div_granary.innerText = v_obj_target["granary"];
 				return;
 			}			
 		}
