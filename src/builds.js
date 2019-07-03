@@ -670,15 +670,16 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 
 function gid17_clear_onclick(){
 	if(window.confirm("Are you sure to clear trade routes?")){
-		localStorage.setItem("Flag_deleteAll_Trading_routes",TJS.CurrentData.VillageId);
-		localStorage.setItem("gid17_des_clear",window.gid17_select_clear.value);
-		window.location.href = "/build.php?t=0&gid=17";
+		TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR] = TJS.CurrentData.VillageId;
+		TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear] = window.gid17_select_clear.value;
+		TJS.SaveCurrentAccount();
+		window.location.href = "/build.php?t=0&gid=17";gid17_DTR_type_clear
 	}
 }
 function gid17_clear(){
-	var id = localStorage.getItem("Flag_deleteAll_Trading_routes");
-	var gid17_des_clear = localStorage.getItem("gid17_des_clear");
-	if(id !== null && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)	{
+	var id = TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR];
+	var gid17_des_clear = TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear];
+	if(id !== undefined && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)	{
 		var trading_routes = document.getElementById("trading_routes");
 		if(trading_routes !== null)		{
 			var trs = trading_routes.getElementsByTagName("tr");
@@ -712,7 +713,8 @@ function gid17_clear(){
 			}
 		}
 	}
-	localStorage.setItem("Flag_deleteAll_Trading_routes",-1);
+	TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR] = -1;
+	TJS.SaveCurrentAccount();
 }
 function gid17_write_res(r,run_twice){
 	var sumResources = 0;

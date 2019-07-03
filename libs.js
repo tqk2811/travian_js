@@ -417,6 +417,8 @@ TJS.Const = {
 		"c_2" : { r: [14850,16625,16000,3350], run_twice: 2},//Big Celebration / 2
 		"c_3" : { r: [9900,11084,10667,2234], run_twice: 3}//Big Celebration / 3
 	},
+	gid17_village_DTR: "gid17_village_DTR",
+	gid17_DTR_type_clear : "gid17_DTR_type_clear",
 };
 TJS.CurrentData = {
 	Uid : -1,
