@@ -204,6 +204,7 @@ TJS = {
 		//percent
 		//rtn: resource target need; r: result; pos:position, 
 		console.log("merchant carry:" + mc + " | arr:" + arr);
+		var save_target_storage = 0.98;
 		var max_res_can_send = 0;
 		var max_res_can_received = 0;
 		var total_storage = 0;
@@ -213,20 +214,20 @@ TJS = {
 			max_res_can_send += arr[i].rc;
 			if(bc) {				
 				total_storage += arr[i].sc;
+				arr[j].percent = (arr[j].rc - arr[j].r)/arr[j].sc;
 			}
 			else {
-				arr[i].rtn = Math.floor(arr[i].st * 0.98 - arr[i].rt);// 2% empty storage
+				arr[i].rtn = Math.floor(arr[i].st * save_target_storage - arr[i].rt);// 2% empty storage
 				max_res_can_received +=arr[i].rtn;
 				total_storage += arr[i].st;
-			}				
+				arr[j].percent = (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage)
+			}		
 		}//end initialize
 		if(max_res_can_send > mc) max_res_can_send = mc;
 		if(!bc && max_res_can_send > max_res_can_received) max_res_can_send = max_res_can_received;
-		arr.sort(function(a,b){ return b.percent - a.percent;});//sort max to min
+		arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
 		var flag = false;
 		for(var i = 0; i < arr.length - 1; i++){
-			for(var j = 0; j < arr.length; j++) 
-				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
 			var arr_temp = [0,0,0,0];
 			var r_temp = 0;
 			for(var j = 0; j <= i; j++){				
@@ -235,12 +236,13 @@ TJS = {
 			}
 			if(r_temp < max_res_can_send){
 				max_res_can_send -= r_temp;
-				for(var j = 0; j <= i; j++) arr[j].r += arr_temp[i];
+				for(var j = 0; j <= i; j++) {
+					arr[j].r += arr_temp[i];
+					arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
+				}
 			}else flag = true;
 			if(flag) break;
 		}
-		for(var j = 0; j < arr.length; j++) 
-				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
 		if(max_res_can_send > 0){
 			var storage_rate = [0,0,0,0];
 			for(var i = 0 ;i < arr.length; i++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);		
