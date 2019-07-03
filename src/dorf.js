@@ -45,23 +45,23 @@ function troop_train_show()
 		var div_barack = document.createElement("div");// gid 19,29
 		div_barack.setAttribute("style",troop_train_child_div_style);
 	
-		var barack_19 = TJS.CurrentData.village_object["troop_train_checkbox_19"];
+		var barack_19 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_19"];
 		if(barack_19 !== undefined && barack_19) troop_train_add_child(div_barack,"Barrack",19);
 	
-		var barack_29 = TJS.CurrentData.village_object["troop_train_checkbox_29"];
+		var barack_29 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_29"];
 		if(barack_29 !== undefined && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
 		var div_stable = document.createElement("div");// gid 20,30
 		div_stable.setAttribute("style",troop_train_child_div_style);
-		var stable_20 = TJS.CurrentData.village_object["troop_train_checkbox_20"];
+		var stable_20 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_20"];
 		if(stable_20 !== undefined && stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
-		var stable_30 = TJS.CurrentData.village_object["troop_train_checkbox_30"];	
+		var stable_30 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_30"];	
 		if(stable_30 !== undefined && stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 		var div_workshop = document.createElement("div");// gid 21
 		div_workshop.setAttribute("style",troop_train_child_div_style);
-		var workshop = TJS.CurrentData.village_object["troop_train_checkbox_21"];
+		var workshop = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_21"];
 		if(workshop !== undefined && workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
 		main_div.appendChild(div_barack);
