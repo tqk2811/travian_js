@@ -209,6 +209,7 @@ TJS = {
 		var max_res_can_received = 0;
 		var total_storage = 0;
 		for(var i = 0; i < arr.length; i++){//initialize
+			if(arr[i].rc < 0) arr[i].rc = 0;
 			arr[i].pos = i;//save pos
 			arr[i].r = 0;
 			max_res_can_send += arr[i].rc;

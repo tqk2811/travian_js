@@ -588,16 +588,18 @@ function gid17_input_number_onchange(){
 			if(v_obj_target["res"] == undefined) return;
 			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
 			var res_merchantsend = Math.round(Number(window.gid17_input_number.value)*merchantCapacityValue/100);
+			window.gid17_SaveBigCelebration window.gid17_noncrop
 			var arr = [];
 			for(var i = 0; i < 4; i++){
 				var obj = {};
-				obj.rc = v_obj_current["res"][i];
+				if(window.gid17_SaveBigCelebration.checked) obj.rc = v_obj_current["res"][i] - TJS.Const.CelebrationResource["c_1"][i];
+				else if(window.gid17_noncrop.checked && i == 3) obj.rc = 0;
+				else obj.rc = v_obj_current["res"][i];
 				obj.sc = i == 3 ? v_obj_current["granary"]: v_obj_current["storage"];
 				if(!b_flag){
 					obj.rt = v_obj_target["res"][i];
 					obj.st =  i == 3 ? v_obj_target["granary"] : v_obj_target["storage"];
 				}
-				obj.toString = function(){ return "{ rc:" +obj.rc +" ,sc:" + obj.sc + (b_flag ? "}" : ", rt:" + obj.rt + " ,st:" + obj.st +"}" );}
 				arr.push(obj);
 			}			
 			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr);
