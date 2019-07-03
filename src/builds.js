@@ -763,9 +763,11 @@ function troop_train(){//gid 19 20 29 30 21
 		
 		
 		var label_fastclick = document.createElement("label");
-		var fastclick_ischeck = TJS.CurrentData.account_object["checkbox_status"]["fastclick_train"] == true ? "checked" : "";
-		label_fastclick.innerHTML = "<input type=\"checkbox\" " + fastclick_ischeck +" id=\"fastclick\" onclick=\"fastclick_checkedchange(this)\">Fast click (train all):"
+		label_fastclick.innerText = "Fast click (train all):";
+		var fast_click_checkbox = document.createElement("input");
+		TJS.InitCheckboxOnclick(fast_click_checkbox,"fastclick_train",null,true);
 		div_fastclick.appendChild(label_fastclick);
+		label_fastclick.insertAdjacentElement("afterbegin",fast_click_checkbox);
 		
 		window.traintroop_actions = trainUnits[0].getElementsByClassName("action");
 		for(var i = 0; i< traintroop_actions.length; i++)
@@ -780,10 +782,6 @@ function troop_train(){//gid 19 20 29 30 21
 			div_fastclick.appendChild(img_);
 		}
 	}	
-}
-function fastclick_checkedchange(e){
-	TJS.CurrentData.account_object["checkbox_status"]["fastclick_train"] = e.checked;
-	TJS.SaveCurrentAccount();
 }
 function fastclick_train_onclick(i){
 	var fastclick_ischeck = document.getElementById("fastclick");	
