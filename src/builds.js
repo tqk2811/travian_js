@@ -591,7 +591,7 @@ function gid17_input_number_onchange(){
 			if(v_obj_target["res"] == undefined) return;
 			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
 			var res_merchantsend = Math.round(Number(window.gid17_input_number.value)*merchantCapacityValue/100);
-			window.gid17_SaveBigCelebration window.gid17_noncrop
+			
 			var arr = [];
 			for(var i = 0; i < 4; i++){
 				var obj = {};
