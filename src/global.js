@@ -26,18 +26,13 @@ if(sidebarBoxLinklist_ !== null){
 	}
 	window.checkbox_linkerlisttop = document.createElement("input");
 	checkbox_linkerlisttop.setAttribute("type","checkbox");
-	TJS.InitCheckboxOnclick(checkbox_linkerlisttop,"linkerlisttop",checkbox_linkerlisttop_change,true);
+	TJS.InitCheckboxOnclick(checkbox_linkerlisttop,"linkerlisttop",function(){sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);},true);
 	if(checkbox_linkerlisttop.checked) sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);
 	var label_checkbox_linkerlisttop = document.createElement("label");
 	label_checkbox_linkerlisttop.innerText = "Bring to top";
 	
 	innerBox_content.appendChild(checkbox_linkerlisttop);
 	innerBox_content.appendChild(label_checkbox_linkerlisttop);
-}
-function checkbox_linkerlisttop_change(){
-	localStorage.setItem("linkerlisttop",checkbox_linkerlisttop.checked);
-	storage_linkerlisttop = checkbox_linkerlisttop.checked;
-	sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);
 }
 function sidebarBeforeContent_swap(flag){
 	if(flag) TJS.MoveElementUp(sidebarBoxLinklist_,5);//move to top
