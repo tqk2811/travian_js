@@ -205,21 +205,23 @@ TJS = {
 		//rtn: resource target need; r: result; pos:position, 
 		console.log("merchant carry:" + mc + " | arr:" + arr);
 		var max_res_can_send = 0;
+		var max_res_can_received = 0;
 		var total_storage = 0;
-		for(var i = 0; i < arr.length; i++){
+		for(var i = 0; i < arr.length; i++){//initialize
 			arr[i].pos = i;//save pos
 			arr[i].r = 0;
-			if(bc) {
-				max_res_can_send += arr[i].rc;
+			max_res_can_send += arr[i].rc;
+			if(bc) {				
 				total_storage += arr[i].sc;
 			}
 			else {
 				arr[i].rtn = Math.floor(arr[i].st * 0.98 - arr[i].rt);// 2% empty storage
-				max_res_can_send +=arr[i].rtn;
+				max_res_can_received +=arr[i].rtn;
 				total_storage += arr[i].st;
 			}				
-		}
+		}//end initialize
 		if(max_res_can_send > mc) max_res_can_send = mc;
+		if(!bc && max_res_can_send > max_res_can_received) max_res_can_send = max_res_can_received;
 		arr.sort(function(a,b){ return b.percent - a.percent;});//sort max to min
 		var flag = false;
 		for(var i = 0; i < arr.length - 1; i++){
@@ -237,9 +239,11 @@ TJS = {
 			}else flag = true;
 			if(flag) break;
 		}
+		for(var j = 0; j < arr.length; j++) 
+				arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * 0.98);//renew percent
 		if(max_res_can_send > 0){
 			var storage_rate = [0,0,0,0];
-			for(var i = 0 ;i < arr.length; i++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);			
+			for(var i = 0 ;i < arr.length; i++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);		
 		}
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
@@ -465,7 +469,6 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [
 ];
 if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
 
-
 TJS.AccountSetting = {
 	ReadSetting : function(){
 		
@@ -506,3 +509,4 @@ TJS.AddHotKey(81,function(){ // Q change task_helper_select
 });
 TJS.InitHotkey();
 //null.test_catch_error()
+window.setInterval(TJS.CurrentData.Resource,60000);
