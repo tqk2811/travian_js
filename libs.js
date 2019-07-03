@@ -214,13 +214,13 @@ TJS = {
 			max_res_can_send += arr[i].rc;
 			if(bc) {				
 				total_storage += arr[i].sc;
-				arr[j].percent = (arr[j].rc - arr[j].r)/arr[j].sc;
+				arr[i].percent = (arr[i].rc - arr[i].r)/arr[i].sc;
 			}
 			else {
 				arr[i].rtn = Math.floor(arr[i].st * save_target_storage - arr[i].rt);// 2% empty storage
 				max_res_can_received +=arr[i].rtn;
 				total_storage += arr[i].st;
-				arr[j].percent = (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage)
+				arr[i].percent = (arr[i].rtn - arr[i].r)/(arr[i].st * save_target_storage)
 			}		
 		}//end initialize
 		if(max_res_can_send > mc) max_res_can_send = mc;
