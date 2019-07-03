@@ -765,6 +765,7 @@ function troop_train(){//gid 19 20 29 30 21
 		var label_fastclick = document.createElement("label");
 		label_fastclick.innerText = "Fast click (train all):";
 		var fast_click_checkbox = document.createElement("input");
+		fast_click_checkbox.setAttribute("type","checkbox");
 		TJS.InitCheckboxOnclick(fast_click_checkbox,"fastclick_train",null,true);
 		div_fastclick.appendChild(label_fastclick);
 		label_fastclick.insertAdjacentElement("afterbegin",fast_click_checkbox);
