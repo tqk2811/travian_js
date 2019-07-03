@@ -72,7 +72,7 @@ function build_gid_TotalRes(e){
 			var name_unit = e_imgs[0].getAttribute("alt");
 			if(class_unit_strings.length == 2)
 			{				
-				var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
+				var account_object = TJS.CurrentData.account_object;
 				if(account_object["troop"] == undefined) account_object["troop"] = {};
 				
 				var unit_id = Number(class_unit_strings[1].substring(1));
@@ -87,7 +87,7 @@ function build_gid_TotalRes(e){
 				arr.push(name_unit + " (" + unit_tribe + ")");
 				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
 				account_object["troop"][class_unit_strings[1]] = arr;
-				TJS.LSSaveObject("account",TJS.CurrentData.UserName,account_object);
+				TJS.SaveCurrentAccount();
 			}
 		}
 	}
@@ -375,7 +375,7 @@ function gid17(){//market
 				gid17_TypeResSelect.appendChild(gid17_createoption("c_2","Big Celebration / 2"));
 				gid17_TypeResSelect.appendChild(gid17_createoption("c_3","Big Celebration / 3"));
 				
-				var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
+				var account_object = TJS.CurrentData.account_object;
 				if(account_object["troop"] != undefined){
 					var keys = Object.keys(account_object["troop"]);
 					for(var i = 0; i < keys.length; i++)
@@ -545,7 +545,7 @@ function gid17_createoption(value_,name){
 	return e_option;
 }
 function gid17_TypeResSelect_onchange(){
-	var account_object = TJS.LSGetObject("account",TJS.CurrentData.UserName);
+	var account_object = TJS.CurrentData.account_object;
 	switch(gid17_TypeResSelect.value)
 	{
 		case "-1"  : 
