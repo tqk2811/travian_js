@@ -248,7 +248,7 @@ TJS = {
 			}
 		}
 		if(!flag)
-			for(var i = 0 ;i < arr.length; i++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);		
+			for(var i = 0 ;i < arr.length; i++) arr[i].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);		
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
 		for(var j = 0; j < arr.length; j++) result.push(arr[j].r);
