@@ -11,10 +11,8 @@ if(!TJS.CurrentData.isPlus)
 
 
 //sidebarBoxLinklist
-var storage_linkerlisttop = localStorage.getItem("linkerlisttop") == "true";
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
 if(sidebarBoxLinklist_ !== null){
-	if(storage_linkerlisttop == true) sidebarBeforeContent_swap(storage_linkerlisttop); 	
 	var BoxLinklist_InnerBox = sidebarBoxLinklist_.getElementsByClassName("sidebarBoxInnerBox")[0];
 	var innerBox_content = BoxLinklist_InnerBox.getElementsByClassName("innerBox content")[0];
 	
@@ -28,8 +26,8 @@ if(sidebarBoxLinklist_ !== null){
 	}
 	window.checkbox_linkerlisttop = document.createElement("input");
 	checkbox_linkerlisttop.setAttribute("type","checkbox");
-	checkbox_linkerlisttop.checked = storage_linkerlisttop;
-	checkbox_linkerlisttop.onchange = checkbox_linkerlisttop_change;	
+	TJS.InitCheckboxOnclick(checkbox_linkerlisttop,"linkerlisttop",checkbox_linkerlisttop_change,true);
+	if(checkbox_linkerlisttop.checked) sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);
 	var label_checkbox_linkerlisttop = document.createElement("label");
 	label_checkbox_linkerlisttop.innerText = "Bring to top";
 	

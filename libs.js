@@ -119,6 +119,9 @@ TJS = {
 	SaveCurrentVillage : function(){
 		TJS.LSSaveObject("village",TJS.CurrentData.VillageId,TJS.CurrentData.village_object);
 	},
+	SaveCurrentAccount : function(){
+		TJS.LSSaveObject("account",TJS.CurrentData.UserName,TJS.CurrentData.account_object);
+	},
 	TitleUsername : function(){
 		var titles = document.getElementsByTagName("title");
 		titles[0].innerText = TJS.CurrentData.UserName + " " + titles[0].innerText;
@@ -343,7 +346,21 @@ TJS = {
 		}
 	},
 	attacks_img : httpGetGithubCdnUri("src/attacks.gif"),
-	
+	InitCheckboxOnclick : function(e,name,callback_ = null,all_village = false){
+		var obj = all_village ? TJS.CurrentData.account_object : TJS.CurrentData.village_object;
+		if(obj["checkbox_status"][name] == undefined){
+			obj["checkbox_status"][name] = false;
+			if(all_village) TJS.SaveCurrentAccount();
+			else TJS.SaveCurrentVillage();
+		}
+		e.checked = obj["checkbox_status"][name];
+		e.onchange = function(){ 
+			obj["checkbox_status"][name] = e.checked;
+			if(callback_ !== null) callback_();
+			if(all_village) TJS.SaveCurrentAccount();
+			else TJS.SaveCurrentVillage();
+		}
+	},
 	LoadLib : function(){
 		AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 		AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
@@ -422,7 +439,7 @@ TJS.CurrentData = {
 	VillageId : null,
 	village_object : null,
 	ding_sound : TJS.CreateSoundElement(httpGetGithubCdnUri("src/ding.mp3")),
-	
+	account_object : null,
 	Timeout : 200
 }
 TJS.CurrentData.Gid = function(){
@@ -447,8 +464,19 @@ TJS.CurrentData.VillageId = function(){
 	else return null;
 }();
 TJS.CurrentData.village_object = function(){
-	if(TJS.CurrentData.VillageId !== null) return TJS.LSGetObject("village",TJS.CurrentData.VillageId);
+	if(TJS.CurrentData.VillageId !== null){
+		var obj = TJS.LSGetObject("village",TJS.CurrentData.VillageId);
+		if(obj["checkbox_status"] == undefined) obj["checkbox_status"] = {};
+		return obj;
+	}
 	else return null;
+}();
+TJS.CurrentData.account_object = function(){
+	if(TJS.CurrentData.UserName !== null){
+		var obj = TJS.LSGetObject("account",TJS.CurrentData.UserName);
+		if(obj["checkbox_status"] == undefined) obj["checkbox_status"] = {};
+		return obj;
+	} else return null;
 }();
 TJS.CurrentData.Resource = function(){
 	var res = [
@@ -474,18 +502,6 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [
 ];
 if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
 
-TJS.AccountSetting = {
-	ReadSetting : function(){
-		
-	},
-	SaveSetting : function(){
-		
-	}
-	
-};
-TJS.GlobalSetting = {
-	
-};
 TJS.CurrentData.Resource();
 TJS.catch_exception();
 window.setInterval(TJS.TJS_Timer,1000);

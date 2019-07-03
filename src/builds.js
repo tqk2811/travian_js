@@ -124,6 +124,7 @@ function gid16(){//rallypoint
 			
 			window.gid16_cb_raid = document.createElement("input");//
 			gid16_cb_raid.setAttribute("type","checkbox");
+			TJS.InitCheckboxOnclick(gid16_cb_raid,"gid16_cb_raid",null,true);
 			var e_LB_raid = document.createElement("label");
 			e_LB_raid.innerText = "Start raids";			
 			e_LB_raid.setAttribute("style","border:none;color:black;padding: 3px;");
@@ -131,6 +132,7 @@ function gid16(){//rallypoint
 			
 			window.gid16_cb_attacking = document.createElement("input");
 			gid16_cb_attacking.setAttribute("type","checkbox");
+			TJS.InitCheckboxOnclick(gid16_cb_attacking,"gid16_cb_attacking",null,true);
 			var e_LB_attacking = document.createElement("label");			
 			e_LB_attacking.innerText = "Don't raid attacking";
 			e_LB_attacking.setAttribute("style","border:none;color:black;padding: 3px;");
@@ -138,6 +140,7 @@ function gid16(){//rallypoint
 			
 			window.gid16_cb_yellow = document.createElement("input");//
 			gid16_cb_yellow.setAttribute("type","checkbox");
+			TJS.InitCheckboxOnclick(gid16_cb_yellow,"gid16_cb_yellow",null,true);
 			var e_LB_yellow = document.createElement("label");			
 			e_LB_yellow.innerText = "Yellow";
 			e_LB_yellow.setAttribute("style","border:none;color:black;padding: 3px;");
@@ -145,8 +148,9 @@ function gid16(){//rallypoint
 			
 			window.gid16_cb_red = document.createElement("input");//
 			gid16_cb_red.setAttribute("type","checkbox");
-			var e_LB_red = document.createElement("label");			
-			e_LB_red.innerText = "Red";			
+			TJS.InitCheckboxOnclick(gid16_cb_red,"gid16_cb_red",null,true);
+			var e_LB_red = document.createElement("label");
+			e_LB_red.innerText = "Red";
 			e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
 			e_LB_red.appendChild(window.gid16_cb_red);
 			
@@ -397,7 +401,7 @@ function gid17(){//market
 				window.gid17_noncrop = document.createElement("input");
 				gid17_noncrop.setAttribute("type","checkbox");
 				gid17_noncrop.setAttribute("id","gid17_noncrop");
-				gid17_noncrop.setAttribute("onchange","gid17_TypeResSelect_onchange()");
+				TJS.InitCheckboxOnclick(gid17_noncrop,"gid17_noncrop",gid17_TypeResSelect_onchange,true);
 				gid17_noncrop.setAttribute("style","margin-left:3px");
 				
 				var label_noncrop = document.createElement("label");
@@ -550,6 +554,7 @@ function gid17_TypeResSelect_onchange(){
 			gid17_input_number.value = 0;
 			gid17_label_max.innerText = "/0";			
 			break;
+			
 		case "b_0" : 
 		case "b_1" : 
 			gid17_input_number.max = 100;
@@ -565,9 +570,7 @@ function gid17_TypeResSelect_onchange(){
 			gid17_input_number.max = 1;
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 0;
-			gid17_label_max.innerText = "/1";
-			
-			
+			gid17_label_max.innerText = "/1";			
 			break;
 		
 		default:
@@ -741,9 +744,7 @@ function troop_train(){//gid 19 20 29 30 21
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
 	window.troop_train_checkbox.checked = TJS.CurrentData.village_object[TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid];
-	window.troop_train_checkbox.onchange = function()
-		{	TJS.CurrentData.village_object[TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid] = window.troop_train_checkbox.checked;
-			TJS.SaveCurrentVillage();	}
+	TJS.InitCheckboxOnclick(troop_train_checkbox,TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid,null,false);
 	var e_checkbox_lb = document.createElement("label");
 	e_checkbox_lb.innerText = "Show Time Training";
 	e_checkbox_lb.setAttribute("style","border:none;color:black;padding: 3px;");
