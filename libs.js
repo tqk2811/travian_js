@@ -234,22 +234,24 @@ TJS = {
 				arr_temp[j] += Math.floor((arr[j].percent - arr[i + 1].percent) * (bc ? arr[j].sc : arr[j].st));
 				r_temp += arr_temp[j];
 			}
-			if(r_temp < max_res_can_send){
+			if(r_temp >= max_res_can_send){
+				var not_send = Math.round((r_temp - max_res_can_send)/(i+1));
+				for(var j = 0; j <= i; j++) arr[j].r += arr_temp[j] - not_send;
+				flag = true;
+				break;
+			}else if(r_temp < max_res_can_send){
 				max_res_can_send -= r_temp;
 				for(var j = 0; j <= i; j++) {
 					arr[j].r += arr_temp[i];
 					arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
 				}
-			}else flag = true;
-			if(flag) break;
+			}
 		}
-		if(max_res_can_send > 0){
-			var storage_rate = [0,0,0,0];
+		if(!flag)
 			for(var i = 0 ;i < arr.length; i++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[i].sc : arr[i].st)/total_storage);		
-		}
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
-		for(var i = 0; i < arr.length; i++) result.push(arr[i].r);
+		for(var j = 0; j < arr.length; j++) result.push(arr[j].r);
 		return result;
 	},
 	HotKeyList : [],
