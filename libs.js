@@ -218,13 +218,13 @@ TJS = {
 			max_res_can_send += arr[i].rc;
 			if(bc) {				
 				total_storage += arr[i].sc;
-				arr[i].percent = (arr[i].rc - arr[i].r)/arr[i].sc;
+				arr[i].percent = arr[i].rc/arr[i].sc;
 			}
 			else {
 				arr[i].rtn = Math.floor(arr[i].st * save_target_storage - arr[i].rt);// 2% empty storage
 				max_res_can_received +=arr[i].rtn;
 				total_storage += arr[i].st;
-				arr[i].percent = (arr[i].rtn - arr[i].r)/(arr[i].st * save_target_storage)
+				arr[i].percent = ( arr[i].rtn > arr[i].rc ? arr[i].rc : arr[i].rtn ) /(arr[i].st * save_target_storage)
 			}		
 		}//end initialize
 		if(max_res_can_send > mc) max_res_can_send = mc;
@@ -247,7 +247,7 @@ TJS = {
 				max_res_can_send -= r_temp;
 				for(var j = 0; j <= i; j++) {
 					arr[j].r += arr_temp[i];
-					arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
+					arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : ((arr[i].rtn > arr[i].rc ? arr[i].rc : arr[i].rtn ) - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
 				}
 			}
 		}
