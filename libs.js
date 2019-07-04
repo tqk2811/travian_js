@@ -248,13 +248,13 @@ TJS = {
 			}else{
 				max_res_can_send -= r_temp;
 				for(var j = 0; j <= i; j++) {
-					arr[j].r += arr_temp[i];
+					arr[j].r += arr_temp[j];
 					//arr[j].rl = arr[j].rc - arr[j].r;
 					if(arr[j].skip) arr[j].percent = 0;
 					else arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
 				}
 				if(i == 2){
-					for(var j = 0 ;j < arr.length; j++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[j].sc : arr[j].st)/total_storage);		
+					//for(var j = 0 ;j < arr.length; j++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[j].sc : arr[j].st)/total_storage);		
 				}
 			}
 		}
