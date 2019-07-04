@@ -217,7 +217,7 @@ TJS = {
 			arr[i].r = 0;
 			arr[i].skip = false;
 			max_res_can_send += arr[i].rc;
-			arr[i].rl = arr[i].rc;
+			//arr[i].rl = arr[i].rc;
 			if(bc) {
 				arr[i].percent = arr[i].rc/arr[i].sc;
 			}
@@ -249,7 +249,7 @@ TJS = {
 				max_res_can_send -= r_temp;
 				for(var j = 0; j <= i; j++) {
 					arr[j].r += arr_temp[i];
-					arr[j].rl = arr[j].rc - arr[j].r;
+					//arr[j].rl = arr[j].rc - arr[j].r;
 					if(arr[j].skip) arr[j].percent = 0;
 					else arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
 				}
