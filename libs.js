@@ -210,7 +210,7 @@ TJS = {
 		console.log("merchant carry:" + mc + " | arr:" + arr);
 		var save_target_storage = 0.98;
 		var max_res_can_send = 0;
-		var max_res_can_received = 0;
+		var max_res_can_received = 0;		
 		for(var i = 0; i < arr.length; i++){//initialize
 			if(arr[i].rc < 0) arr[i].rc = 0;
 			arr[i].pos = i;//save pos
@@ -224,7 +224,7 @@ TJS = {
 			else {
 				arr[i].rtn = Math.floor(arr[i].st * save_target_storage - arr[i].rt);// 2% empty storage
 				max_res_can_received +=arr[i].rtn;
-				arr[i].percent = arr[i].rtn /(arr[i].st * save_target_storage)
+				arr[i].percent = arr[i].rtn /(arr[i].st * save_target_storage);
 			}		
 		}//end initialize
 		if(max_res_can_send > mc) max_res_can_send = mc;
@@ -254,7 +254,27 @@ TJS = {
 					else arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
 				}
 				if(i == 2){
-					//for(var j = 0 ;j < arr.length; j++) arr[j].r += Math.floor(max_res_can_send * (bc ? arr[j].sc : arr[j].st)/total_storage);		
+					var skip_count = 0;
+					var total_storage = 0;
+					do{
+						total_storage = 0;
+						skip_count = 0;
+						for(var j = 0 ;j < arr.length; j++) if(!arr[j].skip)total_storage += bc ? arr[i].sc : arr[i].st;					
+						for(var j = 0 ;j < arr.length; j++){
+							if(arr[j].skip) continue;
+							val_temp = Math.floor(max_res_can_send * (bc ? arr[j].sc : arr[j].st)/total_storage * save_target_storage);
+							if(arr[j].r +val_temp <= arr[j].rc && (bc ? true : arr[j].r + val_temp <= arr[j].rtn)) {
+								arr[j].r += val_temp;
+								max_res_can_send -= val_temp;
+							}else{
+								var t = (!bc && arr[j].rtn < arr[j].rc) ? arr[j].rtn - arr[j].r : arr[j].rc - arr[j].r;
+								arr[j].r += t;
+								max_res_can_send -= t;
+								arr[j].skip = true;
+								skip_count++;
+							}
+						}
+					}while(skip_count != 0 | max_res_can_send > 4);
 				}
 			}
 		}
