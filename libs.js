@@ -261,7 +261,7 @@ TJS = {
 						skip_count = 0;
 						for(var j = 0 ;j < arr.length; j++) if(!arr[j].skip)total_storage += bc ? arr[i].sc : arr[i].st;					
 						for(var j = 0 ;j < arr.length; j++){
-							if(arr[j].skip) continue;
+							if(arr[j].skip) {skip_count++; continue;}
 							val_temp = Math.floor(max_res_can_send * (bc ? arr[j].sc : arr[j].st)/total_storage * save_target_storage);
 							if(arr[j].r +val_temp <= arr[j].rc && (bc ? true : arr[j].r + val_temp <= arr[j].rtn)) {
 								arr[j].r += val_temp;
@@ -271,10 +271,10 @@ TJS = {
 								arr[j].r += t;
 								max_res_can_send -= t;
 								arr[j].skip = true;
-								skip_count++;
 							}
 						}
-					}while(skip_count != 0 | max_res_can_send > 4);
+						if(skip_count == arr.length | max_res_can_send <= 4 ) break;
+					}while(true);
 				}
 			}
 		}
