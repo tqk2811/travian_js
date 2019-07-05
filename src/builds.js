@@ -766,7 +766,7 @@ function troop_train(){//gid 19 20 29 30 21
 		
 		var label_fastclick = document.createElement("label");
 		label_fastclick.innerText = "Fast click (train all):";
-		var fast_click_checkbox = document.createElement("input");
+		window.fast_click_checkbox = document.createElement("input");
 		fast_click_checkbox.setAttribute("type","checkbox");
 		TJS.InitCheckboxOnclick(fast_click_checkbox,"fastclick_train",null,true);
 		div_fastclick.appendChild(label_fastclick);
@@ -787,8 +787,7 @@ function troop_train(){//gid 19 20 29 30 21
 	}	
 }
 function fastclick_train_onclick(i){
-	var fastclick_ischeck = document.getElementById("fastclick");	
-	if(fastclick_ischeck.checked || confirm("Confirm train?"))
+	if(window.fast_click_checkbox.checked || confirm("Confirm train?"))
 	{
 		var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
 		e_a[e_a.length-1].click();
