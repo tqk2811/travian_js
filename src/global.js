@@ -1,14 +1,13 @@
 //sidebarBoxActiveVillage
 function Change_sidebarBoxActiveVillage_Button_onclick(uri){window.location = uri;}
 if(!TJS.CurrentData.isPlus)
-	for(var i = 0; i < TJS.CurrentData.list_sidebarBoxActiveVillage.length; i++)	{
+	for(var i = 0; i < TJS.CurrentData.list_sidebarBoxActiveVillage.length; i++){
 		var attibute_class = TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].getAttribute("class");
 		if(attibute_class.search("disable") > 0) continue;
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","Change_sidebarBoxActiveVillage_Button_onclick(\""+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1]+"\")");
 		$("#"+TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].id).off("click");
 	}
-
 
 //sidebarBoxLinklist
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
@@ -46,7 +45,6 @@ function AddLinkerList(item){
     li_.appendChild(aTag);
     ul_linkerlist.appendChild(li_);
 };
-
 
 //task_helper
 var global_loader = false;
@@ -97,7 +95,7 @@ function ShowVillageData(li_element){
 		if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
 		if(!timeend | village_object["attack1"].count - 1 > 0) img.setAttribute("src",TJS.attacks_img);
 	}
-	switch(default_task_helper_select)
+	switch(Number(window.task_helper_select.value))
 	{
 		case 1: Show_Build(village_object,e_p1); return;
 		case 2: Show_TroopTrain(village_object,e_p1,village_id_); return;
@@ -205,10 +203,9 @@ function Show_AttackRed(village_object,e_p1,village_id_,img){
 	e_p1.appendChild(t);
 	if(!timeend)e_p1.appendChild(t2);
 }
-
 function task_helper_select_onchange(){
-	localStorage.setItem("default_task_helper_select",window.task_helper_select.value);
-	default_task_helper_select = Number(window.task_helper_select.value);
+	TJS.CurrentData.account_object["task_helper_select"] = window.task_helper_select.value;
+	TJS.SaveCurrentAccount();
 	var listp1 = document.getElementsByClassName(TJS.Const.ClassTaskHelper_p1);
 	for(var i =0; i < listp1.length; ) listp1[0].remove();
 	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
@@ -234,73 +231,63 @@ function show_culture(){
 		}			
 	}
 }
-
-if(TJS.CurrentData.sidebarBoxVillagelist != null){
+function menu_top_right(){	
+	var e_div = document.createElement("div");
+	e_div.setAttribute("align","right");
+	e_div.setAttribute("style","float:right; width:26%;");
+	document.getElementById("sidebarAfterContent").insertAdjacentElement("beforebegin",e_div);
+	
+	var trade_img = document.createElement("img"); 
+	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
+	trade_img.setAttribute("onclick","npc_helper.Trade()");
+	trade_img.setAttribute("style","margin-right: 5px;");
+	
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
 	task_helper_select.onchange = task_helper_select_onchange;
 	
-	show_culture();
-	
-	var e_div = document.createElement("div");
-	e_div.setAttribute("align","right");
-	var trade_img = document.createElement("img"); 
-	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
-	trade_img.setAttribute("onclick","npc_helper.Trade()");
-	trade_img.setAttribute("style","margin-right: 5px;")
 	e_div.appendChild(trade_img);
 	e_div.appendChild(task_helper_select);
-	document.getElementById("sidebarAfterContent").insertAdjacentElement("beforebegin",e_div);
-	//TJS.CurrentData.sidebarBoxVillagelist.insertAdjacentElement("beforebegin",e_div);
-	
-	window.default_task_helper_select = localStorage.getItem("default_task_helper_select");
-	if (default_task_helper_select == null) default_task_helper_select = 0;
-	else window.default_task_helper_select = Number(default_task_helper_select);
-	
-	for(var i = 0; i < TJS.Const.task_helper_select_list.length; i++)
-	{
+
+	if(TJS.CurrentData.account_object["task_helper_select"] == undefined) TJS.CurrentData.account_object["task_helper_select"] = 0;
+	for(var i = 0; i < TJS.Const.task_helper_select_list.length; i++){
 		var option_ = document.createElement("option");
 		option_.value = i;
-		if(default_task_helper_select == i) option_.setAttribute("selected","selected");
 		option_.innerText = TJS.Const.task_helper_select_list[i];
 		task_helper_select.appendChild(option_);
 	}
+	window.task_helper_select.value = TJS.CurrentData.account_object["task_helper_select"];
 }
-if(window.location.href.indexOf("dorf1") >= 0){
+function dorf1_get_attack1(){
 	var movements = document.getElementById("movements");
 	var att_obj = {};
 	if(movements !== null){
 		var trs = movements.getElementsByTagName("tr");
-		for(var i = 0; i< trs.length;i++)
-		{
+		for(var i = 0; i< trs.length;i++){
 			var att1s = trs[i].getElementsByClassName("att1");
-			if(att1s.length == 1)
-			{
+			if(att1s.length == 1){
 				var timers = trs[i].getElementsByClassName("timer");
 				att_obj.timeend = Number(timers[0].getAttribute("value")) + TJS.CurrentSec();
 				att_obj.count = Number(trs[i].getElementsByClassName("a1")[0].innerText.match(/\d+/));
 				break;
-			}
-			else
-			{
+			}else{
 				att_obj.timeend = 0;
 				att_obj.count = 0;			
-			}			
-		}	
-	}
-	else
-	{
+			}
+		}
+	}else{
 		att_obj.timeend = 0;
 		att_obj.count = 0;		
 	}	
 	TJS.CurrentData.village_object["attack1"] = att_obj;
 	TJS.SaveCurrentVillage();
 }
-window.setTimeout(function(){ 
-								if(TJS.CurrentData.active_village !== null) 
-									for(var i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
-								global_loader = true;
-							},TJS.CurrentData.Timeout);
 
-
-
+if(TJS.CurrentData.sidebarBoxVillagelist != null){
+	menu_top_right();
+	show_culture();
+	dorf1_get_attack1();
+	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) 
+		ShowVillageData(TJS.CurrentData.listVillage[i]);
+	global_loader = true;
+}
