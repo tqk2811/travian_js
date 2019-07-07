@@ -1,21 +1,18 @@
-var list_raidlist = [];
 var e_sellect;
 function spieler_addraidlist()
 {	
 	e_sellect = document.createElement("select");
 	e_sellect.setAttribute("class","dropdown");
-	for(var i = 0; i< list_raidlist.length; i++)
-	{
+	for(var i = 0; i< TJS.CurrentData.account_object["raidlists"].length; i++){
 		var e_option = document.createElement("option");
-		e_option.setAttribute("value",list_raidlist[i][0]);
-		e_option.innerText = list_raidlist[i][1];
+		e_option.setAttribute("value",TJS.CurrentData.account_object["raidlists"][i][0]);
+		e_option.innerText = TJS.CurrentData.account_object["raidlists"][i][1];
 		e_sellect.appendChild(e_option);
 	}
 	spieler_villages.insertAdjacentElement("beforebegin",e_sellect);
 		
 	var e_coords = spieler_villages.getElementsByClassName("coords");
-	for(var i =0; i < e_coords.length; i++)
-	{
+	for(var i =0; i < e_coords.length; i++){
 		var uri_ = e_coords[i].getElementsByTagName("a")[0].href;
 		var x_ = TJS.getParameterByName(uri_,"x");
 		var y_ = TJS.getParameterByName(uri_,"y");
@@ -29,8 +26,7 @@ function spieler_addraidlist()
 		e_coords[i].appendChild(e_div);
 	}
 }
-function func_hero_code()
-{
+function func_hero_code(){
 	var default_checkchangehero_string = "Check change hero item: ";
 	var hero = {};
 	var hero_json = localStorage.getItem("hero");
@@ -51,21 +47,13 @@ function func_hero_code()
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	
 	var player_ = hero[spieler_uid];
-	if(player_ !== undefined && player_.code !== undefined)
-	{
-		if(hero_item_code != player_.code.code)
-		{
+	if(player_ !== undefined && player_.code !== undefined){
+		if(hero_item_code != player_.code.code){
 			player_.code.code = hero_item_code;
 			player_.code.time = TJS.CurrentSec();
 			e_label.innerText = default_checkchangehero_string + "0 sec ago.";
-		}
-		else
-		{
-			e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - player_.code.time) + " ago.";
-		}
-	}
-	else
-	{		
+		}else e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - player_.code.time) + " ago.";
+	}else{		
 		e_label.innerText = default_checkchangehero_string + "get data first times.";
 		if(player_ === undefined) hero[spieler_uid] = {};
 		hero[spieler_uid].code = {};
@@ -81,15 +69,13 @@ function func_hero_code()
 	var boot = hero_code.substring(64,66);
 	var detected = "Detected: ";
 	var detected_item = false;
-	switch(left_hand)
-	{
+	switch(left_hand){
 		case "3d": detected += "Map 30%; "; detected_item = true; break;
 		case "3e": detected += "Map 40%; "; detected_item = true; break;
 		case "3f": detected += "Map 50%; "; detected_item = true; break;
 		default: break;
 	}
-	switch(boot)
-	{
+	switch(boot){
 		case "61": detected += "Boot 25%"; detected_item = true; break;
 		case "62": detected += "Boot 50%"; detected_item = true; break;
 		case "63": detected += "Boot 75%"; detected_item = true; break;
@@ -98,8 +84,7 @@ function func_hero_code()
 	
 	//---------------------------------------------------
 	var details = document.getElementById("details");
-	var table_body = details.getElementsByTagName("tbody")[0];
-	
+	var table_body = details.getElementsByTagName("tbody")[0];	
 	
 	var tr = document.createElement("tr");
 	var th = document.createElement("th");
@@ -116,17 +101,11 @@ function func_hero_code()
 
 function spieler_main()
 {
-	if(window.location.href.indexOf("spieler.php")>=0)
-	{
+	if(window.location.href.indexOf("spieler.php")>=0){
 		window.spieler_villages = document.getElementById("villages");
 		window.spieler_content = document.getElementById("content");
 		window.spieler_details = document.getElementById("details");
-		if(spieler_villages !== null)
-		{
-			var get_list_raidlist = localStorage.getItem(TJS.CurrentData.UserName + "_list_raidlist");
-			if(get_list_raidlist !== null) list_raidlist = JSON.parse(get_list_raidlist);
-			if(list_raidlist.length > 0) spieler_addraidlist();
-		}
+		if(spieler_villages !== null && TJS.CurrentData.account_object["raidlists"] !== undefined) spieler_addraidlist();
 		if(spieler_content !== null && spieler_details !== null) func_hero_code();
 	}
 }

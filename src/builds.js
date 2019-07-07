@@ -106,21 +106,21 @@ function gid15(){//main building
 function gid16(){//rallypoint
 	if(TJS.CurrentData.tabActives !== null){
 		var tabItem = TJS.CurrentData.tabActives[0].getElementsByClassName("tabItem")[0];
-		if(tabItem.getAttribute("href").indexOf("tt=99")>=0){
-			var list_raidlist = [];
+		if(tabItem.getAttribute("href").indexOf("tt=99")>=0){//raidList
+			var raidlists = [];
 			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
 			for(var i = 0; i < listEntrys.length; i++) 
-				list_raidlist.push([
+				raidlists.push([
 									Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
 									listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
-									])
-			localStorage.setItem(TJS.CurrentData.UserName + "_list_raidlist",JSON.stringify(list_raidlist));//
+									]);
+			TJS.CurrentData.account_object["raidlists"] = raidlists;
+			TJS.SaveCurrentAccount();
 			
 			var e_bt_CheckAllGreenAttack = document.createElement("button");
 			e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
 			e_bt_CheckAllGreenAttack.innerText = "Check All Green Attacks";
-			e_bt_CheckAllGreenAttack.setAttribute("onclick","gid16_bt_CheckAllGreenAttack_onclick()");
-			
+			e_bt_CheckAllGreenAttack.setAttribute("onclick","gid16_bt_CheckAllGreenAttack_onclick()");			
 			
 			window.gid16_cb_raid = document.createElement("input");//
 			gid16_cb_raid.setAttribute("type","checkbox");
@@ -162,11 +162,7 @@ function gid16(){//rallypoint
 			e_div.appendChild(e_LB_yellow);
 			e_div.appendChild(e_LB_red);
 			TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
-		}
-		else if(tabItem.getAttribute("href").indexOf("tt=2")>=0)
-		{
-			//var e_class_catas = document.getElementsByClassName("cata");
-			//if(e_class_catas.length == 1) gid16_attack_multiwave();
+		}else if(tabItem.getAttribute("href").indexOf("tt=2")>=0){
 			var rallyPointButtonsContainer = document.getElementById("rallyPointButtonsContainer");
 			if(rallyPointButtonsContainer !== null) gid16_attack_multiwave();
 		}
