@@ -79,14 +79,13 @@ TJS = {
 		return v;
 	},
 	LSGetObject : function(name,id){
-		var json_text = localStorage.getItem(name+"_"+id);
-		var village_object = {};
-		if(json_text !== null) village_object = JSON.parse(json_text);
-		if(village_object == null) village_object = {};
-		return village_object;
+		var json_text = localStorage.getItem(name + (id == null ? "" : "_" +id));
+		var obj = {};
+		if(json_text !== null) obj = JSON.parse(json_text);
+		return obj;
 	},
 	LSSaveObject : function(name,id,data){
-		localStorage.setItem(name+"_"+id,JSON.stringify(data));
+		localStorage.setItem(name + (id == null ? "" : "_" +id),JSON.stringify(data));
 	},
 	TJS_Timer : function(){
 		var ListTimer = document.getElementsByClassName(TJS.Const.ClassTimer);

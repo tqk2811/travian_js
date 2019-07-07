@@ -28,10 +28,7 @@ function spieler_addraidlist()
 }
 function func_hero_code(){
 	var default_checkchangehero_string = "Check change hero item: ";
-	var hero = {};
-	var hero_json = localStorage.getItem("hero");
-	if(hero_json !== null) hero = JSON.parse(hero_json);
-	
+	var hero = TJS.LSGetObject("hero",null);	
 	
 	var hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
 	var hero_code = TJS.getParameterByName(hero_img_e.getAttribute("src"),"code");
@@ -46,21 +43,19 @@ function func_hero_code(){
 	if(pos == -1 ) spieler_uid = TJS.CurrentData.UserName;//current account	
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	
-	var player_ = hero[spieler_uid];
-	if(player_ !== undefined && player_.code !== undefined){
-		if(hero_item_code != player_.code.code){
-			player_.code.code = hero_item_code;
-			player_.code.time = TJS.CurrentSec();
+	if(hero[spieler_uid] !== undefined){
+		if(hero_item_code != hero[spieler_uid].code){
+			hero[spieler_uid].code = hero_item_code;
+			hero[spieler_uid].time = TJS.CurrentSec();
 			e_label.innerText = default_checkchangehero_string + "0 sec ago.";
-		}else e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - player_.code.time) + " ago.";
+		}else e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - hero[spieler_uid].time) + " ago.";
 	}else{		
 		e_label.innerText = default_checkchangehero_string + "get data first times.";
-		if(player_ === undefined) hero[spieler_uid] = {};
-		hero[spieler_uid].code = {};
-		hero[spieler_uid].code.time = TJS.CurrentSec();
-		hero[spieler_uid].code.code = hero_item_code;
+		hero[spieler_uid]= {};
+		hero[spieler_uid].time = TJS.CurrentSec();
+		hero[spieler_uid].code = hero_item_code;
 	}
-	localStorage.setItem("hero",JSON.stringify(hero));
+	TJS.LSSaveObject("hero",null,hero);
 	//---------------------------------------------------
 	//hero code: 0-37: skin
 	
