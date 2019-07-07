@@ -43,17 +43,16 @@ function func_hero_code(){
 	if(pos == -1 ) spieler_uid = TJS.CurrentData.UserName;//current account	
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	
-	if(hero[spieler_uid] !== undefined){
-		if(hero_item_code != hero[spieler_uid].code){
-			hero[spieler_uid].code = hero_item_code;
-			hero[spieler_uid].time = TJS.CurrentSec();
+	if(hero[spieler_uid] == undefined) hero[spieler_uid] = {};
+	if(hero[spieler_uid].code !== undefined){
+		if(hero_item_code != hero[spieler_uid].code.code){
+			hero[spieler_uid].code.code = hero_item_code;
+			hero[spieler_uid].code.time = TJS.CurrentSec();
 			e_label.innerText = default_checkchangehero_string + "0 sec ago.";
-		}else e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - hero[spieler_uid].time) + " ago.";
+		}else e_label.innerText = default_checkchangehero_string + TJS.GetTimeTextFromSecondLeft(TJS.CurrentSec() - hero[spieler_uid].code.time) + " ago.";
 	}else{		
 		e_label.innerText = default_checkchangehero_string + "get data first times.";
-		hero[spieler_uid]= {};
-		hero[spieler_uid].time = TJS.CurrentSec();
-		hero[spieler_uid].code = hero_item_code;
+		hero[spieler_uid].code = { code : hero_item_code, time : TJS.CurrentSec() };
 	}
 	TJS.LSSaveObject("hero",null,hero);
 	//---------------------------------------------------
