@@ -5,8 +5,8 @@ function spieler_addraidlist()
 	e_sellect.setAttribute("class","dropdown");
 	for(var i = 0; i< TJS.CurrentData.account_object["raidlists"].length; i++){
 		var e_option = document.createElement("option");
-		e_option.setAttribute("value",TJS.CurrentData.account_object["raidlists"][i][0]);
-		e_option.innerText = TJS.CurrentData.account_object["raidlists"][i][1];
+		e_option.setAttribute("value",TJS.CurrentData.account_object["raidlists"][i].id);
+		e_option.innerText = TJS.CurrentData.account_object["raidlists"][i].name;
 		e_sellect.appendChild(e_option);
 	}
 	spieler_villages.insertAdjacentElement("beforebegin",e_sellect);

@@ -110,10 +110,10 @@ function gid16(){//rallypoint
 			var raidlists = [];
 			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
 			for(var i = 0; i < listEntrys.length; i++) 
-				raidlists.push([
-									Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
-									listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
-									]);
+				raidlists.push({
+									id: Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
+									name: listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
+								});
 			TJS.CurrentData.account_object["raidlists"] = raidlists;
 			TJS.SaveCurrentAccount();
 			
