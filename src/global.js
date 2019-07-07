@@ -287,8 +287,8 @@ function ReadDataBuilding(){//not save
 			var timeleft = Number(build[k].getElementsByTagName("span")[0].getAttribute("value"));
 			Builds_.push(TJS.CurrentSec() + timeleft);
 		}
-	}
-	TJS.CurrentData.village_object["Builds"] = Builds_;
+		TJS.CurrentData.village_object["Builds"] = Builds_;
+	}	
 }
 
 if(TJS.CurrentData.sidebarBoxVillagelist != null){	
