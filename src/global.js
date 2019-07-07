@@ -214,11 +214,9 @@ function task_helper_select_onchange(){
 function show_culture(){
 	var expansionSlotInfos = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
 	var boxTitles = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
-	if(expansionSlotInfos.length == 1 && boxTitles.length == 1)
-	{
+	if(expansionSlotInfos.length == 1 && boxTitles.length == 1){
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+.\/\d+$/);
-		boxTitles[0].innerText = tooltip_text;
-		
+		boxTitles[0].innerText = tooltip_text;		
 		if(TJS.CurrentData.village_object["celebration_24"] !== undefined){
 			var span_timer = document.createElement("span");
 			span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
@@ -258,7 +256,7 @@ function menu_top_right(){
 	}
 	window.task_helper_select.value = TJS.CurrentData.account_object["task_helper_select"];
 }
-function dorf1_get_attack1(){
+function dorf1_get_attack1(){//not save
 	var movements = document.getElementById("movements");
 	var att_obj = {};
 	if(movements !== null){
@@ -280,13 +278,25 @@ function dorf1_get_attack1(){
 		att_obj.count = 0;		
 	}	
 	TJS.CurrentData.village_object["attack1"] = att_obj;
-	TJS.SaveCurrentVillage();
+}
+function ReadDataBuilding(){//not save
+	var Builds_ = [];
+	var build = document.getElementsByClassName("buildDuration");
+	if(build.length !== 0){//read in dorf 1 2
+		for(var k=0; k < build.length; k++){
+			var timeleft = Number(build[k].getElementsByTagName("span")[0].getAttribute("value"));
+			Builds_.push(TJS.CurrentSec() + timeleft);
+		}
+	}
+	TJS.CurrentData.village_object["Builds"] = Builds_;
 }
 
-if(TJS.CurrentData.sidebarBoxVillagelist != null){
+if(TJS.CurrentData.sidebarBoxVillagelist != null){	
 	menu_top_right();
 	show_culture();
-	dorf1_get_attack1();
+	dorf1_get_attack1();//need save
+	ReadDataBuilding();//need save
+	TJS.SaveCurrentVillage();//save
 	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) 
 		ShowVillageData(TJS.CurrentData.listVillage[i]);
 	global_loader = true;

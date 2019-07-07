@@ -77,18 +77,6 @@ function troop_train_add_child(e,name,target_gid){
 	div_.appendChild(span_time);
 	e.appendChild(div_);
 }
-function ReadDataBuilding(){
-	var Builds_ = [];
-	var build = document.getElementsByClassName("buildDuration");
-	if(build.length !== 0){//read in dorf
-		for(var k=0; k < build.length; k++){
-			var timeleft = parseFloat(build[k].getElementsByTagName("span")[0].getAttribute("value"));
-			Builds_.push(TJS.CurrentSec() + timeleft);
-		}
-	}
-	TJS.CurrentData.village_object.Builds = Builds_;
-	TJS.SaveCurrentVillage();
-}
 
 function img_to_gid16(){
 	for(var i = 0; i < TJS.Const.imgs_troop_move.length; i++){
@@ -135,7 +123,6 @@ function read_celebration_tab(){
 function dorf_main(){
 	if(window.location.href.indexOf("dorf1.php")>=0 || window.location.href.indexOf("dorf2.php")>=0){
 		troop_train_show();
-		ReadDataBuilding();
 		img_to_gid16();
 	}else if(window.location.href.indexOf("dorf3.php")>=0){
 		dorf3_icon_count();
