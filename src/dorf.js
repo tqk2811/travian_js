@@ -90,21 +90,14 @@ function ReadDataBuilding(){
 	TJS.SaveCurrentVillage();
 }
 
-var imgs_troop_move = [	["def1","/build.php?gid=16&tt=1&filter=1&subfilters=2,3"],//all def in
-						["def2","/build.php?gid=16&tt=1&filter=2&subfilters=5"],//def yellow out
-						["def3","/build.php?gid=16&tt=1&filter=1&subfilters=2,3"],//all def in
-						["att1","/build.php?gid=16&tt=1&filter=1&subfilters=1"],//att red in
-						["att2","/build.php?gid=16&tt=1&filter=2&subfilters=4"],//att yellow out
-						["att3","/build.php?gid=16&tt=1&filter=1&subfilters=1"]//att violet in (Oasis)
-					];
 function img_to_gid16(){
-	for(var i = 0; i < imgs_troop_move.length; i++){
-		var img_class = document.getElementsByClassName(imgs_troop_move[i][0]);
+	for(var i = 0; i < TJS.Const.imgs_troop_move.length; i++){
+		var img_class = document.getElementsByClassName(TJS.Const.imgs_troop_move[i][0]);
 		for(var j = 0; j < img_class.length;j++)
 			if(img_class[j].parentElement.tagName == "A"){
 				var village_id_str = TJS.getParameterByName(img_class[j].parentElement.href,"newdid");			
-				if(village_id_str !== null) img_class[j].parentElement.href = imgs_troop_move[i][1] + "&newdid=" + village_id_str;
-				else img_class[j].parentElement.href = imgs_troop_move[i][1];
+				if(village_id_str !== null) img_class[j].parentElement.href = TJS.Const.imgs_troop_move[i][1] + "&newdid=" + village_id_str;
+				else img_class[j].parentElement.href = TJS.Const.imgs_troop_move[i][1];
 			}
 	}
 	var troops = document.getElementById("troops");

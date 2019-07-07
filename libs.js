@@ -442,6 +442,13 @@ TJS.Const = {
 		"c_2" : { r: [14850,16625,16000,3350], run_twice: 2},//Big Celebration / 2
 		"c_3" : { r: [9900,11084,10667,2234], run_twice: 3}//Big Celebration / 3
 	},
+	imgs_troop_move = [	["def1","/build.php?gid=16&tt=1&filter=1&subfilters=2,3"],//all def in
+						["def2","/build.php?gid=16&tt=1&filter=2&subfilters=5"],//def yellow out
+						["def3","/build.php?gid=16&tt=1&filter=1&subfilters=2,3"],//all def in
+						["att1","/build.php?gid=16&tt=1&filter=1&subfilters=1"],//att red in
+						["att2","/build.php?gid=16&tt=1&filter=2&subfilters=4"],//att yellow out
+						["att3","/build.php?gid=16&tt=1&filter=1&subfilters=1"]//att violet in (Oasis)
+					],
 	gid17_village_DTR: "gid17_village_DTR",
 	gid17_DTR_type_clear : "gid17_DTR_type_clear",
 };
