@@ -489,7 +489,7 @@ TJS.Const = {
 					],
 	gid17_village_DTR: "gid17_village_DTR",
 	gid17_DTR_type_clear : "gid17_DTR_type_clear",
-	RoundResource = 100,
+	RoundResource : 100,
 };
 TJS.CurrentData = {
 	Uid : -1,
