@@ -228,7 +228,7 @@ TJS = {
 				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn) continue;
 				arr[i].r++;
 				res_send--;
-				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - 1);
+				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : (arr[i].rtn - arr[i].r) /(arr[i].st - 1);
 				break;//if((i !== 3 && arr[i].percent > arr[i+1].percent) | res_send == 0)
 			}
 			if(arr[arr.length-1].percent == 0) break;
