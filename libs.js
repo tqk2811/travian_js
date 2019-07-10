@@ -242,7 +242,7 @@ TJS = {
 			}
 			if(r_temp >= max_res_can_send){
 				var not_send = Math.round((r_temp - max_res_can_send)/(i+1));
-				for(var j = 0; j <= i; j++) arr[j].r += arr_temp[j] - not_send;
+				for(var j = 0; j <= i; j++) arr[j].r += (arr_temp[j] > not_send) ? (arr_temp[j] - not_send) : 0 ;
 				break;
 			}else{
 				max_res_can_send -= r_temp;
