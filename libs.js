@@ -200,13 +200,52 @@ TJS = {
 		div_clear.setAttribute("class","clear");
 		return div_clear;
 	},
-
-	BalanceRes : function(mc,bc,arr){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
+	BalanceRes : function(mc,bc,arr,d = 50){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
+		mc =  Math.floor(mc/d);
+		var max_send = 0;
+		var max_received = 0;
+		for(var i = 0; i < arr.length; i++){
+			arr[i].pos = i;//save pos
+			arr[i].r = 0;
+			arr[i].rc = Math.floor(arr[i].rc/d);
+			arr[i].sc = Math.floor(arr[i].sc/d);
+			max_send += arr[i].rc;
+			if(bc) arr[i].percent = arr[i].rc/arr[i].sc;
+			else{
+				arr[i].rt = Math.floor(arr[i].rt/d);
+				arr[i].st = Math.floor(arr[i].st/d);
+				arr[i].rtn = Math.floor(arr[i].st - d - arr[i].rt);
+				arr[i].percent = arr[i].rtn /(arr[i].st - d);
+				max_received += arr[i].rtn;
+			}
+		}
+		var res_send = Math.min(mc,max_send,bc ? Number.MAX_SAFE_INTEGER : max_received);
+		var flag_break = false;
+		while(res_send > 0){
+			flag_break = false;
+			arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
+			for(var i = 0; i < arr.length - 1; i++){
+				if(arr[i].percent == 0) continue;
+				if(arr[i].percent != arr[i+1].percent) flag_break = true;
+				arr[i].r++;
+				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - d);
+				res_send--;
+				if(res_send == 0 | flag_break) break;
+			}
+			if(arr[arr.length-1].percent == 0) break;
+		}
+		arr.sort(function(a,b){ return a.pos - b.pos;});
+		var result = [];
+		for(var i = 0; i < arr.length; i++) result.push(arr[i].r);
+		return result;
+	},
+	
+	
+	BalanceRes_error : function(mc,bc,arr){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
 		//mc: merchant carry, bc:balance current true/false, 
-		//rc: resource current, sc:storage current, 			rt: resource target, st: storage target 
+		//rc: resource current, sc:storage current, 			rt:resource target, st: storage target 
 		//percent
-		//rtn: resource target need; r: result; pos:position, 
-		console.log("merchant carry:" + mc + " | arr:" + arr);
+		//rtn: resource target need; r: result; pos:position,
 		var save_target_storage = 0.98;
 		var max_res_can_send = 0;
 		var max_res_can_received = 0;		
@@ -450,6 +489,7 @@ TJS.Const = {
 					],
 	gid17_village_DTR: "gid17_village_DTR",
 	gid17_DTR_type_clear : "gid17_DTR_type_clear",
+	RoundResource = 100,
 };
 TJS.CurrentData = {
 	Uid : -1,

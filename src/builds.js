@@ -553,10 +553,10 @@ function gid17_TypeResSelect_onchange(){
 			
 		case "b_0" : 
 		case "b_1" : 
-			gid17_input_number.max = 100;
+			gid17_input_number.max = Math.floor(Number(document.getElementById("merchantCapacityValue").innerText)/TJS.Const.RoundResource);
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 0;
-			gid17_label_max.innerText = "/100%";
+			gid17_label_max.innerText = "x" + TJS.Const.RoundResource;
 			break;
 		
 		case "c_0" : 
