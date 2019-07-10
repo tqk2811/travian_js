@@ -225,7 +225,7 @@ TJS = {
 			flag_break = false;
 			arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
 			for(var i = 0; i < arr.length; i++){
-				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn)) continue;
+				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn) continue;
 				arr[i].r++;
 				res_send--;
 				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - 1);
