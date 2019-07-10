@@ -224,13 +224,12 @@ TJS = {
 		while(res_send > 0){
 			flag_break = false;
 			arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
-			for(var i = 0; i < arr.length - 1; i++){
-				if(arr[i].percent == 0) continue;
-				if(arr[i].percent != arr[i+1].percent) flag_break = true;
+			for(var i = 0; i < arr.length; i++){
+				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn)) continue;
 				arr[i].r++;
-				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - 1);
 				res_send--;
-				if(res_send == 0 | flag_break) break;
+				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - 1);
+				if((i !== 3 && arr[i].percent > arr[i+1].percent) | res_send == 0) break;
 			}
 			if(arr[arr.length-1].percent == 0) break;
 		}
