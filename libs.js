@@ -214,8 +214,8 @@ TJS = {
 			else{
 				arr[i].rt = Math.floor(arr[i].rt/d);
 				arr[i].st = Math.floor(arr[i].st/d);
-				arr[i].rtn = Math.floor(arr[i].st - d - arr[i].rt);
-				arr[i].percent = arr[i].rtn /(arr[i].st - d);
+				arr[i].rtn = Math.floor(arr[i].st - 1 - arr[i].rt);
+				arr[i].percent = arr[i].rtn /(arr[i].st - 1);
 				max_received += arr[i].rtn;
 			}
 		}
@@ -228,7 +228,7 @@ TJS = {
 				if(arr[i].percent == 0) continue;
 				if(arr[i].percent != arr[i+1].percent) flag_break = true;
 				arr[i].r++;
-				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - d);
+				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : arr[i].rtn /(arr[i].st - 1);
 				res_send--;
 				if(res_send == 0 | flag_break) break;
 			}
