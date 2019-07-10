@@ -200,7 +200,7 @@ TJS = {
 		div_clear.setAttribute("class","clear");
 		return div_clear;
 	},
-	BalanceRes : function(mc,bc,arr,d = 50){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
+	BalanceRes : function(mc,bc,arr,d = TJS.Const.RoundResource){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
 		mc =  Math.floor(mc/d);
 		var max_send = 0;
 		var max_received = 0;
@@ -236,7 +236,7 @@ TJS = {
 		}
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
-		for(var i = 0; i < arr.length; i++) result.push(arr[i].r);
+		for(var i = 0; i < arr.length; i++) result.push(arr[i].r * d);
 		return result;
 	},
 	
