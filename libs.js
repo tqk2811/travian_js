@@ -220,18 +220,18 @@ TJS = {
 			}
 		}
 		var res_send = Math.min(mc,max_send,bc ? Number.MAX_SAFE_INTEGER : max_received);
-		var flag_break = false;
+		var break_count = 0;
 		while(res_send > 0){
-			flag_break = false;
+			break_count = 0;
 			arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
 			for(var i = 0; i < arr.length; i++){
-				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn) continue;
+				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn) { break_count++; continue;}
 				arr[i].r++;
 				res_send--;
 				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : (arr[i].rtn - arr[i].r) /(arr[i].st - 1);
 				break;//if((i !== 3 && arr[i].percent > arr[i+1].percent) | res_send == 0)
 			}
-			if(arr[arr.length-1].percent == 0) break;
+			if(break_count == arr.length) break;
 		}
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
