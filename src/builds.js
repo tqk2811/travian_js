@@ -586,7 +586,7 @@ function gid17_input_number_onchange(){
 			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
 			if(v_obj_target["res"] == undefined) return;
 			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
-			var res_merchantsend = Math.round(Number(window.gid17_input_number.value)*merchantCapacityValue/100);
+			var res_merchantsend = Number(window.gid17_input_number.value)*TJS.Const.RoundResource;
 			
 			var arr = [];
 			for(var i = 0; i < 4; i++){
