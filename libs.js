@@ -225,99 +225,17 @@ TJS = {
 			break_count = 0;
 			arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
 			for(var i = 0; i < arr.length; i++){
-				if(arr[i].percent == 0 | arr[i].r == arr[i].rc | bc ? false : arr[i].r == arr[i].rtn) { break_count++; continue;}
+				if(arr[i].percent == 0 | arr[i].r >= arr[i].rc | bc ? false : arr[i].r >= arr[i].rtn) { break_count++; continue;}
 				arr[i].r++;
 				res_send--;
 				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : (arr[i].rtn - arr[i].r) /(arr[i].st - 1);
-				break;//if((i !== 3 && arr[i].percent > arr[i+1].percent) | res_send == 0)
+				break;
 			}
 			if(break_count == arr.length) break;
 		}
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
 		for(var i = 0; i < arr.length; i++) result.push(arr[i].r * d);
-		return result;
-	},
-	
-	
-	BalanceRes_error : function(mc,bc,arr){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
-		//mc: merchant carry, bc:balance current true/false, 
-		//rc: resource current, sc:storage current, 			rt:resource target, st: storage target 
-		//percent
-		//rtn: resource target need; r: result; pos:position,
-		var save_target_storage = 0.98;
-		var max_res_can_send = 0;
-		var max_res_can_received = 0;		
-		for(var i = 0; i < arr.length; i++){//initialize
-			if(arr[i].rc < 0) arr[i].rc = 0;
-			arr[i].pos = i;//save pos
-			arr[i].r = 0;
-			arr[i].skip = false;
-			max_res_can_send += arr[i].rc;
-			//arr[i].rl = arr[i].rc;
-			if(bc) {
-				arr[i].percent = arr[i].rc/arr[i].sc;
-			}
-			else {
-				arr[i].rtn = Math.floor(arr[i].st * save_target_storage - arr[i].rt);// 2% empty storage
-				max_res_can_received +=arr[i].rtn;
-				arr[i].percent = arr[i].rtn /(arr[i].st * save_target_storage);
-			}		
-		}//end initialize
-		if(max_res_can_send > mc) max_res_can_send = mc;
-		if(!bc && max_res_can_send > max_res_can_received) max_res_can_send = max_res_can_received;
-		arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
-		for(var i = 0; i < arr.length - 1; i++){
-			var arr_temp = [0,0,0,0];
-			var r_temp = 0;
-			for(var j = 0; j <= i; j++){				
-				arr_temp[j] = Math.floor((arr[j].percent - arr[i + 1].percent) * (bc ? arr[j].sc : arr[j].st));
-				if(arr_temp[j] + arr[j].r > arr[j].rc) {
-					arr_temp[j] = arr[j].rc - arr[j].r;
-					arr[j].skip = true;
-				}
-				r_temp += arr_temp[j];
-			}
-			if(r_temp >= max_res_can_send){
-				var not_send = Math.round((r_temp - max_res_can_send)/(i+1));
-				for(var j = 0; j <= i; j++) arr[j].r += (arr_temp[j] > not_send) ? (arr_temp[j] - not_send) : 0 ;
-				break;
-			}else{
-				max_res_can_send -= r_temp;
-				for(var j = 0; j <= i; j++) {
-					arr[j].r += arr_temp[j];
-					//arr[j].rl = arr[j].rc - arr[j].r;
-					if(arr[j].skip) arr[j].percent = 0;
-					else arr[j].percent = bc ? (arr[j].rc - arr[j].r)/arr[j].sc : (arr[j].rtn - arr[j].r)/(arr[j].st * save_target_storage);//renew percent
-				}
-				if(i == 2){
-					var skip_count = 0;
-					var total_storage = 0;
-					do{
-						total_storage = 0;
-						skip_count = 0;
-						for(var j = 0 ;j < arr.length; j++) if(!arr[j].skip)total_storage += bc ? arr[i].sc : arr[i].st;					
-						for(var j = 0 ;j < arr.length; j++){
-							if(arr[j].skip) {skip_count++; continue;}
-							val_temp = Math.floor(max_res_can_send * (bc ? arr[j].sc : arr[j].st)/total_storage * save_target_storage);
-							if(arr[j].r +val_temp <= arr[j].rc && (bc ? true : arr[j].r + val_temp <= arr[j].rtn)) {
-								arr[j].r += val_temp;
-								max_res_can_send -= val_temp;
-							}else{
-								var t = (!bc && arr[j].rtn < arr[j].rc) ? arr[j].rtn - arr[j].r : arr[j].rc - arr[j].r;
-								arr[j].r += t;
-								max_res_can_send -= t;
-								arr[j].skip = true;
-							}
-						}
-						if(skip_count == arr.length | max_res_can_send <= 4 ) break;
-					}while(true);
-				}
-			}
-		}
-		arr.sort(function(a,b){ return a.pos - b.pos;});
-		var result = [];
-		for(var j = 0; j < arr.length; j++) result.push(arr[j].r);
 		return result;
 	},
 	HotKeyList : [],
