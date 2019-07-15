@@ -570,7 +570,7 @@ function gid17_TypeResSelect_onchange(){
 			break;
 		
 		default:
-			window.gid17_TroopRes = account_object["troop"][gid17_TypeResSelect.value];
+			window.gid17_TroopRes = TJS.CurrentData.account_object["troop"][gid17_TypeResSelect.value];
 			gid17_findmaxtroops();
 			return;
 	}
