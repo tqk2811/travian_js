@@ -510,7 +510,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	
 	var label_p = document.createElement("label");
 	label_p.innerText = v +"%";
-	label_p.setAttribute("style","float:right; width:20%;");
+	label_p.setAttribute("style","float:right; width:15%;");
 	
 	var slider = document.createElement("input");
 	slider.setAttribute("min",0);	
@@ -523,7 +523,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("type","range");
 	slider.setAttribute("class","slider");
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
-	slider.setAttribute("style","width:80%;");
+	slider.setAttribute("style","width:84%;");
 	slider.onchange = function(){
 		var vi = this.getAttribute("village_id");
 		if(vi !== null){
