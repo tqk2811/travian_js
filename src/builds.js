@@ -529,7 +529,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 		var vi = this.getAttribute("village_id");
 		if(vi !== null){
 			label_p.innerText = this.value + "%";
-			var vo = this.getAttribute("isCurrent") == "true" ? TJS.CurrentData.village_obj : TJS.LSGetObject("village",vi);
+			var vo = this.getAttribute("isCurrent") == "true" ? TJS.CurrentData.village_object : TJS.LSGetObject("village",vi);
 			vo[isMin ? "gid17min" : "gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
