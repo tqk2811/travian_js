@@ -516,10 +516,8 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("min",0);	
 	slider.setAttribute("value",v);
 	slider.setAttribute("max",100);
-	if(village_id !== null){ 
-		slider.setAttribute("village_id",village_id);
-		slider.disable = true;
-	}
+	if(village_id !== null) slider.setAttribute("village_id",village_id);
+	else if(!isMin) slider.disable = true;
 	slider.setAttribute("type","range");
 	slider.setAttribute("class","slider");
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
