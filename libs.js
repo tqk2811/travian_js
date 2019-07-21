@@ -343,7 +343,7 @@ TJS = {
 	},
 	LoadLib : function(){
 		AddUriScript(httpGetGithubCdnUri("src/global.js"));//
-		AddUriCss(httpGetGithubCdnUri("src/task_helper.css"));//
+		AddUriCss(httpGetGithubCdnUri("src/css.css"));//
 		AddUriScript(httpGetGithubCdnUri("src/npc_helper.js"));//
 		if(window.firstLoad == undefined || window.firstLoad)
 		{

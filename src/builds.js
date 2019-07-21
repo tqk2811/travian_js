@@ -486,11 +486,57 @@ function gid17(){//market
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 				gid17_MarketPlace_sendRessources_callback();
 				gid17_enterVillageName();
+				
+				//---				
+				var destination = document.getElementsByClassName("destination")[0];
+				var d_div = document.createElement("div");
+				d_div.setAttribute("style","float:right; width:100%;");				
+				window.slider_current = gid17_create_slider(d_div,true,TJS.CurrentData.VillageId);
+				window.slider_target = gid17_create_slider(d_div,false,null);				
+				//---
 			}
 		}
 	}
 }
-
+function gid17_create_slider(parent_,isMin,village_id){
+	var v = isMin ? 0 : 95;
+	if(village_id !== null){
+		var village_obj = TJS.LSGetObject("village",village_id);
+		if(village_obj[isMin ? "gid17min" : "gid17max"] == undefined) v = village_obj[isMin ? "gid17min" : "gid17max"];
+	}
+	var div = document.createElement("div");
+	parent_.appendChild(div);
+	
+	var label_p = document.createElement("label");
+	label_p.innerText = v +"%";
+	label_p.setAttribute("style","float:right; width:20%;");
+	
+	var slider = document.createElement("input");
+	slider.setAttribute("min",0);	
+	slider.setAttribute("value",v);
+	slider.setAttribute("max",100);
+	if(village_id !== null){ 
+		slider.setAttribute("village_id",village_id);
+		slider.disable = true;
+	}
+	slider.setAttribute("type","range");
+	slider.setAttribute("class","slider");
+	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
+	slider.setAttribute("style","width:80%;");
+	slider.onchange = function(){
+		var vi = this.getAttribute("village_id");
+		if(vi !== null){
+			label_p.innerText = this.value + "%";
+			
+			var vo = TJS.LSGetObject("village",vi);
+			vo[isMin ? "gid17min" : "gid17max"] = this.value;
+			TJS.LSSaveObject(village,vi,vo);
+		}else this.disabled = true;
+	};	
+	div.appendChild(slider);
+	div.appendChild(label_p);
+	return slider;
+}
 function gid17_MarketPlace_icon_n_res(e_parent,class_name){
 	var div_ = document.createElement("div");
 	div_.setAttribute("style","float:left; width:24%;");
@@ -522,6 +568,8 @@ function gid17_enterVillageName(){
 				window.gid17_timer.setAttribute("state","run");
 				window.gid17_target_storage.innerText = v_obj_target["storage"];
 				window.gid17_target_granary.innerText = v_obj_target["granary"];
+				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
+				window.slider_target.disable = false;
 				return;
 			}			
 		}
@@ -533,6 +581,8 @@ function gid17_enterVillageName(){
 	window.gid17_r2.innerText = 0;
 	window.gid17_r3.innerText = 0;
 	window.gid17_r4.innerText = 0;
+	window.slider_target.removeAttribute("village_id");
+	window.slider_target.disable = true;
 }
 function gid17_createoption(value_,name){
 	var e_option = document.createElement("option");
