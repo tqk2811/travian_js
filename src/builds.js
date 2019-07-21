@@ -510,7 +510,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	
 	var label_p = document.createElement("label");
 	label_p.innerText = v +"%";
-	label_p.setAttribute("style","float:right; width:15%;");
+	label_p.setAttribute("style","float:right; width:12%;");
 	
 	var slider = document.createElement("input");
 	slider.setAttribute("min",0);	
