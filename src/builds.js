@@ -503,7 +503,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	var v = isMin ? 0 : 95;
 	if(village_id !== null){
 		var village_obj = TJS.LSGetObject("village",village_id);
-		if(village_obj[isMin ? "gid17min" : "gid17max"] == undefined) v = village_obj[isMin ? "gid17min" : "gid17max"];
+		if(village_obj[isMin ? "gid17min" : "gid17max"] !== undefined) v = village_obj[isMin ? "gid17min" : "gid17max"];
 	}
 	var div = document.createElement("div");
 	parent_.appendChild(div);
