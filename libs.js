@@ -520,4 +520,4 @@ TJS.AddHotKey(81,function(){ // Q change task_helper_select
 });
 TJS.InitHotkey();
 //null.test_catch_error()
-window.setInterval(TJS.CurrentData.Resource,60000);
+window.setInterval(TJS.CurrentData.Resource,15000);

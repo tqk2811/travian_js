@@ -565,8 +565,8 @@ function gid17_TypeResSelect_onchange(){
 		case "c_3" : 
 			gid17_input_number.max = 1;
 			gid17_input_number.min = 0;
-			gid17_input_number.value = 0;
-			gid17_label_max.innerText = "/1";			
+			gid17_input_number.value = 1;
+			gid17_label_max.innerText = "/1";
 			break;
 		
 		default:
