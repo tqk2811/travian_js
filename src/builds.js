@@ -482,8 +482,9 @@ function gid17(){//market
 				divr3.appendChild(div_granary);				
 				
 				//---				
-				var destination = document.getElementsByClassName("destination")[0];
+				var destination = document.getElementsByClassName("destination")[0];				
 				var d_div = document.createElement("div");
+				destination.appendChild(d_div);
 				d_div.setAttribute("style","float:right; width:100%;");				
 				window.slider_current = gid17_create_slider(d_div,true,TJS.CurrentData.VillageId);
 				window.slider_target = gid17_create_slider(d_div,false,null);				
