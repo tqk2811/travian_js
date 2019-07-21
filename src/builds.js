@@ -526,11 +526,12 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("isCurrent",isMin);
 	slider.setAttribute("style","width:84%; height:16px;");
 	slider.onchange = function(){
+		var isCurrent = this.getAttribute("isCurrent") == "true";
 		var vi = this.getAttribute("village_id");
-		if(vi !== null){
-			label_p.innerText = this.value + "%";
-			var vo = this.getAttribute("isCurrent") == "true" ? TJS.CurrentData.village_object : TJS.LSGetObject("village",vi);
-			vo[isMin ? "gid17min" : "gid17max"] = this.value;
+		if(isCurrent) TJS.CurrentData.village_object["gid17min"] = this.value;
+		else if(vi !== null){
+			var vo = TJS.LSGetObject("village",vi);
+			vo["gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
 	};	
