@@ -523,7 +523,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("type","range");
 	slider.setAttribute("class","slider");
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
-	slider.setAttribute("style","width:84%;");
+	slider.setAttribute("style","width:84%; height:16px;");
 	slider.onchange = function(){
 		var vi = this.getAttribute("village_id");
 		if(vi !== null){
@@ -531,7 +531,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 			
 			var vo = TJS.LSGetObject("village",vi);
 			vo[isMin ? "gid17min" : "gid17max"] = this.value;
-			TJS.LSSaveObject(village,vi,vo);
+			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
 	};	
 	div.appendChild(slider);
