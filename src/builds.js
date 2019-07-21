@@ -510,7 +510,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	
 	var label_p = document.createElement("label");
 	label_p.innerText = v +"%";
-	label_p.setAttribute("style","float:right; width:12%;");
+	label_p.setAttribute("style","float:right; width:12%;height: 16px;");
 	
 	var slider = document.createElement("input");
 	slider.setAttribute("min",0);	
@@ -523,13 +523,13 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("type","range");
 	slider.setAttribute("class","slider");
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
+	slider.setAttribute("isCurrent",isMin);
 	slider.setAttribute("style","width:84%; height:16px;");
 	slider.onchange = function(){
 		var vi = this.getAttribute("village_id");
 		if(vi !== null){
 			label_p.innerText = this.value + "%";
-			
-			var vo = TJS.LSGetObject("village",vi);
+			var vo = this.getAttribute("isCurrent") == "true" ? TJS.CurrentData.village_obj : TJS.LSGetObject("village",vi);
 			vo[isMin ? "gid17min" : "gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
