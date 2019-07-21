@@ -481,12 +481,6 @@ function gid17(){//market
 				divr3.appendChild(div_warehouse);
 				divr3.appendChild(div_granary);				
 				
-				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
-				var datalist_villagename = TJS.CreateDataListVillageName();		
-				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
-				gid17_MarketPlace_sendRessources_callback();
-				gid17_enterVillageName();
-				
 				//---				
 				var destination = document.getElementsByClassName("destination")[0];
 				var d_div = document.createElement("div");
@@ -494,6 +488,12 @@ function gid17(){//market
 				window.slider_current = gid17_create_slider(d_div,true,TJS.CurrentData.VillageId);
 				window.slider_target = gid17_create_slider(d_div,false,null);				
 				//---
+				
+				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
+				var datalist_villagename = TJS.CreateDataListVillageName();		
+				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
+				gid17_MarketPlace_sendRessources_callback();
+				gid17_enterVillageName();
 			}
 		}
 	}
