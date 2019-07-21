@@ -567,6 +567,8 @@ function gid17_TypeResSelect_onchange(){
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 1;
 			gid17_label_max.innerText = "/1";
+			gid17_write_res(TJS.Const.CelebrationResource[gid17_TypeResSelect.value].r,
+					TJS.Const.CelebrationResource[gid17_TypeResSelect.value].run_twice);
 			break;
 		
 		default:
