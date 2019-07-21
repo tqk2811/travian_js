@@ -570,7 +570,7 @@ function gid17_TypeResSelect_onchange(){
 			break;
 		
 		default:
-			window.gid17_TroopRes = account_object["troop"][gid17_TypeResSelect.value];
+			window.gid17_TroopRes = TJS.CurrentData.account_object["troop"][gid17_TypeResSelect.value];
 			gid17_findmaxtroops();
 			return;
 	}
@@ -632,7 +632,7 @@ function gid17_findmaxtroops(){
 	var total_res_for_troop = 0;
 	for(var i = 0; i < 4; i++)// max troop res
 	{
-		var num = Math.floor(TJS.CurrentData.Resource[i]/gid17_TroopRes[i+1]);
+		var num = Math.floor(TJS.CurrentData.village_object.res[i]/gid17_TroopRes[i+1]);
 		if(gid17_noncrop.checked && i == 3) break;
 		total_res_for_troop += gid17_TroopRes[i+1];
 		if(maxtroops == -1) maxtroops = num;
