@@ -294,7 +294,7 @@ function ReadDataBuilding(){//not save
 if(TJS.CurrentData.sidebarBoxVillagelist != null){	
 	menu_top_right();
 	show_culture();
-	dorf1_get_attack1();//need save
+	if(window.location.pathname.indexOf("dorf1.php")>=0) dorf1_get_attack1();//need save
 	ReadDataBuilding();//need save
 	TJS.SaveCurrentVillage();//save
 	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) 
