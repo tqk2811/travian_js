@@ -526,8 +526,10 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.onchange = function(){
 		var isCurrent = this.getAttribute("isCurrent") == "true";
 		var vi = this.getAttribute("village_id");
-		if(isCurrent) TJS.CurrentData.village_object["gid17min"] = this.value;
-		else if(vi !== null){
+		if(isCurrent) {
+			TJS.CurrentData.village_object["gid17min"] = this.value;
+			TJS.SaveCurrentVillage();
+		}else if(vi !== null){
 			var vo = TJS.LSGetObject("village",vi);
 			vo["gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
