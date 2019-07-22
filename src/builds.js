@@ -570,9 +570,10 @@ function gid17_enterVillageName(){
 				window.gid17_timer.setAttribute("value",TJS.CurrentSec() - v_obj_target["updatein"]);
 				window.gid17_timer.setAttribute("state","run");
 				window.gid17_target_storage.innerText = v_obj_target["storage"];
-				window.gid17_target_granary.innerText = v_obj_target["granary"];
+				window.gid17_target_granary.innerText = v_obj_target["granary"];				
 				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
 				window.slider_target.disabled = false;
+				if(v_obj_target["gid17max"] !== undefined) window.slider_target.value = v_obj_target["gid17max"];
 				return;
 			}			
 		}
