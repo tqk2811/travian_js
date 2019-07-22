@@ -536,7 +536,10 @@ function gid17_create_slider(parent_,isMin,village_id){
 		}else this.disabled = true;
 		label_p.innerText = this.value + "%";
 	};
-	slider.onchange = function(){label_p.innerText = this.value + "%";}
+	slider.onchange = function(){
+		if(!this.disabled)label_p.innerText = this.value + "%";
+		else label_p.innerText = "";
+		}
 	div.appendChild(slider);
 	div.appendChild(label_p);
 	return slider;
