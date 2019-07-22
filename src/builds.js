@@ -665,7 +665,7 @@ function gid17_input_number_onchange(){
 				if(!b_flag){
 					obj.rt = v_obj_target["res"][i];
 					obj.st =  Math.floor((i == 3 ? v_obj_target["granary"] : v_obj_target["storage"]) * 
-					(window.slider_target.disabled ? 1 : (100-window.slider_target.value)/100));
+					(window.slider_target.disabled ? 1 : window.slider_target.value/100));
 				}
 				arr.push(obj);
 			}			
