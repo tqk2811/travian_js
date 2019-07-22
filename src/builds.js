@@ -593,6 +593,7 @@ function gid17_enterVillageName(){
 	window.gid17_r4.innerText = 0;
 	window.slider_target.removeAttribute("village_id");
 	window.slider_target.disabled = true;
+	window.slider_target.onchange();
 }
 function gid17_createoption(value_,name){
 	var e_option = document.createElement("option");
@@ -653,13 +654,18 @@ function gid17_input_number_onchange(){
 			var arr = [];
 			for(var i = 0; i < 4; i++){
 				var obj = {};
-				if(window.gid17_SaveBigCelebration.checked) obj.rc = v_obj_current["res"][i] - TJS.Const.CelebrationResource["c_1"][i];
-				else if(window.gid17_noncrop.checked && i == 3) obj.rc = 0;
-				else obj.rc = v_obj_current["res"][i];
 				obj.sc = i == 3 ? v_obj_current["granary"]: v_obj_current["storage"];
+				if(window.gid17_noncrop.checked && i == 3) obj.rc = 0;
+				else{
+					var res_current_save_max = Math.max(	Math.round(sc * slider_current.value / 100),
+						window.gid17_SaveBigCelebration.checked ? TJS.Const.CelebrationResource["c_1"][i] : 0);					
+					if(v_obj_current["res"][i] > res_current_save_max) obj.rc = v_obj_current["res"][i] - res_current_save_max;
+					else obj.rc = 0;
+				}				
 				if(!b_flag){
 					obj.rt = v_obj_target["res"][i];
-					obj.st =  i == 3 ? v_obj_target["granary"] : v_obj_target["storage"];
+					obj.st =  Math.floor((i == 3 ? v_obj_target["granary"] : v_obj_target["storage"]) * 
+					(window.slider_target.disabled ? 1 : (100-window.slider_target.value)/100));
 				}
 				arr.push(obj);
 			}			
