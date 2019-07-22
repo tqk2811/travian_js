@@ -534,6 +534,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 			vo["gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
+		label_p.innerText = this.value + "%";
 	};	
 	div.appendChild(slider);
 	div.appendChild(label_p);
