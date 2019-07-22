@@ -572,7 +572,7 @@ function gid17_enterVillageName(){
 				window.gid17_target_storage.innerText = v_obj_target["storage"];
 				window.gid17_target_granary.innerText = v_obj_target["granary"];
 				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
-				window.slider_target.disable = false;
+				window.slider_target.disabled = false;
 				return;
 			}			
 		}
@@ -585,7 +585,7 @@ function gid17_enterVillageName(){
 	window.gid17_r3.innerText = 0;
 	window.gid17_r4.innerText = 0;
 	window.slider_target.removeAttribute("village_id");
-	window.slider_target.disable = true;
+	window.slider_target.disabled = true;
 }
 function gid17_createoption(value_,name){
 	var e_option = document.createElement("option");
