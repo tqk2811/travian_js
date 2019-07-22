@@ -535,7 +535,8 @@ function gid17_create_slider(parent_,isMin,village_id){
 			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
 		label_p.innerText = this.value + "%";
-	};	
+	};
+	slider.onchange = function(){label_p.innerText = this.value + "%";}
 	div.appendChild(slider);
 	div.appendChild(label_p);
 	return slider;
