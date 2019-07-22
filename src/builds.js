@@ -523,7 +523,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
 	slider.setAttribute("isCurrent",isMin);
 	slider.setAttribute("style","width:84%; height:16px;");
-	slider.onchange = function(){
+	slider.oninput = function(){
 		var isCurrent = this.getAttribute("isCurrent") == "true";
 		var vi = this.getAttribute("village_id");
 		if(isCurrent) {
