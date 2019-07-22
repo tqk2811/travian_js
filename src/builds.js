@@ -481,8 +481,6 @@ function gid17(){//market
 				divr3.appendChild(div_warehouse);
 				divr3.appendChild(div_granary);				
 				
-				gid17_create_slider();
-								
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
 				var datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
