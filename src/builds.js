@@ -487,7 +487,8 @@ function gid17(){//market
 				destination.appendChild(d_div);
 				d_div.setAttribute("style","float:right; width:100%;");				
 				window.slider_current = gid17_create_slider(d_div,true,TJS.CurrentData.VillageId);
-				window.slider_target = gid17_create_slider(d_div,false,null);				
+				window.slider_target = gid17_create_slider(d_div,false,null);
+				window.slider_target.disable = true;				
 				//---
 				
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
@@ -515,11 +516,10 @@ function gid17_create_slider(parent_,isMin,village_id){
 	var slider = document.createElement("input");
 	slider.setAttribute("min",0);	
 	slider.setAttribute("value",v);
-	slider.setAttribute("max",100);
-	if(village_id !== null) slider.setAttribute("village_id",village_id);
-	else if(!isMin) slider.disable = true;
+	slider.setAttribute("max",100);	
 	slider.setAttribute("type","range");
 	slider.setAttribute("class","slider");
+	if(village_id !== null) slider.setAttribute("village_id",village_id);
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
 	slider.setAttribute("isCurrent",isMin);
 	slider.setAttribute("style","width:84%; height:16px;");
