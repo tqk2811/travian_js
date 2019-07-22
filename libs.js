@@ -380,7 +380,8 @@ TJS = {
 		}
 	},
 };
-TJS.Const = {	
+TJS.Const = {
+	Slider_Target_Max_Default : 85,
 	ClassTimer : "TJS_timer",//TJS_timer
 	ClassTaskHelper_p1 : "task_helper_p1",
 	LS_trooptrain : "troop_train_",

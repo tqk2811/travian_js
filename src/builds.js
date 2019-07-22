@@ -501,7 +501,7 @@ function gid17(){//market
 	}
 }
 function gid17_create_slider(parent_,isMin,village_id){
-	var v = isMin ? 0 : 95;
+	var v = isMin ? 0 : TJS.Const.Slider_Target_Max_Default;
 	if(village_id !== null){
 		var village_obj = TJS.LSGetObject("village",village_id);
 		if(village_obj[isMin ? "gid17min" : "gid17max"] !== undefined) v = village_obj[isMin ? "gid17min" : "gid17max"];
@@ -578,7 +578,7 @@ function gid17_enterVillageName(){
 				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
 				window.slider_target.disabled = false;
 				if(v_obj_target["gid17max"] !== undefined) window.slider_target.value = v_obj_target["gid17max"];
-				else window.slider_target.value = 95;
+				else window.slider_target.value = TJS.Const.Slider_Target_Max_Default;
 				window.slider_target.onchange();
 				return;
 			}			
