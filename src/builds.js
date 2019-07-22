@@ -488,7 +488,7 @@ function gid17(){//market
 				d_div.setAttribute("style","float:right; width:100%;");				
 				window.slider_current = gid17_create_slider(d_div,true,TJS.CurrentData.VillageId);
 				window.slider_target = gid17_create_slider(d_div,false,null);
-				window.slider_target.disable = true;				
+				window.slider_target.disabled = true;				
 				//---
 				
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
