@@ -575,6 +575,8 @@ function gid17_enterVillageName(){
 				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
 				window.slider_target.disabled = false;
 				if(v_obj_target["gid17max"] !== undefined) window.slider_target.value = v_obj_target["gid17max"];
+				else window.slider_target.value = 95;
+				window.slider_target.onchange();
 				return;
 			}			
 		}
