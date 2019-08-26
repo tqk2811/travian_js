@@ -138,19 +138,23 @@ function Show_TroopTrain(village_object,e_p1,village_id_){
 	var flag = false;
 	for(var i = 0; i < TJS.Const.Show_TroopTrain_arr[0].length; i ++)
 	{
-		var isshow = village_object[TJS.Const.LS_trooptrain_checkbox + TJS.Const.Show_TroopTrain_arr[0][i]];
-		if(isshow !== undefined && isshow) 
+		var checkbox_status = village_object["checkbox_status"];
+		if(checkbox_status !== undefined)
 		{
-			var obj = TJS.GetLiBuildTimerObject();
-				obj.e = e_p1;
-				obj.time = village_object[TJS.Const.LS_trooptrain + TJS.Const.Show_TroopTrain_arr[0][i]];
-				obj.flag = flag;
-				obj.color = TJS.Const.Show_TroopTrain_arr[1][i];
-				obj.adv_text = TJS.Const.Show_TroopTrain_arr[2][i] + ":%s";
-				obj.show_zero = true;
-				obj.navigate_url = "/build.php?newdid=" + village_id_ + "&gid=" + TJS.Const.Show_TroopTrain_arr[0][i];				
-			LoadLiBuildTimer(obj);
-			flag =true;
+			var isshow = checkbox_status[TJS.Const.LS_trooptrain_checkbox + TJS.Const.Show_TroopTrain_arr[0][i]];
+			if(isshow !== undefined && isshow) 
+			{
+				var obj = TJS.GetLiBuildTimerObject();
+					obj.e = e_p1;
+					obj.time = village_object[TJS.Const.LS_trooptrain + TJS.Const.Show_TroopTrain_arr[0][i]];
+					obj.flag = flag;
+					obj.color = TJS.Const.Show_TroopTrain_arr[1][i];
+					obj.adv_text = TJS.Const.Show_TroopTrain_arr[2][i] + ":%s";
+					obj.show_zero = true;
+					obj.navigate_url = "/build.php?newdid=" + village_id_ + "&gid=" + TJS.Const.Show_TroopTrain_arr[0][i];				
+				LoadLiBuildTimer(obj);
+				flag =true;
+			}
 		}
 	}	
 }
