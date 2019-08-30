@@ -106,11 +106,10 @@ function ShowVillageData(li_element){
 	}
 }
 function Show_Build(village_object,e_p1){
-	if(village_object.Builds === undefined) return;
 	var flag = false;
 	var j = 0;
 	var obj;
-	for(var i = 0; i < village_object.Builds.length; i++) 
+	if(village_object.Builds !== undefined) for(var i = 0; i < village_object.Builds.length; i++) 
 	{
 		if(village_object.Builds[i] < TJS.CurrentSec()) continue;
 		obj = TJS.GetLiBuildTimerObject();
@@ -122,7 +121,7 @@ function Show_Build(village_object,e_p1){
 		LoadLiBuildTimer(obj);
 		flag = true;
 		j++;
-	}	
+	}
 	if(village_object["demolish"] !== undefined && village_object["demolish"] > TJS.CurrentSec())
 	{
 		obj = TJS.GetLiBuildTimerObject();
