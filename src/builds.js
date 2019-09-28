@@ -727,6 +727,7 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 	else
 	{
 		var v_id = TJS.getParameterByName(item[1],"newdid");
+		if(v_id == null || v_id == '') v_id = TJS.getParameterByName(item[1],"x") + "|" TJS.getParameterByName(item[1],"y");
 		e_option.text = gid17_clear_select_text.format(item[0],v_id,item[2][0],item[2][1],item[2][2],item[2][3])
 		e_option.value = gid17_clear_select_value.format(v_id,item[2][0],item[2][1],item[2][2],item[2][3]);
 	}
@@ -738,7 +739,7 @@ function gid17_clear_onclick(){
 		TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR] = TJS.CurrentData.VillageId;
 		TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear] = window.gid17_select_clear.value;
 		TJS.SaveCurrentAccount();
-		window.location.href = "/build.php?t=0&gid=17";gid17_DTR_type_clear
+		window.location.href = "/build.php?t=0&gid=17";//gid17_DTR_type_clear
 	}
 }
 function gid17_clear(){
@@ -759,7 +760,7 @@ function gid17_clear(){
 					var curr_desc = trs[i].getElementsByClassName("desc")[0];
 					var curr_href = curr_desc.getElementsByTagName("a")[0].getAttribute("href");
 					
-					var curr_newdid = TJS.getParameterByName(curr_href,"newdid");
+					var curr_newdid;
 					var curr_r = [
 								curr_desc.getElementsByClassName("r1")[0].parentElement.innerText,
 								curr_desc.getElementsByClassName("r2")[0].parentElement.innerText,
@@ -767,7 +768,8 @@ function gid17_clear(){
 								curr_desc.getElementsByClassName("r4")[0].parentElement.innerText
 								];
 					var target = gid17_des_clear.split("_");
-					
+					if(target.indexOf("|") < 0) curr_newdid = TJS.getParameterByName(curr_href,"newdid");
+					else curr_newdid = TJS.getParameterByName(curr_href,"x") + "|" TJS.getParameterByName(curr_href,"y");
 					if(curr_newdid == target[0] && 
 									curr_r[0] == target[1] && curr_r[1] == target[2] && 
 									curr_r[2] == target[3] && curr_r[3] == target[4]	){
