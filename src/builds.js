@@ -768,7 +768,7 @@ function gid17_clear(){
 								curr_desc.getElementsByClassName("r4")[0].parentElement.innerText
 								];
 					var target = gid17_des_clear.split("_");
-					if(target.indexOf("|") < 0) curr_newdid = TJS.getParameterByName(curr_href,"newdid");
+					if(target[0].indexOf("|") < 0) curr_newdid = TJS.getParameterByName(curr_href,"newdid");
 					else curr_newdid = TJS.getParameterByName(curr_href,"x") + "|" + TJS.getParameterByName(curr_href,"y");
 					if(curr_newdid == target[0] && 
 									curr_r[0] == target[1] && curr_r[1] == target[2] && 
