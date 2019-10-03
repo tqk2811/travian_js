@@ -735,6 +735,13 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 }
 
 function gid17_clear_onclick(){
+	if(window.gid17_select_clear.value == "-1") {
+		var deleteAllTradeRoutes = document.getElementById("deleteAllTradeRoutes");
+		if(deleteAllTradeRoutes !== null) {
+			deleteAllTradeRoutes.click();
+			return;
+		}
+	}
 	if(window.confirm("Are you sure to clear trade routes?")){
 		TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR] = TJS.CurrentData.VillageId;
 		TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear] = window.gid17_select_clear.value;
