@@ -12,8 +12,7 @@ if(!TJS.CurrentData.isPlus)
 //sidebarBoxLinklist
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
 if(sidebarBoxLinklist_ !== null){
-	var BoxLinklist_InnerBox = sidebarBoxLinklist_.getElementsByClassName("sidebarBoxInnerBox")[0];
-	var innerBox_content = BoxLinklist_InnerBox.getElementsByClassName("innerBox content")[0];
+	var innerBox_content = sidebarBoxLinklist_.getElementsByClassName("content")[0];
 	
 	var linklistNotice_ = innerBox_content.getElementsByClassName("linklistNotice");	
 	if(linklistNotice_.length > 0)
