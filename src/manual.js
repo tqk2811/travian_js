@@ -1,4 +1,4 @@
-if(window.location.href.indexOf("manual.php") >= 0) manual_();
+//if(window.location.href.indexOf("manual.php") >= 0) manual_();
 
 
 function manual_()

@@ -74,4 +74,4 @@ function berichte_main()
 }
 
 var berichte_input_sellect_all_1 = null;
-berichte_main();
+//berichte_main();

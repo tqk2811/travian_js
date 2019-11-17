@@ -158,7 +158,7 @@ TJS = {
 		return datalist_villagename;
 	},
 	ListVillageName : [],// [{ id, name},{...}]
-	Re_MarketPlace_sendRessources : function(callback_){
+	Re_MarketPlace_sendRessources : function(callback_){//need check
 		window.marketPlace.sendRessources = function() {//line 7856 in crypt-xxxxx.js:formatted
 			var b = window.marketPlace;//fix "this"
 			Travian.ajax({
@@ -195,7 +195,7 @@ TJS = {
 			})
 		}
 	},
-	DivClear : function(){
+	DivClear : function(){//need check
 		var div_clear = document.createElement("div");
 		div_clear.setAttribute("class","clear");
 		return div_clear;
@@ -266,13 +266,13 @@ TJS = {
 		var sidebarBoxLinklist = document.getElementById("sidebarBoxLinklist");
 		if(sidebarBoxLinklist !== null)
 		{
-			var innerBox_header = sidebarBoxLinklist.getElementsByClassName("innerBox header")[0];
-			innerBox_header.appendChild(window.err_);
+			var innerBox_header = sidebarBoxLinklist.getElementsByClassName("content")[0];
+			innerBox_header.insertAdjacentElement("afterbegin",window.err_);
 		}
 		window.addEventListener("error", function (e){ window.err_.innerText = "Script error."; });
 		console.log("Init catch exception complete.");
 	},
-	HotKeyTabKey : function(){
+	HotKeyTabKey : function(){//need check
 		var tabFavorWrapper = document.getElementsByClassName("tabFavorWrapper");
 		var tabFavorSubWrapper = document.getElementsByClassName("tabFavorSubWrapper");
 		if(tabFavorSubWrapper.length == 1)
@@ -307,7 +307,7 @@ TJS = {
 			console.log("click: " + container[0].innerText);
 		}
 	},
-	HotKeyBack : function(){
+	HotKeyBack : function(){//need check
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[0].click();
 		if(!IsNullOrUndefined(TJS.CurrentData.e_build))
@@ -316,7 +316,7 @@ TJS = {
 			if(previous.length > 0) previous[0].click();
 		}
 	},
-	HotKeyNext : function(){
+	HotKeyNext : function(){//need check
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[1].click();
 		if(!IsNullOrUndefined(TJS.CurrentData.e_build))
@@ -413,17 +413,9 @@ TJS.CurrentData = {
 	Uid : -1,
 	isPlus : false,
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
-	tabActives : document.getElementsByClassName("container active"),
+	tabActives : document.getElementsByClassName("container active"),//need check
 	e_build : document.getElementById("build"),
-	UserName : function(){
-		var sidebarBoxHero = document.getElementById("sidebarBoxHero");
-		if(sidebarBoxHero !== null)
-		{
-			var playerNames = sidebarBoxHero.getElementsByClassName("playerName");
-			if(playerNames.length >= 1)return playerNames[0].children[1].innerText;
-		}
-		return null;
-	}(),	
+	UserName : function(){return document.getElementsByClassName("playerName")[0].innerText;}(),	
 	Gid : -1,
 	listVillage : null,
 	active_village : null,
@@ -470,26 +462,27 @@ TJS.CurrentData.account_object = function(){
 	} else return null;
 }();
 TJS.CurrentData.Resource = function(){
+	var stockBar_values = document.getElementById("stockBar").getElementsByClassName("value");
 	var res = [
-		Number(document.getElementById("l1").innerText.replaceAll(".","").replaceAll(",","")),
-		Number(document.getElementById("l2").innerText.replaceAll(".","").replaceAll(",","")),
-		Number(document.getElementById("l3").innerText.replaceAll(".","").replaceAll(",","")),
-		Number(document.getElementById("l4").innerText.replaceAll(".","").replaceAll(",",""))
+		Number(stockBar_values[1].innerText.replaceAll(".","").replaceAll(",","")),
+		Number(stockBar_values[2].innerText.replaceAll(".","").replaceAll(",","")),
+		Number(stockBar_values[3].innerText.replaceAll(".","").replaceAll(",","")),
+		Number(stockBar_values[5].innerText.replaceAll(".","").replaceAll(",",""))
 	];
 	TJS.CurrentData.village_object["res"] = res;
-	TJS.CurrentData.Storage = Number(document.getElementById("stockBarWarehouse").innerText.replaceAll(",","").replaceAll(".","").match(/[\d.,]+/));
-	TJS.CurrentData.Granary = Number(document.getElementById("stockBarGranary").innerText.replaceAll(",","").replaceAll(".","").match(/[\d.,]+/));
+	TJS.CurrentData.Storage = Number(stockBar_values[0].innerText.replaceAll(",","").replaceAll(".","").match(/[\d.,]+/));
+	TJS.CurrentData.Granary = Number(stockBar_values[4].innerText.replaceAll(",","").replaceAll(".","").match(/[\d.,]+/));
 	TJS.CurrentData.village_object["storage"] = TJS.CurrentData.Storage;
 	TJS.CurrentData.village_object["granary"] = TJS.CurrentData.Granary;
 	TJS.CurrentData.village_object["updatein"] = TJS.CurrentSec();
 	TJS.SaveCurrentVillage();
 	return res;
 };
-TJS.CurrentData.list_sidebarBoxActiveVillage = [
-	[document.getElementsByClassName("layoutButton workshopBlack gold  ")[0],"/build.php?gid=21"],//workshop
-	[document.getElementsByClassName("layoutButton stableBlack gold  ")[0],"/build.php?gid=20"],//stable
-	[document.getElementsByClassName("layoutButton barracksBlack gold  ")[0],"/build.php?gid=19"],//barracks
-	[document.getElementsByClassName("layoutButton marketBlack gold  ")[0],"/build.php?gid=17"]//market
+TJS.CurrentData.list_sidebarBoxActiveVillage = [//need check
+	[document.getElementsByClassName("layoutButton workshop gold")[0],"/build.php?gid=21"],//workshop
+	[document.getElementsByClassName("layoutButton stable gold")[0],"/build.php?gid=20"],//stable
+	[document.getElementsByClassName("layoutButton barracks gold")[0],"/build.php?gid=19"],//barracks
+	[document.getElementsByClassName("layoutButton market gold")[0],"/build.php?gid=17"]//market
 ];
 if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
 
