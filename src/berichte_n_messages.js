@@ -28,7 +28,7 @@ function berichte_main()
 	if(window.location.href.indexOf("berichte.php")>=0 || window.location.href.indexOf("messages.php")>=0)
 	{
 		administration = document.getElementsByClassName("administration");
-		if(administration.length == 1) TJS.MoveElementUp(administration,3);
+		if(administration.length == 1) TJS.MoveElementUp(administration[0],3);
 		//if(window.location.href.indexOf("id=") >=0) berichte_count_res();
 	}
 }
