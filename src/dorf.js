@@ -24,7 +24,7 @@ function dorf3_icon_count(){
 	}
 }
 
-var troop_train_child_div_style = "float: left; width:25%;";
+var troop_train_child_div_style = "float: left; width:33%;";
 var troop_train_timer = [];
 
 function troop_train_show(){

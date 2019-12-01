@@ -413,7 +413,9 @@ TJS.CurrentData = {
 	Uid : -1,
 	isPlus : false,
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
-	tabActives : document.getElementsByClassName("container active"),//need check
+	tabs : document.getElementsByClassName("contentNavi subNavi tabFavorWrapper"),
+	tab_MainActive : null,
+	tab_SubActive : null,
 	e_build : document.getElementById("build"),
 	UserName : function(){return document.getElementsByClassName("playerName")[0].innerText;}(),	
 	Gid : -1,
@@ -485,6 +487,15 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [//need check
 	[document.getElementsByClassName("layoutButton market gold")[0],"/build.php?gid=17"]//market
 ];
 if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
+TJS.CurrentData.tab_MainActive = function(){
+		if(TJS.CurrentData.tabs.length >= 1) return TJS.CurrentData.tabs[0].getElementsByClassName("content favor favorActive")[0];
+		else return null;
+	}();
+TJS.CurrentData.tab_SubActive = function(){
+		if(TJS.CurrentData.tabs.length >= 2) return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0];
+		else return null;
+	}();
+
 
 TJS.CurrentData.Resource();
 TJS.catch_exception();
