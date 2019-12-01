@@ -66,11 +66,11 @@ function troop_train_add_child(e,name,target_gid){
 	var e_a = document.createElement("a");
 	e_a.setAttribute("href","/build.php?gid=" + target_gid);
 	e_a.innerText = name + ":";
-	e_a.setAttribute("style","float: left; width:40%;color:black;");
+	e_a.setAttribute("style","float: left; width:50%;color:black;");
 	
 	var span_time = document.createElement("span");	
 	span_time.setAttribute("value",TJS.CurrentData.village_object[TJS.Const.LS_trooptrain+target_gid] - TJS.CurrentSec());
-	span_time.setAttribute("style","float: left; width:60%;");
+	span_time.setAttribute("style","float: left; width:50%;");
 	span_time.setAttribute("class",TJS.Const.ClassTimer);
 	span_time.innerText = "...";
 	div_.appendChild(e_a);
