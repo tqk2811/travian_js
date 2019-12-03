@@ -290,7 +290,7 @@ function ReadDataBuilding(){//not save
 			Builds_.push(TJS.CurrentSec() + timeleft);
 		}
 		TJS.CurrentData.village_object["Builds"] = Builds_;
-	}	
+	}else if(window.location.pathname.indexOf("dorf1.php")>=0 || window.location.pathname.indexOf("dorf2.php")>=0) TJS.CurrentData.village_object["Builds"] = [];
 }
 
 if(TJS.CurrentData.sidebarBoxVillagelist != null){	
