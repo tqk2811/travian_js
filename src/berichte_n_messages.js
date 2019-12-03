@@ -31,13 +31,14 @@ function berichte_scan_arr_troop(e){
 }
 
 function berichte_count_troops_live(){
-	var reportWrapper = document.getElementById("reportWrapper");
-	if(reportWrapper == null) return;
-	var tables = [	reportWrapper.getElementById("attacker"),
-					reportWrapper.getElementById("defender")];
+	//var reportWrapper = document.getElementById("reportWrapper");
+	//if(reportWrapper == null) return;
+	var tables = [	document.getElementById("attacker"),
+					document.getElementById("defender")];
 	
 	for(var i = 0; i < tables.length; i++)
 	{
+		if(tables[i] == null) continue;
 		var tbodys = tables[i].getElementsByTagName("tbody");
 		var arr_in = berichte_scan_arr_troop(tbodys[1]);
 		var arr_out = berichte_scan_arr_troop(tbodys[2]);
