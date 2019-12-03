@@ -43,9 +43,10 @@ function berichte_count_troops_live(){
 		var arr_in = berichte_scan_arr_troop(tbodys[1]);
 		var arr_out = berichte_scan_arr_troop(tbodys[2]);
 		var tbody_live = document.createElement("tbody");
-		tbody_live.innerHTML = "<tr class=\"\"><th></th></tr>";
+		tbody_live.innerHTML = "<tr><th></th></tr>";
 		for(var j = 0; j < arr_in.length; j++){
 			var td = document.createElement("td");
+			td.setAttribute("class","unit");
 			td.innerText = (arr_in[j]-arr_out[j]).toString();
 			tbody_live.children[0].appendChild(td);
 		}
