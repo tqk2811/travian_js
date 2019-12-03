@@ -44,7 +44,7 @@ function berichte_count_troops_live(){
 		var arr_out = berichte_scan_arr_troop(tbodys[2]);
 		var tbody_live = document.createElement("tbody");
 		tbody_live.setAttribute("class","units");
-		tbody_live.innerHTML = "<tr><th></th></tr>";
+		tbody_live.innerHTML = "<tr><th>Live</th></tr>";
 		for(var j = 0; j < arr_in.length; j++){
 			var td = document.createElement("td");
 			td.innerText = (arr_in[j]-arr_out[j]).toString();
