@@ -40,6 +40,7 @@ function berichte_count_troops_live(){
 	{
 		if(tables[i] == null) continue;
 		var tbodys = tables[i].getElementsByTagName("tbody");
+		if(tbodys.length != 3) continue;
 		var arr_in = berichte_scan_arr_troop(tbodys[1]);
 		var arr_out = berichte_scan_arr_troop(tbodys[2]);
 		var tbody_live = document.createElement("tbody");
