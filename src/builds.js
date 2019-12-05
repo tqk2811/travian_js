@@ -105,7 +105,7 @@ function gid15(){//main building
 
 function gid16(){//rallypoint
 	if(TJS.CurrentData.tab_MainActive !== null){
-		var tabItem = TJS.CurrentData.tab_MainActive.getElementsByClassName("tabItem")[0];
+		var tabItem = TJS.CurrentData.tab_MainActive.getElementsByClassName("tabItem active")[0];
 		if(tabItem.getAttribute("href").indexOf("tt=99")>=0){//raidList
 			var raidlists = [];
 			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
@@ -289,7 +289,7 @@ function gid16_attack_multiwave_trigger_Interval(){
 
 function gid17(){//market
 	if(TJS.CurrentData.tab_MainActive !== null){
-		var tabItem = TJS.CurrentData.tab_MainActive.getElementsByClassName("tabItem")[0];
+		var tabItem = TJS.CurrentData.tab_MainActive.getElementsByClassName("tabItem active")[0];
 		if(tabItem.getAttribute("href").indexOf("t=0")>=0){//manager
 			var trading_routes = document.getElementById("trading_routes");
 			if(trading_routes !== null){
