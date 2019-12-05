@@ -105,8 +105,7 @@ function gid15(){//main building
 
 function gid16(){//rallypoint
 	if(TJS.CurrentData.tab_MainActive !== null){
-		var tabItem = TJS.CurrentData.tab_MainActive.getElementsByClassName("tabItem active")[0];
-		if(tabItem.getAttribute("href").indexOf("tt=99")>=0){//raidList
+		if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=99")>=0){//raidList
 			var raidlists = [];
 			var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
 			for(var i = 0; i < listEntrys.length; i++) 
@@ -162,7 +161,7 @@ function gid16(){//rallypoint
 			e_div.appendChild(e_LB_yellow);
 			e_div.appendChild(e_LB_red);
 			TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
-		}else if(tabItem.getAttribute("href").indexOf("tt=2")>=0){
+		}else if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=2")>=0){
 			var rallyPointButtonsContainer = document.getElementById("rallyPointButtonsContainer");
 			if(rallyPointButtonsContainer !== null) gid16_attack_multiwave();
 		}
@@ -289,8 +288,7 @@ function gid16_attack_multiwave_trigger_Interval(){
 
 function gid17(){//market
 	if(TJS.CurrentData.tab_MainActive !== null){
-		var tabItem = TJS.CurrentData.tab_MainActive.getElementsByClassName("tabItem active")[0];
-		if(tabItem.getAttribute("href").indexOf("t=0")>=0){//manager
+		if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("t=0")>=0){//manager
 			var trading_routes = document.getElementById("trading_routes");
 			if(trading_routes !== null){
 				var button_clear = document.createElement("button");
@@ -342,7 +340,7 @@ function gid17(){//market
 				div_timeend.innerHTML = "<div><label>Time end:</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height:22px;width:53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"24\" id=\"hour_end\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;   width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_end\"></div><div><label>------&gt; with step :</label></div><div><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"hh\" min=\"0\" max=\"24\" value=\"1\" id=\"hour_step\"><span>:</span><input size=\"2\" type=\"number\" length=\"10px\" style=\"height: 22px;width: 53px;\" placeholder=\"mm\" min=\"0\" max=\"59\" value=\"00\" id=\"minute_step\"></div><div onclick=\"gid17_CreateTradeRoutes_click()\" style=\"background-color:green;border:n`one;color:white;padding:3px;margin:3px;\">Create TradeRoutes</div>"
 			}
 		}
-		else if(tabItem.getAttribute("href").indexOf("t=5")>=0){//send res
+		else if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("t=5")>=0){//send res
 			var marketSend_ = document.getElementById("marketSend");
 			if(marketSend_ !== null){
 				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry");
