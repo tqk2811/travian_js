@@ -488,7 +488,7 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [//need check
 ];
 if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
 TJS.CurrentData.tab_MainActive = function(){
-		if(TJS.CurrentData.tabs.length >= 1) return TJS.CurrentData.tabs[0].getElementsByClassName("content favor favorActive")[0];
+		if(TJS.CurrentData.tabs.length >= 1) return TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0];
 		else return null;
 	}();
 TJS.CurrentData.tab_SubActive = function(){
