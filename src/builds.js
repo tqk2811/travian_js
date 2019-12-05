@@ -227,23 +227,23 @@ function gid16_attack_multiwave(){
 	var e_p2 = document.createElement("p");
 	e_main.appendChild(e_p2);
 	
-	//window.gid16_Input_delay = document.createElement("input");
-	//gid16_Input_delay.setAttribute("id","gid16_Input_delay")
-	//gid16_Input_delay.setAttribute("min",0);
-	//gid16_Input_delay.setAttribute("max",5000);
-	//gid16_Input_delay.setAttribute("type","number");
-	//gid16_Input_delay.setAttribute("value",100);
-	//gid16_Input_delay.setAttribute("maxlength",4);
-	//gid16_Input_delay.setAttribute("style","padding:3px;margin:3px;");
+	window.gid16_Input_delay = document.createElement("input");
+	gid16_Input_delay.setAttribute("id","gid16_Input_delay")
+	gid16_Input_delay.setAttribute("min",0);
+	gid16_Input_delay.setAttribute("max",5000);
+	gid16_Input_delay.setAttribute("type","number");
+	gid16_Input_delay.setAttribute("value",200);
+	gid16_Input_delay.setAttribute("maxlength",4);
+	gid16_Input_delay.setAttribute("style","padding:3px;margin:3px;");
 	//gid16_Input_delay.hidden = true;
-	//e_main.appendChild(gid16_Input_delay);
+	e_main.appendChild(gid16_Input_delay);
 	
-	//window.gid16_Label_Delay = document.createElement("label");
-	//gid16_Label_Delay.setAttribute("id","label_gid16_Input_delay");
-	//gid16_Label_Delay.setAttribute("for","gid16_Input_delay");
-	//gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
+	window.gid16_Label_Delay = document.createElement("label");
+	gid16_Label_Delay.setAttribute("id","label_gid16_Input_delay");
+	gid16_Label_Delay.setAttribute("for","gid16_Input_delay");
+	gid16_Label_Delay.innerText = "Delay After First Wave (ms)";
 	//gid16_Label_Delay.hidden = true;
-	//e_main.appendChild(gid16_Label_Delay);
+	e_main.appendChild(gid16_Label_Delay);
 	
 	//
 	var select_kata2s = document.getElementsByName("kata2");
@@ -254,7 +254,7 @@ function gid16_attack_multiwave_start(){
 	{
 		var bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
-		localStorage.setItem("attack_multiwave","1");		
+		localStorage.setItem("attack_multiwave",Date.now()+Number(window.gid16_Input_delay.value));
 	}
 }
 function gid16_attack_multiwave_trigger(){
@@ -263,24 +263,27 @@ function gid16_attack_multiwave_trigger(){
 		localStorage.setItem("attack_multiwave","0");
 		window.gid16_Interval_id = window.setInterval(gid16_attack_multiwave_trigger_Interval,10);
 		gid16_BT_StartCata.hidden = true;
-		//gid16_Label_Delay.hidden = false;
-		//gid16_Input_delay.hidden = false;		
+		gid16_Label_Delay.hidden = false;
+		gid16_Input_delay.hidden = false;		
 	}
 	else 
 	{
 		if(gid16_Interval_id !== undefined) window.clearInterval(gid16_Interval_id);
 		gid16_BT_StartCata.hidden = false;
-		//gid16_Label_Delay.hidden = true;
-		//gid16_Input_delay.hidden = true;
+		gid16_Label_Delay.hidden = true;
+		gid16_Input_delay.hidden = true;
 	}
 }
+
+var time_multiwave = 0;
+
 function gid16_attack_multiwave_trigger_Interval(){
-	var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
-	if(attack_multiwave_flag !== null && attack_multiwave_flag == "1")
-	{		
+	if(time_multiwave == 0) {
+		var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
+		if(attack_multiwave_flag !== null)	time_multiwave = Number(attack_multiwave_flag);
+	}else if(Date.now() >= time_multiwave){
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
-		//sleep(Number(gid16_Input_delay.value));
 		bt_ok.click();
 	}
 }
