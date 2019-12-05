@@ -282,7 +282,7 @@ var time_multiwave = 0;
 function gid16_attack_multiwave_trigger_Interval(){
 	if(time_multiwave == 0) {
 		var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
-		if(attack_multiwave_flag !== null)	time_multiwave = Number(attack_multiwave_flag);
+		if(attack_multiwave_flag !== "0") time_multiwave = Number(attack_multiwave_flag);
 	}else if(Date.now() >= time_multiwave){
 		var bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
