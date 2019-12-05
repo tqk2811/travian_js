@@ -262,16 +262,18 @@ function gid16_attack_multiwave_trigger(){
 	{
 		localStorage.setItem("attack_multiwave","0");
 		window.gid16_Interval_id = window.setInterval(gid16_attack_multiwave_trigger_Interval,10);
-		gid16_BT_StartCata.hidden = true;
-		gid16_Label_Delay.hidden = true;
-		gid16_Input_delay.hidden = true;
+		gid16_BT_StartCata.disabled  = true;
+		gid16_BT_StartCata.style.backgroundColor = "gray";
+		gid16_Label_Delay.disabled  = true;
+		gid16_Input_delay.disabled  = true;
 	}
 	else 
 	{
 		if(gid16_Interval_id !== undefined) window.clearInterval(gid16_Interval_id);
-		gid16_BT_StartCata.hidden = false;
-		gid16_Label_Delay.hidden = false;
-		gid16_Input_delay.hidden = false;	
+		gid16_BT_StartCata.disabled  = false;
+		gid16_BT_StartCata.style.backgroundColor = "green";
+		gid16_Label_Delay.disabled  = false;
+		gid16_Input_delay.disabled  = false;	
 	}
 }
 
