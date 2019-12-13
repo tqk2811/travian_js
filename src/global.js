@@ -234,16 +234,17 @@ function show_culture(){
 function menu_top_right(){	
 	var e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
-	e_div.setAttribute("style","float:right; width:26%;");
-	document.getElementById("sidebarAfterContent").insertAdjacentElement("beforebegin",e_div);
+	e_div.setAttribute("style","float:right;width:100%;grid-column-start: 3;grid-row-start: 2;");
+	document.getElementById("topBar").appendChild(e_div);
 	
 	var trade_img = document.createElement("img"); 
 	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
 	trade_img.setAttribute("onclick","npc_helper.Trade()");
-	trade_img.setAttribute("style","margin-right: 5px;");
+	trade_img.setAttribute("style","float: left;");
 	
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
+	task_helper_select.setAttribute("style","float: right;");
 	task_helper_select.onchange = task_helper_select_onchange;
 	
 	e_div.appendChild(trade_img);
