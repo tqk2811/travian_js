@@ -35,23 +35,30 @@ function berichte_count_troops_live(){
 	//if(reportWrapper == null) return;
 	var tables = [	document.getElementById("attacker"),
 					document.getElementById("defender")];
+	var def_reinfs = document.getElementsByClassName("defender reinforcement");
+	for(var i = 0; i < def_reinfs.length; i++) tables.push(def_reinfs[i]);
 	
 	for(var i = 0; i < tables.length; i++)
 	{
 		if(tables[i] == null) continue;
 		var tbodys = tables[i].getElementsByTagName("tbody");
-		if(tbodys.length != 3) continue;
-		var arr_in = berichte_scan_arr_troop(tbodys[1]);
-		var arr_out = berichte_scan_arr_troop(tbodys[2]);
-		var tbody_live = document.createElement("tbody");
-		tbody_live.setAttribute("class","units");
-		tbody_live.innerHTML = "<tr><th>Live</th></tr>";
-		for(var j = 0; j < arr_in.length; j++){
-			var td = document.createElement("td");
-			td.innerText = (arr_in[j]-arr_out[j]).toString();
-			tbody_live.children[0].appendChild(td);
+		if(tbodys.length >= 3)// 3 nomal, 2: ???, 4 trap gaul
+		{ 
+			var arr_in = berichte_scan_arr_troop(tbodys[1]);
+			var arr_out = berichte_scan_arr_troop(tbodys[2]);
+			var arr_trap;
+			if(tbodys.length == 4) arr_trap = berichte_scan_arr_troop(tbodys[3]);
+		
+			var tbody_live = document.createElement("tbody");
+			tbody_live.setAttribute("class","units");
+			tbody_live.innerHTML = "<tr><th>Live</th></tr>";
+			for(var j = 0; j < arr_in.length; j++){
+				var td = document.createElement("td");
+				td.innerText = (arr_in[j]-arr_out[j] - (tbodys.length == 4 ? arr_trap[j] : 0)).toString();
+				tbody_live.children[0].appendChild(td);
+			}
+			tables[i].appendChild(tbody_live);
 		}
-		tables[i].appendChild(tbody_live);
 	}
 }
 
