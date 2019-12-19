@@ -1,28 +1,35 @@
 function dorf3_icon_count(){
-	var dorf3overview = document.getElementById("overview");
+	window.dorf3overview = document.getElementById("overview");
 	if(dorf3overview !== null){
 		var att1s = dorf3overview.getElementsByClassName("att1");
-		for(var i = 0; i < att1s.length; i++){
-			var counts= att1s[i].getAttribute("alt").split(" ");
-			if(counts.length >= 1){
-				var e_numattack = document.createElement("a1");
-				e_numattack.setAttribute("style","color:red;");
-				e_numattack.innerText = "( " + counts[0] + " ) ";
-				att1s[i].insertAdjacentElement("beforebegin",e_numattack);
-			}
-		}
+		dorf3_icon_attack_count("att1","a1");
+		dorf3_icon_attack_count("att3","a3");
 		
 		var units = dorf3overview.getElementsByClassName("unit");
 		for(var i = 0; i < units.length; i++){
 			var counts= units[i].getAttribute("alt").split(" ");
 			if(counts.length >= 1){
-				var e_numattack = document.createElement("a1");
-				e_numattack.innerText = counts[0];
-				units[i].insertAdjacentElement("beforebegin",e_numattack);
+				var e_numtroop = document.createElement("a1");
+				e_numtroop.innerText = counts[0];
+				units[i].insertAdjacentElement("beforebegin",e_numtroop);
 			}
 		}		
 	}
 }
+
+function dorf3_icon_attack_count(classname,color_class){
+	var atts = window.dorf3overview.getElementsByClassName(classname);
+	for(var i = 0; i < atts.length; i++){
+		var counts= atts[i].getAttribute("alt").split(" ");
+			if(counts.length >= 1){
+				var e_numattack = document.createElement("a1");
+				e_numattack.setAttribute("class",color_class);
+				e_numattack.innerText = "( " + counts[0] + " ) ";
+				atts[i].insertAdjacentElement("beforebegin",e_numattack);
+			}
+	}
+}
+
 
 var troop_train_child_div_style = "float: left; width:33%;";
 var troop_train_timer = [];
