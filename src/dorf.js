@@ -2,8 +2,8 @@ function dorf3_icon_count(){
 	window.dorf3overview = document.getElementById("overview");
 	if(dorf3overview !== null){
 		var att1s = dorf3overview.getElementsByClassName("att1");
-		dorf3_icon_attack_count("att1","a1");
-		dorf3_icon_attack_count("att3","a3");
+		dorf3_icon_attack_count("att1","color:red;");
+		dorf3_icon_attack_count("att3","color:#E6E6FA");
 		
 		var units = dorf3overview.getElementsByClassName("unit");
 		for(var i = 0; i < units.length; i++){
@@ -17,13 +17,13 @@ function dorf3_icon_count(){
 	}
 }
 
-function dorf3_icon_attack_count(classname,color_class){
+function dorf3_icon_attack_count(classname,color){
 	var atts = window.dorf3overview.getElementsByClassName(classname);
 	for(var i = 0; i < atts.length; i++){
 		var counts= atts[i].getAttribute("alt").split(" ");
 			if(counts.length >= 1){
 				var e_numattack = document.createElement("a1");
-				e_numattack.setAttribute("class",color_class);
+				e_numattack.setAttribute("style",color);
 				e_numattack.innerText = "( " + counts[0] + " ) ";
 				atts[i].insertAdjacentElement("beforebegin",e_numattack);
 			}
