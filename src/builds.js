@@ -246,7 +246,7 @@ function gid16_attack_multiwave(){
 	e_main.appendChild(gid16_Label_Delay);
 	
 	//
-	var select_kata2s = document.getElementsByName("kata2");
+	var select_kata2s = document.getElementsByName("troops[0][kata2]");
 	if(select_kata2s.length == 1) select_kata2s[0].value = 99;
 }
 function gid16_attack_multiwave_start(){
