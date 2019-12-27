@@ -241,7 +241,7 @@ TJS = {
 		}
 		arr.sort(function(a,b){ return a.pos - b.pos;});
 		var result = [];
-		for(var i = 0; i < arr.length; i++) result.push(arr[i].r * d);
+		for(var i = 0; i < arr.length; i++) result.push(arr[i].r * d / m);
 		return result;
 	},
 	HotKeyList : [],
