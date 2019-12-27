@@ -200,7 +200,13 @@ TJS = {
 		div_clear.setAttribute("class","clear");
 		return div_clear;
 	},
-	BalanceRes : function(mc,bc,arr,d = TJS.Const.RoundResource){// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
+	BalanceRes : function(mc,bc,arr,m = 1,d = TJS.Const.RoundResource){
+		// mc, bc, arr[{rc,sc, rt,st ,(r,pos,rtn,percent)},{...]
+		// mc: mechant current (number)
+		// bc: balance current (yes)/target (no)
+		// 
+		// m: Multiplication (1,2,3)
+		// d: round, 100 default
 		mc =  Math.floor(mc/d);
 		var max_send = 0;
 		var max_received = 0;
@@ -226,8 +232,8 @@ TJS = {
 			arr.sort(function(a,b){ return b.percent - a.percent;});//sort percent max to min
 			for(var i = 0; i < arr.length; i++){
 				if(arr[i].percent == 0 | arr[i].r >= arr[i].rc | (bc ? false : arr[i].r >= arr[i].rtn)) { break_count++; continue;}
-				arr[i].r++;
-				res_send--;
+				arr[i].r += m;
+				res_send -= m;
 				arr[i].percent = bc ? (arr[i].rc - arr[i].r)/arr[i].sc : (arr[i].rtn - arr[i].r) /(arr[i].st - 1);
 				break;
 			}
