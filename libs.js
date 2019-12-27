@@ -207,7 +207,7 @@ TJS = {
 		// 
 		// m: Multiplication (1,2,3)
 		// d: round, 100 default
-		mc =  Math.floor(mc/d);
+		mc =  Math.floor(mc/d*m);
 		var max_send = 0;
 		var max_received = 0;
 		for(var i = 0; i < arr.length; i++){
