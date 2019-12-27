@@ -672,9 +672,13 @@ function gid17_input_number_onchange(){
 					(window.slider_target.disabled ? 1 : window.slider_target.value/100));
 				}
 				arr.push(obj);
-			}			
-			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr);
-			gid17_write_res(result,1);
+			}
+			var m = 1;
+			var e_run_twice = document.getElementById("x2");
+			if(e_run_twice.tagName == "SELECT") m = Number(e_run_twice.value);
+			else if(e_run_twice.checked) m = 2;
+			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr,m);
+			gid17_write_res(result,m);
 			break;
 			
 		case "c_0" : 
