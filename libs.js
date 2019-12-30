@@ -28,7 +28,7 @@ function AddUriCss(uri){
 	s.setAttribute("type","text/css");
     document.head.appendChild(s);
 }
-
+var topbar = document.getElementById("topbar");
 TJS = {
 	CurrentSec : function() { 
 		return Math.round(Date.now()/1000,0); 
@@ -494,11 +494,15 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [//need check
 ];
 if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
 TJS.CurrentData.tab_MainActive = function(){
-		if(TJS.CurrentData.tabs.length >= 1) return TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0];
+		if(TJS.CurrentData.tabs.length >= 1) 
+			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : 
+					TJS.CurrentData.tabs[0].getElementsByClassName("container active")[0];
 		else return null;
 	}();
 TJS.CurrentData.tab_SubActive = function(){
-		if(TJS.CurrentData.tabs.length >= 2) return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0];
+		if(TJS.CurrentData.tabs.length >= 2) 
+			return topbar ? TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0] :
+					TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0];
 		else return null;
 	}();
 
