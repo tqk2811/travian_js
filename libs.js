@@ -496,13 +496,13 @@ if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentD
 TJS.CurrentData.tab_MainActive = function(){
 		if(TJS.CurrentData.tabs.length >= 1) 
 			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : 
-					TJS.CurrentData.tabs[0].getElementsByClassName("container active")[0];
+					TJS.CurrentData.tabs[0].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];
 		else return null;
 	}();
 TJS.CurrentData.tab_SubActive = function(){
 		if(TJS.CurrentData.tabs.length >= 2) 
-			return topbar ? TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0] :
-					TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0];
+			return topbar ? TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0]:
+					TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];
 		else return null;
 	}();
 
