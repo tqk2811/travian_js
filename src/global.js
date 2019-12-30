@@ -1,17 +1,16 @@
 //sidebarBoxActiveVillage
-function Change_sidebarBoxActiveVillage_Button_onclick(uri){window.location = uri;}
 if(!TJS.CurrentData.isPlus)
 	for(var i = 0; i < TJS.CurrentData.list_sidebarBoxActiveVillage.length; i++){
 		var attibute_class = TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].getAttribute("class");
 		if(attibute_class.search("disable") > 0) continue;
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
-		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","Change_sidebarBoxActiveVillage_Button_onclick(\""+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1]+"\")");
+		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","window.location ="+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1]);
 		$("#"+TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].id).off("click");
 	}
 
 //sidebarBoxLinklist
 var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
-if(sidebarBoxLinklist_ !== null){
+if(sidebarBoxLinklist_){
 	var innerBox_content = sidebarBoxLinklist_.getElementsByClassName("content")[0];
 	
 	var linklistNotice_ = innerBox_content.getElementsByClassName("linklistNotice");	
@@ -100,7 +99,7 @@ function ShowVillageData(li_element){
 		case 2: Show_TroopTrain(village_object,e_p1,village_id_); return;
 		case 3: Show_Celebration(village_object,e_p1,village_id_); return;
 		case 4: Show_Resource(village_object,e_p1,village_id_); return;
-		case 5: Show_AttackRed(village_object,e_p1,village_id_,img); return;
+		case 5: Show_AttackRed(village_object,e_p1,village_id_); return;
 		default: return;
 	}
 }
@@ -180,8 +179,8 @@ function Show_Resource(village_object,e_p1,village_id_){
 		flag = true;
 	}
 }
-function Show_AttackRed(village_object,e_p1,village_id_,img){
-	if(village_object["attack1"] == undefined) return;
+function Show_AttackRed(village_object,e_p1,village_id_){
+	if(!village_object["attack1"]) return;
 	var timeend = false;
 	if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
 	
