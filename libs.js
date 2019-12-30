@@ -501,7 +501,7 @@ TJS.CurrentData.tab_MainActive = function(){
 	}();
 TJS.CurrentData.tab_SubActive = function(){
 		if(TJS.CurrentData.tabs.length >= 2) 
-			return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0]:
+			return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];
 		else return null;
 	}();
 
