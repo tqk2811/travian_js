@@ -235,7 +235,9 @@ function menu_top_right(){
 	var e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
 	e_div.setAttribute("style","float:right;width:100%;grid-column-start: 3;grid-row-start: 2;");
-	document.getElementById("topBar").appendChild(e_div);
+	var topbar = document.getElementById("topBar");
+	if(topbar != null)topbar.appendChild(e_div);
+	else e_div.insertAdjacentElement("beforebegin",document.getElementById("sidebarBoxActiveVillage"));
 	
 	var trade_img = document.createElement("img"); 
 	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
