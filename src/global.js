@@ -234,10 +234,18 @@ function show_culture(){
 function menu_top_right(){	
 	var e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
-	e_div.setAttribute("style","float:right;width:100%;grid-column-start: 3;grid-row-start: 2;");
+	
 	var topbar = document.getElementById("topBar");
-	if(topbar != null)topbar.appendChild(e_div);
-	else document.getElementById("sidebarBoxActiveVillage").insertAdjacentElement("beforebegin",e_div);
+	if(topbar != null) 
+	{
+		e_div.setAttribute("style","float:right;width:100%;grid-column-start: 3;grid-row-start: 2;");
+		topbar.appendChild(e_div);
+	}
+	else //old version
+	{
+		e_div.setAttribute("style","float:right;width:20%;grid-column-start: 3;grid-row-start: 2;");
+		document.getElementById("center").insertAdjacentElement("afterbegin",e_div);
+	}
 	
 	var trade_img = document.createElement("img"); 
 	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
