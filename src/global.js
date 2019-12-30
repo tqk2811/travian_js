@@ -4,7 +4,7 @@ if(!TJS.CurrentData.isPlus)
 		var attibute_class = TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].getAttribute("class");
 		if(attibute_class.search("disable") > 0) continue;
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
-		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","window.location ="+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1]);
+		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","window.location =\""+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1] +"\"");
 		$("#"+TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].id).off("click");
 	}
 
