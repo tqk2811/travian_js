@@ -28,7 +28,7 @@ function AddUriCss(uri){
 	s.setAttribute("type","text/css");
     document.head.appendChild(s);
 }
-var topbar = document.getElementById("topbar");
+var topbar = document.getElementById("topBar");
 TJS = {
 	CurrentSec : function() { 
 		return Math.round(Date.now()/1000,0); 
