@@ -32,7 +32,7 @@ function berichte_scan_arr_troop(e){
 
 function berichte_count_troops_live(){
 	//var reportWrapper = document.getElementById("reportWrapper");
-	//if(reportWrapper == null) return;
+	//if(!reportWrapper) return;
 	var tables = [	document.getElementById("attacker"),
 					document.getElementById("defender")];
 	var def_reinfs = document.getElementsByClassName("defender reinforcement");
@@ -40,7 +40,7 @@ function berichte_count_troops_live(){
 	
 	for(var i = 0; i < tables.length; i++)
 	{
-		if(tables[i] == null) continue;
+		if(!tables[i]) continue;
 		var tbodys = tables[i].getElementsByTagName("tbody");
 		if(tbodys.length >= 3)// 3 nomal, 2: ???, 4 trap gaul
 		{ 

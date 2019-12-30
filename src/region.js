@@ -10,7 +10,7 @@ function region_()
 function progressbarpop()
 {
 	var regionContainer = document.getElementById("regionContainer");
-	if(regionContainer !== null)
+	if(regionContainer )
 	{
 		var spans = regionContainer.getElementsByTagName("span");
 		if(spans.length == 1)

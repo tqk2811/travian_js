@@ -57,11 +57,11 @@ function LoadLiBuildTimer(li_obj){
   }
   t.setAttribute("style","color:" + li_obj.color);
   t.setAttribute("sound",li_obj.sound);
-  if(li_obj.adv_text !== null) t.setAttribute("adv_text",li_obj.adv_text);
+  if(li_obj.adv_text ) t.setAttribute("adv_text",li_obj.adv_text);
   t.setAttribute("class",TJS.Const.ClassTimer);
   t.setAttribute("value",li_obj.time - TJS.CurrentSec());
   t.innerText = "Loading"
-  if(li_obj.navigate_url != null) t.onclick = function(){ window.location.href = li_obj.navigate_url}
+  if(li_obj.navigate_url ) t.onclick = function(){ window.location.href = li_obj.navigate_url}
   li_obj.e.appendChild(t);
 }
 function LoadLi(li_obj){
@@ -88,7 +88,7 @@ function ShowVillageData(li_element){
 	li_element.appendChild(e_p1);
 	
 	var svg = li_element.getElementsByTagName("svg")[0];
-	if(!global_loader && !TJS.CurrentData.isPlus && village_object["attack1"] !== undefined){
+	if(!global_loader && !TJS.CurrentData.isPlus && village_object["attack1"] ){
 		var timeend = false;
 		if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
 		if(!timeend | village_object["attack1"].count - 1 > 0) svg.style.display = "block";
@@ -107,7 +107,7 @@ function Show_Build(village_object,e_p1){
 	var flag = false;
 	var j = 0;
 	var obj;
-	if(village_object.Builds !== undefined) for(var i = 0; i < village_object.Builds.length; i++) 
+	if(village_object.Builds ) for(var i = 0; i < village_object.Builds.length; i++) 
 	{
 		if(village_object.Builds[i] < TJS.CurrentSec()) continue;
 		obj = TJS.GetLiBuildTimerObject();
@@ -120,7 +120,7 @@ function Show_Build(village_object,e_p1){
 		flag = true;
 		j++;
 	}
-	if(village_object["demolish"] !== undefined && village_object["demolish"] > TJS.CurrentSec())
+	if(village_object["demolish"]  && village_object["demolish"] > TJS.CurrentSec())
 	{
 		obj = TJS.GetLiBuildTimerObject();
 			obj.e = e_p1;
@@ -136,10 +136,10 @@ function Show_TroopTrain(village_object,e_p1,village_id_){
 	for(var i = 0; i < TJS.Const.Show_TroopTrain_arr[0].length; i ++)
 	{
 		var checkbox_status = village_object["checkbox_status"];
-		if(checkbox_status !== undefined)
+		if(checkbox_status )
 		{
 			var isshow = checkbox_status[TJS.Const.LS_trooptrain_checkbox + TJS.Const.Show_TroopTrain_arr[0][i]];
-			if(isshow !== undefined && isshow) 
+			if(isshow  && isshow) 
 			{
 				var obj = TJS.GetLiBuildTimerObject();
 					obj.e = e_p1;
@@ -156,7 +156,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_){
 	}	
 }
 function Show_Celebration(village_object,e_p1,village_id_){
-	if(	village_object["celebration_24"] == undefined ) return;//||village_object["celebration_24"] < TJS.CurrentSec()
+	if(!village_object["celebration_24"]) return;//||village_object["celebration_24"] < TJS.CurrentSec()
 	var obj = TJS.GetLiBuildTimerObject();
 		obj.e = e_p1;
 		obj.time = village_object["celebration_24"];
@@ -166,7 +166,7 @@ function Show_Celebration(village_object,e_p1,village_id_){
 	LoadLiBuildTimer(obj);
 }
 function Show_Resource(village_object,e_p1,village_id_){
-	if(village_object["res"] == undefined) return;
+	if(!village_object["res"]) return;
 	flag = false;
 	for(var i = 0; i < village_object["res"].length; i++)
 	{
@@ -218,7 +218,7 @@ function show_culture(){
 	if(expansionSlotInfos.length == 1 && boxTitles.length == 1){
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);
 		boxTitles[0].innerText = tooltip_text;		
-		if(TJS.CurrentData.village_object["celebration_24"] !== undefined){
+		if(TJS.CurrentData.village_object["celebration_24"] ){
 			var span_timer = document.createElement("span");
 			span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
 			span_timer.setAttribute("class",TJS.Const.ClassTimer);
@@ -257,7 +257,7 @@ function menu_top_right(){
 	e_div.appendChild(trade_img);
 	e_div.appendChild(task_helper_select);
 
-	if(TJS.CurrentData.account_object["task_helper_select"] == undefined) TJS.CurrentData.account_object["task_helper_select"] = 0;
+	if(!TJS.CurrentData.account_object["task_helper_select"]) TJS.CurrentData.account_object["task_helper_select"] = 0;
 	for(var i = 0; i < TJS.Const.task_helper_select_list.length; i++){
 		var option_ = document.createElement("option");
 		option_.value = i;
@@ -269,7 +269,7 @@ function menu_top_right(){
 function dorf1_get_attack1(){//not save
 	var movements = document.getElementById("movements");
 	var att_obj = {};
-	if(movements !== null){
+	if(movements ){
 		var trs = movements.getElementsByTagName("tr");
 		for(var i = 0; i< trs.length;i++){
 			var att1s = trs[i].getElementsByClassName("att1");
@@ -301,7 +301,7 @@ function ReadDataBuilding(){//not save
 	}else if(window.location.pathname.indexOf("dorf1.php")>=0 || window.location.pathname.indexOf("dorf2.php")>=0) TJS.CurrentData.village_object["Builds"] = [];
 }
 
-if(TJS.CurrentData.sidebarBoxVillagelist != null){	
+if(TJS.CurrentData.sidebarBoxVillagelist ){	
 	menu_top_right();
 	show_culture();
 	if(window.location.pathname.indexOf("dorf1.php")>=0) dorf1_get_attack1();//need save

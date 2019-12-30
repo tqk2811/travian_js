@@ -1,6 +1,6 @@
 function dorf3_icon_count(){
 	window.dorf3overview = document.getElementById("overview");
-	if(dorf3overview !== null){
+	if(dorf3overview){
 		var att1s = dorf3overview.getElementsByClassName("att1");
 		dorf3_icon_attack_count("att1","color:red;");
 		dorf3_icon_attack_count("att3","color:#E6E6FA");
@@ -36,7 +36,7 @@ var troop_train_timer = [];
 
 function troop_train_show(){
 	var stockBar = document.getElementById("stockBar");
-	if(stockBar !== null){
+	if(stockBar){
 		var main_div = document.createElement("div");
 		main_div.setAttribute("style","height:100%; width:100%; overflow: hidden; margin-top:10px;");
 	
@@ -44,23 +44,23 @@ function troop_train_show(){
 		div_barack.setAttribute("style",troop_train_child_div_style);
 	
 		var barack_19 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_19"];
-		if(barack_19 !== undefined && barack_19) troop_train_add_child(div_barack,"Barrack",19);
+		if(barack_19  && barack_19) troop_train_add_child(div_barack,"Barrack",19);
 	
 		var barack_29 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_29"];
-		if(barack_29 !== undefined && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
+		if(barack_29  && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
 		var div_stable = document.createElement("div");// gid 20,30
 		div_stable.setAttribute("style",troop_train_child_div_style);
 		var stable_20 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_20"];
-		if(stable_20 !== undefined && stable_20) troop_train_add_child(div_stable,"Stable",20);
+		if(stable_20  && stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
 		var stable_30 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_30"];	
-		if(stable_30 !== undefined && stable_30) troop_train_add_child(div_stable,"GStable",30);
+		if(stable_30  && stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 		var div_workshop = document.createElement("div");// gid 21
 		div_workshop.setAttribute("style",troop_train_child_div_style);
 		var workshop = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_21"];
-		if(workshop !== undefined && workshop) troop_train_add_child(div_workshop,"Workshop",21);
+		if(workshop  && workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
 		main_div.appendChild(div_barack);
 		main_div.appendChild(div_stable);
@@ -91,12 +91,12 @@ function img_to_gid16(){
 		for(var j = 0; j < img_class.length;j++)
 			if(img_class[j].parentElement.tagName == "A"){
 				var village_id_str = TJS.getParameterByName(img_class[j].parentElement.href,"newdid");			
-				if(village_id_str !== null) img_class[j].parentElement.href = TJS.Const.imgs_troop_move[i][1] + "&newdid=" + village_id_str;
+				if(village_id_str) img_class[j].parentElement.href = TJS.Const.imgs_troop_move[i][1] + "&newdid=" + village_id_str;
 				else img_class[j].parentElement.href = TJS.Const.imgs_troop_move[i][1];
 			}
 	}
 	var troops = document.getElementById("troops");
-	if(troops !== null){
+	if(troops){
 		var a_s = troops.getElementsByTagName("a");
 		for(var i = 0; i < a_s.length; i++) a_s[i].setAttribute("href","/build.php?gid=16&tt=1&filter=3");
 	}
@@ -104,7 +104,7 @@ function img_to_gid16(){
 
 function read_celebration_tab(){
 	var culture_points = document.getElementById("culture_points");
-	if(culture_points !== null){
+	if(culture_points ){
 		var sec_now = TJS.CurrentSec();
 		var vil_fcs = culture_points.getElementsByClassName("vil fc");
 		var cels = culture_points.getElementsByClassName("cel");

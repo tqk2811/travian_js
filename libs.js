@@ -18,9 +18,6 @@ String.prototype.format = function(){
 String.prototype.getASCII = function(){
 	return this.replace(/[^\x00-\x7F]/g, "");
 }
-function IsNullOrUndefined(a){
-	return a == undefined || a == null;
-}
 function AddUriCss(uri){
     var s = document.createElement('link');
     s.setAttribute("href",uri + "?refresh_="+refresh_);
@@ -79,37 +76,37 @@ TJS = {
 		return v;
 	},
 	LSGetObject : function(name,id){
-		var json_text = localStorage.getItem(name + (id == null ? "" : "_" +id));
+		var json_text = localStorage.getItem(name + (id ? "_" +id : ""));
 		var obj = {};
-		if(json_text !== null) obj = JSON.parse(json_text);
+		if(json_text) obj = JSON.parse(json_text);
 		return obj;
 	},
 	LSSaveObject : function(name,id,data){
-		localStorage.setItem(name + (id == null ? "" : "_" +id),JSON.stringify(data));
+		localStorage.setItem(name + (id ? "_" +id : ""),JSON.stringify(data));
 	},
 	TJS_Timer : function(){
 		var ListTimer = document.getElementsByClassName(TJS.Const.ClassTimer);
 		for(var i = 0; i < ListTimer.length; i ++)
 		{
 			var state = ListTimer[i].getAttribute("state");//run,stop
-			if(state !== null && state == "stop") continue;						
+			if(state && state == "stop") continue;						
 			var sound = ListTimer[i].getAttribute("sound");//url
 			var counting = ListTimer[i].getAttribute("counting");//up,down
 			var adv_text = ListTimer[i].getAttribute("adv_text");//use with String.prototype.format
 			var loader = ListTimer[i].getAttribute("loader");//true,false
 			
-			var isdown = counting == null ? true : ( counting == "down" ? true : false );
+			var isdown = counting ? ( counting == "down" ? true : false ) : true;
 			var num = 0;
 			if(isdown) num = Number(ListTimer[i].getAttribute("value")) - 1;
 			else num = Number(ListTimer[i].getAttribute("value")) + 1;
 			
-			if(adv_text == null) adv_text = "%s";
+			if(!adv_text) adv_text = "%s";
 			if(num >= 0){
-				if(num == 1 && sound !== null) TJS.CurrentData.ding_sound.play();
+				if(num == 1 && sound ) TJS.CurrentData.ding_sound.play();
 				ListTimer[i].innerText = adv_text.format(TJS.GetTimeTextFromSecondLeft(num));
 				ListTimer[i].setAttribute("value",num);
-				if(loader == null || loader == "false") ListTimer[i].setAttribute("loader",true);
-			}else if(loader == null || loader == "false"){
+				if(!loader || loader == "false") ListTimer[i].setAttribute("loader",true);
+			}else if(!loader || loader == "false"){
 				ListTimer[i].innerText = adv_text.format("00:00");
 				ListTimer[i].setAttribute("loader",true);
 			}
@@ -270,7 +267,7 @@ TJS = {
 		window.err_ = document.createElement("div");
 		err_.setAttribute("style","color:red;");	
 		var sidebarBoxLinklist = document.getElementById("sidebarBoxLinklist");
-		if(sidebarBoxLinklist !== null)
+		if(sidebarBoxLinklist)
 		{
 			var innerBox_header = sidebarBoxLinklist.getElementsByClassName("content")[0];
 			innerBox_header.insertAdjacentElement("afterbegin",window.err_);
@@ -316,7 +313,7 @@ TJS = {
 	HotKeyBack : function(){//need check
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[0].click();
-		if(!IsNullOrUndefined(TJS.CurrentData.e_build))
+		if(TJS.CurrentData.e_build)
 		{
 			var previous = TJS.CurrentData.e_build.getElementsByClassName("previous");
 			if(previous.length > 0) previous[0].click();
@@ -325,7 +322,7 @@ TJS = {
 	HotKeyNext : function(){//need check
 		var reportQuickNavigations = document.getElementsByClassName("reportQuickNavigation");
 		if(reportQuickNavigations.length == 2) reportQuickNavigations[1].click();
-		if(!IsNullOrUndefined(TJS.CurrentData.e_build))
+		if(TJS.CurrentData.e_build)
 		{
 			var nexts = TJS.CurrentData.e_build.getElementsByClassName("next");
 			if(nexts.length > 0) nexts[0].click();
@@ -334,7 +331,7 @@ TJS = {
 	attacks_img : httpGetGithubCdnUri("src/attacks.gif"),
 	InitCheckboxOnclick : function(e,name,callback_ = null,all_village = false){
 		var obj = all_village ? TJS.CurrentData.account_object : TJS.CurrentData.village_object;
-		if(obj["checkbox_status"][name] == undefined){
+		if(!obj["checkbox_status"][name]){
 			obj["checkbox_status"][name] = false;
 			if(all_village) TJS.SaveCurrentAccount();
 			else TJS.SaveCurrentVillage();
@@ -342,7 +339,7 @@ TJS = {
 		e.checked = obj["checkbox_status"][name];
 		e.onchange = function(){ 
 			obj["checkbox_status"][name] = e.checked;
-			if(callback_ !== null) callback_();
+			if(callback_) callback_();
 			if(all_village) TJS.SaveCurrentAccount();
 			else TJS.SaveCurrentVillage();
 		}
@@ -351,7 +348,7 @@ TJS = {
 		AddUriScript(httpGetGithubCdnUri("src/global.js"));//
 		//AddUriCss(httpGetGithubCdnUri("src/css.css"));//
 		AddUriScript(httpGetGithubCdnUri("src/npc_helper.js"));//
-		if(window.firstLoad == undefined || window.firstLoad)
+		if(window.firstLoad)
 		{
 			AddUriScript(httpGetGithubCdnUri("src/dorf.js"));//read data -> task_helper
 			AddUriScript(httpGetGithubCdnUri("src/builds.js"));//read data -> task_helper
@@ -434,13 +431,12 @@ TJS.CurrentData = {
 	Timeout : 200
 }
 TJS.CurrentData.Gid = function(){
-	if(TJS.CurrentData.e_build == null) return -1;
+	if(!TJS.CurrentData.e_build) return -1;
 	var gid_str = TJS.CurrentData.e_build.getAttribute("class").split(" ")[0];
 	return Number(gid_str.substring(3,gid_str.length));
 }();
 TJS.CurrentData.listVillage = function() {
-	if(TJS.CurrentData.sidebarBoxVillagelist !== null) 
-		return TJS.CurrentData.sidebarBoxVillagelist.getElementsByTagName("li");
+	if(TJS.CurrentData.sidebarBoxVillagelist) return TJS.CurrentData.sidebarBoxVillagelist.getElementsByTagName("li");
 	else return null;
 }();
 TJS.CurrentData.active_village = function(){
@@ -450,22 +446,22 @@ TJS.CurrentData.active_village = function(){
 	return null; 
 }();
 TJS.CurrentData.VillageId = function(){
-	if (TJS.CurrentData.active_village !== null)
+	if (TJS.CurrentData.active_village )
 		return Number(TJS.getParameterByName(TJS.CurrentData.active_village.getElementsByTagName("a")[0].getAttribute("href"),"newdid"));
 	else return null;
 }();
 TJS.CurrentData.village_object = function(){
-	if(TJS.CurrentData.VillageId !== null){
+	if(TJS.CurrentData.VillageId){
 		var obj = TJS.LSGetObject("village",TJS.CurrentData.VillageId);
-		if(obj["checkbox_status"] == undefined) obj["checkbox_status"] = {};
+		if(!obj["checkbox_status"]) obj["checkbox_status"] = {};
 		return obj;
 	}
 	else return null;
 }();
 TJS.CurrentData.account_object = function(){
-	if(TJS.CurrentData.UserName !== null){
+	if(TJS.CurrentData.UserName){
 		var obj = TJS.LSGetObject("account",TJS.CurrentData.UserName);
-		if(obj["checkbox_status"] == undefined) obj["checkbox_status"] = {};
+		if(!obj["checkbox_status"]) obj["checkbox_status"] = {};
 		return obj;
 	} else return null;
 }();
@@ -492,7 +488,7 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [//need check
 	[document.getElementsByClassName("layoutButton barracks gold")[0],"/build.php?gid=19"],//barracks
 	[document.getElementsByClassName("layoutButton market gold")[0],"/build.php?gid=17"]//market
 ];
-if(TJS.CurrentData.list_sidebarBoxActiveVillage[0][0] == undefined) TJS.CurrentData.isPlus = true;
+if(!TJS.CurrentData.list_sidebarBoxActiveVillage[0][0]) TJS.CurrentData.isPlus = true;
 TJS.CurrentData.tab_MainActive = function(){
 		if(TJS.CurrentData.tabs.length >= 1) 
 			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : 
@@ -523,7 +519,7 @@ TJS.AddHotKey(9,TJS.HotKeyTabKey);// tab
 TJS.AddHotKey([66,37],TJS.HotKeyBack);//back & left arrow
 TJS.AddHotKey([78,39],TJS.HotKeyNext);//next & right arrow
 TJS.AddHotKey(81,function(){ // Q change task_helper_select
-	if(window.task_helper_select != undefined);
+	if(window.task_helper_select);
 	{
 		var num = Number(window.task_helper_select.value);
 		num++;

@@ -183,7 +183,7 @@ window.npc_helper = {
 	},
 	
 	Trade : function(){
-		if(npc_helper.e_div == null) npc_helper.create_ediv();
+		if(!npc_helper.e_div) npc_helper.create_ediv();
 		npc_helper.e_div.hidden = !npc_helper.e_div.hidden;
 		return;
 	}

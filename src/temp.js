@@ -24,7 +24,7 @@ function gid17_CreateTradeRoutes_load(){
 		return;
 	}
 	var trade_route_str = localStorage.getItem("trade_route");
-	if(trade_route_str !== null)
+	if(trade_route_str )
 	{
 		var obj = JSON.parse(trade_route_str);
 		var tmp_hr = obj["hour"];

@@ -18,7 +18,7 @@ function Get_gid(){
 }
 function build_gid(){
 	window.e_merge = { isOn : false, e_text : null };
-	if(TJS.CurrentData.Gid == 16 && TJS.getParameterByName(window.location.href,"m") !== null && TJS.getParameterByName(window.location.href,"tt") == "2")
+	if(TJS.CurrentData.Gid == 16 && TJS.getParameterByName(window.location.href,"m") && TJS.getParameterByName(window.location.href,"tt") == "2")
 		{
 			window.e_merge.isOn = true;
 			window.setInterval(function(){ 
@@ -43,9 +43,9 @@ function build_gid_TotalRes(e){
 		var parent_ress = ress[0].parentNode.parentNode;
 		if(window.e_merge.isOn)
 		{
-			if(document.getElementById("e_merge") == null)
+			if(!document.getElementById("e_merge"))
 			{
-				if (window.e_merge.e_text == null) 
+				if (!window.e_merge.e_text) 
 				{
 					window.e_merge.e_text = document.createElement("div");
 					window.e_merge.e_text.setAttribute("id","e_merge");
@@ -73,7 +73,7 @@ function build_gid_TotalRes(e){
 			if(class_unit_strings.length == 2)
 			{				
 				var account_object = TJS.CurrentData.account_object;
-				if(account_object["troop"] == undefined) account_object["troop"] = {};
+				if(!account_object["troop"]) account_object["troop"] = {};
 				
 				var unit_id = Number(class_unit_strings[1].substring(1));
 				var unit_tribe = "tribe_error";
@@ -184,13 +184,13 @@ function gid16_bt_CheckAllGreenAttack_onclick(){
 				var isHistoryRed = e_slotRows[j].getElementsByClassName("iReport3").length > 0;
 				
 				var e_input = e_slotRows[j].getElementsByTagName("input");
-				if(e_input !== null && 
+				if(e_input && 
 						!(gid16_cb_attacking.checked && isAttacking ) &&
 						!(isHistoryYellow && !gid16_cb_yellow.checked) &&
 						!(isHistoryRed && !gid16_cb_red.checked)) e_input[0].checked = true;
 			}
 		}
-	if(window.gid16_cb_raid.checked && count == 1 && e_temp !== null)
+	if(window.gid16_cb_raid.checked && count == 1 && e_temp)
 	{
 		var e_bt = e_temp.getElementsByTagName("button");
 		if(e_bt.length >1) e_bt[1].click();
@@ -268,7 +268,7 @@ function gid16_attack_multiwave_trigger(){
 	}
 	else 
 	{
-		if(gid16_Interval_id !== undefined) window.clearInterval(gid16_Interval_id);
+		if(gid16_Interval_id ) window.clearInterval(gid16_Interval_id);
 		gid16_BT_StartCata.disabled  = false;
 		gid16_BT_StartCata.style.backgroundColor = "green";
 		gid16_Label_Delay.disabled  = false;
@@ -291,10 +291,10 @@ function gid16_attack_multiwave_trigger_Interval(){
 
 
 function gid17(){//market
-	if(TJS.CurrentData.tab_MainActive !== null){
+	if(TJS.CurrentData.tab_MainActive){
 		if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("t=0")>=0){//manager
 			var trading_routes = document.getElementById("trading_routes");
-			if(trading_routes !== null){
+			if(trading_routes){
 				var button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Routes";
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
@@ -302,30 +302,27 @@ function gid17(){//market
 				trading_routes.insertAdjacentElement("beforebegin",button_clear);
 				
 				var arr_traderoute_desc = [];			
-				var trading_routes = document.getElementById("trading_routes");
-				if(trading_routes !== null){
-					var desc = trading_routes.getElementsByClassName("desc");
-					for( var i = 0; i < desc.length; i++){
-						var a_desc = desc[i].getElementsByTagName("a");
-						var r = [
-									desc[i].getElementsByClassName("r1")[0].parentElement.innerText,
-									desc[i].getElementsByClassName("r2")[0].parentElement.innerText,
-									desc[i].getElementsByClassName("r3")[0].parentElement.innerText,
-									desc[i].getElementsByClassName("r4")[0].parentElement.innerText
-								];
-						if(a_desc.length > 0){
-							var href_a_desc = a_desc[0].getAttribute("href");
-							var flag_add = true;
-							for(var j = 0; j< arr_traderoute_desc.length; j++)
-								if(arr_traderoute_desc[j][1] == href_a_desc && 
-									r[0] == arr_traderoute_desc[j][2][0] && r[1] == arr_traderoute_desc[j][2][1] &&
-									r[2] == arr_traderoute_desc[j][2][2] && r[3] == arr_traderoute_desc[j][2][3]
-									) { flag_add = false; break; }								
-							if(flag_add) arr_traderoute_desc.push([a_desc[0].innerText,href_a_desc,r]);			
-						}
+				var desc = trading_routes.getElementsByClassName("desc");
+				for( var i = 0; i < desc.length; i++){
+					var a_desc = desc[i].getElementsByTagName("a");
+					var r = [
+								desc[i].getElementsByClassName("r1")[0].parentElement.innerText,
+								desc[i].getElementsByClassName("r2")[0].parentElement.innerText,
+								desc[i].getElementsByClassName("r3")[0].parentElement.innerText,
+								desc[i].getElementsByClassName("r4")[0].parentElement.innerText
+							];
+					if(a_desc.length > 0){
+						var href_a_desc = a_desc[0].getAttribute("href");
+						var flag_add = true;
+						for(var j = 0; j< arr_traderoute_desc.length; j++)
+							if(arr_traderoute_desc[j][1] == href_a_desc && 
+								r[0] == arr_traderoute_desc[j][2][0] && r[1] == arr_traderoute_desc[j][2][1] &&
+								r[2] == arr_traderoute_desc[j][2][2] && r[3] == arr_traderoute_desc[j][2][3]
+								) { flag_add = false; break; }								
+						if(flag_add) arr_traderoute_desc.push([a_desc[0].innerText,href_a_desc,r]);			
 					}
 				}
-				
+								
 				window.gid17_select_clear = document.createElement("select");
 				gid17_select_clear.add(gid17_clear_select(null));
 				arr_traderoute_desc.forEach(function(child){gid17_select_clear.add(gid17_clear_select(child));});
@@ -333,7 +330,7 @@ function gid17(){//market
 			}
 
 			var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
-			if(false && e_tradeRouteEdit !== null && Number(TJS.getParameterByName(window.location.href,"option")) == 1)//disable create multi traderoute
+			if(false && e_tradeRouteEdit && Number(TJS.getParameterByName(window.location.href,"option")) == 1)//disable create multi traderoute
 			{
 				var timeSelector = document.getElementsByClassName("timeSelector")[0];
 				
@@ -346,7 +343,7 @@ function gid17(){//market
 		}
 		else if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("t=5")>=0){//send res
 			var marketSend_ = document.getElementById("marketSend");
-			if(marketSend_ !== null){
+			if(marketSend_ ){
 				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry");
 				if(e_carry.length == 1) e_carry[0].remove();
 								
@@ -374,7 +371,7 @@ function gid17(){//market
 				gid17_TypeResSelect.appendChild(gid17_createoption("c_3","Big Celebration / 3"));
 				
 				var account_object = TJS.CurrentData.account_object;
-				if(account_object["troop"] != undefined){
+				if(account_object["troop"] ){
 					var keys = Object.keys(account_object["troop"]);
 					for(var i = 0; i < keys.length; i++)
 						gid17_TypeResSelect.appendChild(gid17_createoption(keys[i],account_object["troop"][keys[i]][0]));
@@ -503,9 +500,9 @@ function gid17_Sliders(){
 }
 function gid17_create_slider(parent_,isMin,village_id){
 	var v = isMin ? 0 : TJS.Const.Slider_Target_Max_Default;
-	if(village_id !== null){
+	if(village_id){
 		var village_obj = TJS.LSGetObject("village",village_id);
-		if(village_obj[isMin ? "gid17min" : "gid17max"] !== undefined) v = village_obj[isMin ? "gid17min" : "gid17max"];
+		if(village_obj[isMin ? "gid17min" : "gid17max"] ) v = village_obj[isMin ? "gid17min" : "gid17max"];
 	}
 	var div = document.createElement("div");
 	parent_.appendChild(div);
@@ -520,7 +517,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("max",100);	
 	slider.setAttribute("type","range");
 	slider.setAttribute("class","slider");
-	if(village_id !== null) slider.setAttribute("village_id",village_id);
+	if(village_id) slider.setAttribute("village_id",village_id);
 	slider.setAttribute("title",isMin ? "Min Current" : "Max Target");
 	slider.setAttribute("isCurrent",isMin);
 	slider.setAttribute("style","width:84%; height:16px;");
@@ -530,7 +527,7 @@ function gid17_create_slider(parent_,isMin,village_id){
 		if(isCurrent) {
 			TJS.CurrentData.village_object["gid17min"] = this.value;
 			TJS.SaveCurrentVillage();
-		}else if(vi !== null){
+		}else if(vi){
 			var vo = TJS.LSGetObject("village",vi);
 			vo["gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
@@ -569,7 +566,7 @@ function gid17_enterVillageName(){
 		if(TJS.ListVillageName[i].name == enterVillageName.value){
 			window.gid17_target_span.innerText = TJS.ListVillageName[i].id;
 			var v_obj_target = TJS.LSGetObject("village",TJS.ListVillageName[i].id);
-			if(v_obj_target["res"] !== undefined){
+			if(v_obj_target["res"] ){
 				window.gid17_r1.innerText = v_obj_target["res"][0];
 				window.gid17_r2.innerText = v_obj_target["res"][1];
 				window.gid17_r3.innerText = v_obj_target["res"][2];
@@ -580,7 +577,7 @@ function gid17_enterVillageName(){
 				window.gid17_target_granary.innerText = v_obj_target["granary"];				
 				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
 				window.slider_target.disabled = false;
-				if(v_obj_target["gid17max"] !== undefined) window.slider_target.value = v_obj_target["gid17max"];
+				if(v_obj_target["gid17max"] ) window.slider_target.value = v_obj_target["gid17max"];
 				else window.slider_target.value = TJS.Const.Slider_Target_Max_Default;
 				window.slider_target.onchange();
 				return;
@@ -650,7 +647,7 @@ function gid17_input_number_onchange(){
 		case "b_1" : 
 			var v_obj_current = TJS.CurrentData.village_object;
 			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
-			if(v_obj_target["res"] == undefined) return;
+			if(!v_obj_target["res"]) return;
 			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
 			var res_merchantsend = Number(window.gid17_input_number.value)*TJS.Const.RoundResource;
 			
@@ -725,7 +722,7 @@ var gid17_clear_select_value =  "%s_%s_%s_%s_%s";
 
 function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 	var e_option = document.createElement("option");
-	if(item == null)
+	if(!item)
 	{
 		e_option.text = "All";
 		e_option.value = "-1";
@@ -733,7 +730,7 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 	else
 	{
 		var v_id = TJS.getParameterByName(item[1],"newdid");
-		if(v_id == null || v_id == '') v_id = TJS.getParameterByName(item[1],"x") + "|" + TJS.getParameterByName(item[1],"y");
+		if(!v_id || v_id == '') v_id = TJS.getParameterByName(item[1],"x") + "|" + TJS.getParameterByName(item[1],"y");
 		e_option.text = gid17_clear_select_text.format(item[0],v_id,item[2][0],item[2][1],item[2][2],item[2][3])
 		e_option.value = gid17_clear_select_value.format(v_id,item[2][0],item[2][1],item[2][2],item[2][3]);
 	}
@@ -743,7 +740,7 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 function gid17_clear_onclick(){
 	if(window.gid17_select_clear.value == "-1") {
 		var deleteAllTradeRoutes = document.getElementById("deleteAllTradeRoutes");
-		if(deleteAllTradeRoutes !== null) {
+		if(deleteAllTradeRoutes) {
 			deleteAllTradeRoutes.click();
 			return;
 		}
@@ -758,9 +755,9 @@ function gid17_clear_onclick(){
 function gid17_clear(){
 	var id = TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR];
 	var gid17_des_clear = TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear];
-	if(id !== undefined && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)	{
+	if(id  && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)	{
 		var trading_routes = document.getElementById("trading_routes");
-		if(trading_routes !== null)		{
+		if(trading_routes)		{
 			var trs = trading_routes.getElementsByTagName("tr");
 			for(var i = 1; i< trs.length; i++)			{
 				var sel_trs = trs[i].getElementsByClassName("sel");
@@ -856,7 +853,7 @@ function troop_train(){//gid 19 20 29 30 21
 		for(var i = 0; i< traintroop_actions.length; i++)
 		{
 			var unit = traintroop_actions[i].getElementsByClassName("unit")[0];
-			if(unit === undefined) continue;
+			if(!unit) continue;
 			var img_ = document.createElement("img");
 			img_.setAttribute("src","img/x.gif");
 			img_.setAttribute("style","margin-left:10px;margin-right:10px");
@@ -897,4 +894,4 @@ var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&
 gid17_clear();
 //gid17_CreateTradeRoutes_load();
 //TroopsResource_load();
-if(TJS.CurrentData.e_build !== null) Get_gid();
+if(TJS.CurrentData.e_build) Get_gid();

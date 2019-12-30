@@ -19,7 +19,7 @@ var color_region_50percent = "#f5e3f9";
 var color_region_otherally = "#f9e3e3";
 function ally_regionalTop5(){
 	var regionalTop5 = document.getElementById("regionalTop5");
-	if(regionalTop5 !== null){
+	if(regionalTop5){
 		var titleInHeaders = document.getElementsByClassName("titleInHeader");		
 		var curr_ally_tag = titleInHeaders[0].innerText.match(/(?<= - ).+$/);
 		

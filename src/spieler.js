@@ -16,7 +16,7 @@ function spieler_addraidlist()
 		var uri_ = e_coords[i].getElementsByTagName("a")[0].href;
 		var x_ = TJS.getParameterByName(uri_,"x");
 		var y_ = TJS.getParameterByName(uri_,"y");
-		if(x_ == null || y_ == null) continue;
+		if(!x_ || !y_) continue;
 		
 		var e_div = document.createElement("div");
 		e_div.innerText = "Add";
@@ -43,8 +43,8 @@ function func_hero_code(){
 	if(pos == -1 ) spieler_uid = TJS.CurrentData.UserName;//current account	
 	else spieler_uid = titleInHeader.substring(pos,titleInHeader.length);
 	
-	if(hero[spieler_uid] == undefined) hero[spieler_uid] = {};
-	if(hero[spieler_uid].code !== undefined){
+	if(!hero[spieler_uid]) hero[spieler_uid] = {};
+	if(hero[spieler_uid].code ){
 		if(hero_item_code != hero[spieler_uid].code.code){
 			hero[spieler_uid].code.code = hero_item_code;
 			hero[spieler_uid].code.time = TJS.CurrentSec();
@@ -99,8 +99,8 @@ function spieler_main()
 		window.spieler_villages = document.getElementById("villages");
 		window.spieler_content = document.getElementById("content");
 		window.spieler_details = document.getElementById("details");
-		if(spieler_villages !== null && TJS.CurrentData.account_object["raidlists"] !== undefined) spieler_addraidlist();
-		if(spieler_content !== null && spieler_details !== null) func_hero_code();
+		if(spieler_villages  && TJS.CurrentData.account_object["raidlists"] ) spieler_addraidlist();
+		if(spieler_content  && spieler_details ) func_hero_code();
 	}
 }
 //spieler_main();
