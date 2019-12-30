@@ -87,11 +87,15 @@ function ShowVillageData(li_element){
 	e_p1.setAttribute("class",TJS.Const.ClassTaskHelper_p1)
 	li_element.appendChild(e_p1);
 	
-	var svg = li_element.getElementsByTagName("svg")[0];
+	
 	if(!global_loader && !TJS.CurrentData.isPlus && village_object["attack1"] ){
 		var timeend = false;
 		if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
-		if(!timeend | village_object["attack1"].count - 1 > 0) svg.style.display = "block";
+		if(!timeend | village_object["attack1"].count - 1 > 0) 
+		{
+			if(topbar)li_element.getElementsByTagName("svg")[0].style.display = "block";
+			else li_element.getElementsByTagName("img")[0].setAttribute("src",TJS.attacks_img);
+		}
 	}
 	switch(Number(window.task_helper_select.value))
 	{
