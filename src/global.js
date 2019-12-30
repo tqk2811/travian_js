@@ -234,9 +234,7 @@ function show_culture(){
 function menu_top_right(){	
 	var e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
-	
-	var topbar = document.getElementById("topBar");
-	if(topbar != null) 
+	if(topbar) 
 	{
 		e_div.setAttribute("style","float:right;width:100%;grid-column-start: 3;grid-row-start: 2;");
 		topbar.appendChild(e_div);
