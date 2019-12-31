@@ -223,7 +223,7 @@ function show_culture(){
 		var villages_text = expansionSlotInfos[0].getElementsByClassName("slots")[0].innerText.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);//‭‭6‬/‭8‬‬
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);
 		boxTitles[0].innerText = villages_text + " (" + tooltip_text + ")";		
-		if(TJS.CurrentData.village_object["celebration_24"] ){
+		if(TJS.CurrentData.village_object["celebration_24"]){
 			var span_timer = document.createElement("span");
 			span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
 			span_timer.setAttribute("class",TJS.Const.ClassTimer);

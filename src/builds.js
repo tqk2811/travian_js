@@ -885,7 +885,7 @@ function read_time_gid_under_progress(name){
 		var value_time = Number(e_time.getAttribute("value"));
 		
 		TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = TJS.CurrentSec() + value_time;		
-	}else TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = 0;
+	}else TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = 1;
 	TJS.SaveCurrentVillage();
 }
 
