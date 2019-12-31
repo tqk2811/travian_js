@@ -220,7 +220,7 @@ function show_culture(){
 	var expansionSlotInfos = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
 	var boxTitles = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
 	if(expansionSlotInfos.length == 1 && boxTitles.length == 1){
-		var villages_text = expansionSlotInfos[0].getElementsByClassName("slots")[0].innerText.replaceAll("‬‬/‭‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);//‭‭6‬/‭8‬‬
+		var villages_text = expansionSlotInfos[0].getElementsByClassName("slots")[0].innerText.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);//‭‭6‬/‭8‬‬
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);
 		boxTitles[0].innerText = villages_text + " (" + tooltip_text + ")";		
 		if(TJS.CurrentData.village_object["celebration_24"] ){
