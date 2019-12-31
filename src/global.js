@@ -231,12 +231,12 @@ function show_culture(){
 			span_timer.setAttribute("adv_text","%s ");
 			span_timer.setAttribute("sound",false);
 			span_timer.setAttribute("style","float:right;padding-right: 8px;");
-			span_timer.onclick = function(){ window.location.href = "/build.php?gid=24"; }
+			span_timer.setAttribute("onclick","window.location.href = \"/build.php?gid=24\"");
 			boxTitles[0].insertAdjacentElement("beforebegin",span_timer);
-		}			
+		}
 	}
 }
-function menu_top_right(){	
+function menu_top_right(){
 	var e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
 	if(topbar) 
