@@ -223,14 +223,14 @@ function show_culture(){
 		var villages_text = expansionSlotInfos[0].getElementsByClassName("slots")[0].innerText.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);//‭‭6‬/‭8‬‬
 		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);
 		boxTitles[0].innerText = villages_text + " (" + tooltip_text + ")";
-		boxTitles[0].setAttribute("style","font-size: small;");
+		boxTitles[0].setAttribute("style","font-size: small;width:75%");
 		if(TJS.CurrentData.village_object["celebration_24"]){
 			var span_timer = document.createElement("span");
 			span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
 			span_timer.setAttribute("class",TJS.Const.ClassTimer);
 			span_timer.setAttribute("adv_text","%s ");
 			span_timer.setAttribute("sound",false);
-			span_timer.setAttribute("style","float:right;padding-right: 8px;");
+			span_timer.setAttribute("style","float:right;padding-right: 8px;width:25%");
 			span_timer.setAttribute("onclick","window.location.href = \"/build.php?gid=24\"");
 			boxTitles[0].insertAdjacentElement("beforebegin",span_timer);
 		}
