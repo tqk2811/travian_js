@@ -671,8 +671,10 @@ function gid17_input_number_onchange(){
 			}
 			var m = 1;
 			var e_run_twice = document.getElementById("x2");
-			if(e_run_twice.tagName == "SELECT") m = Number(e_run_twice.value);
+			if(e_run_twice) {
+				if(e_run_twice.tagName == "SELECT") m = Number(e_run_twice.value);
 			else if(e_run_twice.checked) m = 2;
+			}
 			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr,m);
 			gid17_write_res(result,m);
 			break;
