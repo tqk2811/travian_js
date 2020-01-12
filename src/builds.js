@@ -807,11 +807,13 @@ function gid17_write_res(r,run_twice){
 		= Math.ceil(sumResources/Number(document.getElementById("addRessourcesLink1").innerText));
 	
 	var e_run_twice = document.getElementById("x2");
-	if(e_run_twice.tagName == "SELECT") e_run_twice.value = run_twice;
-	else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox"){
-		switch(run_twice){
-			case 2:e_run_twice.checked = true; break;
-			default: e_run_twice.checked = false; break;
+	if(e_run_twice){
+		if(e_run_twice.tagName == "SELECT") e_run_twice.value = run_twice;
+		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox"){
+			switch(run_twice){
+				case 2:e_run_twice.checked = true; break;
+				default: e_run_twice.checked = false; break;
+			}
 		}
 	}
 }
