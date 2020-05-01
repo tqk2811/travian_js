@@ -32,35 +32,34 @@ function dorf3_icon_attack_count(classname,color){
 
 
 var troop_train_child_div_style = "float: left; width:33%;";
-var troop_train_timer = [];
 
 function troop_train_show(){
 	var stockBar = document.getElementById("stockBar");
 	if(stockBar){
 		var main_div = document.createElement("div");
-		main_div.setAttribute("style","height:100%; width:100%; overflow: hidden; margin-top:10px;");
+		main_div.setAttribute("style","height:100%; width:100%; overflow: hidden; margin-top:3px;");
 	
 		var div_barack = document.createElement("div");// gid 19,29
 		div_barack.setAttribute("style",troop_train_child_div_style);
 	
 		var barack_19 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_19"];
-		if(barack_19  && barack_19) troop_train_add_child(div_barack,"Barrack",19);
+		if(barack_19) troop_train_add_child(div_barack,"Barrack",19);
 	
 		var barack_29 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_29"];
-		if(barack_29  && barack_29) troop_train_add_child(div_barack,"GBarrack",29);
+		if(barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
 		var div_stable = document.createElement("div");// gid 20,30
 		div_stable.setAttribute("style",troop_train_child_div_style);
 		var stable_20 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_20"];
-		if(stable_20  && stable_20) troop_train_add_child(div_stable,"Stable",20);
+		if(stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
 		var stable_30 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_30"];	
-		if(stable_30  && stable_30) troop_train_add_child(div_stable,"GStable",30);
+		if(stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 		var div_workshop = document.createElement("div");// gid 21
 		div_workshop.setAttribute("style",troop_train_child_div_style);
 		var workshop = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_21"];
-		if(workshop  && workshop) troop_train_add_child(div_workshop,"Workshop",21);
+		if(workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
 		main_div.appendChild(div_barack);
 		main_div.appendChild(div_stable);

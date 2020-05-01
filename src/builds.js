@@ -821,8 +821,10 @@ function gid17_write_res(r,run_twice){
 function troop_train(){//gid 19 20 29 30 21
 	//var contract = document.getElementById("contract");
 	var e_div = document.createElement("div");
-	build.insertAdjacentElement("afterbegin",e_div);
-	e_div.setAttribute("style","margin-bottom: 10px;");
+	var build_value = document.getElementById("build_value");
+	var tbody = build_value.getElementsByTagName("tbody")[0];
+	tbody.insertAdjacentElement("afterbegin",e_div);
+	//e_div.setAttribute("style","margin-bottom: 0px;");
 	
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
