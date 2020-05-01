@@ -62,7 +62,7 @@ function troop_train_show(){
 		if(workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
 		var smithy_13 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_13"];
-		if(workshop) troop_train_add_child(div_workshop,"Smithy",13);
+		if(smithy_13) troop_train_add_child(div_workshop,"Smithy",13);
 		
 		main_div.appendChild(div_barack);
 		main_div.appendChild(div_stable);
