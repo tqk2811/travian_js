@@ -53,7 +53,7 @@ function troop_train_show(){
 		var stable_20 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_20"];
 		if(stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
-		var stable_30 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_30"];	
+		var stable_30 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_30"];
 		if(stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 		var div_workshop = document.createElement("div");// gid 21
@@ -61,6 +61,9 @@ function troop_train_show(){
 		var workshop = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_21"];
 		if(workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
+		var smithy_13 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_13"];
+		if(workshop) troop_train_add_child(div_workshop,"Smithy",13);
+		
 		main_div.appendChild(div_barack);
 		main_div.appendChild(div_stable);
 		main_div.appendChild(div_workshop);

@@ -7,6 +7,7 @@ function Get_gid(){
 		case 15: gid15(); return;//main building
 		case 24: gid24(); return;//Town Hall
 		
+		case 13: //Smithy
 		case 19: //barrack
 		case 20: //stable
 		case 21: //workshop
@@ -818,13 +819,21 @@ function gid17_write_res(r,run_twice){
 	}
 }
 
-function troop_train(){//gid 19 20 29 30 21
+function troop_train(){//gid 13 19 20 29 30 21
 	//var contract = document.getElementById("contract");
 	var e_div = document.createElement("div");
+	e_div.setAttribute("style","margin-bottom: 15px;");
 	var build_value = document.getElementById("build_value");
-	var tbody = build_value.getElementsByTagName("tbody")[0];
-	tbody.insertAdjacentElement("afterbegin",e_div);
-	//e_div.setAttribute("style","margin-bottom: 0px;");
+	if(build_value == null)
+	{
+		var upgradeHeader = TJS.CurrentData.e_build.getElementsByClassName("upgradeHeader")[0];
+		upgradeHeader.insertAdjacentElement("afterbegin",e_div);
+	}
+	else
+	{
+		var tbody = build_value.getElementsByTagName("tbody")[0];
+		tbody.insertAdjacentElement("afterbegin",e_div);
+	}
 	
 	window.troop_train_checkbox = document.createElement("input");
 	window.troop_train_checkbox.setAttribute("type","checkbox");
