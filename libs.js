@@ -416,7 +416,8 @@ TJS.CurrentData = {
 	Uid : -1,
 	isPlus : false,
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
-	tabs : document.getElementsByClassName("content favor favorActive"),
+	//list tab: sub :"contentNavi tabNavi tabFavorSubWrapper", main: "contentNavi subNavi tabFavorWrapper"
+	tabs : document.getElementsByClassName("contentNavi"),
 	tab_MainActive : null,
 	tab_SubActive : null,
 	e_build : document.getElementById("build"),
@@ -489,15 +490,18 @@ TJS.CurrentData.list_sidebarBoxActiveVillage = [//need check
 	[document.getElementsByClassName("layoutButton market gold")[0],"/build.php?gid=17"]//market
 ];
 if(!TJS.CurrentData.list_sidebarBoxActiveVillage[0][0]) TJS.CurrentData.isPlus = true;
+//statistiken: 	main tab: "tabItem active", sub tab: "container active", 
+//allianz	:	main tab: "tabItem active", sub tab: "container active", 
 TJS.CurrentData.tab_MainActive = function(){
-		if(TJS.CurrentData.tabs.length >= 1) 
-			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : 
+		if(TJS.CurrentData.tabs.length > 0){
+			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : // allianz,
 					TJS.CurrentData.tabs[0].getElementsByClassName("tabItem")[0].getElementsByTagName("a")[0];
+		}
 		else return null;
 	}();
 TJS.CurrentData.tab_SubActive = function(){
 		if(TJS.CurrentData.tabs.length >= 2) 
-			return TJS.CurrentData.tabs[1].getElementsByClassName("tabItem")[0].getElementsByTagName("a")[0];
+			return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];//allianz
 		else return null;
 	}();
 
