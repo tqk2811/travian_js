@@ -416,7 +416,7 @@ TJS.CurrentData = {
 	Uid : -1,
 	isPlus : false,
 	sidebarBoxVillagelist : document.getElementById("sidebarBoxVillagelist"),
-	tabs : document.getElementsByClassName("contentNavi subNavi tabFavorWrapper"),
+	tabs : document.getElementsByClassName("content favor favorActive"),
 	tab_MainActive : null,
 	tab_SubActive : null,
 	e_build : document.getElementById("build"),
@@ -492,12 +492,12 @@ if(!TJS.CurrentData.list_sidebarBoxActiveVillage[0][0]) TJS.CurrentData.isPlus =
 TJS.CurrentData.tab_MainActive = function(){
 		if(TJS.CurrentData.tabs.length >= 1) 
 			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : 
-					TJS.CurrentData.tabs[0].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];
+					TJS.CurrentData.tabs[0].getElementsByClassName("tabItem")[0].getElementsByTagName("a")[0];
 		else return null;
 	}();
 TJS.CurrentData.tab_SubActive = function(){
 		if(TJS.CurrentData.tabs.length >= 2) 
-			return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];
+			return TJS.CurrentData.tabs[1].getElementsByClassName("tabItem")[0].getElementsByTagName("a")[0];
 		else return null;
 	}();
 
