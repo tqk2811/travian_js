@@ -1,5 +1,4 @@
-function berichte_scouts_count_res()
-{
+function berichte_scouts_count_res(){
 	var entityWrapper_resource = document.getElementsByClassName("inlineIcon resources");//res
 	var rAreas = document.getElementsByClassName("rArea");//cranny
 	if(entityWrapper_resource.length == 4)
@@ -29,7 +28,6 @@ function berichte_scan_arr_troop(e){
 	for(var i = 0; i < tds.length; i++) result.push(Number(tds[i].innerText));
 	return result;
 }
-
 function berichte_count_troops_live(){
 	//var reportWrapper = document.getElementById("reportWrapper");
 	//if(!reportWrapper) return;

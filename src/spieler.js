@@ -103,4 +103,4 @@ function spieler_main()
 		if(spieler_content  && spieler_details ) func_hero_code();
 	}
 }
-//spieler_main();
+spieler_main();

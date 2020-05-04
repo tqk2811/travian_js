@@ -1,4 +1,4 @@
-//if(window.location.href.indexOf("statistiken.php") >= 0) statistiken_();
+if(window.location.href.indexOf("statistiken.php") >= 0) statistiken_();
 
 
 function statistiken_(){
