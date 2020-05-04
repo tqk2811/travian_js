@@ -493,16 +493,17 @@ if(!TJS.CurrentData.list_sidebarBoxActiveVillage[0][0]) TJS.CurrentData.isPlus =
 //statistiken: 	main tab: "tabItem active", sub tab: "container active", 
 //allianz	:	main tab: "tabItem active", sub tab: "container active", 
 TJS.CurrentData.tab_MainActive = function(){
-		if(TJS.CurrentData.tabs.length > 0){
-			return topbar ? TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0] : // allianz,statistiken
-					TJS.CurrentData.tabs[0].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];//?
+		if(TJS.CurrentData.tabs.length > 0){//topbar ?  
+			return TJS.CurrentData.tabs[0].getElementsByClassName("tabItem active")[0]; //allianz,statistiken					
 		}
-		else return null;
+		return null;
 	}();
 TJS.CurrentData.tab_SubActive = function(){
-		if(TJS.CurrentData.tabs.length >= 2) 
-			return TJS.CurrentData.tabs[1].getElementsByClassName("container active")[0].getElementsByTagName("a")[0];//allianz,statistiken
-		else return null;
+		if(TJS.CurrentData.tabs.length > 0){//if tab_MainActive null/undefined -> sub
+			var container_active = TJS.CurrentData.tabs[TJS.CurrentData.tabs.length - 1].getElementsByClassName("container active")[0];
+			if(container_active) return container_active.getElementsByTagName("a")[0];//allianz,statistiken
+		}
+		return null;
 	}();
 
 
