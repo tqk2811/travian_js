@@ -51,8 +51,7 @@ function ally_main(){
 		TJS.CurrentData.tab_SubActive.getAttribute("href").indexOf("action=members") >= 0) 
 			ally_roa_attackcount();
 		
-		if(TJS.CurrentData.tab_SubActive && TJS.CurrentData.tab_SubActive.getAttribute("href").indexOf("action=regionalTop") >= 0) 
-			ally_regionalTop5();
+		ally_regionalTop5();
 	}
 }
 ally_main();
