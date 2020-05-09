@@ -358,7 +358,8 @@ TJS = {
 			AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//	
 			AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//		
 			AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
-			AddUriScript(httpGetGithubCdnUri("src/region.js"));//	
+			AddUriScript(httpGetGithubCdnUri("src/region.js"));//
+			AddUriScript(httpGetGithubCdnUri("src/position_details.js"));//
 			//AddUriScript(httpGetGithubCdnUri("src/karte.js"));//
 		}
 		else
@@ -377,6 +378,7 @@ TJS = {
 				case "/statistiken.php": AddUriScript(httpGetGithubCdnUri("src/statistiken.js")); break;
 				case "/manual.php": AddUriScript(httpGetGithubCdnUri("src/manual.js")); break;
 				case "/region.php": AddUriScript(httpGetGithubCdnUri("src/region.js")); break;
+				case "/position_details.php": AddUriScript(httpGetGithubCdnUri("src/position_details.js")); break;
 				//case "/karte.php": AddUriScript(httpGetGithubCdnUri("src/karte.js")); break;
 				default: break;
 			}
