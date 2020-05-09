@@ -3,7 +3,7 @@ function calRange()
 	var target_x = Number(TJS.getParameterByName(window.location.href,"x"));
 	var target_y = Number(TJS.getParameterByName(window.location.href,"y"));
 	
-	var coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid");
+	var coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid")[0];
 	var current_x = Number(coordinatesGrid.getAttribute("data-x"));
 	var current_y = Number(coordinatesGrid.getAttribute("data-y"));
 	
