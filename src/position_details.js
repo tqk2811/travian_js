@@ -21,7 +21,7 @@ function calRange()
 	var th_TournamentSquare = document.createElement("th");
 	var td_TournamentSquare = document.createElement("td");
 	
-	th_TournamentSquare.innerHTML = "TS<br><input value=\"0\" min=\"0\" max=\"20\" type=\"number\" id=\"TJS_TournamentSquare\" onchange=\"TJS_onchange_caltime()\" style=\"width:50px\">"
+	th_TournamentSquare.innerHTML = "Tournament Square<br><input value=\"0\" min=\"0\" max=\"20\" type=\"number\" id=\"TJS_TournamentSquare\" onchange=\"TJS_onchange_caltime()\" style=\"width:50px\">"
 	td_TournamentSquare.setAttribute("id","td_TournamentSquare");
 	td_TournamentSquare.innerText = "0";
 	tr_TournamentSquare.appendChild(th_TournamentSquare);
