@@ -65,6 +65,18 @@ TJS = {
 		if(hour_ > 0)text_ = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text_;
 		return text_;
 	},
+	GetTimeTextFromHour : function(hour){
+		var hour_ = Math.floor(hour);
+		var min = (hour - hour_) * 60;
+		var min_ = Math.floor(min);
+		var sec = (min - min_) * 60;
+		var sec_ = Math.floor(sec);
+		
+		var text_ = (sec_ < 10) ? "0"+sec_.toString() : sec_.toString();
+		text_ = ((min_ < 10) ? "0"+min_.toString() : min_.toString()) + ":" + text_;
+		if(hour_ > 0) text_ = ((hour_ < 10) ? "0"+hour_.toString() : hour_.toString()) + ":" + text_;
+		return text_;
+	},
 	CreateSoundElement : function(url_sound){
 		var v = document.createElement("video");    
 		v.src = url_sound;
