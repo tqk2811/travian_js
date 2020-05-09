@@ -7,7 +7,7 @@ function calRange()
 	var current_x = Number(coordinatesGrid.getAttribute("data-x"));
 	var current_y = Number(coordinatesGrid.getAttribute("data-y"));
 	
-	window.RangeToTarget = Math.sqrt(Math.pow(target_x - current_x) + Math.pow(target_y - current_y));
+	window.RangeToTarget = Math.sqrt(Math.pow(target_x - current_x,2) + Math.pow(target_y - current_y,2));
 	
 	var village_info = document.getElementById("village_info");
 	var td5 = village_info.getElementsByTagName("td")[5];
