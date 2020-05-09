@@ -38,7 +38,7 @@ function TJS_onchange_caltime()
 	var time = range20 / TJS_BaseSpeed; //hours
 	if(window.RangeToTarget > 20)
 	{
-		var time20p = (window.RangeToTarget - 20) / TJS_BaseSpeed * (1 + 0.2* TJS_TournamentSquare);
+		var time20p = (window.RangeToTarget - 20) / TJS_BaseSpeed / (1 + 0.2* TJS_TournamentSquare);
 		time = time + time20p;
 	}
 	td_TournamentSquare.innerText = TJS.GetTimeTextFromHour(time);
