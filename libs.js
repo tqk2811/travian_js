@@ -70,7 +70,7 @@ TJS = {
 		var min = (hour - hour_) * 60;
 		var min_ = Math.floor(min);
 		var sec = (min - min_) * 60;
-		var sec_ = Math.floor(sec);
+		var sec_ = sec.toFixed(3);
 		
 		var text_ = (sec_ < 10) ? "0"+sec_.toString() : sec_.toString();
 		text_ = ((min_ < 10) ? "0"+min_.toString() : min_.toString()) + ":" + text_;
