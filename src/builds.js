@@ -786,7 +786,7 @@ function gid17_clear(){
 					if(curr_newdid == target[0] && 
 									curr_r[0] == target[1] && curr_r[1] == target[2] && 
 									curr_r[2] == target[3] && curr_r[3] == target[4]	){
-						sel_trs[0].getElementsByTagName("a")[0].click();
+						sel_trs[0].getElementsByTagName("button")[0].click();
 						return;
 					}
 				}
