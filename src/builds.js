@@ -194,7 +194,7 @@ function gid16_bt_CheckGreen_onclick(listid){
 	var listContent = listEntry.getElementsByClassName("listContent")[0];
 	if(listContent.getAttribute("class").indexOf("hide") == -1)
 	{
-		var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
+		var e_slotRows = listContent.getElementsByClassName("slotRow");
 		for(var j = 0; j< e_slotRows.length; j++)
 		{				
 			var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
