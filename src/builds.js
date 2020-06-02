@@ -122,10 +122,10 @@ function gid16_raidlist(){
 	TJS.CurrentData.account_object["raidlists"] = raidlists;
 	TJS.SaveCurrentAccount();
 	
-	var e_bt_CheckAllGreenAttack = document.createElement("button");
-	e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
-	e_bt_CheckAllGreenAttack.innerText = "Check All Green Attacks";
-	e_bt_CheckAllGreenAttack.setAttribute("onclick","gid16_bt_CheckAllGreenAttack_onclick()");			
+	//var e_bt_CheckAllGreenAttack = document.createElement("button");
+	//e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
+	//e_bt_CheckAllGreenAttack.innerText = "Check All Green Attacks";
+	//e_bt_CheckAllGreenAttack.setAttribute("onclick","gid16_bt_CheckAllGreenAttack_onclick()");
 	
 	window.gid16_cb_raid = document.createElement("input");//
 	gid16_cb_raid.setAttribute("type","checkbox");
@@ -160,14 +160,63 @@ function gid16_raidlist(){
 	e_LB_red.appendChild(window.gid16_cb_red);
 	
 	var e_div = document.createElement("div");
-	e_div.appendChild(e_bt_CheckAllGreenAttack);
+	//e_div.appendChild(e_bt_CheckAllGreenAttack);
 	e_div.appendChild(e_LB_raid);
 	e_div.appendChild(e_LB_attacking);			
 	e_div.appendChild(e_LB_yellow);
 	e_div.appendChild(e_LB_red);
 	TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
+	
+	var current_time = TJS.CurrentSec();
+	var listEntrys = document.getElementsByClassName("listEntry");
+	for(var i = 0; i < listEntrys.length; i++)
+	{
+		var listid = listEntrys[i].getAttribute("id");
+		var listTitleText = listEntrys[i].getElementsByClassName("listTitleText")[0];
+		var time_last_click = TJS.CurrentData.account_object["raidlist_" + listid];
+		var text_button = "Check Green";
+		if(time_last_click)
+		{
+			var texttime = TJS.GetTimeTextFromSecondLeft(current_time - Number(time_last_click));
+			text_button += " (" + texttime + " ago)";
+		}
+		var buttoncheck = = document.createElement("label");
+		buttoncheck.setAttribute("style","background-color:green;float:right;color:white;");
+		buttoncheck.innerText = text_button;
+		buttoncheck.setAttribute("onclick","gid16_bt_CheckGreen_onclick(\"" + listid + "\")");		
+		listTitleText.appendChild(buttoncheck);
+	}
 }
-function gid16_bt_CheckAllGreenAttack_onclick(){
+function gid16_bt_CheckGreen_onclick(listid){
+	var listEntry = document.getElementById(listid);
+	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
+	TJS.SaveCurrentAccount();
+	var listContent = listEntry.getElementsByClassName("listEntry")[0];
+	if(listContent.getAttribute("class").indexOf("hide") == -1)
+	{
+		var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
+		for(var j = 0; j< e_slotRows.length; j++)
+		{				
+			var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
+			var isAttacking = e_img_attack.length > 0;
+			var isHistoryYellow = e_slotRows[j].getElementsByClassName("iReport2").length > 0;
+			var isHistoryRed = e_slotRows[j].getElementsByClassName("iReport3").length > 0;
+				
+			var e_input = e_slotRows[j].getElementsByTagName("input");
+			if(e_input && 
+				!(gid16_cb_attacking.checked && isAttacking ) &&
+				!(isHistoryYellow && !gid16_cb_yellow.checked) &&
+				!(isHistoryRed && !gid16_cb_red.checked)) e_input[0].checked = true;
+		}
+		
+		if(window.gid16_cb_raid.checked)
+		{
+			var e_bt = listEntry.getElementsByTagName("button");
+			if(e_bt.length == 4) e_bt[3].click();
+		}
+	}
+	
+	
 	var e_listContents = document.getElementsByClassName("listContent");
 	var count = 0;
 	var e_temp = null;
