@@ -67,8 +67,8 @@ function berichte_clear()
 	label_clear.setAttribute("onclick","berichte_clear_onclick()");
 	label_clear.innerText = "Clear";
 	
-	var paginator = document.getElementsByClassName("paginator")[0];
-	paginator.insertAdjacentElement("afterend",label_clear);
+	var paginator = document.getElementsByClassName("paginator");
+	if(paginator.length > 0) paginator[0].insertAdjacentElement("afterend",label_clear);
 }
 function berichte_clear_onclick()
 {
@@ -89,6 +89,8 @@ function berichte_main()
 	{
 		administration = document.getElementsByClassName("administration");
 		if(administration.length >= 1) TJS.MoveElementUp(administration[0],3);
+		
+		berichte_clear();
 		
 		if(window.location.href.indexOf("id=") >=0) {
 			berichte_scouts_count_res();
