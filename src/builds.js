@@ -180,7 +180,7 @@ function gid16_raidlist(){
 			var texttime = TJS.GetTimeTextFromSecondLeft(current_time - Number(time_last_click));
 			text_button += " (" + texttime + " ago)";
 		}
-		var buttoncheck = = document.createElement("label");
+		var buttoncheck = document.createElement("label");
 		buttoncheck.setAttribute("style","background-color:green;float:right;color:white;");
 		buttoncheck.innerText = text_button;
 		buttoncheck.setAttribute("onclick","gid16_bt_CheckGreen_onclick(\"" + listid + "\")");		
