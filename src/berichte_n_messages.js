@@ -60,6 +60,28 @@ function berichte_count_troops_live(){
 	}
 }
 
+function berichte_clear()
+{
+	var label_clear = document.createElement("label");
+	label_clear.setAttribute("style","background-color:green;float:right;color:white;margin-right: 200px;");
+	label_clear.setAttribute("onclick","berichte_clear_onclick()");
+	label_clear.innerText = "Clear";
+	
+	var paginator = document.getElementsByClassName("paginator")[0];
+	paginator.insertAdjacentElement("afterend",label_clear);
+}
+function berichte_clear_onclick()
+{
+	if(window.confirm("Delete all in this page?"))
+	{
+		var checkall = document.getElementById("sAll1");
+		checkall.click();
+		var del = document.getElementById("del");
+		del.click();
+	}
+}
+
+
 
 function berichte_main()
 {
