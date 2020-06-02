@@ -189,11 +189,12 @@ function gid16_raidlist(){
 }
 function gid16_bt_CheckGreen_onclick(listid){
 	var listEntry = document.getElementById(listid);
-	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
-	TJS.SaveCurrentAccount();
+	if(!listEntry) return;
 	var listContent = listEntry.getElementsByClassName("listContent")[0];
 	if(listContent.getAttribute("class").indexOf("hide") == -1)
 	{
+		TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
+		TJS.SaveCurrentAccount();
 		var e_slotRows = listContent.getElementsByClassName("slotRow");
 		for(var j = 0; j< e_slotRows.length; j++)
 		{				
@@ -214,36 +215,6 @@ function gid16_bt_CheckGreen_onclick(listid){
 			var e_bt = listEntry.getElementsByTagName("button");
 			if(e_bt.length == 4) e_bt[3].click();
 		}
-	}
-	
-	
-	var e_listContents = document.getElementsByClassName("listContent");
-	var count = 0;
-	var e_temp = null;
-	for(var i =0; i < e_listContents.length; i++)
-		if(e_listContents[i].getAttribute("class").indexOf("hide") == -1)
-		{
-			e_temp = e_listContents[i];
-			count++;
-			var e_slotRows = e_listContents[i].getElementsByClassName("slotRow");
-			for(var j = 0; j< e_slotRows.length; j++)
-			{				
-				var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
-				var isAttacking = e_img_attack.length > 0;
-				var isHistoryYellow = e_slotRows[j].getElementsByClassName("iReport2").length > 0;
-				var isHistoryRed = e_slotRows[j].getElementsByClassName("iReport3").length > 0;
-				
-				var e_input = e_slotRows[j].getElementsByTagName("input");
-				if(e_input && 
-						!(gid16_cb_attacking.checked && isAttacking ) &&
-						!(isHistoryYellow && !gid16_cb_yellow.checked) &&
-						!(isHistoryRed && !gid16_cb_red.checked)) e_input[0].checked = true;
-			}
-		}
-	if(window.gid16_cb_raid.checked && count == 1 && e_temp)
-	{
-		var e_bt = e_temp.getElementsByTagName("button");
-		if(e_bt.length >1) e_bt[1].click();
 	}
 }
 
