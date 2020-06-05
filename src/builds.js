@@ -586,19 +586,19 @@ function gid17_enterVillageName(){
 	for(var i = 0; i < TJS.ListVillageName.length; i++){
 		if(TJS.ListVillageName[i].name == enterVillageName.value){
 			window.gid17_target_span.innerText = TJS.ListVillageName[i].id;
-			var v_obj_target = TJS.LSGetObject("village",TJS.ListVillageName[i].id);
-			if(v_obj_target["res"] ){
-				window.gid17_r1.innerText = v_obj_target["res"][0];
-				window.gid17_r2.innerText = v_obj_target["res"][1];
-				window.gid17_r3.innerText = v_obj_target["res"][2];
-				window.gid17_r4.innerText = v_obj_target["res"][3];
-				window.gid17_timer.setAttribute("value",TJS.CurrentSec() - v_obj_target["updatein"]);
+			window.gid17_obj_target = TJS.LSGetObject("village",TJS.ListVillageName[i].id);
+			if(gid17_obj_target["res"]){
+				window.gid17_r1.innerText = gid17_obj_target["res"][0];
+				window.gid17_r2.innerText = gid17_obj_target["res"][1];
+				window.gid17_r3.innerText = gid17_obj_target["res"][2];
+				window.gid17_r4.innerText = gid17_obj_target["res"][3];
+				window.gid17_timer.setAttribute("value",TJS.CurrentSec() - gid17_obj_target["updatein"]);
 				window.gid17_timer.setAttribute("state","run");
-				window.gid17_target_storage.innerText = v_obj_target["storage"];
-				window.gid17_target_granary.innerText = v_obj_target["granary"];				
+				window.gid17_target_storage.innerText = gid17_obj_target["storage"];
+				window.gid17_target_granary.innerText = gid17_obj_target["granary"];				
 				window.slider_target.setAttribute("village_id",TJS.ListVillageName[i].id);
 				window.slider_target.disabled = false;
-				if(v_obj_target["gid17max"] ) window.slider_target.value = v_obj_target["gid17max"];
+				if(gid17_obj_target["gid17max"] ) window.slider_target.value = gid17_obj_target["gid17max"];
 				else window.slider_target.value = TJS.Const.Slider_Target_Max_Default;
 				window.slider_target.onchange();
 				return;
@@ -711,11 +711,14 @@ function gid17_input_number_onchange(){
 			break;
 			
 		default:
+			var target = false;
+			if(window.gid17_obj_target["res"]) target = true;
+			
 			var res_troops = [
-						gid17_TroopRes[1]*Number(gid17_input_number.value),
-						gid17_TroopRes[2]*Number(gid17_input_number.value),
-						gid17_TroopRes[3]*Number(gid17_input_number.value),
-						gid17_noncrop.checked ? 0 : gid17_TroopRes[4]*Number(gid17_input_number.value)
+						gid17_TroopRes[1]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][0] : 0),
+						gid17_TroopRes[2]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][1] : 0),
+						gid17_TroopRes[3]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][2] : 0),
+						gid17_noncrop.checked ? 0 : (gid17_TroopRes[4]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][3] : 0))
 			];
 			gid17_write_res(res_troops,1);
 			break;
@@ -725,9 +728,11 @@ function gid17_findmaxtroops(){
 	var maxtroops = -1;
 	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
 	var total_res_for_troop = 0;
+	var target = false;
+	if(window.gid17_obj_target["res"]) target = true;
 	for(var i = 0; i < 4; i++)// max troop res
 	{
-		var num = Math.floor(TJS.CurrentData.village_object.res[i]/gid17_TroopRes[i+1]);
+		var num = Math.floor((TJS.CurrentData.village_object.res[i] + (target ? gid17_obj_target["res"][i] : 0))/gid17_TroopRes[i+1]);
 		if(gid17_noncrop.checked && i == 3) break;
 		total_res_for_troop += gid17_TroopRes[i+1];
 		if(maxtroops == -1) maxtroops = num;
