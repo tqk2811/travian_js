@@ -720,6 +720,7 @@ function gid17_input_number_onchange(){
 						gid17_TroopRes[3]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][2] : 0),
 						gid17_noncrop.checked ? 0 : (gid17_TroopRes[4]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][3] : 0))
 			];
+			for(var i = 0; i < 4; i++) if(res_troops[i] < 0) res_troops[i] = 0;
 			gid17_write_res(res_troops,1);
 			break;
 	}
