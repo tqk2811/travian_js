@@ -690,12 +690,7 @@ function gid17_input_number_onchange(){
 				}
 				arr.push(obj);
 			}
-			var m = 1;
-			var e_run_twice = document.getElementById("x2");
-			if(e_run_twice) {
-				if(e_run_twice.tagName == "SELECT") m = Number(e_run_twice.value);
-			else if(e_run_twice.checked) m = 2;
-			}
+			var m = gid17_getx2();
 			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr,m);
 			gid17_write_res(result,m);
 			break;
@@ -713,11 +708,12 @@ function gid17_input_number_onchange(){
 		default:
 			var target = false;
 			if(window.gid17_obj_target["res"]) target = true;
-			
+			var send_times = gid17_getx2();
+			var num_troops = Math.floor(Number(gid17_input_number.value)/send_times);			
 			var res_troops = [
-						gid17_TroopRes[1]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][0] : 0),
-						gid17_TroopRes[2]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][1] : 0),
-						gid17_TroopRes[3]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][2] : 0),
+						gid17_TroopRes[1] * num_troops - (target ? gid17_obj_target["res"][0] : 0),
+						gid17_TroopRes[2] * num_troops - (target ? gid17_obj_target["res"][1] : 0),
+						gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0),
 						gid17_noncrop.checked ? 0 : (gid17_TroopRes[4]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][3] : 0))
 			];
 			for(var i = 0; i < 4; i++) if(res_troops[i] < 0) res_troops[i] = 0;
@@ -725,9 +721,19 @@ function gid17_input_number_onchange(){
 			break;
 	}
 }
+function gid17_getx2(){
+	var result = 1;
+	var e_run_twice = document.getElementById("x2");
+	if(e_run_twice) {
+		if(e_run_twice.tagName == "SELECT") result = Number(e_run_twice.value);
+		else if(e_run_twice.checked) result = 2;
+	}
+	return result;
+}
 function gid17_findmaxtroops(){
 	var maxtroops = -1;
-	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
+	var send_times = gid17_getx2();
+	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
 	var total_res_for_troop = 0;
 	var target = false;
 	if(window.gid17_obj_target["res"]) target = true;
@@ -737,7 +743,7 @@ function gid17_findmaxtroops(){
 		if(gid17_noncrop.checked && i == 3) break;
 		total_res_for_troop += gid17_TroopRes[i+1];
 		if(maxtroops == -1) maxtroops = num;
-		if(num < maxtroops) maxtroops = num;
+		if(num < maxtroops) maxtroops = num;//find min
 	}
 	var max_troops_merchant = Math.floor(merchantCapacityValue/total_res_for_troop);
 	if(max_troops_merchant < maxtroops) maxtroops = max_troops_merchant;
