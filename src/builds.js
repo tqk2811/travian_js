@@ -709,12 +709,12 @@ function gid17_input_number_onchange(){
 			var target = false;
 			if(window.gid17_obj_target["res"]) target = true;
 			var send_times = gid17_getx2();
-			var num_troops = Math.floor(Number(gid17_input_number.value)/send_times);			
-			var res_troops = [
-						gid17_TroopRes[1] * num_troops - (target ? gid17_obj_target["res"][0] : 0),
-						gid17_TroopRes[2] * num_troops - (target ? gid17_obj_target["res"][1] : 0),
-						gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0),
-						gid17_noncrop.checked ? 0 : (gid17_TroopRes[4]*Number(gid17_input_number.value) - (target ? gid17_obj_target["res"][3] : 0))
+			var num_troops = Number(gid17_input_number.value);
+			var res_need = [
+											(gid17_TroopRes[1] * num_troops - (target ? gid17_obj_target["res"][0] : 0)) / send_times,
+											(gid17_TroopRes[2] * num_troops - (target ? gid17_obj_target["res"][1] : 0)) / send_times,
+											(gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0)) / send_times,
+				gid17_noncrop.checked ? 0 :(gid17_TroopRes[4] * num_troops / send_times),
 			];
 			for(var i = 0; i < 4; i++) if(res_troops[i] < 0) res_troops[i] = 0;
 			gid17_write_res(res_troops,send_times);
