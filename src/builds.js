@@ -710,7 +710,7 @@ function gid17_input_number_onchange(){
 			if(window.gid17_obj_target["res"]) target = true;
 			var send_times = gid17_getx2();
 			var num_troops = Number(gid17_input_number.value);
-			var res_need = [
+			var res_troops = [
 											(gid17_TroopRes[1] * num_troops - (target ? gid17_obj_target["res"][0] : 0)) / send_times,
 											(gid17_TroopRes[2] * num_troops - (target ? gid17_obj_target["res"][1] : 0)) / send_times,
 											(gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0)) / send_times,
