@@ -716,7 +716,11 @@ function gid17_input_number_onchange(){
 											(gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0)) / send_times,
 				gid17_noncrop.checked ? 0 :(gid17_TroopRes[4] * num_troops / send_times),
 			];
-			for(var i = 0; i < 4; i++) if(res_troops[i] < 0) res_troops[i] = 0;
+			for(var i = 0; i < 4; i++) 
+			{
+				if(res_troops[i] < 0) res_troops[i] = 0;
+				else res_troops[i] = Math.floor(res_troops[i]);
+			}
 			gid17_write_res(res_troops,send_times);
 			break;
 	}
