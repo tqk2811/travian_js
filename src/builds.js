@@ -733,25 +733,39 @@ function gid17_getx2(){
 	return result;
 }
 function gid17_findmaxtroops(){
-	var maxtroops = -1;
+	var maxtroops = 99999999;
 	var send_times = gid17_getx2();
 	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
-	var total_res_for_troop = 0;
+	var res_for_a_troop = 0;
+
 	var total_res_target = 0;
 	var target = false;
 	if(window.gid17_obj_target["res"]) target = true;
+	var stogare_target = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
+	var granary_target = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
 	for(var i = 0; i < 4; i++)// max troop res
 	{
 		if(3 == i && gid17_noncrop.checked) break;//skip if non crop
-		//(current + target) / base res train troop = num troop
-		var num = Math.floor((TJS.CurrentData.village_object.res[i] + (target ? gid17_obj_target["res"][i] : 0))/gid17_TroopRes[i+1]);
+		var res = TJS.CurrentData.village_object.res[i] + (target ? gid17_obj_target["res"][i] : 0);		
+		if(3 == i)
+		{
+			if(res >= stogare_target) res = stogare_target;
+		}
+		else
+		{
+			if(res >= granary_target) res = granary_target;
+		}
+		var max = Math.floor( res / gid17_TroopRes[i+1]);
 		if (target) total_res_target += gid17_obj_target["res"][i];
-		total_res_for_troop += gid17_TroopRes[i+1];
-		if(maxtroops == -1) maxtroops = num;//first
-		if(num < maxtroops) maxtroops = num;//find min
+		res_for_a_troop += gid17_TroopRes[i+1];
+		if(max < maxtroops) maxtroops = max;//find min
 	}
-	var max_troops_merchant = Math.floor(merchantCapacityValue + total_res_target/total_res_for_troop);
-	if(max_troops_merchant < maxtroops) maxtroops = max_troops_merchant;//find min
+	var total_res_carry = res_for_a_troop * maxtroops - total_res_target;
+	if(merchantCapacityValue < total_res_carry)
+	{
+		var total_res_need = merchantCapacityValue + total_res_target;
+		maxtroops = Math.floor(total_res_need/res_for_a_troop);
+	}
 	
 	gid17_label_max.innerText = "/" + maxtroops.toString();
 	gid17_input_number.max = maxtroops;
