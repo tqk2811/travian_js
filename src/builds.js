@@ -754,7 +754,7 @@ function gid17_findmaxtroops(){
 		var total_res_2village = res_current[i] + res_target[i];
 		if(total_res_2village > storage_target[i]) total_res_2village = storage_target[i];//fix
 		total_res_target += res_target[i];
-		var maxtroop_res = total_res_2village / gid17_TroopRes[i+1];
+		var maxtroop_res = Math.floor(total_res_2village / gid17_TroopRes[i+1]);
 		if(maxtroop_res < maxtroops) maxtroops = maxtroop_res;//find min
 	}
 	var res_merchanWillCarry = res_for_a_troop * maxtroops - total_res_target;
@@ -766,7 +766,7 @@ function gid17_findmaxtroops(){
 		{
 			if(3 == i && gid17_noncrop.checked) break;
 			var res_need = maxtroops * gid17_TroopRes[i+1];
-			if(res_need > res_target) res_merchanWillCarry += (res_need - res_target);
+			if(res_need > res_target[i]) res_merchanWillCarry += (res_need - res_target[i]);
 		}
 	}
 	
