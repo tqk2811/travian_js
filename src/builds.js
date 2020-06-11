@@ -419,25 +419,17 @@ function gid17(){//market
 				gid17_noncrop.setAttribute("id","gid17_noncrop");
 				TJS.InitCheckboxOnclick(gid17_noncrop,"gid17_noncrop",gid17_TypeResSelect_onchange,true);
 				gid17_noncrop.setAttribute("style","margin-left:3px");
-				
-				var label_noncrop = document.createElement("label");
-				label_noncrop.innerText = "No crop";
-				label_noncrop.onclick = function(){gid17_noncrop.checked = !gid17_noncrop.checked;};
+				gid17_noncrop.innerText = "No crop";
 				
 				window.gid17_SaveBigCelebration = document.createElement("input");
 				gid17_SaveBigCelebration.setAttribute("type","checkbox");
 				gid17_SaveBigCelebration.setAttribute("id","gid17_SaveBigCelebration");
-				gid17_SaveBigCelebration.setAttribute("onchange","gid17_TypeResSelect_onchange()");
 				gid17_SaveBigCelebration.setAttribute("style","margin-left:3px");
-				
-				var label_SaveBigCelebration = document.createElement("label");
-				label_SaveBigCelebration.innerText = "Save Big Celebration";
-				label_SaveBigCelebration.onclick = function(){gid17_SaveBigCelebration.checked = !gid17_SaveBigCelebration.checked;};
+				gid17_SaveBigCelebration.innerText = "Save Big Celebration";
+				TJS.InitCheckboxOnclick(gid17_SaveBigCelebration,"gid17_SaveBigCelebration",gid17_TypeResSelect_onchange,true);
 				
 				div_left_market.appendChild(gid17_noncrop);
-				div_left_market.appendChild(label_noncrop);
 				div_left_market.appendChild(gid17_SaveBigCelebration);
-				div_left_market.appendChild(label_SaveBigCelebration);
 				div_left_market.appendChild(br);
 				div_left_market.appendChild(gid17_TypeResSelect);
 				div_left_market.appendChild(gid17_input_number);
