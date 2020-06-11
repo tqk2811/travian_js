@@ -736,36 +736,40 @@ function gid17_findmaxtroops(){
 	var maxtroops = 99999999;
 	var send_times = gid17_getx2();
 	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
-	var res_for_a_troop = 0;
-
-	var total_res_target = 0;
 	var target = false;
 	if(window.gid17_obj_target["res"]) target = true;
-	var stogare_target = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
-	var granary_target = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
-	for(var i = 0; i < 4; i++)// max troop res
+	var target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
+	var target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
+	
+	var res_current = TJS.CurrentData.village_object.res;
+	var res_target = target ? window.gid17_obj_target["res"] : [ 0, 0 , 0 ,0 ];
+	//gid17_TroopRes (i+1)
+	var storage_target = [target_stogare , target_stogare, target_stogare , target_granary];
+	var res_for_a_troop = 0;
+	var total_res_target = 0;
+	for(var i = 0; i < 4; i++)
 	{
-		if(3 == i && gid17_noncrop.checked) break;//skip if non crop
-		var res = TJS.CurrentData.village_object.res[i] + (target ? gid17_obj_target["res"][i] : 0);		
-		if(3 == i)
-		{
-			if(res >= stogare_target) res = stogare_target;
-		}
-		else
-		{
-			if(res >= granary_target) res = granary_target;
-		}
-		var max = Math.floor( res / gid17_TroopRes[i+1]);
-		if (target) total_res_target += gid17_obj_target["res"][i];
+		if(3 == i && gid17_noncrop.checked) break;
 		res_for_a_troop += gid17_TroopRes[i+1];
-		if(max < maxtroops) maxtroops = max;//find min
+		var total_res_2village = res_current[i] + res_target[i];
+		if(total_res_2village > storage_target[i]) total_res_2village = storage_target[i];//fix
+		total_res_target += res_target[i];
+		var maxtroop_res = total_res_2village / gid17_TroopRes[i+1];
+		if(maxtroop_res < maxtroops) maxtroops = maxtroop_res;//find min
 	}
-	var total_res_carry = res_for_a_troop * maxtroops - total_res_target;
-	while(merchantCapacityValue < total_res_carry)
+	var res_merchanWillCarry = res_for_a_troop * maxtroops - total_res_target;
+	while(merchantCapacityValue < res_merchanWillCarry)
 	{
 		maxtroops--;
-		total_res_carry = res_for_a_troop * maxtroops - total_res_target;
-	}	
+		res_merchanWillCarry = 0;
+		for(var i = 0; i < 4; i++)
+		{
+			if(3 == i && gid17_noncrop.checked) break;
+			var res_need = maxtroops * gid17_TroopRes[i+1];
+			if(res_need > res_target) res_merchanWillCarry += (res_need - res_target);
+		}
+	}
+	
 	gid17_label_max.innerText = "/" + maxtroops.toString();
 	gid17_input_number.max = maxtroops;
 }
