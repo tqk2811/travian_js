@@ -432,7 +432,7 @@ function gid17(){//market
 				gid17_SaveBigCelebration.setAttribute("type","checkbox");
 				gid17_SaveBigCelebration.setAttribute("id","gid17_SaveBigCelebration");
 				TJS.InitCheckboxOnclick(gid17_SaveBigCelebration,"gid17_SaveBigCelebration",gid17_TypeResSelect_onchange,true);
-				label_SaveBigCelebration.appendChild(label_SaveBigCelebration);
+				label_SaveBigCelebration.appendChild(gid17_SaveBigCelebration);
 				
 				div_left_market.appendChild(label_noncrop);
 				div_left_market.appendChild(label_SaveBigCelebration);
