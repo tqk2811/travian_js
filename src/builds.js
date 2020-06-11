@@ -761,12 +761,11 @@ function gid17_findmaxtroops(){
 		if(max < maxtroops) maxtroops = max;//find min
 	}
 	var total_res_carry = res_for_a_troop * maxtroops - total_res_target;
-	if(merchantCapacityValue < total_res_carry)
+	while(merchantCapacityValue < total_res_carry)
 	{
-		var total_res_need = merchantCapacityValue + total_res_target;
-		maxtroops = Math.floor(total_res_need/res_for_a_troop);
-	}
-	
+		maxtroops--;
+		total_res_carry = res_for_a_troop * maxtroops - total_res_target;
+	}	
 	gid17_label_max.innerText = "/" + maxtroops.toString();
 	gid17_input_number.max = maxtroops;
 }
