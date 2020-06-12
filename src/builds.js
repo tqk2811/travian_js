@@ -712,7 +712,7 @@ function gid17_input_number_onchange(){
 											(gid17_TroopRes[1] * num_troops - (target ? gid17_obj_target["res"][0] : 0)) / send_times,
 											(gid17_TroopRes[2] * num_troops - (target ? gid17_obj_target["res"][1] : 0)) / send_times,
 											(gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0)) / send_times,
-				gid17_noncrop.checked ? 0 :	(gid17_TroopRes[4] * num_troops - (target ? gid17_obj_target["res"][3] : 0)) / send_times),
+				gid17_noncrop.checked ? 0 :((gid17_TroopRes[4] * num_troops - (target ? gid17_obj_target["res"][3] : 0)) / send_times),
 			];
 			for(var i = 0; i < 4; i++) 
 			{
