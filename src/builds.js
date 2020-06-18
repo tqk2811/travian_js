@@ -163,7 +163,7 @@ function gid16_raidlist(){
 	gid16_cb_stopreload.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(gid16_cb_stopreload,"stopreload",null,true);
 	var e_LB_stopreload = document.createElement("label");
-	e_LB_stopreload.innerText = "Stop reload";
+	e_LB_stopreload.innerText = "Stop reload (beta)";
 	e_LB_stopreload.setAttribute("style","border:none;color:black;padding: 3px;");			
 	e_LB_stopreload.appendChild(window.gid16_cb_stopreload);
 	
