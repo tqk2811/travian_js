@@ -146,7 +146,7 @@ function gid16_raidlist(){
 	window.gid16_cb_yellow = document.createElement("input");//
 	gid16_cb_yellow.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(gid16_cb_yellow,"gid16_cb_yellow",null,true);
-	var e_LB_yellow = document.createElement("label");			
+	var e_LB_yellow = document.createElement("label");
 	e_LB_yellow.innerText = "Yellow";
 	e_LB_yellow.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_LB_yellow.appendChild(window.gid16_cb_yellow);			
@@ -159,12 +159,22 @@ function gid16_raidlist(){
 	e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
 	e_LB_red.appendChild(window.gid16_cb_red);
 	
+	window.gid16_cb_stopreload = document.createElement("input");//
+	gid16_cb_stopreload.setAttribute("type","checkbox");
+	TJS.InitCheckboxOnclick(gid16_cb_stopreload,"stopreload",null,true);
+	var e_LB_stopreload = document.createElement("label");
+	e_LB_stopreload.innerText = "Stop reload";
+	e_LB_stopreload.setAttribute("style","border:none;color:black;padding: 3px;");			
+	e_LB_stopreload.appendChild(window.gid16_cb_stopreload);
+	
+	
 	var e_div = document.createElement("div");
 	//e_div.appendChild(e_bt_CheckAllGreenAttack);
 	e_div.appendChild(e_LB_raid);
 	e_div.appendChild(e_LB_attacking);			
 	e_div.appendChild(e_LB_yellow);
 	e_div.appendChild(e_LB_red);
+	e_div.appendChild(e_LB_stopreload);
 	TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
 	
 	var current_time = TJS.CurrentSec();
@@ -213,7 +223,11 @@ function gid16_bt_CheckGreen_onclick(listid){
 		if(window.gid16_cb_raid.checked)
 		{
 			var e_bt = listEntry.getElementsByTagName("button");
-			if(e_bt.length == 4) e_bt[3].click();
+			if(e_bt.length == 4) 
+			{
+				e_bt[3].click();
+				if(window.gid16_cb_stopreload.checked) window.setTimeout(function(){ window.stop();}, 500);
+			}
 		}
 	}
 }
