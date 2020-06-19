@@ -79,18 +79,18 @@ function position_details_main()
 		div.appendChild(lb_cb);
 		
 		window.TJS_Maxxy_select = document.createElement("select");
-		select_.setAttribute("title","Max X,Y");
-		select_.setAttribute("style","float: right");
+		TJS_Maxxy_select.setAttribute("title","Max X,Y");
+		TJS_Maxxy_select.setAttribute("style","float: right");
 		
 		var option_200 = document.createElement("option");
 		option_200.setAttribute("value","200");
 		option_200.innerText = "200";
-		select_.appendChild(option_200);
+		TJS_Maxxy_select.appendChild(option_200);
 		
 		var option_400 = document.createElement("option");
 		option_400.setAttribute("value","400");
 		option_400.innerText = "400";
-		select_.appendChild(option_400);
+		TJS_Maxxy_select.appendChild(option_400);
 		
 		var data = TJS.CurrentData.account_object["Maxxy_select"];
 		if(!data)
@@ -103,7 +103,7 @@ function position_details_main()
 			TJS.CurrentData.account_object["Maxxy_select"] = window.TJS_Maxxy_select.value;
 			TJS.SaveCurrentAccount();
 		}
-		div.appendChild(select_);
+		div.appendChild(TJS_Maxxy_select);
 		
 		if(cb.checked) calRange();
 	}
