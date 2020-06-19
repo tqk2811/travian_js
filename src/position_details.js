@@ -95,7 +95,8 @@ function position_details_main()
 		var data = TJS.CurrentData.account_object["Maxxy_select"];
 		if(!data)
 		{
-			TJS.CurrentData.account_object["Maxxy_select"] = 200;
+			data = 200;
+			TJS.CurrentData.account_object["Maxxy_select"] = data;
 			TJS.SaveCurrentAccount();
 		}		
 		window.TJS_Maxxy_select.value = data;
