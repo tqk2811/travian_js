@@ -4,18 +4,18 @@ function calRange()
 	var target_y = Number(TJS.getParameterByName(window.location.href,"y"));
 	
 	var coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid")[0];
-	var current_x = Number(coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText.match(/\d+/)[0]);
-	var current_y = Number(coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText.match(/\d+/)[0]);
+	var current_x = Number(coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText.match(/-{0,1}\d+/)[0]);
+	var current_y = Number(coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText.match(/-{0,1}\d+/)[0]);
 	
-	var range_X = Math.abs(target_x - current_x);
+	var range_x = Math.abs(target_x - current_x);
 	var range_y = Math.abs(target_y - current_y);
 	var max_xy = 200;
 	var max_range_xy = 200 + 0.5;
 	
-	var realrange_X = range_X > max_range_xy ? max_range_xy - ( range_X - max_range_xy) : range_X;
-	var realrange_Y = range_Y > max_range_xy ? max_range_xy - ( range_Y - max_range_xy) : range_Y;	
+	var realrange_x = range_x > max_range_xy ? max_range_xy - ( range_x - max_range_xy) : range_x;
+	var realrange_y = range_y > max_range_xy ? max_range_xy - ( range_y - max_range_xy) : range_y;	
 	
-	window.RangeToTarget = Math.sqrt(Math.pow(realrange_X,2) + Math.pow(realrange_Y,2));
+	window.RangeToTarget = Math.sqrt(Math.pow(realrange_x,2) + Math.pow(realrange_y,2));
 	
 	var village_info = document.getElementById("village_info");
 	var tbody = village_info.getElementsByTagName("tbody")[0];	
@@ -68,6 +68,7 @@ function position_details_main()
 		lb_cb.setAttribute("style","border:none;color:black;padding: 3px;");			
 		lb_cb.appendChild(cb);
 		map_details.insertAdjacentElement("afterbegin",lb_cb);
+		
 		
 		
 		
