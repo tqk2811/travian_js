@@ -4,8 +4,8 @@ function calRange()
 	var target_y = Number(TJS.getParameterByName(window.location.href,"y"));
 	
 	var coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid")[0];
-	var current_x = Number(coordinatesGrid.getAttribute("data-x"));
-	var current_y = Number(coordinatesGrid.getAttribute("data-y"));
+	var current_x = Number(coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText.match(/\d+/)[0]);
+	var current_y = Number(coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText.match(/\d+/)[0]);
 	
 	window.RangeToTarget = Math.sqrt(Math.pow(target_x - current_x,2) + Math.pow(target_y - current_y,2));
 	
@@ -49,7 +49,18 @@ function position_details_main()
 {
 	if(window.location.href.indexOf("position_details.php") >=0)
 	{
-		calRange();
+		var map_details = document.getElementById("map_details");
+		var h4 = map_details.getElementsByTagName("h4");
+		h4.remove();
+		var cb = document.createElement("input");
+		cb.setAttribute("type","checkbox");
+		TJS.InitCheckboxOnclick(cb,"position_details_calRange",function(){window.location.href = window.location.href;},true);
+		var lb_cb = document.createElement("label");
+		lb_cb.innerText = "adv cal";
+		lb_cb.setAttribute("style","border:none;color:black;padding: 3px;");			
+		lb_cb.appendChild(cb);
+		map_details.insertAdjacentElement("afterbegin",lb_cb);
+		if(cb.checked) calRange();
 	}
 }
 

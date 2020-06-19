@@ -350,10 +350,10 @@ TJS = {
 		}
 		e.checked = obj["checkbox_status"][name];
 		e.onchange = function(){ 
-			obj["checkbox_status"][name] = e.checked;
-			if(callback_) callback_();
+			obj["checkbox_status"][name] = e.checked;			
 			if(all_village) TJS.SaveCurrentAccount();
 			else TJS.SaveCurrentVillage();
+			if(callback_) callback_();
 		}
 	},
 	LoadLib : function(){
