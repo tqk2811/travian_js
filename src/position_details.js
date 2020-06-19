@@ -4,8 +4,13 @@ function calRange()
 	var target_y = Number(TJS.getParameterByName(window.location.href,"y"));
 	
 	var coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid")[0];
-	var current_x = Number(coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText.match(/-{0,1}\d+/)[0]);
-	var current_y = Number(coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText.match(/-{0,1}\d+/)[0]);
+	var coordinateX = coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText;
+	var coordinateY = coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText;
+	var current_x = Number(coordinateX.match(/\d+/)[0]);
+	var current_y = Number(coordinateY.match(/\d+/)[0]);
+	
+	if(coordinateX.search("−") >= 0) current_x = -current_x;
+	if(coordinateY.search("−") >= 0) current_y = -current_y;
 	
 	var range_x = Math.abs(target_x - current_x);
 	var range_y = Math.abs(target_y - current_y);
