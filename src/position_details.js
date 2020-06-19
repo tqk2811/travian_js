@@ -14,8 +14,7 @@ function calRange()
 	
 	var range_x = Math.abs(target_x - current_x);
 	var range_y = Math.abs(target_y - current_y);
-	var max_xy = 200;
-	var max_range_xy = 200 + 0.5;
+	var max_range_xy = Number(window.TJS_Maxxy_select.value) + 0.5;
 	
 	var realrange_x = range_x > max_range_xy ? max_range_xy - ( range_x - max_range_xy) : range_x;
 	var realrange_y = range_y > max_range_xy ? max_range_xy - ( range_y - max_range_xy) : range_y;	
@@ -65,6 +64,11 @@ function position_details_main()
 		var map_details = document.getElementById("map_details");
 		var h4 = map_details.getElementsByTagName("h4");
 		h4.remove();
+		
+		var div = document.createElement("div");
+		map_details.insertAdjacentElement("afterbegin",div);
+		
+		
 		var cb = document.createElement("input");
 		cb.setAttribute("type","checkbox");
 		TJS.InitCheckboxOnclick(cb,"position_details_calRange",function(){window.location.href = window.location.href;},true);
@@ -72,11 +76,34 @@ function position_details_main()
 		lb_cb.innerText = "adv cal";
 		lb_cb.setAttribute("style","border:none;color:black;padding: 3px;");			
 		lb_cb.appendChild(cb);
-		map_details.insertAdjacentElement("afterbegin",lb_cb);
+		div.appendChild(lb_cb);
 		
+		window.TJS_Maxxy_select = document.createElement("select");
+		select_.setAttribute("title","Max X,Y");
+		select_.setAttribute("style","float: right");
 		
+		var option_200 = document.createElement("option");
+		option_200.setAttribute("value","200");
+		option_200.innerText = "200";
+		select_.appendChild(option_200);
 		
+		var option_400 = document.createElement("option");
+		option_400.setAttribute("value","400");
+		option_400.innerText = "400";
+		select_.appendChild(option_400);
 		
+		var data = TJS.CurrentData.account_object["Maxxy_select"];
+		if(!data)
+		{
+			TJS.CurrentData.account_object["Maxxy_select"] = 200;
+			TJS.SaveCurrentAccount();
+		}		
+		window.TJS_Maxxy_select.value = data;
+		window.TJS_Maxxy_select.onchange = function(){
+			TJS.CurrentData.account_object["Maxxy_select"] = window.TJS_Maxxy_select.value;
+			TJS.SaveCurrentAccount();
+		}
+		div.appendChild(select_);
 		
 		if(cb.checked) calRange();
 	}
