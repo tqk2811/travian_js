@@ -7,7 +7,15 @@ function calRange()
 	var current_x = Number(coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText.match(/\d+/)[0]);
 	var current_y = Number(coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText.match(/\d+/)[0]);
 	
-	window.RangeToTarget = Math.sqrt(Math.pow(target_x - current_x,2) + Math.pow(target_y - current_y,2));
+	var range_X = Math.abs(target_x - current_x);
+	var range_y = Math.abs(target_y - current_y);
+	var max_xy = 200;
+	var max_range_xy = 200 + 0.5;
+	
+	var realrange_X = range_X > max_range_xy ? max_range_xy - ( range_X - max_range_xy) : range_X;
+	var realrange_Y = range_Y > max_range_xy ? max_range_xy - ( range_Y - max_range_xy) : range_Y;	
+	
+	window.RangeToTarget = Math.sqrt(Math.pow(realrange_X,2) + Math.pow(realrange_Y,2));
 	
 	var village_info = document.getElementById("village_info");
 	var tbody = village_info.getElementsByTagName("tbody")[0];	
@@ -60,6 +68,10 @@ function position_details_main()
 		lb_cb.setAttribute("style","border:none;color:black;padding: 3px;");			
 		lb_cb.appendChild(cb);
 		map_details.insertAdjacentElement("afterbegin",lb_cb);
+		
+		
+		
+		
 		if(cb.checked) calRange();
 	}
 }
