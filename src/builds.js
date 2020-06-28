@@ -694,12 +694,10 @@ function gid17_input_number_onchange(){
 				obj.sc = i == 3 ? v_obj_current["granary"]: v_obj_current["storage"];
 				if(window.gid17_noncrop.checked && i == 3) obj.rc = 0;
 				else{
-					obj.rc = Math.round(obj.sc * slider_current.value / 100);
-					if(window.gid17_SaveBigCelebration.checked)
-					{
-						if(obj.rc <= TJS.Const.CelebrationResource["c_1"][i]) obj.rc = 0;
-						else obj.rc = obj.rc - TJS.Const.CelebrationResource["c_1"][i];
-					}
+					var res_save_max = Math.Max(Math.round(obj.sc * slider_current.value / 100), 
+						window.gid17_SaveBigCelebration.checked ? TJS.Const.CelebrationResource["c_1"][i] : 0);
+					if(v_obj_current["res"][i] > res_save_max) obj.rc = v_obj_current["res"][i] - res_current_save_max;
+					else obj.rc = 0;
 				}
 				if(!b_flag){
 					obj.rt = v_obj_target["res"][i];
