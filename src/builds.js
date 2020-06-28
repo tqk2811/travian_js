@@ -458,6 +458,9 @@ function gid17(){//market
 				gid17_TypeResSelect_onchange();
 				
 				///right zone
+				var x2 = document.getElementById("x2");
+				x2.onchange = gid17_TypeResSelect_onchange;
+				
 				var divr1 = document.createElement("div");
 				var divr2 = document.createElement("div");
 				var divr3 = document.createElement("div");
@@ -642,7 +645,7 @@ function gid17_TypeResSelect_onchange(){
 			gid17_input_number.max = 0;
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 0;
-			gid17_label_max.innerText = "/0";			
+			gid17_label_max.innerText = "/0";
 			break;
 			
 		case "b_0" : 
@@ -675,9 +678,10 @@ function gid17_input_number_onchange(){
 	var b_flag = false;
 	switch(gid17_TypeResSelect.value)
 	{
-		case "-1" : return;
+		case "-1" : gid17_write_res([0,0,0,0],1); gid17_SaveBigCelebration.disabled = false; return;
 		case "b_0" : b_flag = true;//true is balance current
 		case "b_1" : 
+			gid17_SaveBigCelebration.disabled = false;
 			var v_obj_current = TJS.CurrentData.village_object;
 			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
 			if(!v_obj_target["res"]) return;
@@ -690,11 +694,13 @@ function gid17_input_number_onchange(){
 				obj.sc = i == 3 ? v_obj_current["granary"]: v_obj_current["storage"];
 				if(window.gid17_noncrop.checked && i == 3) obj.rc = 0;
 				else{
-					var res_current_save_max = Math.max(	Math.round(obj.sc * slider_current.value / 100),
-						window.gid17_SaveBigCelebration.checked ? TJS.Const.CelebrationResource["c_1"][i] : 0);					
-					if(v_obj_current["res"][i] > res_current_save_max) obj.rc = v_obj_current["res"][i] - res_current_save_max;
-					else obj.rc = 0;
-				}				
+					obj.rc = Math.round(obj.sc * slider_current.value / 100);
+					if(window.gid17_SaveBigCelebration.checked)
+					{
+						if(obj.rc <= TJS.Const.CelebrationResource["c_1"][i]) obj.rc = 0;
+						else obj.rc = obj.rc - TJS.Const.CelebrationResource["c_1"][i];
+					}
+				}
 				if(!b_flag){
 					obj.rt = v_obj_target["res"][i];
 					obj.st =  Math.floor((i == 3 ? v_obj_target["granary"] : v_obj_target["storage"]) * 
@@ -711,6 +717,7 @@ function gid17_input_number_onchange(){
 		case "c_1" : 
 		case "c_2" : 
 		case "c_3" : 
+			gid17_SaveBigCelebration.disabled = true;
 			if(Number(gid17_input_number.value) == 1){
 				gid17_write_res(TJS.Const.CelebrationResource[gid17_TypeResSelect.value].r,
 					TJS.Const.CelebrationResource[gid17_TypeResSelect.value].run_twice);
@@ -718,6 +725,7 @@ function gid17_input_number_onchange(){
 			break;
 			
 		default:
+			gid17_SaveBigCelebration.disabled = true;
 			var target = false;
 			if(window.gid17_obj_target["res"]) target = true;
 			var send_times = gid17_getx2();
