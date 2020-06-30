@@ -252,11 +252,11 @@ function gid16_bt_CheckGreen_onclick(listid){
 		}
 	}
 	
-	var listContent = listEntry.getElementsByClassName("listContent")[0];
-	if(listContent.getAttribute("class").indexOf("hide") == -1)
+	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
+	TJS.SaveCurrentAccount();
+	var nodata = listContent.getElementsByClassName("noData");
+	if(nodata.length == 0)
 	{
-		TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
-		TJS.SaveCurrentAccount();
 		var e_slotRows = listContent.getElementsByClassName("slotRow");
 		for(var j = 0; j< e_slotRows.length; j++)
 		{				
@@ -271,14 +271,14 @@ function gid16_bt_CheckGreen_onclick(listid){
 				!(isHistoryYellow && !gid16_cb_yellow.checked) &&
 				!(isHistoryRed && !gid16_cb_red.checked)) e_input[0].checked = true;
 		}
+	}	
 		
-		if(window.gid16_cb_raid.checked)
+	if(window.gid16_cb_raid.checked)
+	{
+		var e_bt = listEntry.getElementsByTagName("button");
+		if(e_bt.length == 4) 
 		{
-			var e_bt = listEntry.getElementsByTagName("button");
-			if(e_bt.length == 4) 
-			{
-				e_bt[3].click();
-			}
+			e_bt[3].click();
 		}
 	}
 }
