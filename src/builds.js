@@ -230,7 +230,6 @@ function gid16_raidall_init()
 		TJS.SaveCurrentAccount();
 	}
 }
-
 function gid16_bt_CheckGreen_onclick(listid){
 	var listEntry = document.getElementById(listid);
 	if(!listEntry) return;
@@ -241,10 +240,14 @@ function gid16_bt_CheckGreen_onclick(listid){
 		switchClosed[0].click();
 		if(window.gid16_flagraidall)
 		{
-			window.setInterval(function()
+			window.gid16_raidall_Intervalhandle = window.setInterval(function()
 			{
 				var switchClosed = listEntry.getElementsByClassName("switchClosed");//expanded
-				if(switchClosed.length == 0) gid16_bt_CheckGreen_onclick(listid);//click raid
+				if(switchClosed.length == 0)
+				{
+					window.clearInterval(window.gid16_raidall_Intervalhandle);
+					gid16_bt_CheckGreen_onclick(listid);//click raid
+				}
 			},1000);
 		}
 	}
