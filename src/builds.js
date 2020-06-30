@@ -209,6 +209,10 @@ function gid16_bt_raidall()
 }
 function gid16_raidall_init()
 {
+	var txt = "Notice: You need invigorate this tab, may be captcha show up.\r\nIf you ignore captcha, you will get banned.\r\n\r\n";
+	txt += "Info Yellow: " + window.gid16_cb_yellow.checked + " , Red: " + window.gid16_cb_red.checked;
+	if(!window.confirm(txt)) return;
+	
 	var raidall = TJS.CurrentData.account_object["raidall"];
 	if(raidall && raidall.flag)
 	{
