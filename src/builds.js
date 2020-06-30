@@ -254,10 +254,10 @@ function gid16_bt_CheckGreen_onclick(listid){
 	
 	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
 	TJS.SaveCurrentAccount();
-	var nodata = listContent.getElementsByClassName("noData");
+	var nodata = listEntry.getElementsByClassName("noData");
 	if(nodata.length == 0)
 	{
-		var e_slotRows = listContent.getElementsByClassName("slotRow");
+		var e_slotRows = listEntry.getElementsByClassName("slotRow");
 		for(var j = 0; j< e_slotRows.length; j++)
 		{				
 			var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
