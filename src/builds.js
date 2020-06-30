@@ -250,6 +250,7 @@ function gid16_bt_CheckGreen_onclick(listid){
 				}
 			},1000);
 		}
+		return;
 	}
 	
 	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
