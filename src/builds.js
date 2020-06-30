@@ -105,6 +105,7 @@ function gid15(){//main building
 
 function gid16(){//rallypoint
 	if(TJS.CurrentData.tab_MainActive){
+		gid16_raidall_init();
 		if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=99")>=0) gid16_raidlist();//raidList
 		else if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=2")>=0){
 			if(document.getElementById("rallyPointButtonsContainer")) gid16_attack_multiwave();
@@ -122,10 +123,6 @@ function gid16_raidlist(){
 	TJS.CurrentData.account_object["raidlists"] = raidlists;
 	TJS.SaveCurrentAccount();
 	
-	//var e_bt_CheckAllGreenAttack = document.createElement("button");
-	//e_bt_CheckAllGreenAttack.setAttribute("style","background-color:green;border:none;color:white;padding: 3px; margin: 3px;");
-	//e_bt_CheckAllGreenAttack.innerText = "Check All Green Attacks";
-	//e_bt_CheckAllGreenAttack.setAttribute("onclick","gid16_bt_CheckAllGreenAttack_onclick()");
 	
 	window.gid16_cb_raid = document.createElement("input");//
 	gid16_cb_raid.setAttribute("type","checkbox");
@@ -158,23 +155,20 @@ function gid16_raidlist(){
 	e_LB_red.innerText = "Red";
 	e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
 	e_LB_red.appendChild(window.gid16_cb_red);
-	
-	window.gid16_cb_stopreload = document.createElement("input");//
-	gid16_cb_stopreload.setAttribute("type","checkbox");
-	TJS.InitCheckboxOnclick(gid16_cb_stopreload,"stopreload",null,true);
-	var e_LB_stopreload = document.createElement("label");
-	e_LB_stopreload.innerText = "Stop reload (beta)";
-	e_LB_stopreload.setAttribute("style","border:none;color:black;padding: 3px;");			
-	e_LB_stopreload.appendChild(window.gid16_cb_stopreload);
-	
+
+	var raidall_div = document.createElement("div");
+	raidall_div.setAttribute("style","");
+	raidall_div.onclick = gid16_bt_raidall();
+	raidall_div.innerText ="Check all green";	
 	
 	var e_div = document.createElement("div");
 	//e_div.appendChild(e_bt_CheckAllGreenAttack);
 	e_div.appendChild(e_LB_raid);
-	e_div.appendChild(e_LB_attacking);			
+	e_div.appendChild(e_LB_attacking);
 	e_div.appendChild(e_LB_yellow);
 	e_div.appendChild(e_LB_red);
-	e_div.appendChild(e_LB_stopreload);
+	e_div.appendChild(raidall_div);
+	
 	TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
 	
 	var current_time = TJS.CurrentSec();
@@ -197,9 +191,64 @@ function gid16_raidlist(){
 		listTitleText.appendChild(buttoncheck);
 	}
 }
+function gid16_bt_raidall()
+{
+	var listEntrys = document.getElementsByClassName("listEntry");
+	if(listEntrys.length > 0)
+	{
+		var id = listEntrys[0].getAttribute("id");
+		TJS.CurrentData.account_object["raidall"] = 
+		{
+			flag:true,
+			curr_id: id
+		}
+		TJS.SaveCurrentAccount();
+		window.gid16_flagraidall = true;
+		gid16_bt_CheckGreen_onclick(id);
+	}
+}
+function gid16_raidall_init()
+{
+	var raidall = TJS.CurrentData.account_object["raidall"];
+	if(raidall && raidall.flag)
+	{
+		var listEntrys = document.getElementsByClassName("listEntry");
+		var flag = false;
+		for(var i = 0; i < listEntrys.length; i++)
+		{
+			if(flag)
+			{
+				raidall.curr_id = listEntrys[i].getAttribute("id");
+				TJS.SaveCurrentAccount();
+				window.gid16_flagraidall = true;
+				gid16_bt_CheckGreen_onclick(raidall.curr_id);
+				return;
+			}
+			if(raidall.curr_id == listEntrys[i].getAttribute("id")) flag = true;
+		}
+		raidall.flag = false;
+		TJS.SaveCurrentAccount();
+	}
+}
+
 function gid16_bt_CheckGreen_onclick(listid){
 	var listEntry = document.getElementById(listid);
 	if(!listEntry) return;
+	//expand
+	var switchClosed = listEntry.getElementsByClassName("switchClosed");
+	if(switchClosed.length > 0)
+	{
+		switchClosed[0].click();
+		if(window.gid16_flagraidall)
+		{
+			window.setInterval(function()
+			{
+				var switchClosed = listEntry.getElementsByClassName("switchClosed");//expanded
+				if(switchClosed.length == 0) gid16_bt_CheckGreen_onclick(listid);//click raid
+			},1000);
+		}
+	}
+	
 	var listContent = listEntry.getElementsByClassName("listContent")[0];
 	if(listContent.getAttribute("class").indexOf("hide") == -1)
 	{
@@ -226,7 +275,6 @@ function gid16_bt_CheckGreen_onclick(listid){
 			if(e_bt.length == 4) 
 			{
 				e_bt[3].click();
-				if(window.gid16_cb_stopreload.checked) window.setTimeout(function(){ window.stop();}, 500);
 			}
 		}
 	}

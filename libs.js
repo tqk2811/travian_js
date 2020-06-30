@@ -376,13 +376,20 @@ TJS = {
 		}
 		else
 		{
+			var raidall = TJS.CurrentData.account_object["raidall"];
+			if(raidall && (TJS.CurrentData.Gid != 16 || !TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=2")>=0))
+			{
+				raidall.flag = false;
+				TJS.SaveCurrentAccount();
+			}
+				
 			switch(window.location.pathname)
 			{
 				case "/dorf1.php":
 				case "/dorf2.php":
 				case "/dorf3.php": AddUriScript(httpGetGithubCdnUri("src/dorf.js")); break;
 				case "/build.php": AddUriScript(httpGetGithubCdnUri("src/builds.js")); break;
-				case "/berichte.php":		
+				case "/berichte.php":
 				case "/messages.php": AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js")); break;
 				case "/hero.php": AddUriScript(httpGetGithubCdnUri("src/hero.js")); break;
 				case "/allianz.php": AddUriScript(httpGetGithubCdnUri("src/allianz.js")); break;
