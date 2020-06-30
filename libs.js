@@ -377,7 +377,8 @@ TJS = {
 		else
 		{
 			var raidall = TJS.CurrentData.account_object["raidall"];
-			if(raidall && (TJS.CurrentData.Gid != 16 || !TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=2")>=0))
+			var tt99 = TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("tt=99")>=0;
+			if(raidall && (TJS.CurrentData.Gid != 16 || !tt99))
 			{
 				raidall.flag = false;
 				TJS.SaveCurrentAccount();
