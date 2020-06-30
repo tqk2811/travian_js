@@ -158,7 +158,7 @@ function gid16_raidlist(){
 
 	var raidall_div = document.createElement("div");
 	raidall_div.setAttribute("style","");
-	raidall_div.onclick = gid16_bt_raidall();
+	raidall_div.onclick = gid16_bt_raidall;
 	raidall_div.innerText ="Check all green";	
 	
 	var e_div = document.createElement("div");
