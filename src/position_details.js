@@ -21,10 +21,10 @@ function calRange()
 	
 	window.RangeToTarget = Math.sqrt(Math.pow(realrange_x,2) + Math.pow(realrange_y,2));
 	
-	var village_info = map_details.getElementById("village_info");
 	var tbody = null;
 	var td_range = null;
 	var th_range = null;
+	var village_info = document.getElementById("village_info");
 	if(village_info) 
 	{
 		tbody = village_info.getElementsByTagName("tbody")[0];
