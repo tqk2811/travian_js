@@ -21,11 +21,25 @@ function calRange()
 	
 	window.RangeToTarget = Math.sqrt(Math.pow(realrange_x,2) + Math.pow(realrange_y,2));
 	
-	var village_info = document.getElementById("village_info");
-	var tbody = village_info.getElementsByTagName("tbody")[0];	
-	var td_range = village_info.getElementsByTagName("td")[tbody.childElementCount - 1];
+	var village_info = map_details.getElementById("village_info");
+	var tbody = null;
+	var td_range = null;
+	var th_range = null;
+	if(village_info) 
+	{
+		tbody = village_info.getElementsByTagName("tbody")[0];
+		td_range = village_info.getElementsByTagName("td")[tbody.childElementCount - 1];
+		th_range = village_info.getElementsByTagName("th")[tbody.childElementCount - 1];
+	}
+	else
+	{
+		tbody = document.getElementById("map_details").getElementsByTagName("tbody")[1];
+		var rangerow = rangetbody.getElementsByTagName("td");
+		td_range = rangerow[1];
+		th_range = rangerow[0];
+	}
+	
 	td_range.innerText = RangeToTarget;
-	var th_range = village_info.getElementsByTagName("th")[tbody.childElementCount - 1];
 	th_range.innerHTML = "BaseSpeed<br><input value=\"0\" min=\"0\" max=\"200\" type=\"number\" id=\"TJS_BaseSpeed\" onchange=\"TJS_onchange_caltime()\" style=\"width:50px\">";
 	
 	var tr_TournamentSquare = document.createElement("tr");
@@ -38,6 +52,7 @@ function calRange()
 	td_TournamentSquare.innerText = "0";
 	tr_TournamentSquare.appendChild(th_TournamentSquare);
 	tr_TournamentSquare.appendChild(td_TournamentSquare);
+	
 }
 
 function TJS_onchange_caltime()
