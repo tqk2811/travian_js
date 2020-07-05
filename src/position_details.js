@@ -14,7 +14,7 @@ function calRange()
 	
 	var range_x = Math.abs(target_x - current_x);
 	var range_y = Math.abs(target_y - current_y);
-	var max_range_xy = Number(window.TJS_Maxxy_select.value) + 0.5;
+	var max_range_xy = TravianDefaults.Map.Size.width / 2;
 	
 	var realrange_x = range_x > max_range_xy ? max_range_xy - ( range_x - max_range_xy) : range_x;
 	var realrange_y = range_y > max_range_xy ? max_range_xy - ( range_y - max_range_xy) : range_y;	
@@ -66,8 +66,7 @@ function position_details_main()
 		h4.remove();
 		
 		var div = document.createElement("div");
-		map_details.insertAdjacentElement("afterbegin",div);
-		
+		map_details.insertAdjacentElement("afterbegin",div);		
 		
 		var cb = document.createElement("input");
 		cb.setAttribute("type","checkbox");
@@ -77,34 +76,6 @@ function position_details_main()
 		lb_cb.setAttribute("style","border:none;color:black;padding: 3px;");			
 		lb_cb.appendChild(cb);
 		div.appendChild(lb_cb);
-		
-		window.TJS_Maxxy_select = document.createElement("select");
-		TJS_Maxxy_select.setAttribute("title","Max X,Y");
-		TJS_Maxxy_select.setAttribute("style","float: right");
-		
-		var option_200 = document.createElement("option");
-		option_200.setAttribute("value","200");
-		option_200.innerText = "200";
-		TJS_Maxxy_select.appendChild(option_200);
-		
-		var option_400 = document.createElement("option");
-		option_400.setAttribute("value","400");
-		option_400.innerText = "400";
-		TJS_Maxxy_select.appendChild(option_400);
-		
-		var data = TJS.CurrentData.account_object["Maxxy_select"];
-		if(!data)
-		{
-			data = 200;
-			TJS.CurrentData.account_object["Maxxy_select"] = data;
-			TJS.SaveCurrentAccount();
-		}		
-		window.TJS_Maxxy_select.value = data;
-		window.TJS_Maxxy_select.onchange = function(){
-			TJS.CurrentData.account_object["Maxxy_select"] = window.TJS_Maxxy_select.value;
-			TJS.SaveCurrentAccount();
-		}
-		div.appendChild(TJS_Maxxy_select);
 		
 		if(cb.checked) calRange();
 	}
