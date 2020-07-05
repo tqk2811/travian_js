@@ -34,7 +34,7 @@ function calRange()
 	else
 	{
 		tbody = document.getElementById("map_details").getElementsByTagName("tbody")[1];
-		var rangerow = rangetbody.getElementsByTagName("td");
+		var rangerow = tbody.getElementsByTagName("td");
 		td_range = rangerow[1];
 		th_range = rangerow[0];
 	}
