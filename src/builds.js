@@ -281,7 +281,7 @@ function gid16_bt_CheckGreen_onclick(listid){
 	if(window.gid16_cb_raid.checked)
 	{
 		var e_bt = listEntry.getElementsByTagName("button");
-		if(e_bt.length == 4) 
+		if(e_bt.length == 5)
 		{
 			e_bt[3].click();
 		}
