@@ -260,6 +260,7 @@ function gid16_bt_CheckGreen_onclick(listid){
 	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
 	TJS.SaveCurrentAccount();
 	var nodata = listEntry.getElementsByClassName("noData");
+	var check_count = 0;
 	if(nodata.length == 0)
 	{
 		var e_slotRows = listEntry.getElementsByClassName("slotRow");
@@ -274,11 +275,19 @@ function gid16_bt_CheckGreen_onclick(listid){
 			if(e_input && 
 				!(gid16_cb_attacking.checked && isAttacking ) &&
 				!(isHistoryYellow && !gid16_cb_yellow.checked) &&
-				!(isHistoryRed && !gid16_cb_red.checked)) e_input[0].checked = true;
+				!(isHistoryRed && !gid16_cb_red.checked))
+				{
+					e_input[0].checked = true;
+					check_count++;
+				}
 		}
 	}	
-		
-	if(window.gid16_cb_raid.checked)
+	
+	if(check_count == 0 && window.gid16_flagraidall)
+	{
+		gid16_raidall_init();
+	}
+	else if(window.gid16_cb_raid.checked)
 	{
 		var e_bt = listEntry.getElementsByTagName("button");
 		e_bt[3].click();
