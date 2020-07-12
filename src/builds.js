@@ -162,7 +162,8 @@ function gid16_raidlist(){
 	raidall_div.innerText ="Check all";
 	
 	var continue_div = null;
-	if(raidall.curr_id != "")
+	var raidall = TJS.CurrentData.account_object["raidall"];
+	if(raidall && raidall.curr_id != "")
 	{
 		continue_div = document.createElement("div");
 		continue_div.setAttribute("style","background-color:green;float:right;color:white;");
