@@ -275,7 +275,20 @@ function gid16_bt_CheckGreen_onclick(listid){
 		switchClosed[0].click();
 		if(window.gid16_flagraidall)
 		{
-			window.gid16_raidall_Intervalhandle = window.setInterval(gid16_bt_raidallInterval,500);
+			window.gid16_raidall_Intervalhandle = window.setInterval(function()
+			{
+				var loading_hides = listEntry.getElementsByClassName("loading hide");
+				if(loading_hides.length == 1)
+				{
+					var _switchClosed = listEntry.getElementsByClassName("switchClosed");//expanded
+					if(_switchClosed.length == 0)
+					{
+						window.clearInterval(window.gid16_raidall_Intervalhandle);
+						gid16_bt_CheckGreen_onclick(listid);//click raid
+					}
+					else _switchClosed[0].click();
+				}
+			},500);
 		}
 		return;
 	}
