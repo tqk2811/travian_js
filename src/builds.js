@@ -166,7 +166,7 @@ function gid16_raidlist(){
 	if(raidall && raidall.curr_id != "")
 	{
 		continue_div = document.createElement("div");
-		continue_div.setAttribute("style","background-color:green;float:right;color:white;");
+		continue_div.setAttribute("style","background-color:#fc0acc;float:right;color:white;");
 		continue_div.onclick = function(){
 			raidall.flag = true;
 			gid16_raidall_init();
