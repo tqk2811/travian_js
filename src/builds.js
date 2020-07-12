@@ -155,11 +155,23 @@ function gid16_raidlist(){
 	e_LB_red.innerText = "Red";
 	e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
 	e_LB_red.appendChild(window.gid16_cb_red);
-
+	
 	var raidall_div = document.createElement("div");
 	raidall_div.setAttribute("style","background-color:green;float:right;color:white;");
 	raidall_div.onclick = gid16_bt_raidall;
-	raidall_div.innerText ="Check all green";	
+	raidall_div.innerText ="Check all";
+	
+	var continue_div = null;
+	if(raidall.curr_id != "")
+	{
+		continue_div = document.createElement("div");
+		continue_div.setAttribute("style","background-color:green;float:right;color:white;");
+		continue_div.onclick = function(){
+			raidall.flag = true;
+			gid16_raidall_init();
+			};
+		continue_div.innerText ="Continue";
+	}
 	
 	var e_div = document.createElement("div");
 	//e_div.appendChild(e_bt_CheckAllGreenAttack);
@@ -168,6 +180,7 @@ function gid16_raidlist(){
 	e_div.appendChild(e_LB_yellow);
 	e_div.appendChild(e_LB_red);
 	e_div.appendChild(raidall_div);
+	if(continue_div) e_div.appendChild(continue_div);
 	
 	TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
 	
@@ -231,6 +244,7 @@ function gid16_raidall_init()
 			if(raidall.curr_id == listEntrys[i].getAttribute("id")) flag = true;
 		}
 		raidall.flag = false;
+		raidall.curr_id = "";
 		TJS.SaveCurrentAccount();
 	}
 }
