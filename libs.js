@@ -170,7 +170,9 @@ TJS = {
 	Re_MarketPlace_sendRessources : function(callback_){//need check
 		window.marketPlace.sendRessources = function() {//line 7856 in crypt-xxxxx.js:formatted
 			var b = window.marketPlace;//fix "this"
-			Travian.ajax({
+			if(Travian.ajax)
+			{
+				Travian.ajax({
 				data: {
 					cmd: "prepareMarketplace",
 					t: jQuery("#t").val(),
@@ -201,7 +203,42 @@ TJS = {
 						}
 					}
 				}
-			})
+				})
+			}
+			else
+			{
+				Travian.api("ajax/prepareMarketplace", {
+					data: {
+						t: jQuery("#t").val(),
+						id: jQuery("#id").val(),
+						a: jQuery("#a").val(),
+						sz: jQuery("#sz").val(),
+						kid: jQuery("#kid").val(),
+						c: jQuery("#c").val(),
+						x2: jQuery("#x2").length ? jQuery("#x2").first().val() : 1,
+						r1: jQuery("#r1").val(),
+						r2: jQuery("#r2").val(),
+						r3: jQuery("#r3").val(),
+						r4: jQuery("#r4").val()
+					},
+					success: function(c) {
+						if (c.errorMessage) {
+							b.setError(c)
+						} else {
+							if (c.notice) {
+								jQuery(".run_dropdown").removeClass("hide");
+								jQuery("div .destination").html(c.formular);
+								b.setNotice(c);
+								b.reloadMarketPlace();
+								Travian.Game.Layout.updateResources();
+								b.updateAutoCompleter()
+								TJS.CurrentData.Resource();////
+								callback_();/////
+							}
+						}
+					}
+				})
+			}
 		}
 	},
 	DivClear : function(){//need check
