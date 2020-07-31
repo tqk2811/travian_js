@@ -866,7 +866,7 @@ function gid17_findmaxtroops(){
 	for(let i = 0; i < 4; i++){
 		let sto = i != 3 ? TJS.CurrentData.village_object["storage"] : TJS.CurrentData.village_object["granary"];
 		let res_curr_save = Math.floor(Number(window.slider_current.value) * sto / 100);		
-		res_current.push(res_curr_save >=  TJS.CurrentData.village_object.res[i] ?
+		res_current.push(res_curr_save <=  TJS.CurrentData.village_object.res[i] ?
 			TJS.CurrentData.village_object.res[i] - res_curr_save : 0 );
 	}
 	
