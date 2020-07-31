@@ -859,10 +859,13 @@ function gid17_findmaxtroops(){
 	let merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
 	let target = false;
 	if (window.gid17_obj_target) target = true;
-	let target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
-	let target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
+	let target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/Number(window.slider_target.value)) : 99999999;
+	let target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/Number(window.slider_target.value)) : 99999999;
 	
-	let res_current = TJS.CurrentData.village_object.res;
+	let res_current = [];
+	for(let i = 0; i < 4; i++)
+		res_current.push(100 * TJS.CurrentData.village_object.res[i] / Number(window.slider_current.value));
+	
 	let res_target = target ? window.gid17_obj_target["res"] : [ 0, 0 , 0 ,0 ];
 	//gid17_TroopRes (i+1)
 	let storage_target = [target_stogare , target_stogare, target_stogare , target_granary];
