@@ -1,30 +1,30 @@
 function calRange()
 {
-	var target_x = Number(TJS.getParameterByName(window.location.href,"x"));
-	var target_y = Number(TJS.getParameterByName(window.location.href,"y"));
+	let target_x = Number(TJS.getParameterByName(window.location.href,"x"));
+	let target_y = Number(TJS.getParameterByName(window.location.href,"y"));
 	
-	var coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid")[0];
-	var coordinateX = coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText;
-	var coordinateY = coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText;
-	var current_x = Number(coordinateX.match(/\d+/)[0]);
-	var current_y = Number(coordinateY.match(/\d+/)[0]);
+	let coordinatesGrid = TJS.CurrentData.active_village.getElementsByClassName("coordinatesGrid")[0];
+	let coordinateX = coordinatesGrid.getElementsByClassName("coordinateX")[0].innerText;
+	let coordinateY = coordinatesGrid.getElementsByClassName("coordinateY")[0].innerText;
+	let current_x = Number(coordinateX.match(/\d+/)[0]);
+	let current_y = Number(coordinateY.match(/\d+/)[0]);
 	
 	if(coordinateX.search("−") >= 0) current_x = -current_x;
 	if(coordinateY.search("−") >= 0) current_y = -current_y;
 	
-	var range_x = Math.abs(target_x - current_x);
-	var range_y = Math.abs(target_y - current_y);
-	var max_range_xy = TravianDefaults.Map.Size.width / 2;
+	let range_x = Math.abs(target_x - current_x);
+	let range_y = Math.abs(target_y - current_y);
+	let max_range_xy = TravianDefaults.Map.Size.width / 2;
 	
-	var realrange_x = range_x > max_range_xy ? max_range_xy - ( range_x - max_range_xy) : range_x;
-	var realrange_y = range_y > max_range_xy ? max_range_xy - ( range_y - max_range_xy) : range_y;	
+	let realrange_x = range_x > max_range_xy ? max_range_xy - ( range_x - max_range_xy) : range_x;
+	let realrange_y = range_y > max_range_xy ? max_range_xy - ( range_y - max_range_xy) : range_y;	
 	
 	window.RangeToTarget = Math.sqrt(Math.pow(realrange_x,2) + Math.pow(realrange_y,2));
 	
-	var tbody = null;
-	var td_range = null;
-	var th_range = null;
-	var village_info = document.getElementById("village_info");
+	let tbody = null;
+	let td_range = null;
+	let th_range = null;
+	let village_info = document.getElementById("village_info");
 	if(village_info) 
 	{
 		tbody = village_info.getElementsByTagName("tbody")[0];
@@ -34,7 +34,7 @@ function calRange()
 	else
 	{
 		tbody = document.getElementById("map_details").getElementsByTagName("tbody")[1];
-		var rangerow = tbody.getElementsByTagName("td");
+		let rangerow = tbody.getElementsByTagName("td");
 		td_range = rangerow[1];
 		th_range = rangerow[0];
 	}
@@ -42,10 +42,10 @@ function calRange()
 	td_range.innerText = RangeToTarget;
 	th_range.innerHTML = "BaseSpeed<br><input value=\"0\" min=\"0\" max=\"200\" type=\"number\" id=\"TJS_BaseSpeed\" onchange=\"TJS_onchange_caltime()\" style=\"width:50px\">";
 	
-	var tr_TournamentSquare = document.createElement("tr");
+	let tr_TournamentSquare = document.createElement("tr");
 	tbody.appendChild(tr_TournamentSquare);
-	var th_TournamentSquare = document.createElement("th");
-	var td_TournamentSquare = document.createElement("td");
+	let th_TournamentSquare = document.createElement("th");
+	let td_TournamentSquare = document.createElement("td");
 	
 	th_TournamentSquare.innerHTML = "Tournament Square<br><input value=\"0\" min=\"0\" max=\"20\" type=\"number\" id=\"TJS_TournamentSquare\" onchange=\"TJS_onchange_caltime()\" style=\"width:50px\">"
 	td_TournamentSquare.setAttribute("id","td_TournamentSquare");
@@ -57,15 +57,15 @@ function calRange()
 
 function TJS_onchange_caltime()
 {
-	var TJS_BaseSpeed = Number(document.getElementById("TJS_BaseSpeed").value);
-	var TJS_TournamentSquare = Number(document.getElementById("TJS_TournamentSquare").value);
-	var td_TournamentSquare = document.getElementById("td_TournamentSquare");
+	let TJS_BaseSpeed = Number(document.getElementById("TJS_BaseSpeed").value);
+	let TJS_TournamentSquare = Number(document.getElementById("TJS_TournamentSquare").value);
+	let td_TournamentSquare = document.getElementById("td_TournamentSquare");
 	
-	var range20 = window.RangeToTarget <= 20 ? window.RangeToTarget : 20;
-	var time = range20 / TJS_BaseSpeed; //hours
+	let range20 = window.RangeToTarget <= 20 ? window.RangeToTarget : 20;
+	let time = range20 / TJS_BaseSpeed; //hours
 	if(window.RangeToTarget > 20)
 	{
-		var time20p = (window.RangeToTarget - 20) / TJS_BaseSpeed / (1 + 0.2* TJS_TournamentSquare);
+		let time20p = (window.RangeToTarget - 20) / TJS_BaseSpeed / (1 + 0.2* TJS_TournamentSquare);
 		time = time + time20p;
 	}
 	td_TournamentSquare.innerText = TJS.GetTimeTextFromHour(time);
@@ -76,17 +76,17 @@ function position_details_main()
 {
 	if(window.location.href.indexOf("position_details.php") >=0)
 	{
-		var map_details = document.getElementById("map_details");
-		var h4 = map_details.getElementsByTagName("h4");
+		let map_details = document.getElementById("map_details");
+		let h4 = map_details.getElementsByTagName("h4");
 		h4.remove();
 		
-		var div = document.createElement("div");
+		let div = document.createElement("div");
 		map_details.insertAdjacentElement("afterbegin",div);		
 		
-		var cb = document.createElement("input");
+		let cb = document.createElement("input");
 		cb.setAttribute("type","checkbox");
 		TJS.InitCheckboxOnclick(cb,"position_details_calRange",function(){window.location.href = window.location.href;},true);
-		var lb_cb = document.createElement("label");
+		let lb_cb = document.createElement("label");
 		lb_cb.innerText = "adv cal";
 		lb_cb.setAttribute("style","border:none;color:black;padding: 3px;");			
 		lb_cb.appendChild(cb);

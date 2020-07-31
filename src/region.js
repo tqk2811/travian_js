@@ -9,13 +9,13 @@ function region_()
 
 function progressbarpop()
 {
-	var regionContainer = document.getElementById("regionContainer");
+	let regionContainer = document.getElementById("regionContainer");
 	if(regionContainer )
 	{
-		var spans = regionContainer.getElementsByTagName("span");
+		let spans = regionContainer.getElementsByTagName("span");
 		if(spans.length == 1)
 		{
-			var e_div = document.createElement("div");
+			let e_div = document.createElement("div");
 			e_div.innerText = spans[0]._travianTooltip.text.match(/[0-9/]+$/)[0];
 			spans[0].parentElement.insertAdjacentElement("beforebegin",e_div);
 		}

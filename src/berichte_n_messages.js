@@ -1,57 +1,57 @@
 function berichte_scouts_count_res(){
-	var entityWrapper_resource = document.getElementsByClassName("inlineIcon resources");//res
-	var rAreas = document.getElementsByClassName("rArea");//cranny
+	let entityWrapper_resource = document.getElementsByClassName("inlineIcon resources");//res
+	let rAreas = document.getElementsByClassName("rArea");//cranny
 	if(entityWrapper_resource.length == 4)
 	{
-		var total = 0;
-		var canraid = 0;
-		var cranny = rAreas.length == 1 ? Number(rAreas[0].innerText) : 0;
-		for(var i =0; i < entityWrapper_resource.length; i++) 
+		let total = 0;
+		let canraid = 0;
+		let cranny = rAreas.length == 1 ? Number(rAreas[0].innerText) : 0;
+		for(let i =0; i < entityWrapper_resource.length; i++) 
 		{
-			var r = Number(entityWrapper_resource[i].innerText);
+			let r = Number(entityWrapper_resource[i].innerText);
 			total += r;
-			var canraid_c = r - cranny;
+			let canraid_c = r - cranny;
 			if(canraid_c > 0) canraid += canraid_c;
 		}		
-		var e_total  = document.createElement("span");
+		let e_total  = document.createElement("span");
 		if(rAreas.length == 1) e_total.innerText = "Can Raid/Total: " + canraid + "/"  + total;
 		else e_total.innerText = "Total: " + total;		
 		//e_total.setAttribute("style","margin-left: 10px");
 		e_total.setAttribute("style","margin-top: 5px;");
-		var e_parent = entityWrapper_resource[0].parentElement.parentElement;
+		let e_parent = entityWrapper_resource[0].parentElement.parentElement;
 		e_parent.insertAdjacentElement("afterend",e_total);
 	}
 }
 function berichte_scan_arr_troop(e){
-	var result = [];
-	var tds = e.getElementsByTagName("td");
-	for(var i = 0; i < tds.length; i++) result.push(Number(tds[i].innerText));
+	let result = [];
+	let tds = e.getElementsByTagName("td");
+	for(let i = 0; i < tds.length; i++) result.push(Number(tds[i].innerText));
 	return result;
 }
 function berichte_count_troops_live(){
-	//var reportWrapper = document.getElementById("reportWrapper");
+	//let reportWrapper = document.getElementById("reportWrapper");
 	//if(!reportWrapper) return;
-	var tables = [	document.getElementById("attacker"),
+	let tables = [	document.getElementById("attacker"),
 					document.getElementById("defender")];
-	var def_reinfs = document.getElementsByClassName("defender reinforcement");
-	for(var i = 0; i < def_reinfs.length; i++) tables.push(def_reinfs[i]);
+	let def_reinfs = document.getElementsByClassName("defender reinforcement");
+	for(let i = 0; i < def_reinfs.length; i++) tables.push(def_reinfs[i]);
 	
-	for(var i = 0; i < tables.length; i++)
+	for(let i = 0; i < tables.length; i++)
 	{
 		if(!tables[i]) continue;
-		var tbodys = tables[i].getElementsByTagName("tbody");
+		let tbodys = tables[i].getElementsByTagName("tbody");
 		if(tbodys.length >= 3)// 3 nomal, 2: ???, 4 trap gaul
 		{ 
-			var arr_in = berichte_scan_arr_troop(tbodys[1]);
-			var arr_out = berichte_scan_arr_troop(tbodys[2]);
-			var arr_trap;
+			let arr_in = berichte_scan_arr_troop(tbodys[1]);
+			let arr_out = berichte_scan_arr_troop(tbodys[2]);
+			let arr_trap;
 			if(tbodys.length == 4) arr_trap = berichte_scan_arr_troop(tbodys[3]);
 		
-			var tbody_live = document.createElement("tbody");
+			let tbody_live = document.createElement("tbody");
 			tbody_live.setAttribute("class","units");
 			tbody_live.innerHTML = "<tr><th>Live</th></tr>";
-			for(var j = 0; j < arr_in.length; j++){
-				var td = document.createElement("td");
+			for(let j = 0; j < arr_in.length; j++){
+				let td = document.createElement("td");
 				td.innerText = (arr_in[j]-arr_out[j] - (tbodys.length == 4 ? arr_trap[j] : 0)).toString();
 				tbody_live.children[0].appendChild(td);
 			}
@@ -62,21 +62,21 @@ function berichte_count_troops_live(){
 
 function berichte_clear()
 {
-	var label_clear = document.createElement("label");
+	let label_clear = document.createElement("label");
 	label_clear.setAttribute("style","background-color:green;float:right;color:white;margin-right: 200px;");
 	label_clear.setAttribute("onclick","berichte_clear_onclick()");
 	label_clear.innerText = "Clear";
 	
-	var paginator = document.getElementsByClassName("paginator");
+	let paginator = document.getElementsByClassName("paginator");
 	if(paginator.length > 0) paginator[0].insertAdjacentElement("afterend",label_clear);
 }
 function berichte_clear_onclick()
 {
 	if(window.confirm("Delete all in this page?"))
 	{
-		var checkall = document.getElementById("sAll1");
+		let checkall = document.getElementById("sAll1");
 		checkall.click();
-		var del = document.getElementById("del");
+		let del = document.getElementById("del");
 		del.click();
 	}
 }
@@ -99,5 +99,5 @@ function berichte_main()
 	}
 }
 
-var administration = null;
+let administration = null;
 berichte_main();

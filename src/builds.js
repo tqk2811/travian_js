@@ -23,25 +23,25 @@ function build_gid(){
 		{
 			window.e_merge.isOn = true;
 			window.setInterval(function(){ 
-						var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
+						let e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
 						if(e_resourceWrappers.length == 1) build_gid_TotalRes(e_resourceWrappers[0]);
 					},
 				500);
 		}			
 	else 
 	{
-		var e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
-		for(var i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
+		let e_resourceWrappers = document.getElementsByClassName("inlineIconList resourceWrapper");
+		for(let i =0; i < e_resourceWrappers.length; i++) build_gid_TotalRes(e_resourceWrappers[i]);
 	}
 }
 
 function build_gid_TotalRes(e){
-	var ress = e.getElementsByTagName("span");
+	let ress = e.getElementsByTagName("span");
 	if(ress.length >= 4)
 	{
-		var total_ = 0;
-		for(var i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
-		var parent_ress = ress[0].parentNode.parentNode;
+		let total_ = 0;
+		for(let i =0; i < 4; i++) total_ += Number.parseInt(ress[i].innerText);
+		let parent_ress = ress[0].parentNode.parentNode;
 		if(window.e_merge.isOn)
 		{
 			if(!document.getElementById("e_merge"))
@@ -57,7 +57,7 @@ function build_gid_TotalRes(e){
 		}
 		else 
 		{
-			var total_element =  document.createElement("div");
+			let total_element =  document.createElement("div");
 			total_element.innerText = "Total: " + total_;
 			e.appendChild(total_element);//e.insertAdjacentElement("afterend",total_element);
 		}		
@@ -65,28 +65,28 @@ function build_gid_TotalRes(e){
 	//19,20,21,36: barrack,stable,workshop,traper
 	if(((TJS.CurrentData.Gid >= 19 && TJS.CurrentData.Gid <= 21) || TJS.CurrentData.Gid == 36) && e.parentElement.getAttribute("class") == "details")
 	{
-		var e_imgs = e.parentElement.getElementsByTagName("img");
-		var e_imgs_unit = e.parentElement.getElementsByClassName("unit");
+		let e_imgs = e.parentElement.getElementsByTagName("img");
+		let e_imgs_unit = e.parentElement.getElementsByClassName("unit");
 		if(e_imgs.length == 1 && e_imgs_unit.length == 1 && e_imgs[0] == e_imgs_unit[0])
 		{
-			var class_unit_strings = e_imgs[0].getAttribute("class").split(" ");
-			var name_unit = e_imgs[0].getAttribute("alt");
+			let class_unit_strings = e_imgs[0].getAttribute("class").split(" ");
+			let name_unit = e_imgs[0].getAttribute("alt");
 			if(class_unit_strings.length == 2)
 			{				
-				var account_object = TJS.CurrentData.account_object;
+				let account_object = TJS.CurrentData.account_object;
 				if(!account_object["troop"]) account_object["troop"] = {};
 				
-				var unit_id = Number(class_unit_strings[1].substring(1));
-				var unit_tribe = "tribe_error";
+				let unit_id = Number(class_unit_strings[1].substring(1));
+				let unit_tribe = "tribe_error";
 				if 		(unit_id >=  1 && unit_id <= 10) unit_tribe = "Roman";
 				else if (unit_id >= 11 && unit_id <= 20) unit_tribe = "Teuton";
 				else if ((unit_id >= 21 && unit_id <= 30) | unit_id == 99) unit_tribe = "Gaul";
 				else if (unit_id >= 51 && unit_id <= 60) unit_tribe = "Egypt";
 				else if (unit_id >= 61 && unit_id <= 70) unit_tribe = "Huns";
-				var e_value = e.getElementsByClassName("value");
-				var arr = [];
+				let e_value = e.getElementsByClassName("value");
+				let arr = [];
 				arr.push(name_unit + " (" + unit_tribe + ")");
-				for(var i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
+				for(let i = 0; i < 4; i++)arr.push(Number(e_value[i].innerText));
 				account_object["troop"][class_unit_strings[1]] = arr;
 				TJS.SaveCurrentAccount();
 			}
@@ -96,7 +96,7 @@ function build_gid_TotalRes(e){
 
 function gid15(){//main building
 	if(document.getElementById("demolish")){
-		var timers_ = demolish.getElementsByClassName("timer");
+		let timers_ = demolish.getElementsByClassName("timer");
 		if(timers_.length == 1)	TJS.CurrentData.village_object["demolish"] = Number(timers_[0].getAttribute("value")) + TJS.CurrentSec();
 		else TJS.CurrentData.village_object["demolish"] = 0;			
 		TJS.SaveCurrentVillage();
@@ -113,9 +113,9 @@ function gid16(){//rallypoint
 	}
 }
 function gid16_raidlist(){
-	var raidlists = [];
-	var listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
-	for(var i = 0; i < listEntrys.length; i++) 
+	let raidlists = [];
+	let listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
+	for(let i = 0; i < listEntrys.length; i++) 
 		raidlists.push({
 					id: Number(listEntrys[i].id.slice(4,listEntrys[i].id.length)),
 					name: listEntrys[i].getElementsByClassName("listTitleText")[0].innerText
@@ -127,7 +127,7 @@ function gid16_raidlist(){
 	window.gid16_cb_raid = document.createElement("input");//
 	gid16_cb_raid.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(gid16_cb_raid,"gid16_cb_raid",null,true);
-	var e_LB_raid = document.createElement("label");
+	let e_LB_raid = document.createElement("label");
 	e_LB_raid.innerText = "Start raids";			
 	e_LB_raid.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_LB_raid.appendChild(window.gid16_cb_raid);
@@ -135,7 +135,7 @@ function gid16_raidlist(){
 	window.gid16_cb_attacking = document.createElement("input");
 	gid16_cb_attacking.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(gid16_cb_attacking,"gid16_cb_attacking",null,true);
-	var e_LB_attacking = document.createElement("label");			
+	let e_LB_attacking = document.createElement("label");			
 	e_LB_attacking.innerText = "Don't raid attacking";
 	e_LB_attacking.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_LB_attacking.appendChild(window.gid16_cb_attacking);
@@ -143,7 +143,7 @@ function gid16_raidlist(){
 	window.gid16_cb_yellow = document.createElement("input");//
 	gid16_cb_yellow.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(gid16_cb_yellow,"gid16_cb_yellow",null,true);
-	var e_LB_yellow = document.createElement("label");
+	let e_LB_yellow = document.createElement("label");
 	e_LB_yellow.innerText = "Yellow";
 	e_LB_yellow.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_LB_yellow.appendChild(window.gid16_cb_yellow);			
@@ -151,18 +151,18 @@ function gid16_raidlist(){
 	window.gid16_cb_red = document.createElement("input");//
 	gid16_cb_red.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(gid16_cb_red,"gid16_cb_red",null,true);
-	var e_LB_red = document.createElement("label");
+	let e_LB_red = document.createElement("label");
 	e_LB_red.innerText = "Red";
 	e_LB_red.setAttribute("style","border:none;color:black;padding: 3px;");			
 	e_LB_red.appendChild(window.gid16_cb_red);
 	
-	var raidall_div = document.createElement("div");
+	let raidall_div = document.createElement("div");
 	raidall_div.setAttribute("style","background-color:green;float:right;color:white;");
 	raidall_div.onclick = gid16_bt_raidall;
 	raidall_div.innerText ="Check all";
 	
-	var continue_div = null;
-	var raidall = TJS.CurrentData.account_object["raidall"];
+	let continue_div = null;
+	let raidall = TJS.CurrentData.account_object["raidall"];
 	if(raidall && raidall.curr_id != "")
 	{
 		continue_div = document.createElement("div");
@@ -174,7 +174,7 @@ function gid16_raidlist(){
 		continue_div.innerText ="Continue";
 	}
 	
-	var e_div = document.createElement("div");
+	let e_div = document.createElement("div");
 	//e_div.appendChild(e_bt_CheckAllGreenAttack);
 	e_div.appendChild(e_LB_raid);
 	e_div.appendChild(e_LB_attacking);
@@ -185,20 +185,20 @@ function gid16_raidlist(){
 	
 	TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
 	
-	var current_time = TJS.CurrentSec();
-	var listEntrys = document.getElementsByClassName("listEntry");
-	for(var i = 0; i < listEntrys.length; i++)
+	let current_time = TJS.CurrentSec();
+	let listEntrys = document.getElementsByClassName("listEntry");
+	for(let i = 0; i < listEntrys.length; i++)
 	{
-		var listid = listEntrys[i].getAttribute("id");
-		var listTitleText = listEntrys[i].getElementsByClassName("listTitleText")[0];
-		var time_last_click = TJS.CurrentData.account_object["raidlist_" + listid];
-		var text_button = "Check Green";
+		let listid = listEntrys[i].getAttribute("id");
+		let listTitleText = listEntrys[i].getElementsByClassName("listTitleText")[0];
+		let time_last_click = TJS.CurrentData.account_object["raidlist_" + listid];
+		let text_button = "Check Green";
 		if(time_last_click)
 		{
-			var texttime = TJS.GetTimeTextFromSecondLeft(current_time - Number(time_last_click));
+			let texttime = TJS.GetTimeTextFromSecondLeft(current_time - Number(time_last_click));
 			text_button += " (" + texttime + " ago)";
 		}
-		var buttoncheck = document.createElement("label");
+		let buttoncheck = document.createElement("label");
 		buttoncheck.setAttribute("style","background-color:green;float:right;color:white;");
 		buttoncheck.innerText = text_button;
 		buttoncheck.setAttribute("onclick","gid16_bt_CheckGreen_onclick(\"" + listid + "\")");		
@@ -206,14 +206,14 @@ function gid16_raidlist(){
 	}
 }
 function gid16_bt_raidall(){
-	var txt = "Notice: You need invigorate this tab, may be captcha show up.\r\nIf you ignore captcha, you will get banned.\r\n\r\n";
+	let txt = "Notice: You need invigorate this tab, may be captcha show up.\r\nIf you ignore captcha, you will get banned.\r\n\r\n";
 	txt += "Info Yellow: " + window.gid16_cb_yellow.checked + " , Red: " + window.gid16_cb_red.checked;
 	if(!window.confirm(txt)) return;
 	
-	var listEntrys = document.getElementsByClassName("listEntry");
+	let listEntrys = document.getElementsByClassName("listEntry");
 	if(listEntrys.length > 0)
 	{
-		var id = listEntrys[0].getAttribute("id");
+		let id = listEntrys[0].getAttribute("id");
 		TJS.CurrentData.account_object["raidall"] = 
 		{
 			flag:true,
@@ -225,12 +225,12 @@ function gid16_bt_raidall(){
 	}
 }
 function gid16_raidall_init(){
-	var raidall = TJS.CurrentData.account_object["raidall"];
+	let raidall = TJS.CurrentData.account_object["raidall"];
 	if(raidall && raidall.flag)
 	{
-		var listEntrys = document.getElementsByClassName("listEntry");
-		var flag = false;
-		for(var i = 0; i < listEntrys.length; i++)
+		let listEntrys = document.getElementsByClassName("listEntry");
+		let flag = false;
+		for(let i = 0; i < listEntrys.length; i++)
 		{
 			if(flag)
 			{
@@ -250,10 +250,10 @@ function gid16_raidall_init(){
 
 
 function gid16_bt_CheckGreen_onclick(listid){
-	var listEntry = document.getElementById(listid);
+	let listEntry = document.getElementById(listid);
 	if(!listEntry) return;
 	//expand
-	var switchClosed = listEntry.getElementsByClassName("switchClosed");
+	let switchClosed = listEntry.getElementsByClassName("switchClosed");
 	if(switchClosed.length > 0)
 	{
 		switchClosed[0].click();
@@ -261,10 +261,10 @@ function gid16_bt_CheckGreen_onclick(listid){
 		{
 			window.gid16_raidall_Intervalhandle = window.setInterval(function()
 			{
-				var loading_hides = listEntry.getElementsByClassName("loading hide");
+				let loading_hides = listEntry.getElementsByClassName("loading hide");
 				if(loading_hides.length == 1)
 				{
-					var _switchClosed = listEntry.getElementsByClassName("switchClosed");//expanded
+					let _switchClosed = listEntry.getElementsByClassName("switchClosed");//expanded
 					if(_switchClosed.length == 0)
 					{
 						window.clearInterval(window.gid16_raidall_Intervalhandle);
@@ -279,19 +279,19 @@ function gid16_bt_CheckGreen_onclick(listid){
 	
 	TJS.CurrentData.account_object["raidlist_" + listid] =  TJS.CurrentSec();
 	TJS.SaveCurrentAccount();
-	var nodata = listEntry.getElementsByClassName("noData");
-	var check_count = 0;
+	let nodata = listEntry.getElementsByClassName("noData");
+	let check_count = 0;
 	if(nodata.length == 0)
 	{
-		var e_slotRows = listEntry.getElementsByClassName("slotRow");
-		for(var j = 0; j< e_slotRows.length; j++)
+		let e_slotRows = listEntry.getElementsByClassName("slotRow");
+		for(let j = 0; j< e_slotRows.length; j++)
 		{				
-			var e_img_attack = e_slotRows[j].getElementsByClassName("attack");
-			var isAttacking = e_img_attack.length > 0;
-			var isHistoryYellow = e_slotRows[j].getElementsByClassName("iReport2").length > 0;
-			var isHistoryRed = e_slotRows[j].getElementsByClassName("iReport3").length > 0;
+			let e_img_attack = e_slotRows[j].getElementsByClassName("attack");
+			let isAttacking = e_img_attack.length > 0;
+			let isHistoryYellow = e_slotRows[j].getElementsByClassName("iReport2").length > 0;
+			let isHistoryRed = e_slotRows[j].getElementsByClassName("iReport3").length > 0;
 				
-			var e_input = e_slotRows[j].getElementsByTagName("input");
+			let e_input = e_slotRows[j].getElementsByTagName("input");
 			if(e_input && 
 				!(gid16_cb_attacking.checked && isAttacking ) &&
 				!(isHistoryYellow && !gid16_cb_yellow.checked) &&
@@ -309,14 +309,14 @@ function gid16_bt_CheckGreen_onclick(listid){
 	}
 	else if(window.gid16_cb_raid.checked)
 	{
-		var e_bt = listEntry.getElementsByTagName("button");
+		let e_bt = listEntry.getElementsByTagName("button");
 		e_bt[3].click();
 	}
 }
 
 function gid16_attack_multiwave(){
 	localStorage.setItem("attack_multiwave","0");
-	var e_main = document.createElement("div");
+	let e_main = document.createElement("div");
 	e_main.setAttribute("style","display: inline-block;");
 	TJS.CurrentData.e_build.insertAdjacentElement("beforeend",e_main);
 
@@ -326,7 +326,7 @@ function gid16_attack_multiwave(){
 	gid16_BT_StartCata.setAttribute("onclick","gid16_attack_multiwave_start()");
 	e_main.appendChild(gid16_BT_StartCata);
 
-	var e_p = document.createElement("p");
+	let e_p = document.createElement("p");
 	e_main.appendChild(e_p);
 
 	window.gid16_Input_AttackTrigger = document.createElement("input");
@@ -335,12 +335,12 @@ function gid16_attack_multiwave(){
 	gid16_Input_AttackTrigger.setAttribute("onclick","gid16_attack_multiwave_trigger()");
 	e_main.appendChild(gid16_Input_AttackTrigger);
 
-	var label_gid16_Input_AttackTrigger = document.createElement("label");
+	let label_gid16_Input_AttackTrigger = document.createElement("label");
 	label_gid16_Input_AttackTrigger.setAttribute("for","gid16_Input_AttackTrigger");
 	label_gid16_Input_AttackTrigger.innerText = "Wait first wave";
 	e_main.appendChild(label_gid16_Input_AttackTrigger);
 	
-	var e_p2 = document.createElement("p");
+	let e_p2 = document.createElement("p");
 	e_main.appendChild(e_p2);
 	
 	window.gid16_Input_delay = document.createElement("input");
@@ -362,13 +362,13 @@ function gid16_attack_multiwave(){
 	e_main.appendChild(gid16_Label_Delay);
 	
 	//
-	var select_kata2s = document.getElementsByName("troops[0][kata2]");
+	let select_kata2s = document.getElementsByName("troops[0][kata2]");
 	if(select_kata2s.length == 1) select_kata2s[0].value = 99;
 }
 function gid16_attack_multiwave_start(){
 	if(window.confirm("Start?"))
 	{
-		var bt_ok = document.getElementById("btn_ok");
+		let bt_ok = document.getElementById("btn_ok");
 		bt_ok.click();
 		localStorage.setItem("attack_multiwave",Date.now()+Number(window.gid16_Input_delay.value));
 	}
@@ -393,14 +393,14 @@ function gid16_attack_multiwave_trigger(){
 	}
 }
 
-var time_multiwave = 0;
+let time_multiwave = 0;
 
 function gid16_attack_multiwave_trigger_Interval(){
 	if(time_multiwave == 0) {
-		var attack_multiwave_flag = localStorage.getItem("attack_multiwave");
+		let attack_multiwave_flag = localStorage.getItem("attack_multiwave");
 		if(attack_multiwave_flag !== "0") time_multiwave = Number(attack_multiwave_flag);
 	}else if(Date.now() >= time_multiwave){
-		var bt_ok = document.getElementById("btn_ok");
+		let bt_ok = document.getElementById("btn_ok");
 		window.clearInterval(gid16_Interval_id);
 		bt_ok.click();
 	}
@@ -410,28 +410,28 @@ function gid16_attack_multiwave_trigger_Interval(){
 function gid17(){//market
 	if(TJS.CurrentData.tab_MainActive){
 		if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("t=0")>=0){//manager
-			var trading_routes = document.getElementById("trading_routes");
+			let trading_routes = document.getElementById("trading_routes");
 			if(trading_routes){
-				var button_clear = document.createElement("button");
+				let button_clear = document.createElement("button");
 				button_clear.innerText = "Clear All Trade Routes";
 				button_clear.setAttribute("style","background-color:red;border:none;color:white;padding: 3px;");
 				button_clear.setAttribute("onclick","gid17_clear_onclick()");
 				trading_routes.insertAdjacentElement("beforebegin",button_clear);
 				
-				var arr_traderoute_desc = [];			
-				var desc = trading_routes.getElementsByClassName("desc");
-				for( var i = 0; i < desc.length; i++){
-					var a_desc = desc[i].getElementsByTagName("a");
-					var r = [
+				let arr_traderoute_desc = [];			
+				let desc = trading_routes.getElementsByClassName("desc");
+				for( let i = 0; i < desc.length; i++){
+					let a_desc = desc[i].getElementsByTagName("a");
+					let r = [
 								desc[i].getElementsByClassName("r1")[0].parentElement.innerText,
 								desc[i].getElementsByClassName("r2")[0].parentElement.innerText,
 								desc[i].getElementsByClassName("r3")[0].parentElement.innerText,
 								desc[i].getElementsByClassName("r4")[0].parentElement.innerText
 							];
 					if(a_desc.length > 0){
-						var href_a_desc = a_desc[0].getAttribute("href");
-						var flag_add = true;
-						for(var j = 0; j< arr_traderoute_desc.length; j++)
+						let href_a_desc = a_desc[0].getAttribute("href");
+						let flag_add = true;
+						for(let j = 0; j< arr_traderoute_desc.length; j++)
 							if(arr_traderoute_desc[j][1] == href_a_desc && 
 								r[0] == arr_traderoute_desc[j][2][0] && r[1] == arr_traderoute_desc[j][2][1] &&
 								r[2] == arr_traderoute_desc[j][2][2] && r[3] == arr_traderoute_desc[j][2][3]
@@ -446,12 +446,12 @@ function gid17(){//market
 				trading_routes.insertAdjacentElement("beforebegin",gid17_select_clear);
 			}
 
-			var e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
+			let e_tradeRouteEdit = document.getElementById("tradeRouteEdit");
 			if(false && e_tradeRouteEdit && Number(TJS.getParameterByName(window.location.href,"option")) == 1)//disable create multi traderoute
 			{
-				var timeSelector = document.getElementsByClassName("timeSelector")[0];
+				let timeSelector = document.getElementsByClassName("timeSelector")[0];
 				
-				var div_timeend = document.createElement("div");
+				let div_timeend = document.createElement("div");
 				timeSelector.insertAdjacentElement("afterend",div_timeend);
 				div_timeend.setAttribute("style","display: flex;background: rgb(220, 247, 197)");
 				
@@ -459,22 +459,22 @@ function gid17(){//market
 			}
 		}
 		else if(TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("t=5")>=0){//send res
-			var marketSend_ = document.getElementById("marketSend");
+			let marketSend_ = document.getElementById("marketSend");
 			if(marketSend_ ){
-				var e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry");
+				let e_carry = TJS.CurrentData.e_build.getElementsByClassName("carry");
 				if(e_carry.length == 1) e_carry[0].remove();
 								
-				var div_market = document.createElement("div");
+				let div_market = document.createElement("div");
 				marketSend_.insertAdjacentElement("beforebegin",div_market);				
-				var div_left_market = document.createElement("div");
+				let div_left_market = document.createElement("div");
 				div_left_market.setAttribute("style","float:left; width:45%;");				
-				var div_right_market = document.createElement("div");
+				let div_right_market = document.createElement("div");
 				div_right_market.setAttribute("style","float:right; width:55%;");
 				div_market.appendChild(div_left_market);
 				div_market.appendChild(div_right_market);
 				div_market.insertAdjacentElement("afterend",TJS.DivClear());
 				
-				var br = document.createElement("br");				
+				let br = document.createElement("br");				
 				window.gid17_TypeResSelect = document.createElement("select");
 				gid17_TypeResSelect.setAttribute("style","width:150px");	
 				gid17_TypeResSelect.appendChild(gid17_createoption("-1",""));// empty option
@@ -487,10 +487,10 @@ function gid17(){//market
 				gid17_TypeResSelect.appendChild(gid17_createoption("c_2","Big Celebration / 2"));
 				gid17_TypeResSelect.appendChild(gid17_createoption("c_3","Big Celebration / 3"));
 				
-				var account_object = TJS.CurrentData.account_object;
+				let account_object = TJS.CurrentData.account_object;
 				if(account_object["troop"] ){
-					var keys = Object.keys(account_object["troop"]);
-					for(var i = 0; i < keys.length; i++)
+					let keys = Object.keys(account_object["troop"]);
+					for(let i = 0; i < keys.length; i++)
 						gid17_TypeResSelect.appendChild(gid17_createoption(keys[i],account_object["troop"][keys[i]][0]));
 				}
 				gid17_TypeResSelect.setAttribute("onchange","gid17_TypeResSelect_onchange()");
@@ -510,7 +510,7 @@ function gid17(){//market
 														};
 				gid17_label_max.setAttribute("style","margin-left:3px");
 				
-				var label_noncrop = document.createElement("label");
+				let label_noncrop = document.createElement("label");
 				label_noncrop.setAttribute("style","margin-left:3px");
 				label_noncrop.innerText = "No crop";
 				
@@ -520,7 +520,7 @@ function gid17(){//market
 				TJS.InitCheckboxOnclick(gid17_noncrop,"gid17_noncrop",gid17_TypeResSelect_onchange,true);
 				label_noncrop.appendChild(gid17_noncrop);
 				
-				var label_SaveBigCelebration = document.createElement("label");
+				let label_SaveBigCelebration = document.createElement("label");
 				label_SaveBigCelebration.setAttribute("style","margin-left:3px");
 				label_SaveBigCelebration.innerText = "Save Big Celebration";
 				
@@ -540,17 +540,17 @@ function gid17(){//market
 				gid17_TypeResSelect_onchange();
 				
 				///right zone
-				var x2 = document.getElementById("x2");
+				let x2 = document.getElementById("x2");
 				x2.onchange = gid17_TypeResSelect_onchange;
 				
-				var divr1 = document.createElement("div");
-				var divr2 = document.createElement("div");
-				var divr3 = document.createElement("div");
+				let divr1 = document.createElement("div");
+				let divr2 = document.createElement("div");
+				let divr3 = document.createElement("div");
 				div_right_market.appendChild(divr1);
 				div_right_market.appendChild(divr2);
 				div_right_market.appendChild(divr3);
 				
-				var target_label = document.createElement("label");
+				let target_label = document.createElement("label");
 				target_label.innerText = "Target Village Id:";
 				divr1.appendChild(target_label);
 				
@@ -572,26 +572,26 @@ function gid17(){//market
 				window.gid17_r3 = gid17_MarketPlace_icon_n_res(divr2,"r3");
 				window.gid17_r4 = gid17_MarketPlace_icon_n_res(divr2,"r4");
 				
-				var div_warehouse = document.createElement("div");
+				let div_warehouse = document.createElement("div");
 				div_warehouse.setAttribute("style","float:left; width:42%;")
 				div_warehouse.innerText = "Warehouse:";
 				window.gid17_target_storage = document.createElement("span");
 				gid17_target_storage.innerText = 0;
 				div_warehouse.appendChild(gid17_target_storage);
 				
-				var div_granary = document.createElement("div");
+				let div_granary = document.createElement("div");
 				div_granary.setAttribute("style","float:left; width:42%;")
 				div_granary.innerText = "Granary:";
 				window.gid17_target_granary = document.createElement("span");
 				gid17_target_granary.innerText = 0;
 				div_granary.appendChild(gid17_target_granary);
 				
-				var div_percent = document.createElement("div");
+				let div_percent = document.createElement("div");
 				div_percent.setAttribute("style","float:right; width:15%;");
 				window.gid17_percent = document.createElement("span");
 				gid17_percent.innerText = 0;
 				div_percent.appendChild(gid17_percent);
-				var label_percent = document.createElement("span");
+				let label_percent = document.createElement("span");
 				label_percent.innerText = "%";
 				div_percent.appendChild(label_percent);
 				
@@ -599,7 +599,7 @@ function gid17(){//market
 				divr3.appendChild(div_granary);				
 				
 				TJS.Re_MarketPlace_sendRessources(gid17_MarketPlace_sendRessources_callback);				
-				var datalist_villagename = TJS.CreateDataListVillageName();		
+				let datalist_villagename = TJS.CreateDataListVillageName();		
 				marketSend_.insertAdjacentElement("afterend",datalist_villagename);
 				gid17_MarketPlace_sendRessources_callback();
 				gid17_enterVillageName();
@@ -608,8 +608,8 @@ function gid17(){//market
 	}
 }
 function gid17_Sliders(){
-	var destination = document.getElementsByClassName("destination")[0];				
-	var d_div = document.createElement("div");
+	let destination = document.getElementsByClassName("destination")[0];				
+	let d_div = document.createElement("div");
 	destination.appendChild(d_div);
 	d_div.setAttribute("style","float:right; width:100%;");				
 	window.slider_current = gid17_create_slider(d_div,true,TJS.CurrentData.VillageId);
@@ -617,19 +617,19 @@ function gid17_Sliders(){
 	window.slider_target.disabled = true;
 }
 function gid17_create_slider(parent_,isMin,village_id){
-	var v = isMin ? 0 : TJS.Const.Slider_Target_Max_Default;
+	let v = isMin ? 0 : TJS.Const.Slider_Target_Max_Default;
 	if(village_id){
-		var village_obj = TJS.LSGetObject("village",village_id);
+		let village_obj = TJS.LSGetObject("village",village_id);
 		if(village_obj[isMin ? "gid17min" : "gid17max"] ) v = village_obj[isMin ? "gid17min" : "gid17max"];
 	}
-	var div = document.createElement("div");
+	let div = document.createElement("div");
 	parent_.appendChild(div);
 	
-	var label_p = document.createElement("label");
+	let label_p = document.createElement("label");
 	label_p.innerText = v +"%";
 	label_p.setAttribute("style","float:right; width:12%;height: 16px;");
 	
-	var slider = document.createElement("input");
+	let slider = document.createElement("input");
 	slider.setAttribute("min",0);	
 	slider.setAttribute("value",v);
 	slider.setAttribute("max",100);	
@@ -640,13 +640,13 @@ function gid17_create_slider(parent_,isMin,village_id){
 	slider.setAttribute("isCurrent",isMin);
 	slider.setAttribute("style","width:84%; height:16px;");
 	slider.oninput = function(){
-		var isCurrent = this.getAttribute("isCurrent") == "true";
-		var vi = this.getAttribute("village_id");
+		let isCurrent = this.getAttribute("isCurrent") == "true";
+		let vi = this.getAttribute("village_id");
 		if(isCurrent) {
 			TJS.CurrentData.village_object["gid17min"] = this.value;
 			TJS.SaveCurrentVillage();
 		}else if(vi){
-			var vo = TJS.LSGetObject("village",vi);
+			let vo = TJS.LSGetObject("village",vi);
 			vo["gid17max"] = this.value;
 			TJS.LSSaveObject("village",vi,vo);
 		}else this.disabled = true;
@@ -665,12 +665,12 @@ function gid17_create_slider(parent_,isMin,village_id){
 	return slider;
 }
 function gid17_MarketPlace_icon_n_res(e_parent,class_name){
-	var div_ = document.createElement("div");
+	let div_ = document.createElement("div");
 	div_.setAttribute("style","float:left; width:24%;");
 	e_parent.appendChild(div_);
-	var e_i = document.createElement("i");
+	let e_i = document.createElement("i");
 	e_i.setAttribute("class",class_name);
-	var e_span = document.createElement("span");
+	let e_span = document.createElement("span");
 	e_span.innerText = "0";
 	div_.appendChild(e_i);
 	div_.appendChild(e_span);
@@ -684,7 +684,7 @@ function gid17_MarketPlace_sendRessources_callback(){
 	gid17_TypeResSelect_onchange();
 }
 function gid17_enterVillageName(){
-	for(var i = 0; i < TJS.ListVillageName.length; i++){
+	for(let i = 0; i < TJS.ListVillageName.length; i++){
 		if(TJS.ListVillageName[i].name == enterVillageName.value){
 			window.gid17_target_span.innerText = TJS.ListVillageName[i].id;
 			window.gid17_obj_target = TJS.LSGetObject("village",TJS.ListVillageName[i].id);
@@ -719,13 +719,13 @@ function gid17_enterVillageName(){
 	window.slider_target.onchange();
 }
 function gid17_createoption(value_,name){
-	var e_option = document.createElement("option");
+	let e_option = document.createElement("option");
 	e_option.value = value_;
 	e_option.innerText = name;
 	return e_option;
 }
 function gid17_TypeResSelect_onchange(){
-	var account_object = TJS.CurrentData.account_object;
+	let account_object = TJS.CurrentData.account_object;
 	switch(gid17_TypeResSelect.value)
 	{
 		case "-1"  : 
@@ -766,25 +766,25 @@ function gid17_TypeResSelect_onchange(){
 	}
 }
 function gid17_input_number_onchange(){
-	var b_flag = false;
+	let b_flag = false;
 	switch(gid17_TypeResSelect.value)
 	{
 		case "-1" : gid17_write_res([0,0,0,0],1); return;
 		case "b_0" : b_flag = true;//true is balance current
 		case "b_1" : 
-			var v_obj_current = TJS.CurrentData.village_object;
-			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
+			let v_obj_current = TJS.CurrentData.village_object;
+			let v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
 			if(!v_obj_target["res"]) return;
-			var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
-			var res_merchantsend = Number(window.gid17_input_number.value)*TJS.Const.RoundResource;
+			let merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText);
+			let res_merchantsend = Number(window.gid17_input_number.value)*TJS.Const.RoundResource;
 			
-			var arr = [];
-			for(var i = 0; i < 4; i++){
-				var obj = {};
+			let arr = [];
+			for(let i = 0; i < 4; i++){
+				let obj = {};
 				obj.sc = i == 3 ? v_obj_current["granary"]: v_obj_current["storage"];
 				if(window.gid17_noncrop.checked && i == 3) obj.rc = 0;
 				else{
-					var res_current_save_max = Math.max(Math.round(obj.sc * slider_current.value / 100), 
+					let res_current_save_max = Math.max(Math.round(obj.sc * slider_current.value / 100), 
 						window.gid17_SaveBigCelebration.checked ? TJS.Const.CelebrationResource["c_1"]["r"][i] : 0);
 					if(v_obj_current["res"][i] > res_current_save_max) obj.rc = v_obj_current["res"][i] - res_current_save_max;
 					else obj.rc = 0;
@@ -796,8 +796,8 @@ function gid17_input_number_onchange(){
 				}
 				arr.push(obj);
 			}
-			var m = gid17_getx2();
-			var result = TJS.BalanceRes(res_merchantsend,b_flag,arr,m);
+			let m = gid17_getx2();
+			let result = TJS.BalanceRes(res_merchantsend,b_flag,arr,m);
 			gid17_write_res(result,m);
 			break;
 			
@@ -813,17 +813,17 @@ function gid17_input_number_onchange(){
 			
 		default:
 			gid17_SaveBigCelebration.disabled = true;
-			var target = false;
+			let target = false;
 			if(window.gid17_obj_target["res"]) target = true;
-			var send_times = gid17_getx2();
-			var num_troops = Number(gid17_input_number.value);
-			var res_troops = [
+			let send_times = gid17_getx2();
+			let num_troops = Number(gid17_input_number.value);
+			let res_troops = [
 											(gid17_TroopRes[1] * num_troops - (target ? gid17_obj_target["res"][0] : 0)) / send_times,
 											(gid17_TroopRes[2] * num_troops - (target ? gid17_obj_target["res"][1] : 0)) / send_times,
 											(gid17_TroopRes[3] * num_troops - (target ? gid17_obj_target["res"][2] : 0)) / send_times,
 				gid17_noncrop.checked ? 0 :((gid17_TroopRes[4] * num_troops - (target ? gid17_obj_target["res"][3] : 0)) / send_times),
 			];
-			for(var i = 0; i < 4; i++) 
+			for(let i = 0; i < 4; i++) 
 			{
 				if(res_troops[i] < 0) res_troops[i] = 0;
 				else res_troops[i] = Math.floor(res_troops[i]);
@@ -833,8 +833,8 @@ function gid17_input_number_onchange(){
 	}
 }
 function gid17_getx2(){
-	var result = 1;
-	var e_run_twice = document.getElementById("x2");
+	let result = 1;
+	let e_run_twice = document.getElementById("x2");
 	if(e_run_twice) {
 		if(e_run_twice.tagName == "SELECT") result = Number(e_run_twice.value);
 		else if(e_run_twice.checked) result = 2;
@@ -842,39 +842,39 @@ function gid17_getx2(){
 	return result;
 }
 function gid17_findmaxtroops(){
-	var maxtroops = 99999999;
-	var send_times = gid17_getx2();
-	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
-	var target = false;
+	let maxtroops = 99999999;
+	let send_times = gid17_getx2();
+	let merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
+	let target = false;
 	if(window.gid17_obj_target) target = true;
-	var target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
-	var target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
+	let target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
+	let target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
 	
-	var res_current = TJS.CurrentData.village_object.res;
-	var res_target = target ? window.gid17_obj_target["res"] : [ 0, 0 , 0 ,0 ];
+	let res_current = TJS.CurrentData.village_object.res;
+	let res_target = target ? window.gid17_obj_target["res"] : [ 0, 0 , 0 ,0 ];
 	//gid17_TroopRes (i+1)
-	var storage_target = [target_stogare , target_stogare, target_stogare , target_granary];
-	var res_for_a_troop = 0;
-	var total_res_target = 0;
-	for(var i = 0; i < 4; i++)
+	let storage_target = [target_stogare , target_stogare, target_stogare , target_granary];
+	let res_for_a_troop = 0;
+	let total_res_target = 0;
+	for(let i = 0; i < 4; i++)
 	{
 		if(3 == i && gid17_noncrop.checked) break;
 		res_for_a_troop += gid17_TroopRes[i+1];
-		var total_res_2village = res_current[i] + res_target[i];
+		let total_res_2village = res_current[i] + res_target[i];
 		if(total_res_2village > storage_target[i]) total_res_2village = storage_target[i];//fix
 		total_res_target += res_target[i];
-		var maxtroop_res = Math.floor(total_res_2village / gid17_TroopRes[i+1]);
+		let maxtroop_res = Math.floor(total_res_2village / gid17_TroopRes[i+1]);
 		if(maxtroop_res < maxtroops) maxtroops = maxtroop_res;//find min
 	}
-	var res_merchanWillCarry = res_for_a_troop * maxtroops - total_res_target;
+	let res_merchanWillCarry = res_for_a_troop * maxtroops - total_res_target;
 	while(merchantCapacityValue < res_merchanWillCarry)
 	{
 		maxtroops--;
 		res_merchanWillCarry = 0;
-		for(var i = 0; i < 4; i++)
+		for(let i = 0; i < 4; i++)
 		{
 			if(3 == i && gid17_noncrop.checked) break;
-			var res_need = maxtroops * gid17_TroopRes[i+1];
+			let res_need = maxtroops * gid17_TroopRes[i+1];
 			if(res_need > res_target[i]) res_merchanWillCarry += (res_need - res_target[i]);
 		}
 	}
@@ -883,11 +883,11 @@ function gid17_findmaxtroops(){
 	gid17_input_number.max = maxtroops;
 }
 
-var gid17_clear_select_text =  "%s - [id:%s res:%s,%s,%s,%s]";
-var gid17_clear_select_value =  "%s_%s_%s_%s_%s";
+let gid17_clear_select_text =  "%s - [id:%s res:%s,%s,%s,%s]";
+let gid17_clear_select_value =  "%s_%s_%s_%s_%s";
 
 function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
-	var e_option = document.createElement("option");
+	let e_option = document.createElement("option");
 	if(!item)
 	{
 		e_option.text = "All";
@@ -895,7 +895,7 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 	}
 	else
 	{
-		var v_id = TJS.getParameterByName(item[1],"newdid");
+		let v_id = TJS.getParameterByName(item[1],"newdid");
 		if(!v_id || v_id == '') v_id = TJS.getParameterByName(item[1],"x") + "|" + TJS.getParameterByName(item[1],"y");
 		e_option.text = gid17_clear_select_text.format(item[0],v_id,item[2][0],item[2][1],item[2][2],item[2][3])
 		e_option.value = gid17_clear_select_value.format(v_id,item[2][0],item[2][1],item[2][2],item[2][3]);
@@ -905,7 +905,7 @@ function gid17_clear_select(item){//[village name, href ,res:[r1,r2,r3,r4]]
 
 function gid17_clear_onclick(){
 	if(window.gid17_select_clear.value == "-1") {
-		var deleteAllTradeRoutes = document.getElementById("deleteAllTradeRoutes");
+		let deleteAllTradeRoutes = document.getElementById("deleteAllTradeRoutes");
 		if(deleteAllTradeRoutes) {
 			deleteAllTradeRoutes.click();
 			return;
@@ -919,31 +919,31 @@ function gid17_clear_onclick(){
 	}
 }
 function gid17_clear(){
-	var id = TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR];
-	var gid17_des_clear = TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear];
+	let id = TJS.CurrentData.account_object[TJS.Const.gid17_village_DTR];
+	let gid17_des_clear = TJS.CurrentData.account_object[TJS.Const.gid17_DTR_type_clear];
 	if(id  && Number(id) != -1 && Number(id) == TJS.CurrentData.VillageId)	{
-		var trading_routes = document.getElementById("trading_routes");
+		let trading_routes = document.getElementById("trading_routes");
 		if(trading_routes)		{
-			var trs = trading_routes.getElementsByTagName("tr");
-			for(var i = 1; i< trs.length; i++)			{
-				var sel_trs = trs[i].getElementsByClassName("sel");
+			let trs = trading_routes.getElementsByTagName("tr");
+			for(let i = 1; i< trs.length; i++)			{
+				let sel_trs = trs[i].getElementsByClassName("sel");
 				if(sel_trs.length == 0) continue;
 				if(gid17_des_clear == "-1"){
 					sel_trs[0].getElementsByTagName("a")[0].click();
 					return;
 				}
 				else{
-					var curr_desc = trs[i].getElementsByClassName("desc")[0];
-					var curr_href = curr_desc.getElementsByTagName("a")[0].getAttribute("href");
+					let curr_desc = trs[i].getElementsByClassName("desc")[0];
+					let curr_href = curr_desc.getElementsByTagName("a")[0].getAttribute("href");
 					
-					var curr_newdid;
-					var curr_r = [
+					let curr_newdid;
+					let curr_r = [
 								curr_desc.getElementsByClassName("r1")[0].parentElement.innerText,
 								curr_desc.getElementsByClassName("r2")[0].parentElement.innerText,
 								curr_desc.getElementsByClassName("r3")[0].parentElement.innerText,
 								curr_desc.getElementsByClassName("r4")[0].parentElement.innerText
 								];
-					var target = gid17_des_clear.split("_");
+					let target = gid17_des_clear.split("_");
 					if(target[0].indexOf("|") < 0) curr_newdid = TJS.getParameterByName(curr_href,"newdid");
 					else curr_newdid = TJS.getParameterByName(curr_href,"x") + "|" + TJS.getParameterByName(curr_href,"y");
 					if(curr_newdid == target[0] && 
@@ -960,9 +960,9 @@ function gid17_clear(){
 	TJS.SaveCurrentAccount();
 }
 function gid17_write_res(r,run_twice){
-	var sumResources = 0;
-	for(var i=0;i<4;i++){
-		var e_r = document.getElementById("r" + (i + 1));
+	let sumResources = 0;
+	for(let i=0;i<4;i++){
+		let e_r = document.getElementById("r" + (i + 1));
 		e_r.value = r[i];
 		sumResources += r[i];
 	}
@@ -970,7 +970,7 @@ function gid17_write_res(r,run_twice){
 	document.getElementById("merchantsNeededNumber").innerText 
 		= Math.ceil(sumResources/Number(document.getElementById("addRessourcesLink1").innerText));
 	
-	var e_run_twice = document.getElementById("x2");
+	let e_run_twice = document.getElementById("x2");
 	if(e_run_twice){
 		if(e_run_twice.tagName == "SELECT") e_run_twice.value = run_twice;
 		else if(e_run_twice.tagName == "INPUT" && e_run_twice.getAttribute("type") == "checkbox"){
@@ -983,18 +983,18 @@ function gid17_write_res(r,run_twice){
 }
 
 function troop_train(){//gid 13 19 20 29 30 21
-	//var contract = document.getElementById("contract");
-	var e_div = document.createElement("div");
+	//let contract = document.getElementById("contract");
+	let e_div = document.createElement("div");
 	e_div.setAttribute("style","margin-bottom: 15px;");
-	var build_value = document.getElementById("build_value");
+	let build_value = document.getElementById("build_value");
 	if(build_value == null)
 	{
-		var upgradeHeader = TJS.CurrentData.e_build.getElementsByClassName("upgradeHeader")[0];
+		let upgradeHeader = TJS.CurrentData.e_build.getElementsByClassName("upgradeHeader")[0];
 		upgradeHeader.insertAdjacentElement("afterbegin",e_div);
 	}
 	else
 	{
-		var tbody = build_value.getElementsByTagName("tbody")[0];
+		let tbody = build_value.getElementsByTagName("tbody")[0];
 		tbody.insertAdjacentElement("afterbegin",e_div);
 	}
 	
@@ -1002,7 +1002,7 @@ function troop_train(){//gid 13 19 20 29 30 21
 	window.troop_train_checkbox.setAttribute("type","checkbox");
 	window.troop_train_checkbox.checked = TJS.CurrentData.village_object[TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid];
 	TJS.InitCheckboxOnclick(troop_train_checkbox,TJS.Const.LS_trooptrain_checkbox + TJS.CurrentData.Gid,null,false);
-	var e_checkbox_lb = document.createElement("label");
+	let e_checkbox_lb = document.createElement("label");
 	e_checkbox_lb.innerText = "Show Time Training";
 	e_checkbox_lb.setAttribute("style","border:none;color:black;padding: 3px;");
 	e_checkbox_lb.appendChild(window.troop_train_checkbox);
@@ -1011,15 +1011,15 @@ function troop_train(){//gid 13 19 20 29 30 21
 	read_time_gid_under_progress("troop_train");
 	
 	//fast click train
-	var trainUnits = document.getElementsByClassName("trainUnits");
+	let trainUnits = document.getElementsByClassName("trainUnits");
 	if(trainUnits.length >0)
 	{
-		var p = document.createElement("p");
-		var div_fastclick = document.createElement("div");
+		let p = document.createElement("p");
+		let div_fastclick = document.createElement("div");
 		e_div.appendChild(div_fastclick);
 		
 		
-		var label_fastclick = document.createElement("label");
+		let label_fastclick = document.createElement("label");
 		label_fastclick.innerText = "Fast click (train all):";
 		window.fast_click_checkbox = document.createElement("input");
 		fast_click_checkbox.setAttribute("type","checkbox");
@@ -1028,11 +1028,11 @@ function troop_train(){//gid 13 19 20 29 30 21
 		label_fastclick.insertAdjacentElement("afterbegin",fast_click_checkbox);
 		
 		window.traintroop_actions = trainUnits[0].getElementsByClassName("action");
-		for(var i = 0; i< traintroop_actions.length; i++)
+		for(let i = 0; i< traintroop_actions.length; i++)
 		{
-			var unit = traintroop_actions[i].getElementsByClassName("unit")[0];
+			let unit = traintroop_actions[i].getElementsByClassName("unit")[0];
 			if(!unit) continue;
-			var img_ = document.createElement("img");
+			let img_ = document.createElement("img");
 			img_.setAttribute("src","img/x.gif");
 			img_.setAttribute("style","margin-left:10px;margin-right:10px");
 			img_.setAttribute("class",unit.getAttribute("class"));
@@ -1044,7 +1044,7 @@ function troop_train(){//gid 13 19 20 29 30 21
 function fastclick_train_onclick(i){
 	if(window.fast_click_checkbox.checked || confirm("Confirm train?"))
 	{
-		var e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
+		let e_a = traintroop_actions[Number(i)].getElementsByTagName("a");
 		e_a[e_a.length-1].click();
 		document.getElementById("s1").click();
 	}
@@ -1055,12 +1055,12 @@ function gid24(){//Town Hall
 }
 
 function read_time_gid_under_progress(name){
-	var under_progress = document.getElementsByClassName("under_progress");	
+	let under_progress = document.getElementsByClassName("under_progress");	
 	if(under_progress.length == 1)
 	{
-		var durs = under_progress[0].getElementsByClassName("dur");		
-		var e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
-		var value_time = Number(e_time.getAttribute("value"));
+		let durs = under_progress[0].getElementsByClassName("dur");		
+		let e_time = durs[durs.length - 1].getElementsByClassName("timer")[0];
+		let value_time = Number(e_time.getAttribute("value"));
 		
 		TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = TJS.CurrentSec() + value_time;		
 	}else TJS.CurrentData.village_object[name + "_" + TJS.CurrentData.Gid] = 1;
@@ -1068,7 +1068,7 @@ function read_time_gid_under_progress(name){
 }
 
 
-var gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&every=%s&gid=17&a=1&t=0&trid=0&option=256";
+let gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&every=%s&gid=17&a=1&t=0&trid=0&option=256";
 gid17_clear();
 //gid17_CreateTradeRoutes_load();
 //TroopsResource_load();

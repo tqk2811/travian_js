@@ -10,33 +10,38 @@ Note: For update code, please clear cache your browser or change value of "refre
 (example: refresh_ = "update_01")
 
 ```
-var refresh_ = "00000001";//some string for refresh
-var font_size = "10px";
-var list_sidebarBoxLinklist = [ // data for linker list (user can change it) [[Name,url],[Name2,url2],....]
+let list_sidebarBoxLinklist = [ // data for linker list (user can change it) [[Name,url],[Name2,url2],....]
     ["FarmList","/build.php?tt=99&id=39"],
     ["Att Comming","/build.php?gid=16&tt=1&filter=1&subfilters=1"]
 ];
+UpdateNum = localStorage.getItem("UpdateNum");
+AddUriScript(httpGetGithubCdnUri("libs.js"));
+
 function AddUriScript(uri)
 {
-    var s = document.createElement('script');
-    s.setAttribute("src",uri+"?refresh_="+refresh_);
+    let s = document.createElement('script');
+    s.setAttribute("src",uri+"?UpdateNum="+UpdateNum);
     document.head.appendChild(s);
 }
 function httpGetGithubCdnUri(FilePath,GithubUser = "tqk2811",Project_name = "travian_js",Branch = "master")
-{    
-    var sha_data = localStorage.getItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+refresh_);//Check storage
+{
+	if(!UpdateNum)
+	{
+		UpdateNum = 0;
+		localStorage.setItem("UpdateNum",0);
+	}
+    let sha_data = localStorage.getItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+UpdateNum);//Check storage
     if(sha_data === null)
     {
 		window.firstLoad = true;
-        var xmlHttp = new XMLHttpRequest();
+        let xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET","https://api.github.com/repos/"+GithubUser+"/"+Project_name+"/commits/"+Branch, false );
         xmlHttp.send();		
-        var json_data = JSON.parse(xmlHttp.responseText);		
+        let json_data = JSON.parse(xmlHttp.responseText);		
         sha_data = json_data.sha.substring(0,9);
-        localStorage.setItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+refresh_,sha_data);
+        localStorage.setItem(GithubUser+"/"+Project_name+"/"+Branch+"/"+UpdateNum,sha_data);
     }
     return "https://cdn.rawgit.com/"+GithubUser+"/"+Project_name+"/"+sha_data+"/"+FilePath;
 }
-AddUriScript(httpGetGithubCdnUri("libs.js"));
 ```
 

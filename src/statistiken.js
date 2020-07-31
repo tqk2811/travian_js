@@ -2,22 +2,22 @@ if(window.location.href.indexOf("statistiken.php") >= 0) statistiken_();
 
 
 function statistiken_(){
-	var table = document.getElementById("heroes");
+	let table = document.getElementById("heroes");
 	if(table ) statistiken_hero(table);
 }
 
 
 function statistiken_hero(table){
-	var hero = {};
-	var hero_json = localStorage.getItem("hero");
+	let hero = {};
+	let hero_json = localStorage.getItem("hero");
 	if(hero_json ) hero = JSON.parse(hero_json);
 	
-	var current_time = TJS.CurrentSec();
-	var players_name = table.getElementsByClassName("pla");
-	var exps = table.getElementsByClassName("xp");
-	for(var i = 0; i < players_name.length; i++){
-		var curr = hero[players_name[i].innerText];
-		var exp = Number(exps[i].innerText);
+	let current_time = TJS.CurrentSec();
+	let players_name = table.getElementsByClassName("pla");
+	let exps = table.getElementsByClassName("xp");
+	for(let i = 0; i < players_name.length; i++){
+		let curr = hero[players_name[i].innerText];
+		let exp = Number(exps[i].innerText);
 		if(curr  && curr.exp  && exp > curr.exp.exp){
 			exps[i].innerText += "(+" + (exp - curr.exp.exp).toString() + ")";
 			exps[i].title = TJS.GetTimeTextFromSecondLeft(current_time - curr.exp.time) + " ago";			

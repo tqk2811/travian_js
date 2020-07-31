@@ -1,7 +1,7 @@
 //sidebarBoxActiveVillage
 if(!TJS.CurrentData.isPlus)
-	for(var i = 0; i < TJS.CurrentData.list_sidebarBoxActiveVillage.length; i++){
-		var attibute_class = TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].getAttribute("class");
+	for(let i = 0; i < TJS.CurrentData.list_sidebarBoxActiveVillage.length; i++){
+		let attibute_class = TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].getAttribute("class");
 		if(attibute_class.search("disable") > 0) continue;
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("class",attibute_class.replace("Black","White").replace("gold","green"));
 		TJS.CurrentData.list_sidebarBoxActiveVillage[i][0].setAttribute("onclick","window.location =\""+TJS.CurrentData.list_sidebarBoxActiveVillage[i][1] +"\"");
@@ -9,23 +9,23 @@ if(!TJS.CurrentData.isPlus)
 	}
 
 //sidebarBoxLinklist
-var sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
+let sidebarBoxLinklist_ = document.getElementById("sidebarBoxLinklist");
 if(sidebarBoxLinklist_){
-	var innerBox_content = sidebarBoxLinklist_.getElementsByClassName("content")[0];
+	let innerBox_content = sidebarBoxLinklist_.getElementsByClassName("content")[0];
 	
-	var linklistNotice_ = innerBox_content.getElementsByClassName("linklistNotice");	
+	let linklistNotice_ = innerBox_content.getElementsByClassName("linklistNotice");	
 	if(linklistNotice_.length > 0)
 	{
 		linklistNotice_[0].remove();
 		window.ul_linkerlist = document.createElement("ul");
 		innerBox_content.appendChild(ul_linkerlist);
-		for(var i = 0;i < list_sidebarBoxLinklist.length;i++) AddLinkerList(list_sidebarBoxLinklist[i]);
+		for(let i = 0;i < list_sidebarBoxLinklist.length;i++) AddLinkerList(list_sidebarBoxLinklist[i]);
 	}
 	window.checkbox_linkerlisttop = document.createElement("input");
 	checkbox_linkerlisttop.setAttribute("type","checkbox");
 	TJS.InitCheckboxOnclick(checkbox_linkerlisttop,"linkerlisttop",function(){sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);},true);
 	if(checkbox_linkerlisttop.checked) sidebarBeforeContent_swap(checkbox_linkerlisttop.checked);
-	var label_checkbox_linkerlisttop = document.createElement("label");
+	let label_checkbox_linkerlisttop = document.createElement("label");
 	label_checkbox_linkerlisttop.innerText = "Bring to top";
 	
 	innerBox_content.appendChild(checkbox_linkerlisttop);
@@ -36,8 +36,8 @@ function sidebarBeforeContent_swap(flag){
 	else TJS.MoveElementDown(sidebarBoxLinklist_,5);// back to bot
 }
 function AddLinkerList(item){
-    var li_ = document.createElement('li');
-    var aTag = document.createElement('a');
+    let li_ = document.createElement('li');
+    let aTag = document.createElement('a');
     aTag.setAttribute('href',item[1]);
     aTag.innerHTML = item[0];
     li_.appendChild(aTag);
@@ -45,13 +45,13 @@ function AddLinkerList(item){
 };
 
 //task_helper
-var global_loader = false;
+let global_loader = false;
 function LoadLiBuildTimer(li_obj){
   if(!li_obj.show_zero && li_obj.time - TJS.CurrentSec() <= 0) return;
-  var t = document.createElement("span");
+  let t = document.createElement("span");
   if(li_obj.flag)
   {
-    var t2 = document.createElement("span");
+    let t2 = document.createElement("span");
     t2.innerText = "-";//ー
     li_obj.e.appendChild(t2);
   }
@@ -65,9 +65,9 @@ function LoadLiBuildTimer(li_obj){
   li_obj.e.appendChild(t);
 }
 function LoadLi(li_obj){
-	var t = document.createElement("span");
+	let t = document.createElement("span");
 	if(li_obj.flag){
-		var t2 = document.createElement("span");
+		let t2 = document.createElement("span");
 		t2.innerText = "-";//ー
 		li_obj.e.appendChild(t2);
 	}
@@ -77,19 +77,19 @@ function LoadLi(li_obj){
 }
 
 function ShowVillageData(li_element){
-	var a_element = li_element.getElementsByTagName("a")[0];
-	var a_element_href = a_element.getAttribute("href");
-	var village_id_ = TJS.getParameterByName(a_element_href,"newdid");	
-	var village_object = TJS.LSGetObject("village",village_id_);
+	let a_element = li_element.getElementsByTagName("a")[0];
+	let a_element_href = a_element.getAttribute("href");
+	let village_id_ = TJS.getParameterByName(a_element_href,"newdid");	
+	let village_object = TJS.LSGetObject("village",village_id_);
 	
-	var e_p1 = document.createElement("p1");
-	e_p1.setAttribute("style","font-size:"+font_size);
+	let e_p1 = document.createElement("p1");
+	e_p1.setAttribute("style","font-size:" + TJS.Const.font_size);
 	e_p1.setAttribute("class",TJS.Const.ClassTaskHelper_p1)
 	li_element.appendChild(e_p1);
 	
 	
 	if(!global_loader && !TJS.CurrentData.isPlus && village_object["attack1"] ){
-		var timeend = false;
+		let timeend = false;
 		if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
 		if(!timeend | village_object["attack1"].count - 1 > 0) 
 		{
@@ -108,10 +108,10 @@ function ShowVillageData(li_element){
 	}
 }
 function Show_Build(village_object,e_p1){
-	var flag = false;
-	var j = 0;
-	var obj;
-	if(village_object.Builds ) for(var i = 0; i < village_object.Builds.length; i++) 
+	let flag = false;
+	let j = 0;
+	let obj;
+	if(village_object.Builds ) for(let i = 0; i < village_object.Builds.length; i++) 
 	{
 		if(village_object.Builds[i] < TJS.CurrentSec()) continue;
 		obj = TJS.GetLiBuildTimerObject();
@@ -136,16 +136,16 @@ function Show_Build(village_object,e_p1){
 	}
 }
 function Show_TroopTrain(village_object,e_p1,village_id_){
-	var flag = false;
-	for(var i = 0; i < TJS.Const.Show_TroopTrain_arr[0].length; i ++)
+	let flag = false;
+	for(let i = 0; i < TJS.Const.Show_TroopTrain_arr[0].length; i ++)
 	{
-		var checkbox_status = village_object["checkbox_status"];
+		let checkbox_status = village_object["checkbox_status"];
 		if(checkbox_status )
 		{
-			var isshow = checkbox_status[TJS.Const.LS_trooptrain_checkbox + TJS.Const.Show_TroopTrain_arr[0][i]];
+			let isshow = checkbox_status[TJS.Const.LS_trooptrain_checkbox + TJS.Const.Show_TroopTrain_arr[0][i]];
 			if(isshow  && isshow) 
 			{
-				var obj = TJS.GetLiBuildTimerObject();
+				let obj = TJS.GetLiBuildTimerObject();
 					obj.e = e_p1;
 					obj.time = village_object[TJS.Const.LS_trooptrain + TJS.Const.Show_TroopTrain_arr[0][i]];
 					obj.flag = flag;
@@ -161,7 +161,7 @@ function Show_TroopTrain(village_object,e_p1,village_id_){
 }
 function Show_Celebration(village_object,e_p1,village_id_){
 	if(!village_object["celebration_24"]) return;//||village_object["celebration_24"] < TJS.CurrentSec()
-	var obj = TJS.GetLiBuildTimerObject();
+	let obj = TJS.GetLiBuildTimerObject();
 		obj.e = e_p1;
 		obj.time = village_object["celebration_24"];
 		obj.color = TJS.Const.task_helper_color_list[0];
@@ -172,9 +172,9 @@ function Show_Celebration(village_object,e_p1,village_id_){
 function Show_Resource(village_object,e_p1,village_id_){
 	if(!village_object["res"]) return;
 	flag = false;
-	for(var i = 0; i < village_object["res"].length; i++)
+	for(let i = 0; i < village_object["res"].length; i++)
 	{
-		var li_obj = {};
+		let li_obj = {};
 		li_obj.text = Math.round(village_object["res"][i] / 1000) +"k";
 		li_obj.flag = flag;
 		li_obj.e = e_p1;
@@ -185,12 +185,12 @@ function Show_Resource(village_object,e_p1,village_id_){
 }
 function Show_AttackRed(village_object,e_p1,village_id_){
 	if(!village_object["attack1"]) return;
-	var timeend = false;
+	let timeend = false;
 	if(village_object["attack1"].timeend < TJS.CurrentSec()) timeend = true;
 	
-	var t = document.createElement("span");	
+	let t = document.createElement("span");	
 	t.setAttribute("style","color:" + "Red");
-	var t2 = document.createElement("span");
+	let t2 = document.createElement("span");
 	if(!timeend)
 	{
 		t.innerText = village_object["attack1"].count + " attack in ";
@@ -211,21 +211,21 @@ function Show_AttackRed(village_object,e_p1,village_id_){
 function task_helper_select_onchange(){
 	TJS.CurrentData.account_object["task_helper_select"] = window.task_helper_select.value;
 	TJS.SaveCurrentAccount();
-	var listp1 = document.getElementsByClassName(TJS.Const.ClassTaskHelper_p1);
-	for(var i =0; i < listp1.length; ) listp1[0].remove();
-	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
+	let listp1 = document.getElementsByClassName(TJS.Const.ClassTaskHelper_p1);
+	for(let i =0; i < listp1.length; ) listp1[0].remove();
+	for(let i =0; i < TJS.CurrentData.listVillage.length; i++) ShowVillageData(TJS.CurrentData.listVillage[i]);
 }
 
 function show_culture(){
-	var expansionSlotInfos = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
-	var boxTitles = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
+	let expansionSlotInfos = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("expansionSlotInfo");
+	let boxTitles = TJS.CurrentData.sidebarBoxVillagelist.getElementsByClassName("boxTitle");
 	if(expansionSlotInfos.length == 1 && boxTitles.length == 1){
-		var villages_text = expansionSlotInfos[0].getElementsByClassName("slots")[0].innerText.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);//‭‭6‬/‭8‬‬
-		var tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);
+		let villages_text = expansionSlotInfos[0].getElementsByClassName("slots")[0].innerText.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);//‭‭6‬/‭8‬‬
+		let tooltip_text = expansionSlotInfos[0]._travianTooltip.text.replaceAll("‬/‭","/").replaceAll("‬‬","").match(/\d+\/\d+$/);
 		boxTitles[0].innerText = villages_text + " (" + tooltip_text + ")";
 		boxTitles[0].setAttribute("style","font-size: small;width:75%");
 		if(TJS.CurrentData.village_object["celebration_24"]){
-			var span_timer = document.createElement("span");
+			let span_timer = document.createElement("span");
 			span_timer.setAttribute("value",TJS.CurrentData.village_object["celebration_24"] - TJS.CurrentSec());
 			span_timer.setAttribute("class",TJS.Const.ClassTimer);
 			span_timer.setAttribute("adv_text","%s ");
@@ -237,7 +237,7 @@ function show_culture(){
 	}
 }
 function menu_top_right(){
-	var e_div = document.createElement("div");
+	let e_div = document.createElement("div");
 	e_div.setAttribute("align","right");
 	if(topbar) 
 	{
@@ -250,22 +250,29 @@ function menu_top_right(){
 		document.getElementById("center").insertAdjacentElement("afterbegin",e_div);
 	}
 	
-	var trade_img = document.createElement("img"); 
-	trade_img.src = httpGetGithubCdnUri("src/ratio.gif");
-	trade_img.setAttribute("onclick","npc_helper.Trade()");
-	trade_img.setAttribute("style","float: left;");
+	let update_img = document.createElement("img");
+	update_img.src = httpGetGithubCdnUri("src/update.png");
+	update_img.onclick = function(){
+		if(window.confirm("Do you want to update?"))
+		{
+			let num = Number(UpdateNum) + 1;
+			localStorage.setItem("UpdateNum", num);
+			window.location.href = window.location.href;
+		}
+	}
+	update_img.setAttribute("style","float: left;");
 	
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
 	task_helper_select.setAttribute("style","float: right;");
 	task_helper_select.onchange = task_helper_select_onchange;
 	
-	e_div.appendChild(trade_img);
+	e_div.appendChild(update_img);
 	e_div.appendChild(task_helper_select);
 
 	if(!TJS.CurrentData.account_object["task_helper_select"]) TJS.CurrentData.account_object["task_helper_select"] = 0;
-	for(var i = 0; i < TJS.Const.task_helper_select_list.length; i++){
-		var option_ = document.createElement("option");
+	for(let i = 0; i < TJS.Const.task_helper_select_list.length; i++){
+		let option_ = document.createElement("option");
 		option_.value = i;
 		option_.innerText = TJS.Const.task_helper_select_list[i];
 		task_helper_select.appendChild(option_);
@@ -273,14 +280,14 @@ function menu_top_right(){
 	window.task_helper_select.value = TJS.CurrentData.account_object["task_helper_select"];
 }
 function dorf1_get_attack1(){//not save
-	var movements = document.getElementById("movements");
-	var att_obj = {};
+	let movements = document.getElementById("movements");
+	let att_obj = {};
 	if(movements ){
-		var trs = movements.getElementsByTagName("tr");
-		for(var i = 0; i< trs.length;i++){
-			var att1s = trs[i].getElementsByClassName("att1");
+		let trs = movements.getElementsByTagName("tr");
+		for(let i = 0; i< trs.length;i++){
+			let att1s = trs[i].getElementsByClassName("att1");
 			if(att1s.length == 1){
-				var timers = trs[i].getElementsByClassName("timer");
+				let timers = trs[i].getElementsByClassName("timer");
 				att_obj.timeend = Number(timers[0].getAttribute("value")) + TJS.CurrentSec();
 				att_obj.count = Number(trs[i].getElementsByClassName("a1")[0].innerText.match(/\d+/));
 				break;
@@ -296,11 +303,11 @@ function dorf1_get_attack1(){//not save
 	TJS.CurrentData.village_object["attack1"] = att_obj;
 }
 function ReadDataBuilding(){//not save
-	var Builds_ = [];
-	var build = document.getElementsByClassName("buildDuration");
+	let Builds_ = [];
+	let build = document.getElementsByClassName("buildDuration");
 	if(build.length !== 0){//read in dorf 1 2
-		for(var k=0; k < build.length; k++){
-			var timeleft = Number(build[k].getElementsByTagName("span")[0].getAttribute("value"));
+		for(let k=0; k < build.length; k++){
+			let timeleft = Number(build[k].getElementsByTagName("span")[0].getAttribute("value"));
 			Builds_.push(TJS.CurrentSec() + timeleft);
 		}
 		TJS.CurrentData.village_object["Builds"] = Builds_;
@@ -313,7 +320,7 @@ if(TJS.CurrentData.sidebarBoxVillagelist ){
 	if(window.location.pathname.indexOf("dorf1.php")>=0) dorf1_get_attack1();//need save
 	ReadDataBuilding();//need save
 	TJS.SaveCurrentVillage();//save
-	for(var i =0; i < TJS.CurrentData.listVillage.length; i++) 
+	for(let i =0; i < TJS.CurrentData.listVillage.length; i++) 
 		ShowVillageData(TJS.CurrentData.listVillage[i]);
 	global_loader = true;
 }

@@ -3,7 +3,7 @@
 
 function manual_()
 {
-	var tabItems = document.getElementsByClassName("tabItem");
+	let tabItems = document.getElementsByClassName("tabItem");
 	if(tabItems.length == 8)
 	{
 		tabItems[0].innerText = "Roman";

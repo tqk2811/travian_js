@@ -1,11 +1,11 @@
 function gid17_CreateTradeRoutes_click(){
 	if(document.getElementById("tradeRouteError").innerText.trim().length == 0 && window.confirm("Confirm Create TradeRoutes?"))
 	{
-		var obj = {};		
-		var arr_ = ["trade_route_destination","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step","every"];
-		for(var i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
+		let obj = {};		
+		let arr_ = ["trade_route_destination","r1","r2","r3","r4","repeat","hour_end","minute_end","hour_step","minute_step","every"];
+		for(let i =0; i < arr_.length; i++) obj[arr_[i]] = Number(document.getElementById(arr_[i]).value);
 		
-		var trade_route_mode_send = document.getElementById("trade_route_mode_send");
+		let trade_route_mode_send = document.getElementById("trade_route_mode_send");
 		if(trade_route_mode_send.checked) obj["trade_route_mode"] = "send";
 		else obj["trade_route_mode"] = "deliver";
 		
@@ -23,16 +23,16 @@ function gid17_CreateTradeRoutes_load(){
 		localStorage.removeItem("trade_route");
 		return;
 	}
-	var trade_route_str = localStorage.getItem("trade_route");
+	let trade_route_str = localStorage.getItem("trade_route");
 	if(trade_route_str )
 	{
-		var obj = JSON.parse(trade_route_str);
-		var tmp_hr = obj["hour"];
-		var tmp_min = obj["minute"];
+		let obj = JSON.parse(trade_route_str);
+		let tmp_hr = obj["hour"];
+		let tmp_min = obj["minute"];
 		
-		var time_start = obj["hour"] * 60 + obj["minute"];
-		var time_end = obj["hour_end"] * 60 + obj["minute_end"];
-		var time_step = obj["hour_step"] * 60 + obj["minute_step"];
+		let time_start = obj["hour"] * 60 + obj["minute"];
+		let time_end = obj["hour_end"] * 60 + obj["minute_end"];
+		let time_step = obj["hour_step"] * 60 + obj["minute_step"];
 		if(time_step == 0){localStorage.removeItem("trade_route");return;}
 		if(time_start < time_end)
 		{
