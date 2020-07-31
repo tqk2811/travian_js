@@ -859,12 +859,16 @@ function gid17_findmaxtroops(){
 	let merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
 	let target = false;
 	if (window.gid17_obj_target) target = true;
-	let target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/Number(window.slider_target.value)) : 99999999;
-	let target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/Number(window.slider_target.value)) : 99999999;
+	let target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])* Number(window.slider_target.value) / 100) : 99999999;
+	let target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])* Number(window.slider_target.value) / 100) : 99999999;
 	
 	let res_current = [];
-	for(let i = 0; i < 4; i++)
-		res_current.push(100 * TJS.CurrentData.village_object.res[i] / Number(window.slider_current.value));
+	for(let i = 0; i < 4; i++){
+		let sto = i != 3 ? TJS.CurrentData.village_object["storage"] : TJS.CurrentData.village_object["granary"];
+		let res_curr_save = Math.floor(Number(window.slider_current.value) * sto / 100);		
+		res_current.push(res_curr_save >=  TJS.CurrentData.village_object.res[i] ?
+			TJS.CurrentData.village_object.res[i] - res_curr_save : 0 );
+	}
 	
 	let res_target = target ? window.gid17_obj_target["res"] : [ 0, 0 , 0 ,0 ];
 	//gid17_TroopRes (i+1)
