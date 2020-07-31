@@ -186,7 +186,6 @@ function gid16_raidlist(){
 	TJS.CurrentData.e_build.insertAdjacentElement("afterbegin",e_div);
 	
 	let current_time = TJS.CurrentSec();
-	let listEntrys = document.getElementsByClassName("listEntry");
 	for(let i = 0; i < listEntrys.length; i++)
 	{
 		let listid = listEntrys[i].getAttribute("id");
