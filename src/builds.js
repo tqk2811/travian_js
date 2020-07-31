@@ -205,8 +205,7 @@ function gid16_raidlist(){
 		listTitleText.appendChild(buttoncheck);
 	}
 }
-function gid16_bt_raidall()
-{
+function gid16_bt_raidall(){
 	var txt = "Notice: You need invigorate this tab, may be captcha show up.\r\nIf you ignore captcha, you will get banned.\r\n\r\n";
 	txt += "Info Yellow: " + window.gid16_cb_yellow.checked + " , Red: " + window.gid16_cb_red.checked;
 	if(!window.confirm(txt)) return;
@@ -225,8 +224,7 @@ function gid16_bt_raidall()
 		gid16_bt_CheckGreen_onclick(id);
 	}
 }
-function gid16_raidall_init()
-{
+function gid16_raidall_init(){
 	var raidall = TJS.CurrentData.account_object["raidall"];
 	if(raidall && raidall.flag)
 	{
@@ -655,7 +653,11 @@ function gid17_create_slider(parent_,isMin,village_id){
 		label_p.innerText = this.value + "%";
 	};
 	slider.onchange = function(){
-		if(!this.disabled)label_p.innerText = this.value + "%";
+		if(!this.disabled)
+		{
+			label_p.innerText = this.value + "%";
+			gid17_TypeResSelect_onchange();
+		}
 		else label_p.innerText = "";
 		}
 	div.appendChild(slider);
@@ -703,6 +705,7 @@ function gid17_enterVillageName(){
 				return;
 			}			
 		}
+		else window.gid17_obj_target = null;
 	}
 	window.gid17_target_span.innerText = "";
 	window.gid17_timer.setAttribute("state","stop");
@@ -730,10 +733,12 @@ function gid17_TypeResSelect_onchange(){
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 0;
 			gid17_label_max.innerText = "/0";
+			gid17_SaveBigCelebration.disabled = false;
 			break;
 			
 		case "b_0" : 
 		case "b_1" : 
+			gid17_SaveBigCelebration.disabled = false;
 			gid17_input_number.max = Math.floor(Number(document.getElementById("merchantCapacityValue").innerText)/TJS.Const.RoundResource);
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 0;
@@ -744,6 +749,7 @@ function gid17_TypeResSelect_onchange(){
 		case "c_1" : 
 		case "c_2" : 
 		case "c_3" : 
+			gid17_SaveBigCelebration.disabled = true;
 			gid17_input_number.max = 1;
 			gid17_input_number.min = 0;
 			gid17_input_number.value = 1;
@@ -753,6 +759,7 @@ function gid17_TypeResSelect_onchange(){
 			break;
 		
 		default:
+			gid17_SaveBigCelebration.disabled = false;
 			window.gid17_TroopRes = TJS.CurrentData.account_object["troop"][gid17_TypeResSelect.value];
 			gid17_findmaxtroops();
 			return;
@@ -762,10 +769,9 @@ function gid17_input_number_onchange(){
 	var b_flag = false;
 	switch(gid17_TypeResSelect.value)
 	{
-		case "-1" : gid17_write_res([0,0,0,0],1); gid17_SaveBigCelebration.disabled = false; return;
+		case "-1" : gid17_write_res([0,0,0,0],1); return;
 		case "b_0" : b_flag = true;//true is balance current
 		case "b_1" : 
-			gid17_SaveBigCelebration.disabled = false;
 			var v_obj_current = TJS.CurrentData.village_object;
 			var v_obj_target = TJS.LSGetObject("village",window.gid17_target_span.innerText);
 			if(!v_obj_target["res"]) return;
@@ -799,7 +805,6 @@ function gid17_input_number_onchange(){
 		case "c_1" : 
 		case "c_2" : 
 		case "c_3" : 
-			gid17_SaveBigCelebration.disabled = true;
 			if(Number(gid17_input_number.value) == 1){
 				gid17_write_res(TJS.Const.CelebrationResource[gid17_TypeResSelect.value].r,
 					TJS.Const.CelebrationResource[gid17_TypeResSelect.value].run_twice);
@@ -841,7 +846,7 @@ function gid17_findmaxtroops(){
 	var send_times = gid17_getx2();
 	var merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
 	var target = false;
-	if(window.gid17_obj_target["res"]) target = true;
+	if(window.gid17_obj_target) target = true;
 	var target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
 	var target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
 	
