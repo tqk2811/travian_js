@@ -5,10 +5,6 @@ Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigj
 Android? Install [kiwibrowser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) and install chrome extension  
 ![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/24405543/example.png)
 
-Note: For update code, please clear cache your browser or change value of "refresh_" to other string 
-
-(example: refresh_ = "update_01")
-
 ```
 let list_sidebarBoxLinklist = [ // data for linker list (user can change it) [[Name,url],[Name2,url2],....]
     ["FarmList","/build.php?tt=99&id=39"],

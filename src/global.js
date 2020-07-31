@@ -260,7 +260,7 @@ function menu_top_right(){
 			window.location.href = window.location.href;
 		}
 	}
-	update_img.setAttribute("style","float: left;");
+	update_img.setAttribute("style","float: left; height: 21px;");
 	
 	window.task_helper_select = document.createElement("select");
 	task_helper_select.setAttribute("title","Hot key: Q");
