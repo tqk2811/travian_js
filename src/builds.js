@@ -112,6 +112,7 @@ function gid16(){//rallypoint
 		}
 	}
 }
+
 function gid16_raidlist(){
 	let raidlists = [];
 	let listEntrys = document.getElementById("raidList").getElementsByClassName("listEntry");
@@ -204,6 +205,7 @@ function gid16_raidlist(){
 		listTitleText.appendChild(buttoncheck);
 	}
 }
+
 function gid16_bt_raidall(){
 	let txt = "Notice: You need invigorate this tab, may be captcha show up.\r\nIf you ignore captcha, you will get banned.\r\n\r\n";
 	txt += "Info Yellow: " + window.gid16_cb_yellow.checked + " , Red: " + window.gid16_cb_red.checked;
@@ -223,6 +225,7 @@ function gid16_bt_raidall(){
 		gid16_bt_CheckGreen_onclick(id);
 	}
 }
+
 function gid16_raidall_init(){
 	let raidall = TJS.CurrentData.account_object["raidall"];
 	if(raidall && raidall.flag)
@@ -364,6 +367,7 @@ function gid16_attack_multiwave(){
 	let select_kata2s = document.getElementsByName("troops[0][kata2]");
 	if(select_kata2s.length == 1) select_kata2s[0].value = 99;
 }
+
 function gid16_attack_multiwave_start(){
 	if(window.confirm("Start?"))
 	{
@@ -372,6 +376,7 @@ function gid16_attack_multiwave_start(){
 		localStorage.setItem("attack_multiwave",Date.now()+Number(window.gid16_Input_delay.value));
 	}
 }
+
 function gid16_attack_multiwave_trigger(){
 	if(gid16_Input_AttackTrigger.checked) 
 	{
@@ -606,6 +611,7 @@ function gid17(){//market
 		}
 	}
 }
+
 function gid17_Sliders(){
 	let destination = document.getElementsByClassName("destination")[0];				
 	let d_div = document.createElement("div");
@@ -615,6 +621,7 @@ function gid17_Sliders(){
 	window.slider_target = gid17_create_slider(d_div,false,null);
 	window.slider_target.disabled = true;
 }
+
 function gid17_create_slider(parent_,isMin,village_id){
 	let v = isMin ? 0 : TJS.Const.Slider_Target_Max_Default;
 	if(village_id){
@@ -658,11 +665,12 @@ function gid17_create_slider(parent_,isMin,village_id){
 			gid17_TypeResSelect_onchange();
 		}
 		else label_p.innerText = "";
-		}
+	}
 	div.appendChild(slider);
 	div.appendChild(label_p);
 	return slider;
 }
+
 function gid17_MarketPlace_icon_n_res(e_parent,class_name){
 	let div_ = document.createElement("div");
 	div_.setAttribute("style","float:left; width:24%;");
@@ -675,6 +683,7 @@ function gid17_MarketPlace_icon_n_res(e_parent,class_name){
 	div_.appendChild(e_span);
 	return e_span;
 }
+
 function gid17_MarketPlace_sendRessources_callback(){
 	enterVillageName.setAttribute("list","village_list");
 	window.gid17_target_span.innerText = "";
@@ -682,6 +691,7 @@ function gid17_MarketPlace_sendRessources_callback(){
 	gid17_Sliders();
 	gid17_TypeResSelect_onchange();
 }
+
 function gid17_enterVillageName(){
 	for(let i = 0; i < TJS.ListVillageName.length; i++){
 		if(TJS.ListVillageName[i].name == enterVillageName.value){
@@ -717,16 +727,17 @@ function gid17_enterVillageName(){
 	window.slider_target.disabled = true;
 	window.slider_target.onchange();
 }
+
 function gid17_createoption(value_,name){
 	let e_option = document.createElement("option");
 	e_option.value = value_;
 	e_option.innerText = name;
 	return e_option;
 }
+
 function gid17_TypeResSelect_onchange(){
 	let account_object = TJS.CurrentData.account_object;
-	switch(gid17_TypeResSelect.value)
-	{
+	switch(gid17_TypeResSelect.value){
 		case "-1"  : 
 			gid17_input_number.max = 0;
 			gid17_input_number.min = 0;
@@ -764,10 +775,10 @@ function gid17_TypeResSelect_onchange(){
 			return;
 	}
 }
+
 function gid17_input_number_onchange(){
 	let b_flag = false;
-	switch(gid17_TypeResSelect.value)
-	{
+	switch(gid17_TypeResSelect.value){
 		case "-1" : gid17_write_res([0,0,0,0],1); return;
 		case "b_0" : b_flag = true;//true is balance current
 		case "b_1" : 
@@ -831,6 +842,7 @@ function gid17_input_number_onchange(){
 			break;
 	}
 }
+
 function gid17_getx2(){
 	let result = 1;
 	let e_run_twice = document.getElementById("x2");
@@ -840,12 +852,13 @@ function gid17_getx2(){
 	}
 	return result;
 }
+
 function gid17_findmaxtroops(){
 	let maxtroops = 99999999;
 	let send_times = gid17_getx2();
 	let merchantCapacityValue = Number(document.getElementById("merchantCapacityValue").innerText) * send_times;
 	let target = false;
-	if(window.gid17_obj_target) target = true;
+	if (window.gid17_obj_target) target = true;
 	let target_stogare = target ? Math.floor(Number(gid17_obj_target["storage"])*100/98) : 99999999;
 	let target_granary = target ? Math.floor(Number(gid17_obj_target["granary"])*100/98) : 99999999;
 	
@@ -855,8 +868,7 @@ function gid17_findmaxtroops(){
 	let storage_target = [target_stogare , target_stogare, target_stogare , target_granary];
 	let res_for_a_troop = 0;
 	let total_res_target = 0;
-	for(let i = 0; i < 4; i++)
-	{
+	for(let i = 0; i < 4; i++){
 		if(3 == i && gid17_noncrop.checked) break;
 		res_for_a_troop += gid17_TroopRes[i+1];
 		let total_res_2village = res_current[i] + res_target[i];
@@ -866,8 +878,7 @@ function gid17_findmaxtroops(){
 		if(maxtroop_res < maxtroops) maxtroops = maxtroop_res;//find min
 	}
 	let res_merchanWillCarry = res_for_a_troop * maxtroops - total_res_target;
-	while(merchantCapacityValue < res_merchanWillCarry)
-	{
+	while(merchantCapacityValue < res_merchanWillCarry){
 		maxtroops--;
 		res_merchanWillCarry = 0;
 		for(let i = 0; i < 4; i++)

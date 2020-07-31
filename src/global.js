@@ -252,6 +252,7 @@ function menu_top_right(){
 	
 	let update_img = document.createElement("img");
 	update_img.src = httpGetGithubCdnUri("src/update.png");
+	update_img.setAttribute("title","Click to update");
 	update_img.onclick = function(){
 		if(window.confirm("Do you want to update?"))
 		{
