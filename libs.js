@@ -423,7 +423,7 @@ TJS = {
 			}
 			
 			let patharr = window.location.pathname.split("/");			
-			switch("/" + patharr[0])
+			switch("/" + patharr[1])
 			{
 				case "/dorf1.php":
 				case "/dorf2.php":
