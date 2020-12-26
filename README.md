@@ -1,5 +1,5 @@
 Travian version 4.4  
-![alt tag](https://cdn.rawgit.com/tqk2811/travian_js/989b6cd2/demo.png)
+![alt tag](https://github.com/tqk2811/travian_js/blob/master/preview/demo.png?raw=true)
 
 Install [chrome extension](https://chrome.google.com/webstore/detail/ddbjnfjiigjmcpcpkmhogomapikjbjdk) (or [old version](https://chrome.google.com/webstore/detail/poakhlngfciodnhlhhgnaaelnpjljija)) and add script below to extension in your travian and click Save.  
 Android? Install [kiwibrowser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser) and install chrome extension  
