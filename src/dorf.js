@@ -130,10 +130,10 @@ function read_celebration_tab(){
 }
 
 function dorf_main(){
-	if(window.location.href.indexOf("dorf1.php")>=0 || window.location.href.indexOf("dorf2.php")>=0){
+	if(window.location.href.indexOf("dorf1")>=0 || window.location.href.indexOf("dorf2")>=0){
 		troop_train_show();
 		img_to_gid16();
-	}else if(window.location.href.indexOf("dorf3.php")>=0){
+	}else if(window.location.href.indexOf("/village/statistics")>=0){
 		dorf3_icon_count();
 		read_celebration_tab();
 		img_to_gid16();

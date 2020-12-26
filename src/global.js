@@ -312,13 +312,13 @@ function ReadDataBuilding(){//not save
 			Builds_.push(TJS.CurrentSec() + timeleft);
 		}
 		TJS.CurrentData.village_object["Builds"] = Builds_;
-	}else if(window.location.pathname.indexOf("dorf1.php")>=0 || window.location.pathname.indexOf("dorf2.php")>=0) TJS.CurrentData.village_object["Builds"] = [];
+	}else if(window.location.pathname.indexOf("dorf1")>=0 || window.location.pathname.indexOf("dorf2")>=0) TJS.CurrentData.village_object["Builds"] = [];
 }
 
 if(TJS.CurrentData.sidebarBoxVillagelist ){	
 	menu_top_right();
 	show_culture();
-	if(window.location.pathname.indexOf("dorf1.php")>=0) dorf1_get_attack1();//need save
+	if(window.location.pathname.indexOf("dorf1")>=0) dorf1_get_attack1();//need save
 	ReadDataBuilding();//need save
 	TJS.SaveCurrentVillage();//save
 	for(let i =0; i < TJS.CurrentData.listVillage.length; i++) 

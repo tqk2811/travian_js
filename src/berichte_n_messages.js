@@ -85,7 +85,7 @@ function berichte_clear_onclick()
 
 function berichte_main()
 {
-	if(window.location.href.indexOf("berichte.php")>=0 || window.location.href.indexOf("messages.php")>=0)
+	if(window.location.href.indexOf("report")>=0 || window.location.href.indexOf("messages")>=0)
 	{
 		administration = document.getElementsByClassName("administration");
 		if(administration.length >= 1) TJS.MoveElementUp(administration[0],3);

@@ -45,7 +45,7 @@ function ally_regionalTop5(){
 }
 
 function ally_main(){
-	if(window.location.href.indexOf("allianz.php")>=0){
+	if(window.location.href.indexOf("alliance")>=0){
 		if (TJS.CurrentData.tabs.length == 2 && 
 		TJS.CurrentData.tab_MainActive.getAttribute("href").indexOf("s=1") >= 0 &&
 		TJS.CurrentData.tab_SubActive.getAttribute("href").indexOf("action=members") >= 0) 
