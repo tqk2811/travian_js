@@ -31,7 +31,7 @@ function func_hero_code(){
 	let hero = TJS.LSGetObject("hero",null);	
 	
 	let hero_img_e = spieler_content.getElementsByClassName("heroImage")[0];
-	let hero_code = TJS.getParameterByName(hero_img_e.getAttribute("src"),"code");
+	let hero_code = hero_img_e.getAttribute("src").match(/(?<=\/)[0-9a-f]+(?=\.png)/)[0];
 	let hero_item_code = hero_code.substring(38);
 	let e_label = document.createElement("p");
 	e_label.setAttribute("style","float:right");

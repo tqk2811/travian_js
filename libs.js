@@ -421,15 +421,16 @@ TJS = {
 				raidall.flag = false;
 				TJS.SaveCurrentAccount();
 			}
-				
-			switch(window.location.pathname)
+			
+			let patharr = window.location.pathname.split("/");			
+			switch("/" + patharr[0])
 			{
-				case "/dorf1":
-				case "/dorf2":
-				case "/dorf3": AddUriScript(httpGetGithubCdnUri("src/dorf.js")); break;
-				case "/build": AddUriScript(httpGetGithubCdnUri("src/builds.js")); break;
+				case "/dorf1.php":
+				case "/dorf2.php":
+				case "/village": AddUriScript(httpGetGithubCdnUri("src/dorf.js")); break;
+				case "/build.php": AddUriScript(httpGetGithubCdnUri("src/builds.js")); break;
 				case "/report":
-				case "/messages": AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js")); break;
+				case "/messages.php": AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js")); break;
 				case "/hero": AddUriScript(httpGetGithubCdnUri("src/hero.js")); break;
 				case "/alliance": AddUriScript(httpGetGithubCdnUri("src/allianz.js")); break;
 				case "/profile": AddUriScript(httpGetGithubCdnUri("src/spieler.js")); break;
