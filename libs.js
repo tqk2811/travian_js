@@ -20,7 +20,7 @@ String.prototype.getASCII = function(){
 }
 function AddUriCss(uri){
     let s = document.createElement('link');
-    s.setAttribute("href",uri + "?refresh_="+refresh_);
+	s.setAttribute("href",uri+"?UpdateNum="+UpdateNum);
 	s.setAttribute("rel","stylesheet");
 	s.setAttribute("type","text/css");
     document.head.appendChild(s);
