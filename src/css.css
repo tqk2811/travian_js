@@ -37,3 +37,6 @@
 .slider:disabled::-webkit-slider-thumb {
 	background: #000000;
 }
+td.unit.none{
+	background: #9eff9e;
+}
