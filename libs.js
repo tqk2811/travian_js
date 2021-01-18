@@ -395,7 +395,7 @@ TJS = {
 	},
 	LoadLib : function(){
 		AddUriScript(httpGetGithubCdnUri("src/global.js"));//
-		//AddUriCss(httpGetGithubCdnUri("src/css.css"));//
+		AddUriCss(httpGetGithubCdnUri("src/css.css"));//
 		//AddUriScript(httpGetGithubCdnUri("src/npc_helper.js"));//
 		if(window.firstLoad)
 		{
