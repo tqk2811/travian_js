@@ -82,8 +82,7 @@ function ShowVillageData(li_element){
 	let village_id_ = TJS.getParameterByName(a_element_href,"newdid");	
 	let village_object = TJS.LSGetObject("village",village_id_);
 	
-	let e_p1 = document.createElement("p1");
-	e_p1.setAttribute("style","font-size:" + TJS.Const.font_size);
+	let e_p1 = document.createElement("div");
 	e_p1.setAttribute("class",TJS.Const.ClassTaskHelper_p1)
 	li_element.appendChild(e_p1);
 	
