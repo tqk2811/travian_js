@@ -2,6 +2,9 @@ td.unit.none{
 	background: #9eff9e;
 }
 #sidebarBoxVillagelist li{
-	display: block!important;
 	grid-template-rows: 20px 20px!important;
+}
+
+#sidebarBoxVillagelist .shortcutsEnabled li{
+	display: block!important;	
 }
