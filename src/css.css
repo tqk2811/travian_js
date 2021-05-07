@@ -2,7 +2,7 @@ td.unit.none{
 	background: #9eff9e;
 }
 #sidebarBoxVillagelist li{
-	grid-template-rows: 20px 20px!important;
+	grid-template-rows: 15px 12px!important;
 }
 
 #sidebarBoxVillagelist .shortcutsEnabled li{
