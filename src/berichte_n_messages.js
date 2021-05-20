@@ -74,10 +74,8 @@ function berichte_clear_onclick()
 {
 	if(window.confirm("Delete all in this page?"))
 	{
-		let checkall = document.getElementById("sAll1");
-		checkall.click();
-		let del = document.getElementById("del");
-		del.click();
+		$("#sAll1").click();
+		$("#reportsForm button[value='delete']").click();
 	}
 }
 
