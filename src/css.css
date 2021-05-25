@@ -9,3 +9,6 @@ td.unit.none{
 #sidebarBoxVillagelist .shortcutsEnabled li{
 	display: block!important;
 }
+.iconAndNameWrapper{
+	padding: 0!important;
+}
