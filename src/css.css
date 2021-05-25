@@ -18,6 +18,7 @@ td.unit.none{
 	width:100%; 
 	overflow: hidden; 
 	margin-top:3px;
+	grid-column-end: span 2;
 }
 
 .mobileOptimized #stockBar:before{
