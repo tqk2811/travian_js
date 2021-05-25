@@ -12,3 +12,14 @@ td.unit.none{
 .iconAndNameWrapper{
 	padding: 0!important;
 }
+
+.Tjs_troop_train{
+	height:100%; 
+	width:100%; 
+	overflow: hidden; 
+	margin-top:3px;
+}
+
+.mobileOptimized #stockBar:before{
+	content:unset!important;
+}
