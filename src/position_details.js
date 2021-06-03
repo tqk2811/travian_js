@@ -96,4 +96,4 @@ function position_details_main()
 	}
 }
 
-position_details_main();
+$(document).ready(position_details_main);

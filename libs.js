@@ -433,12 +433,10 @@ TJS = {
 				case "/messages.php": AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js")); break;
 				case "/hero": AddUriScript(httpGetGithubCdnUri("src/hero.js")); break;
 				case "/alliance": AddUriScript(httpGetGithubCdnUri("src/allianz.js")); break;
-				case "/profile": AddUriScript(httpGetGithubCdnUri("src/spieler.js")); break;
+				case "/profile": AddUriScript(httpGetGithubCdnUri("src/profile.js")); break;
 				case "/statistics": AddUriScript(httpGetGithubCdnUri("src/statistiken.js")); break;
-				case "/manual.php": AddUriScript(httpGetGithubCdnUri("src/manual.js")); break;
-				case "/region": AddUriScript(httpGetGithubCdnUri("src/region.js")); break;
+				//case "/region": AddUriScript(httpGetGithubCdnUri("src/region.js")); break;
 				case "/position_details.php": AddUriScript(httpGetGithubCdnUri("src/position_details.js")); break;
-				//case "/karte.php": AddUriScript(httpGetGithubCdnUri("src/karte.js")); break;
 				default: break;
 			}
 		}

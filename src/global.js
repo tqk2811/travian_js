@@ -314,13 +314,16 @@ function ReadDataBuilding(){//not save
 	}else if(window.location.pathname.indexOf("dorf1")>=0 || window.location.pathname.indexOf("dorf2")>=0) TJS.CurrentData.village_object["Builds"] = [];
 }
 
-if(TJS.CurrentData.sidebarBoxVillagelist ){	
-	menu_top_right();
-	show_culture();
-	if(window.location.pathname.indexOf("dorf1")>=0) dorf1_get_attack1();//need save
-	ReadDataBuilding();//need save
-	TJS.SaveCurrentVillage();//save
-	for(let i =0; i < TJS.CurrentData.listVillage.length; i++) 
-		ShowVillageData(TJS.CurrentData.listVillage[i]);
-	global_loader = true;
+function TJS_Global(){
+	if(TJS.CurrentData.sidebarBoxVillagelist ){	
+		menu_top_right();
+		show_culture();
+		if(window.location.pathname.indexOf("dorf1")>=0) dorf1_get_attack1();//need save
+		ReadDataBuilding();//need save
+		TJS.SaveCurrentVillage();//save
+		for(let i =0; i < TJS.CurrentData.listVillage.length; i++) 
+			ShowVillageData(TJS.CurrentData.listVillage[i]);
+		global_loader = true;
+	}
 }
+$(document).ready(TJS_Global);

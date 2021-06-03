@@ -1,4 +1,7 @@
-if(window.location.href.indexOf("/statistics") >= 0) statistiken_();
+$(document).ready(function(){
+	if(window.location.href.indexOf("/statistics") >= 0) statistiken_();
+})
+
 
 
 function statistiken_(){

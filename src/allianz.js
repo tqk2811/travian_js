@@ -54,4 +54,4 @@ function ally_main(){
 		ally_regionalTop5();
 	}
 }
-ally_main();
+$(document).ready(ally_main);

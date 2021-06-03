@@ -12,4 +12,8 @@ function bid()
 		}
 	}
 }
-//if(window.location.href.indexOf("hero.php")>=0) bid();
+
+function TJS_Hero(){
+	if(window.location.href.indexOf("hero.php")>=0) bid();
+}
+//$(document).ready(TJS_Hero);

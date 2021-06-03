@@ -1086,7 +1086,11 @@ function read_time_gid_under_progress(name){
 
 
 let gid17_base_uri_traderoute = "/build.php?did_dest=%s&r1=%s&r2=%s&r3=%s&r4=%s&trade_route_mode=%s&hour=%s&minute=%s&repeat=%s&every=%s&gid=17&a=1&t=0&trid=0&option=256";
-gid17_clear();
-//gid17_CreateTradeRoutes_load();
-//TroopsResource_load();
-if(TJS.CurrentData.e_build) Get_gid();
+
+function TJS_Build(){
+	gid17_clear();
+	//gid17_CreateTradeRoutes_load();
+	//TroopsResource_load();
+	if(TJS.CurrentData.e_build) Get_gid();
+}
+$(document).ready(TJS_Build);

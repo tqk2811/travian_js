@@ -139,4 +139,4 @@ function dorf_main(){
 	}
 }
 
-dorf_main();
+$(document).ready(dorf_main);

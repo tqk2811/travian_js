@@ -1,9 +1,8 @@
-//if(window.location.href.indexOf("region.php") >= 0) region_();
-
+// $(document).ready(region_)
 
 function region_()
 {
-	progressbarpop();
+	if(window.location.href.indexOf("region.php") >= 0) progressbarpop();
 }
 
 

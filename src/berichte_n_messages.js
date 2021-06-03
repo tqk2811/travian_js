@@ -98,4 +98,4 @@ function berichte_main()
 }
 
 let administration = null;
-berichte_main();
+$(document).ready(berichte_main);
