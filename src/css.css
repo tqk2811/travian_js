@@ -24,3 +24,7 @@ td.unit.none{
 .mobileOptimized #stockBar:before{
 	content:unset!important;
 }
+
+.task_helper_p1{
+	height: 29px;
+}
