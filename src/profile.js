@@ -1,30 +1,6 @@
 let e_sellect;
-function spieler_addraidlist()
-{	
-	e_sellect = document.createElement("select");
-	e_sellect.setAttribute("class","dropdown");
-	for(let i = 0; i< TJS.CurrentData.account_object["raidlists"].length; i++){
-		let e_option = document.createElement("option");
-		e_option.setAttribute("value",TJS.CurrentData.account_object["raidlists"][i].id);
-		e_option.innerText = TJS.CurrentData.account_object["raidlists"][i].name;
-		e_sellect.appendChild(e_option);
-	}
-	spieler_villages.insertAdjacentElement("beforebegin",e_sellect);
-		
-	let e_coords = spieler_villages.getElementsByClassName("coords");
-	for(let i =0; i < e_coords.length; i++){
-		let uri_ = e_coords[i].getElementsByTagName("a")[0].href;
-		let x_ = TJS.getParameterByName(uri_,"x");
-		let y_ = TJS.getParameterByName(uri_,"y");
-		if(!x_ || !y_) continue;
-		
-		let e_div = document.createElement("div");
-		e_div.innerText = "Add";
-		e_div.setAttribute("style","background-color:green;border:none;color:white;");
-		e_div.setAttribute("onclick","Travian.Game.RaidList.addSlotPopupWrapper(e_sellect.value.toString(), '"+x_+"', '"+y_+"'); return false;");
-		
-		e_coords[i].appendChild(e_div);
-	}
+function func_track_pop(){
+	
 }
 function func_hero_code(){
 	let default_checkchangehero_string = "Check change hero item: ";
@@ -99,7 +75,7 @@ function spieler_main()
 		window.spieler_villages = document.getElementById("villages");
 		window.spieler_content = document.getElementById("content");
 		window.spieler_details = document.getElementById("details");
-		//if(spieler_villages  && TJS.CurrentData.account_object["raidlists"] ) spieler_addraidlist();
+		if(spieler_villages) func_track_pop();
 		if(spieler_content  && spieler_details ) func_hero_code();
 	}
 }

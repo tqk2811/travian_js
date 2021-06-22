@@ -49,7 +49,7 @@ function berichte_count_troops_live(){
 		
 			let tbody_live = document.createElement("tbody");
 			tbody_live.setAttribute("class","units");
-			tbody_live.innerHTML = "<tr><th>Live</th></tr>";
+			tbody_live.innerHTML = "<tr><th>Alive</th></tr>";
 			for(let j = 0; j < arr_in.length; j++){
 				let td = document.createElement("td");
 				td.innerText = (arr_in[j]-arr_out[j] - (tbodys.length == 4 ? arr_trap[j] : 0)).toString();
