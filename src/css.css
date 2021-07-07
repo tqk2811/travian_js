@@ -28,3 +28,15 @@ td.unit.none{
 .task_helper_p1{
 	height: 12px;
 }
+
+.tjs-menu{
+	float:right;
+	width:100%;
+	grid-column-start: 3;
+	grid-row-start: 2;
+}
+
+.tjs-menu :nth-child(999)
+{
+	height: 21px;
+}
