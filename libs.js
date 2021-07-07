@@ -363,15 +363,12 @@ TJS = {
 		{
 			AddUriScript(httpGetGithubCdnUri("src/dorf.js"));//read data -> task_helper
 			AddUriScript(httpGetGithubCdnUri("src/builds.js"));//read data -> task_helper
-			AddUriScript(httpGetGithubCdnUri("src/hero.js"));//
 			AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js"));//
 			AddUriScript(httpGetGithubCdnUri("src/allianz.js"));//
-			AddUriScript(httpGetGithubCdnUri("src/spieler.js"));//	
-			AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//		
-			AddUriScript(httpGetGithubCdnUri("src/manual.js"));//
+			AddUriScript(httpGetGithubCdnUri("src/statistiken.js"));//
 			AddUriScript(httpGetGithubCdnUri("src/region.js"));//
 			AddUriScript(httpGetGithubCdnUri("src/position_details.js"));//
-			//AddUriScript(httpGetGithubCdnUri("src/karte.js"));//
+			AddUriScript(httpGetGithubCdnUri("src/profile.js"));//
 		}
 		else
 		{
@@ -393,11 +390,9 @@ TJS = {
 				case "/build.php": AddUriScript(httpGetGithubCdnUri("src/builds.js")); break;
 				case "/report":
 				case "/messages.php": AddUriScript(httpGetGithubCdnUri("src/berichte_n_messages.js")); break;
-				case "/hero": AddUriScript(httpGetGithubCdnUri("src/hero.js")); break;
 				case "/alliance": AddUriScript(httpGetGithubCdnUri("src/allianz.js")); break;
 				case "/profile": AddUriScript(httpGetGithubCdnUri("src/profile.js")); break;
 				case "/statistics": AddUriScript(httpGetGithubCdnUri("src/statistiken.js")); break;
-				//case "/region": AddUriScript(httpGetGithubCdnUri("src/region.js")); break;
 				case "/position_details.php": AddUriScript(httpGetGithubCdnUri("src/position_details.js")); break;
 				default: break;
 			}
