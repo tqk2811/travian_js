@@ -18,7 +18,8 @@ td.unit.none{
 	width:100%; 
 	overflow: hidden; 
 	margin-top:3px;
-	grid-column-end: span 2;
+	grid-column-start: 1;
+	grid-column-end: 4;
 }
 .Tjs_troop_train .Tjs_troop_train_group{
 	float: left;
@@ -27,6 +28,7 @@ td.unit.none{
 .Tjs_troop_train .Tjs_troop_train_name{
 	float: left; 
 	color:black;
+	padding-right: 5px;
 }
 .Tjs_troop_train .Tjs_troop_train_timer{
 	float: left; 
