@@ -12,7 +12,10 @@ function Get_gid(){
 		case 20: //stable
 		case 21: //workshop
 		case 29: //g barrack
-		case 30: troop_train(); return; //g stable
+		case 30: //g stable
+		case 46: //hospital
+			troop_train(); 
+			return; 
 		
 		default: return;
 	}
@@ -999,7 +1002,7 @@ function gid17_write_res(r,run_twice){
 	}
 }
 
-function troop_train(){//gid 13 19 20 29 30 21
+function troop_train(){//gid 13 19 20 29 30 21 46
 	//let contract = document.getElementById("contract");
 	let e_div = document.createElement("div");
 	e_div.setAttribute("style","margin-bottom: 15px;");
