@@ -26,12 +26,10 @@ td.unit.none{
 }
 .Tjs_troop_train .Tjs_troop_train_name{
 	float: left; 
-	width:40%;
 	color:black;
 }
 .Tjs_troop_train .Tjs_troop_train_timer{
 	float: left; 
-	width:60%;
 }
 
 
