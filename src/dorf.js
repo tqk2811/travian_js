@@ -36,7 +36,8 @@ function troop_train_show(){
 		let main_div = document.createElement("div");
 		main_div.setAttribute("class","Tjs_troop_train");
 		let div_barack = document.createElement("div");// gid 19,29
-	
+		div_barack.setAttribute("class","Tjs_troop_train_group");
+
 		let barack_19 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_19"];
 		if(barack_19) troop_train_add_child(div_barack,"Barrack",19);
 	
@@ -44,6 +45,7 @@ function troop_train_show(){
 		if(barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
 		let div_stable = document.createElement("div");// gid 20,30
+		div_stable.setAttribute("class","Tjs_troop_train_group");
 		let stable_20 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_20"];
 		if(stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
@@ -51,15 +53,22 @@ function troop_train_show(){
 		if(stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 		let div_workshop = document.createElement("div");// gid 21
+		div_workshop.setAttribute("class","Tjs_troop_train_group");
 		let workshop = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_21"];
 		if(workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
 		let smithy_13 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_13"];
 		if(smithy_13) troop_train_add_child(div_workshop,"Smithy",13);
 		
+		let div_hospital = document.createElement("div");//
+		div_hospital.setAttribute("class","Tjs_troop_train_group");
+		let hospital = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_46"];
+		if(hospital) troop_train_add_child(div_hospital,"Hospital",46);
+
 		main_div.appendChild(div_barack);
 		main_div.appendChild(div_stable);
 		main_div.appendChild(div_workshop);
+		main_div.appendChild(div_hospital);
 		stockBar.insertAdjacentElement("beforeend",main_div);
 	}
 }
@@ -67,11 +76,12 @@ function troop_train_add_child(e,name,target_gid){
 	let div_ = document.createElement("div");
 	let e_a = document.createElement("a");
 	e_a.setAttribute("href","/build.php?gid=" + target_gid);
+	e_a.setAttribute("class","Tjs_troop_train_name");
 	e_a.innerText = name + ":";
 	
 	let span_time = document.createElement("span");	
 	span_time.setAttribute("value",TJS.CurrentData.village_object[TJS.Const.LS_trooptrain+target_gid] - TJS.CurrentSec());
-	span_time.setAttribute("class",TJS.Const.ClassTimer);
+	span_time.setAttribute("class",TJS.Const.ClassTimer + " Tjs_troop_train_timer");
 	span_time.innerText = "...";
 	div_.appendChild(e_a);
 	div_.appendChild(span_time);

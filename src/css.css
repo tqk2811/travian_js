@@ -20,16 +20,16 @@ td.unit.none{
 	margin-top:3px;
 	grid-column-end: span 2;
 }
-.Tjs_troop_train div{
+.Tjs_troop_train .Tjs_troop_train_group{
 	float: left;
 	width:25%;
 }
-.Tjs_troop_train div a{
+.Tjs_troop_train .Tjs_troop_train_name{
 	float: left; 
 	width:40%;
 	color:black;
 }
-.Tjs_troop_train div span{
+.Tjs_troop_train .Tjs_troop_train_timer{
 	float: left; 
 	width:60%;
 }
