@@ -30,16 +30,13 @@ function dorf3_icon_attack_count(classname,color){
 	}
 }
 
-
-let troop_train_child_div_style = "float: left; width:33%;";
-
 function troop_train_show(){
 	let stockBar = document.getElementById("stockBar");
 	if(stockBar){
 		let main_div = document.createElement("div");
 		main_div.setAttribute("class","Tjs_troop_train");
 		let div_barack = document.createElement("div");// gid 19,29
-		div_barack.setAttribute("style",troop_train_child_div_style);
+		div_barack.setAttribute("style");
 	
 		let barack_19 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_19"];
 		if(barack_19) troop_train_add_child(div_barack,"Barrack",19);
@@ -48,7 +45,7 @@ function troop_train_show(){
 		if(barack_29) troop_train_add_child(div_barack,"GBarrack",29);
 	
 		let div_stable = document.createElement("div");// gid 20,30
-		div_stable.setAttribute("style",troop_train_child_div_style);
+		div_stable.setAttribute("style");
 		let stable_20 = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_20"];
 		if(stable_20) troop_train_add_child(div_stable,"Stable",20);
 	
@@ -56,7 +53,7 @@ function troop_train_show(){
 		if(stable_30) troop_train_add_child(div_stable,"GStable",30);
 	
 		let div_workshop = document.createElement("div");// gid 21
-		div_workshop.setAttribute("style",troop_train_child_div_style);
+		div_workshop.setAttribute("style");
 		let workshop = TJS.CurrentData.village_object["checkbox_status"]["troop_train_checkbox_21"];
 		if(workshop) troop_train_add_child(div_workshop,"Workshop",21);
 
@@ -74,11 +71,9 @@ function troop_train_add_child(e,name,target_gid){
 	let e_a = document.createElement("a");
 	e_a.setAttribute("href","/build.php?gid=" + target_gid);
 	e_a.innerText = name + ":";
-	e_a.setAttribute("style","float: left; width:50%;color:black;");
 	
 	let span_time = document.createElement("span");	
 	span_time.setAttribute("value",TJS.CurrentData.village_object[TJS.Const.LS_trooptrain+target_gid] - TJS.CurrentSec());
-	span_time.setAttribute("style","float: left; width:50%;");
 	span_time.setAttribute("class",TJS.Const.ClassTimer);
 	span_time.innerText = "...";
 	div_.appendChild(e_a);

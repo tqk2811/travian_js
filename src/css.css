@@ -20,6 +20,22 @@ td.unit.none{
 	margin-top:3px;
 	grid-column-end: span 2;
 }
+.Tjs_troop_train div{
+	float: left;
+	width:25%;
+}
+.Tjs_troop_train div a{
+	float: left; 
+	width:40%;
+	color:black;
+}
+.Tjs_troop_train div span{
+	float: left; 
+	width:60%;
+}
+
+
+
 
 .mobileOptimized #stockBar:before{
 	content:unset!important;
