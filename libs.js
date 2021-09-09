@@ -453,7 +453,7 @@ TJS.CurrentData.Gid = function(){
 	return Number(gid_str.substring(3,gid_str.length));
 }();
 TJS.CurrentData.listVillage = function() {
-	if(TJS.CurrentData.sidebarBoxVillagelist) return TJS.CurrentData.sidebarBoxVillagelist.getElementsByTagName("li");
+	if(TJS.CurrentData.sidebarBoxVillagelist) return TJS.CurrentData.sidebarBoxVillagelist.querySelectorAll("div.villageList div.listEntry");
 	else return null;
 }();
 TJS.CurrentData.active_village = function(){
